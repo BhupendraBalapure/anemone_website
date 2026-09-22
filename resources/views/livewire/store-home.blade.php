@@ -19,7 +19,10 @@
             <button wire:click="switchTheme('dark_luxury')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer {{ $currentTheme === 'dark_luxury' ? 'bg-gradient-to-r from-rose-500 to-purple-600 text-white shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
                 Dark Luxury
             </button>
-            <a href="{{ route('onboarding') }}" wire:navigate class="ml-2 btn-brand-gradient text-white px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1 shadow">
+            <a href="{{ route('store.dashboard', $tenant->slug) }}" wire:navigate class="ml-2 px-3 py-1 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-gauge text-[10px]"></i> Dashboard & Theme Studio
+            </a>
+            <a href="{{ route('onboarding') }}" wire:navigate class="ml-1 btn-brand-gradient text-white px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1 shadow">
                 <i class="fa-solid fa-plus text-[10px]"></i> New Store
             </a>
         </div>
