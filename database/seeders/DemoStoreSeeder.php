@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Archetype;
-use App\Models\CatalogItem;
 use App\Models\Tenant;
 use Illuminate\Database\Seeder;
 

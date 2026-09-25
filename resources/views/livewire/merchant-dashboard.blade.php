@@ -1,84 +1,214 @@
-<div class="min-h-screen bg-slate-100/70 text-slate-800 pb-16">
+<div class="min-h-screen bg-slate-100/70 text-slate-800 flex w-full antialiased font-sans">
 
-    <!-- 🌟 Top Merchant Bar -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
+    <!-- ======================================================== -->
+    <!-- 🧭 LEFT SIDEBAR (Native Flex Sibling, Zero Overlap)       -->
+    <!-- ======================================================== -->
+    <aside class="w-64 xl:w-72 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 h-screen sticky top-0 z-30 select-none">
+        
+        <!-- Top: Store Brand & Navigation -->
+        <div class="flex-1 flex flex-col min-h-0 overflow-y-auto">
             
-            <!-- Left: Brand and Store Selector -->
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-sm" style="background: linear-gradient(135deg, {{ $brandColor }}, #9333ea);">
-                    {{ strtoupper(substr($tenant->business_name, 0, 1)) }}
-                </div>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <h1 class="text-base sm:text-lg font-black text-slate-900 tracking-tight leading-tight">{{ $tenant->business_name }}</h1>
-                        <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded-full text-white bg-gradient-to-r from-rose-500 to-purple-600 shadow-xs">
-                            {{ $tenant->archetype->code }}
-                        </span>
+            <!-- Simple & Clean Store Profile Header -->
+            <div class="p-4 border-b border-slate-100 bg-white">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-extrabold text-base shadow-sm shrink-0" style="background: linear-gradient(135deg, {{ $brandColor }}, #7c3aed);">
+                        {{ strtoupper(substr($tenant->business_name, 0, 1)) }}
                     </div>
-                    <p class="text-xs text-slate-500 font-medium">
-                        Theme Studio & Digital Operating System &bull; {{ $tenant->city }}
-                    </p>
+                    <div class="min-w-0 flex-1">
+                        <div class="flex items-center justify-between gap-1">
+                            <h2 class="text-sm font-bold text-slate-900 tracking-tight leading-tight truncate" title="{{ $tenant->business_name }}">
+                                {{ $tenant->business_name }}
+                            </h2>
+                            <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1 animate-pulse"></span> Live
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-[11px] text-slate-500 mt-0.5 truncate">
+                            <span class="font-medium text-purple-700 font-semibold truncate">{{ $tenant->settings['business_category'] ?? ($tenant->archetype->name ?? 'Store') }}</span>
+                            @if($tenant->city)
+                            <span class="text-slate-300">&bull;</span>
+                            <span class="text-slate-500 truncate">{{ $tenant->city }}</span>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Right: Actions & Switch Stores -->
-            <div class="flex items-center gap-2.5">
-                <!-- Store Switcher Dropdown -->
-                <div class="hidden md:flex items-center gap-1.5 text-xs text-slate-500 border border-slate-200 rounded-xl px-2.5 py-1.5 bg-slate-50">
-                    <i class="fa-solid fa-store text-purple-600"></i>
-                    <select onchange="window.location.href='/store/' + this.value + '/dashboard'" class="bg-transparent font-bold text-slate-700 outline-none cursor-pointer">
-                        @foreach($allTenants as $t)
-                        <option value="{{ $t->slug }}" {{ $t->slug === $tenant->slug ? 'selected' : '' }}>
-                            {{ $t->business_name }} ({{ $t->city }})
-                        </option>
-                        @endforeach
-                    </select>
+
+            <!-- Navigation Links -->
+            <nav class="px-3 space-y-5 flex-1 mt-2">
+                
+                <div>
+                    <span class="px-3 text-[10px] font-black uppercase tracking-wider text-slate-400 block mb-1.5">
+                        Store Management
+                    </span>
+                    <div class="space-y-1">
+                        
+                        <!-- Templates & Theme Studio -->
+                        <button wire:click="$set('activeTab', 'templates')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer {{ $activeTab === 'templates' ? 'bg-purple-50 text-purple-700 border border-purple-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50' }}">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-palette w-4 text-center {{ $activeTab === 'templates' ? 'text-purple-600' : 'text-slate-400' }}"></i>
+                                <span>Templates & Themes</span>
+                            </div>
+                            <span class="text-[9px] uppercase px-1.5 py-0.5 rounded font-bold {{ $activeTab === 'templates' ? 'bg-purple-200/60 text-purple-800' : 'bg-slate-100 text-slate-500' }}">
+                                Studio
+                            </span>
+                        </button>
+
+                        <!-- Products & Services -->
+                        <button wire:click="$set('activeTab', 'catalog')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer {{ $activeTab === 'catalog' ? 'bg-purple-50 text-purple-700 border border-purple-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50' }}">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-boxes-stacked w-4 text-center {{ $activeTab === 'catalog' ? 'text-purple-600' : 'text-slate-400' }}"></i>
+                                <span>Products & Catalog</span>
+                            </div>
+                            <span class="text-[10px] px-2 py-0.5 rounded-full font-bold {{ $activeTab === 'catalog' ? 'bg-purple-200/60 text-purple-800' : 'bg-slate-100 text-slate-600' }}">
+                                {{ $catalogCount }}
+                            </span>
+                        </button>
+
+                        <!-- Store Profile & SEO -->
+                        <button wire:click="$set('activeTab', 'profile')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer {{ $activeTab === 'profile' ? 'bg-purple-50 text-purple-700 border border-purple-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50' }}">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-sliders w-4 text-center {{ $activeTab === 'profile' ? 'text-purple-600' : 'text-slate-400' }}"></i>
+                                <span>Profile & Local SEO</span>
+                            </div>
+                        </button>
+
+                        <!-- Orders & Inquiries -->
+                        <button wire:click="$set('activeTab', 'orders')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer {{ $activeTab === 'orders' ? 'bg-purple-50 text-purple-700 border border-purple-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50' }}">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-inbox w-4 text-center {{ $activeTab === 'orders' ? 'text-purple-600' : 'text-slate-400' }}"></i>
+                                <span>Orders & Inquiries</span>
+                            </div>
+                            <span class="text-[10px] px-2 py-0.5 rounded-full font-bold {{ $activeTab === 'orders' ? 'bg-purple-200/60 text-purple-800' : 'bg-slate-100 text-slate-600' }}">
+                                {{ $ordersCount }}
+                            </span>
+                        </button>
+
+                        <!-- AI Template Studio -->
+                        <button wire:click="$set('activeTab', 'ai_studio')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer {{ $activeTab === 'ai_studio' ? 'bg-purple-50 text-purple-700 border border-purple-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50' }}">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-wand-magic-sparkles w-4 text-center text-amber-500"></i>
+                                <span>AI Template Studio</span>
+                            </div>
+                            <span class="text-[9px] uppercase px-1.5 py-0.5 rounded font-black bg-amber-100 text-amber-800">
+                                AI
+                            </span>
+                        </button>
+
+                    </div>
                 </div>
 
-                <!-- View Live Storefront Button -->
-                <a href="{{ route('store.show', $tenant->slug) }}" wire:navigate target="_blank" class="px-4 py-2 rounded-xl btn-brand-gradient text-white font-bold text-xs shadow-md transition hover:scale-[1.02] flex items-center gap-1.5">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="hidden sm:inline">View Live Website</span>
+                <div>
+                    <span class="px-3 text-[10px] font-black uppercase tracking-wider text-slate-400 block mb-1.5">
+                        Live Store
+                    </span>
+                    <div class="space-y-1">
+                        <a href="{{ route('store.show', $tenant->slug) }}" target="_blank" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-purple-700 hover:bg-purple-50 transition">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-arrow-up-right-from-square w-4 text-center text-purple-600"></i>
+                                <span>View Live Website</span>
+                            </div>
+                            <i class="fa-solid fa-external-link text-[10px] text-slate-400"></i>
+                        </a>
+
+                        @if(auth()->check() && auth()->user()->isSuperAdmin())
+                        <a href="{{ route('admin.dashboard') }}" wire:navigate class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-amber-700 hover:bg-amber-50 transition">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-crown w-4 text-center text-amber-500"></i>
+                                <span>Super Admin Panel</span>
+                            </div>
+                        </a>
+                        @endif
+                    </div>
+                </div>
+
+            </nav>
+
+        </div>
+
+        <!-- Bottom User Profile Card & Sign Out -->
+        <div class="p-3 border-t border-slate-100 bg-slate-50/70 shrink-0">
+            <div class="flex items-center justify-between gap-2 p-2 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                <div class="flex items-center gap-2.5 min-w-0">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-rose-500 flex items-center justify-center text-white font-black text-xs shrink-0 shadow-sm">
+                        {{ strtoupper(substr(auth()->user()->name ?? $tenant->business_name, 0, 1)) }}
+                    </div>
+                    <div class="min-w-0">
+                        <span class="block text-xs font-bold text-slate-900 truncate leading-tight">
+                            {{ auth()->user()->name ?? $tenant->business_name }}
+                        </span>
+                        <span class="block text-[10px] text-slate-500 truncate">
+                            {{ auth()->user()->email ?? $tenant->slug }}
+                        </span>
+                    </div>
+                </div>
+
+                <a href="{{ route('logout') }}" class="h-7 w-7 rounded-lg bg-slate-100 hover:bg-rose-50 text-slate-500 hover:text-rose-600 border border-slate-200 hover:border-rose-200 transition flex items-center justify-center cursor-pointer shrink-0" title="Logout">
+                    <i class="fa-solid fa-right-from-bracket text-xs"></i>
+                </a>
+            </div>
+        </div>
+
+    </aside>
+
+    <!-- ======================================================== -->
+    <!-- 🖥️ MAIN CONTENT AREA (Native Flex Sibling)                -->
+    <!-- ======================================================== -->
+    <div class="flex-1 flex flex-col min-w-0 bg-slate-100/70">
+        
+        <!-- Top Sticky Header -->
+        <header class="h-16 px-6 lg:px-8 border-b border-slate-200/90 bg-white/90 backdrop-blur-xl flex items-center justify-between sticky top-0 z-20 shrink-0 shadow-2xs">
+            
+            <!-- Breadcrumb -->
+            <div class="flex items-center gap-2.5">
+                <span class="text-xs font-bold text-slate-400 truncate max-w-[120px] sm:max-w-none">{{ $tenant->business_name }}</span>
+                <span class="text-xs text-slate-300">/</span>
+                <div class="flex items-center gap-2">
+                    @if($activeTab === 'templates')
+                        <i class="fa-solid fa-palette text-purple-600 text-xs"></i>
+                        <span class="text-sm font-black text-slate-900">Templates & Theme Studio</span>
+                    @elseif($activeTab === 'catalog')
+                        <i class="fa-solid fa-boxes-stacked text-purple-600 text-xs"></i>
+                        <span class="text-sm font-black text-slate-900">Products & Services</span>
+                    @elseif($activeTab === 'profile')
+                        <i class="fa-solid fa-sliders text-purple-600 text-xs"></i>
+                        <span class="text-sm font-black text-slate-900">Store Profile & Local SEO</span>
+                    @elseif($activeTab === 'orders')
+                        <i class="fa-solid fa-inbox text-purple-600 text-xs"></i>
+                        <span class="text-sm font-black text-slate-900">Orders & Inquiries</span>
+                    @elseif($activeTab === 'ai_studio')
+                        <i class="fa-solid fa-wand-magic-sparkles text-amber-500 text-xs"></i>
+                        <span class="text-sm font-black text-slate-900">AI Template Studio</span>
+                    @endif
+                </div>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-3">
+                <a href="{{ route('store.show', $tenant->slug) }}" target="_blank" class="h-9 px-4 rounded-xl btn-brand-gradient text-white font-bold text-xs shadow-md transition hover:scale-[1.02] flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    <span>View Live Website</span>
                 </a>
             </div>
 
-        </div>
+        </header>
 
-        <!-- 🧭 Dashboard Navigation Tabs -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-1 sm:gap-2 overflow-x-auto text-xs font-bold border-t border-slate-100">
-            <button wire:click="$set('activeTab', 'templates')" class="py-3 px-4 border-b-2 transition flex items-center gap-2 whitespace-nowrap cursor-pointer {{ $activeTab === 'templates' ? 'border-purple-600 text-purple-700' : 'border-transparent text-slate-500 hover:text-slate-900' }}">
-                <i class="fa-solid fa-palette text-sm"></i> Templates & Theme Studio
-            </button>
-            <button wire:click="$set('activeTab', 'catalog')" class="py-3 px-4 border-b-2 transition flex items-center gap-2 whitespace-nowrap cursor-pointer {{ $activeTab === 'catalog' ? 'border-purple-600 text-purple-700' : 'border-transparent text-slate-500 hover:text-slate-900' }}">
-                <i class="fa-solid fa-boxes-stacked text-sm"></i> Products & Services ({{ $catalogCount }})
-            </button>
-            <button wire:click="$set('activeTab', 'profile')" class="py-3 px-4 border-b-2 transition flex items-center gap-2 whitespace-nowrap cursor-pointer {{ $activeTab === 'profile' ? 'border-purple-600 text-purple-700' : 'border-transparent text-slate-500 hover:text-slate-900' }}">
-                <i class="fa-solid fa-sliders text-sm"></i> Store Profile & Local SEO
-            </button>
-            <button wire:click="$set('activeTab', 'orders')" class="py-3 px-4 border-b-2 transition flex items-center gap-2 whitespace-nowrap cursor-pointer {{ $activeTab === 'orders' ? 'border-purple-600 text-purple-700' : 'border-transparent text-slate-500 hover:text-slate-900' }}">
-                <i class="fa-solid fa-inbox text-sm"></i> Orders & Inquiries ({{ $ordersCount }})
-            </button>
-            <button wire:click="$set('activeTab', 'ai_studio')" class="py-3 px-4 border-b-2 transition flex items-center gap-2 whitespace-nowrap cursor-pointer {{ $activeTab === 'ai_studio' ? 'border-purple-600 text-purple-700' : 'border-transparent text-slate-500 hover:text-slate-900' }}">
-                <i class="fa-solid fa-wand-magic-sparkles text-sm text-amber-500"></i> AI Template Studio
-            </button>
-        </div>
-    </header>
-
-    <!-- ⚡ Flash Message Notification -->
-    @if($flashMessage)
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-        <div class="bg-emerald-600 text-white px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold flex items-center justify-between shadow-sm">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-circle-check text-base"></i>
-                <span>{{ $flashMessage }}</span>
+        <!-- ⚡ Flash Message Notification -->
+        @if($flashMessage)
+        <div class="px-6 lg:px-8 mt-5">
+            <div class="bg-emerald-600 text-white px-5 py-3 rounded-2xl text-xs sm:text-sm font-semibold flex items-center justify-between shadow-sm">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-base"></i>
+                    <span>{{ $flashMessage }}</span>
+                </div>
+                <button wire:click="$set('flashMessage', '')" class="text-emerald-200 hover:text-white cursor-pointer text-lg font-bold">&times;</button>
             </div>
-            <button wire:click="$set('flashMessage', '')" class="text-emerald-200 hover:text-white cursor-pointer text-lg font-bold">&times;</button>
         </div>
-    </div>
-    @endif
+        @endif
 
-    <!-- 📦 Main Dashboard Workspace -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+        <!-- 📦 Main Dashboard Workspace -->
+        <main class="flex-1 p-6 lg:p-8 space-y-8 overflow-y-auto">
 
         <!-- ========================================== -->
         <!-- TAB 1: 🎨 TEMPLATES & THEME STUDIO         -->
@@ -89,10 +219,15 @@
             <!-- Section Header -->
             <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <span class="text-[11px] font-black uppercase tracking-wider text-purple-600">Zero Data Loss Theme Engine</span>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-[11px] font-black uppercase tracking-wider text-purple-600">Zero Data Loss Theme Engine</span>
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-50 border border-purple-200 text-[11px] font-bold text-purple-700">
+                            {{ $tenant->business_category ?? $tenant->archetype->name }}
+                        </span>
+                    </div>
                     <h2 class="text-2xl font-black text-slate-900 tracking-tight">Website Templates & Layout Studio</h2>
                     <p class="text-xs text-slate-500 mt-1">
-                        Switch visual templates anytime. All your catalog items, doctor services, orders, and Google SEO schemas are preserved 100%.
+                        Switch visual templates anytime. All your catalog items, services, orders, and Google SEO schemas are preserved 100%.
                     </p>
                 </div>
                 <div class="flex items-center gap-2">
@@ -105,140 +240,155 @@
                 </div>
             </div>
 
-            <!-- 1. Choose Active Visual Template -->
+            <!-- 1. Real Industry Business Templates Gallery -->
             <div>
-                <h3 class="text-sm font-black text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs">1</span>
-                    Select Visual Architecture Template
-                </h3>
+                @php
+                    $cat = $tenant->settings['business_category'] ?? ($businessCategory ?: ($tenant->archetype->name ?? 'Hotels & Motels'));
+                    $isHotelCategory = stripos($cat, 'Hotel') !== false || stripos($cat, 'Motel') !== false;
+                @endphp
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                    <div>
+                        <h3 class="text-sm font-black text-slate-900 uppercase tracking-wider flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs font-black">1</span>
+                            Real-World Industry Website Templates
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-0.5">
+                            Industry-crafted templates matching your registered business. Applying a template adapts your live storefront, hero imagery, room tariffs, and booking CTAs with zero data loss.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 🎯 Category Filter & Industry Switcher Banner -->
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 bg-purple-50/70 border border-purple-200/80 p-4 rounded-2xl shadow-2xs">
+                    <div class="flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center text-base shadow-sm shrink-0">
+                            @if($templateFilterMode === 'ecommerce')
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            @elseif($templateFilterMode === 'landing_page')
+                                <i class="fa-solid fa-bullhorn"></i>
+                            @elseif($this->activeCategory === 'Hotels & Motels')
+                                <i class="fa-solid fa-hotel"></i>
+                            @else
+                                <i class="fa-solid fa-globe"></i>
+                            @endif
+                        </span>
+                        <div>
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="text-xs font-black text-slate-900 uppercase tracking-wider">Business Category Filter:</span>
+                                <span class="bg-purple-600 text-white text-[11px] font-black px-2.5 py-0.5 rounded-full shadow-xs">
+                                    {{ $this->activeCategory }}
+                                </span>
+                                <span class="text-slate-300">•</span>
+                                <span class="text-xs font-black text-slate-700 uppercase tracking-wider">Mode:</span>
+                                <span class="bg-slate-200 text-slate-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full shadow-2xs">
+                                    {{ $templateFilterMode === 'ecommerce' ? '🛍️ E-Commerce' : ($templateFilterMode === 'landing_page' ? '🚀 Landing Page' : ($templateFilterMode === 'business_website' ? '🌐 Business Website' : '🎯 All Templates')) }}
+                                </span>
+                            </div>
+                            <p class="text-[11px] text-slate-500 mt-0.5">Showing templates exclusively tailored for <strong>{{ $this->activeCategory }}</strong>.</p>
+                        </div>
+                    </div>
                     
-                    <!-- Template 1: Modern Clean -->
-                    <div wire:click="selectTheme('modern_clean')" class="p-5 rounded-3xl border-2 cursor-pointer transition relative flex flex-col justify-between {{ $activeTheme === 'modern_clean' ? 'border-purple-600 bg-purple-50/30 ring-4 ring-purple-500/10 shadow-lg' : 'border-slate-200 bg-white hover:border-slate-300 shadow-xs' }}">
+                    <div class="flex items-center gap-2 flex-wrap shrink-0">
+                        <!-- Category Quick Dropdown -->
+                        <div class="relative">
+                            <select wire:model.live="selectedCategoryFilter" class="text-xs font-bold bg-white text-slate-800 border border-slate-300 rounded-xl px-3 py-1.5 cursor-pointer shadow-2xs focus:ring-2 focus:ring-purple-500">
+                                @foreach(\App\Services\TemplateCatalog::categories() as $cName)
+                                    <option value="{{ $cName }}">{{ $cName }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Mode Filter Buttons (Exclusively Scoped to Selected Category) -->
+                        <button type="button" wire:click="setTemplateFilterMode('category')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 {{ in_array($templateFilterMode, ['category', 'all']) ? 'bg-purple-600 text-white shadow' : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100' }}">
+                            <i class="fa-solid fa-layer-group text-[10px]"></i> All ({{ count(\App\Services\TemplateCatalog::getForCategory($this->activeCategory, 'category')) }})
+                        </button>
+                        <button type="button" wire:click="setTemplateFilterMode('business_website')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 {{ $templateFilterMode === 'business_website' ? 'bg-purple-600 text-white shadow' : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100' }}">
+                            <i class="fa-solid fa-globe text-[10px]"></i> Website
+                        </button>
+                        <button type="button" wire:click="setTemplateFilterMode('ecommerce')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 {{ $templateFilterMode === 'ecommerce' ? 'bg-purple-600 text-white shadow' : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100' }}">
+                            <i class="fa-solid fa-cart-shopping text-[10px]"></i> E-Commerce
+                        </button>
+                        <button type="button" wire:click="setTemplateFilterMode('landing_page')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 {{ $templateFilterMode === 'landing_page' ? 'bg-purple-600 text-white shadow' : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100' }}">
+                            <i class="fa-solid fa-bullhorn text-[10px]"></i> Landing Page
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Template Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach($this->studioTemplates as $tpl)
+                    @php
+                        $isActive = $activeTheme === $tpl['id'];
+                        $isDark = in_array($tpl['id'], ['dark_luxury']);
+                    @endphp
+                    <div class="p-5 rounded-3xl border-2 transition relative flex flex-col justify-between shadow-xs hover:shadow-md {{ $isDark ? 'bg-slate-900 text-white border-slate-800' : 'bg-white text-slate-900 border-slate-200 hover:border-slate-300' }} {{ $isActive ? 'ring-4' : '' }}" style="{{ $isActive ? 'border-color: ' . ($tpl['suggested_color'] ?? '#9333EA') . '; --tw-ring-color: ' . ($tpl['suggested_color'] ?? '#9333EA') . '33;' : '' }}">
                         <div>
-                            <!-- Mockup Header -->
-                            <div class="h-28 rounded-2xl bg-gradient-to-tr from-slate-100 to-purple-50 border border-slate-200/80 p-3 mb-4 flex flex-col justify-between overflow-hidden">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-1.5">
-                                        <div class="w-4 h-4 rounded-md bg-purple-600"></div>
-                                        <div class="w-16 h-2 bg-slate-300 rounded"></div>
+                            <!-- Visual Banner -->
+                            <div class="h-44 rounded-2xl relative overflow-hidden mb-4 shadow-inner group border {{ $isDark ? 'border-slate-800' : 'border-slate-100' }}">
+                                <img src="{{ $tpl['image_url'] }}" alt="{{ $tpl['title'] }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent flex flex-col justify-between p-3.5">
+                                    <div class="flex items-center justify-between gap-1 flex-wrap">
+                                        <span class="text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow-sm flex items-center gap-1" style="background-color: {{ $tpl['suggested_color'] ?? '#9333EA' }};">
+                                            <i class="fa-solid {{ $tpl['icon'] ?? \App\Services\TemplateCatalog::getIconForTheme($tpl['id']) }} text-[9px]"></i>
+                                            <span>{{ $tpl['category'] }}</span>
+                                        </span>
+                                        <span class="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                                            @if(($tpl['type'] ?? '') === 'ecommerce')
+                                                <i class="fa-solid fa-cart-shopping text-emerald-400 text-[9px]"></i> E-Commerce
+                                            @elseif(($tpl['type'] ?? '') === 'landing_page')
+                                                <i class="fa-solid fa-bullhorn text-amber-400 text-[9px]"></i> Landing Page
+                                            @else
+                                                <i class="fa-solid fa-globe text-sky-400 text-[9px]"></i> Business Website
+                                            @endif
+                                        </span>
                                     </div>
-                                    <div class="w-8 h-3 rounded-full bg-emerald-500/20"></div>
-                                </div>
-                                <div class="space-y-1">
-                                    <div class="w-3/4 h-3 bg-slate-800 rounded font-bold"></div>
-                                    <div class="w-1/2 h-2 bg-slate-300 rounded"></div>
-                                </div>
-                                <div class="flex gap-2">
-                                    <div class="w-14 h-4 rounded bg-purple-600"></div>
-                                    <div class="w-12 h-4 rounded bg-slate-200"></div>
+                                    <div>
+                                        <span class="text-white font-black text-sm block leading-tight">{{ $tpl['title'] }}</span>
+                                        <span class="text-slate-200 text-[11px] font-semibold">{{ $tpl['subheadline'] ?? '' }}</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="flex items-center justify-between mb-1">
-                                <h4 class="font-black text-base text-slate-900">Modern Clean</h4>
-                                @if($activeTheme === 'modern_clean')
-                                <span class="text-xs font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded-full flex items-center gap-1">
-                                    <i class="fa-solid fa-check text-[10px]"></i> Active
+                            <div class="flex items-center justify-between mb-1.5">
+                                <h4 class="font-black text-base {{ $isDark ? 'text-white' : 'text-slate-900' }}">{{ $tpl['title'] }}</h4>
+                                @if($isActive)
+                                <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1" style="background-color: {{ ($tpl['suggested_color'] ?? '#9333EA') }}22; color: {{ $tpl['suggested_color'] ?? '#9333EA' }};">
+                                    <i class="fa-solid fa-circle-check text-[10px]"></i> Active
                                 </span>
                                 @endif
                             </div>
-                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
-                                Vibrant light layout with crisp rounded cards, hero trust badges, and energetic gradient action buttons. Best for Clinics & Retail.
+
+                            <p class="text-xs {{ $isDark ? 'text-slate-400' : 'text-slate-500' }} leading-relaxed mb-3">
+                                {{ $tpl['description'] }}
                             </p>
+
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                @foreach($tpl['features'] as $feat)
+                                    <span class="{{ $isDark ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-700' }} text-[10px] font-bold px-2 py-0.5 rounded-md">
+                                        {{ $feat }}
+                                    </span>
+                                @endforeach
+                            </div>
                         </div>
-                        <div class="text-[11px] font-bold text-purple-700 border-t border-slate-100 pt-3 flex items-center justify-between">
-                            <span>Recommended for: {{ $tenant->archetype->name }}</span>
-                            <i class="fa-solid fa-arrow-right"></i>
+
+                        <div class="border-t {{ $isDark ? 'border-slate-800' : 'border-slate-100' }} pt-3 flex items-center justify-between gap-2">
+                            <button type="button" wire:click="openTemplatePreview('{{ $tpl['id'] }}')" class="px-3.5 py-2 rounded-xl border {{ $isDark ? 'border-slate-700 text-slate-300 hover:bg-slate-800' : 'border-slate-300 text-slate-700 hover:bg-slate-50' }} text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-solid fa-eye" style="color: {{ $tpl['suggested_color'] ?? '#9333EA' }};"></i> Preview
+                            </button>
+                            <button type="button" wire:click="applyTemplate('{{ $tpl['id'] }}', '{{ $tpl['suggested_color'] }}')" class="px-3.5 py-2 rounded-xl text-white text-xs font-bold shadow-sm transition flex items-center gap-1.5 cursor-pointer hover:scale-[1.02]" style="background-color: {{ $tpl['suggested_color'] ?? '#9333EA' }};">
+                                <i class="fa-solid fa-check"></i> Apply Template
+                            </button>
                         </div>
                     </div>
-
-                    <!-- Template 2: Minimal Card -->
-                    <div wire:click="selectTheme('minimal_card')" class="p-5 rounded-3xl border-2 cursor-pointer transition relative flex flex-col justify-between {{ $activeTheme === 'minimal_card' ? 'border-purple-600 bg-purple-50/30 ring-4 ring-purple-500/10 shadow-lg' : 'border-slate-200 bg-white hover:border-slate-300 shadow-xs' }}">
-                        <div>
-                            <!-- Mockup Header -->
-                            <div class="h-28 rounded-2xl bg-neutral-100 border border-neutral-300 p-3 mb-4 flex flex-col justify-between overflow-hidden">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-1.5">
-                                        <div class="w-3 h-3 rounded-full bg-black"></div>
-                                        <div class="w-14 h-2 bg-neutral-400 rounded"></div>
-                                    </div>
-                                    <div class="w-6 h-2 bg-neutral-300 rounded"></div>
-                                </div>
-                                <div class="space-y-1">
-                                    <div class="w-2/3 h-3 bg-neutral-900 rounded"></div>
-                                    <div class="w-1/3 h-2 bg-neutral-400 rounded"></div>
-                                </div>
-                                <div class="flex gap-2">
-                                    <div class="w-16 h-4 border border-black rounded"></div>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center justify-between mb-1">
-                                <h4 class="font-black text-base text-slate-900">Minimal Card</h4>
-                                @if($activeTheme === 'minimal_card')
-                                <span class="text-xs font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded-full flex items-center gap-1">
-                                    <i class="fa-solid fa-check text-[10px]"></i> Active
-                                </span>
-                                @endif
-                            </div>
-                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
-                                Understated editorial design with sharp monochrome borders, clean spacing, and calm readability. Ideal for Doctors & Consultancies.
-                            </p>
-                        </div>
-                        <div class="text-[11px] font-bold text-slate-700 border-t border-slate-100 pt-3 flex items-center justify-between">
-                            <span>High Contrast & Minimalist</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                    </div>
-
-                    <!-- Template 3: Dark Luxury -->
-                    <div wire:click="selectTheme('dark_luxury')" class="p-5 rounded-3xl border-2 cursor-pointer transition relative flex flex-col justify-between {{ $activeTheme === 'dark_luxury' ? 'border-purple-600 bg-purple-50/30 ring-4 ring-purple-500/10 shadow-lg' : 'border-slate-200 bg-white hover:border-slate-300 shadow-xs' }}">
-                        <div>
-                            <!-- Mockup Header -->
-                            <div class="h-28 rounded-2xl bg-zinc-950 border border-zinc-800 p-3 mb-4 flex flex-col justify-between overflow-hidden">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-1.5">
-                                        <div class="w-4 h-4 rounded-md bg-purple-500 shadow"></div>
-                                        <div class="w-14 h-2 bg-zinc-700 rounded"></div>
-                                    </div>
-                                    <div class="w-10 h-3 rounded-full bg-emerald-950 border border-emerald-500/40"></div>
-                                </div>
-                                <div class="space-y-1">
-                                    <div class="w-3/4 h-3 bg-white rounded"></div>
-                                    <div class="w-1/2 h-2 bg-zinc-600 rounded"></div>
-                                </div>
-                                <div class="flex gap-2">
-                                    <div class="w-16 h-4 rounded bg-purple-600 text-[8px] text-white"></div>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center justify-between mb-1">
-                                <h4 class="font-black text-base text-slate-900">Dark Luxury</h4>
-                                @if($activeTheme === 'dark_luxury')
-                                <span class="text-xs font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded-full flex items-center gap-1">
-                                    <i class="fa-solid fa-check text-[10px]"></i> Active
-                                </span>
-                                @endif
-                            </div>
-                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
-                                Night-mode obsidian palette with metallic neon gradients and glowing cards. High perceived value for High-end Clinics & Factories.
-                            </p>
-                        </div>
-                        <div class="text-[11px] font-bold text-purple-700 border-t border-slate-100 pt-3 flex items-center justify-between">
-                            <span>Sleek Night Mode</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                    </div>
-
+                    @endforeach
                 </div>
             </div>
 
             <!-- 2. Brand Color Palette Customizer -->
             <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs">
                 <h3 class="text-sm font-black text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs">2</span>
+                    <span class="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs font-black">2</span>
                     Brand Accent Color Palette
                 </h3>
                 <p class="text-xs text-slate-500 mb-5">
@@ -268,7 +418,7 @@
             <!-- 3. Template Section Visibility Toggles -->
             <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs">
                 <h3 class="text-sm font-black text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs">3</span>
+                    <span class="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs font-black">3</span>
                     Website Section Display Toggles
                 </h3>
                 <p class="text-xs text-slate-500 mb-5">
@@ -439,11 +589,22 @@
         @if($activeTab === 'profile')
         <div class="space-y-6 animate-fade-in">
             
-            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs">
-                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Store Profile & Google Local SEO</h2>
-                <p class="text-xs text-slate-500 mt-1">
-                    Keep your business name, WhatsApp contact, and clinic timings updated. We auto-generate Google JSON-LD LocalBusiness schema for search rankings.
-                </p>
+            <!-- Page Header -->
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-black text-slate-900 tracking-tight">Store Profile & Google Local SEO</h2>
+                    <p class="text-xs text-slate-500 mt-1">
+                        View everything configured for your store. Business name, contact, archetype, theme, and SEO settings.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1.5 shadow-2xs">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Store Active Online
+                    </span>
+                    <a href="{{ route('store.show', $tenant->slug) }}" target="_blank" class="px-4 py-2 rounded-xl btn-brand-gradient text-white font-bold text-xs shadow-sm flex items-center gap-1.5 hover:scale-[1.02] transition">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> View Website
+                    </a>
+                </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -451,15 +612,48 @@
                 <!-- Profile Form -->
                 <div class="lg:col-span-8 bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4">
                     
+                    <div class="border-b border-slate-100 pb-3">
+                        <h4 class="font-black text-base text-slate-900">Edit Store Profile & Business Identity</h4>
+                        <p class="text-xs text-slate-500">Update your store details and operating configurations anytime.</p>
+                    </div>
+
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Business Name *</label>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Business / Brand Name *</label>
                         <input wire:model="businessName" type="text" class="input-field">
                         @error('businessName') <span class="text-rose-500 text-xs">{{ $message }}</span> @enderror
                     </div>
 
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Business Category *</label>
+                            <select wire:model.live="businessCategory" class="input-field cursor-pointer">
+                                <option value="">Select your business category</option>
+                                <option value="Beauty & Salons">Beauty & Salons</option>
+                                <option value="Clinics & Hospitals">Clinics & Hospitals</option>
+                                <option value="Coaching & Institutes">Coaching & Institutes</option>
+                                <option value="Doctors & Specialists">Doctors & Specialists</option>
+                                <option value="Herbal Care">Herbal Care</option>
+                                <option value="Hotels & Motels">Hotels & Motels</option>
+                                <option value="Manufacturers">Manufacturers</option>
+                                <option value="Other Retail">Other Retail</option>
+                                <option value="Other Services">Other Services</option>
+                                <option value="Real Estate & Properties">Real Estate & Properties</option>
+                                <option value="Restaurant & Cafes">Restaurant & Cafes</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Website Mode / Operating Goal *</label>
+                            <select wire:model.live="websiteType" wire:change="setWebsiteType($event.target.value)" class="input-field cursor-pointer">
+                                <option value="business_website">🌐 Complete Business Website (Services &amp; Company)</option>
+                                <option value="ecommerce">🛍️ E-Commerce Store (Products, Cart &amp; WhatsApp Checkout)</option>
+                                <option value="landing_page">🚀 High-Converting Landing Page (Direct Leads &amp; Calls)</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">Marketing Tagline</label>
-                        <input wire:model="tagline" type="text" class="input-field">
+                        <input wire:model="tagline" type="text" placeholder="e.g. Best healthcare & quality services" class="input-field">
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -499,8 +693,49 @@
 
                 </div>
 
-                <!-- Google Search Snippet Preview -->
+                <!-- Right Column: Store Identity & Google Search Snippet Preview -->
                 <div class="lg:col-span-4 space-y-6">
+                    
+                    <!-- Clean Store Summary Card -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-extrabold text-lg shadow-sm shrink-0" style="background: linear-gradient(135deg, {{ $brandColor }}, #7c3aed);">
+                                {{ strtoupper(substr($tenant->business_name, 0, 1)) }}
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <h4 class="font-bold text-base text-slate-900 truncate leading-tight">{{ $tenant->business_name }}</h4>
+                                <div class="flex items-center gap-2 mt-0.5">
+                                    <span class="text-[10px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-200 truncate">
+                                        {{ $tenant->settings['business_category'] ?? ($tenant->archetype->name ?? 'Business') }}
+                                    </span>
+                                    <span class="inline-flex items-center text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 shrink-0">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1 animate-pulse"></span> Online
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 text-xs text-slate-600 pt-2 border-t border-slate-100">
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400">City / Location</span>
+                                <span class="font-semibold text-slate-800">{{ $tenant->city ?: 'Not set' }}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400">Primary Phone</span>
+                                <span class="font-semibold text-slate-800 font-mono">{{ $tenant->phone ?: 'Not set' }}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400">Store URL</span>
+                                <span class="font-semibold text-purple-600 font-mono text-[11px] truncate max-w-[140px]">/store/{{ $tenant->slug }}</span>
+                            </div>
+                        </div>
+
+                        <a href="{{ route('store.show', $tenant->slug) }}" target="_blank" class="w-full py-2.5 rounded-xl btn-brand-gradient text-white font-bold text-xs shadow-sm flex items-center justify-center gap-2 hover:scale-[1.01] transition">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Visit Live Website
+                        </a>
+                    </div>
+
+                    <!-- Google Search Snippet Preview -->
                     <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs">
                         <div class="flex items-center gap-2 text-xs font-bold text-slate-700 mb-3">
                             <i class="fa-brands fa-google text-rose-500 text-base"></i> Google Local SEO Preview
@@ -694,6 +929,8 @@
 
     </main>
 
+    </div>
+
     <!-- ➕ ITEM MODAL (Add / Edit Catalog Service / Product) -->
     @if($showItemModal)
     <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -772,4 +1009,116 @@
     </div>
     @endif
 
+    <!-- 🌟 Interactive Industry Template Device Preview Modal -->
+    @if($showTemplatePreviewModal && $this->previewTemplate)
+    <div class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex flex-col justify-between overflow-hidden animate-fadeIn">
+        
+        <!-- Modal Top Control Bar -->
+        <div class="bg-slate-900 border-b border-slate-800 px-4 sm:px-6 py-3 flex items-center justify-between gap-4 shrink-0 shadow-lg">
+            
+            <!-- Left: Template Metadata -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md" style="background-color: {{ $this->previewTemplate['suggested_color'] }};">
+                    <i class="fa-solid {{ $this->previewTemplate['icon'] }}"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h3 class="text-white font-black text-sm sm:text-base tracking-tight leading-tight">{{ $this->previewTemplate['title'] }}</h3>
+                        <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full text-white hidden sm:inline" style="background-color: {{ $this->previewTemplate['suggested_color'] }};">
+                            {{ $this->previewTemplate['category'] }}
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-400">Live Interactive Architecture Preview &bull; Responsive Multi-Device</p>
+                </div>
+            </div>
+
+            <!-- Center: Device Switcher (Desktop vs Mobile Phone) -->
+            <div class="flex items-center bg-slate-950 border border-slate-800 p-1 rounded-xl shadow-inner">
+                <button type="button" wire:click="$set('previewDevice', 'desktop')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer {{ $previewDevice === 'desktop' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white' }}">
+                    <i class="fa-solid fa-laptop"></i> <span class="hidden md:inline">Desktop</span>
+                </button>
+                <button type="button" wire:click="$set('previewDevice', 'mobile')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer {{ $previewDevice === 'mobile' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white' }}">
+                    <i class="fa-solid fa-mobile-screen"></i> <span class="hidden md:inline">Mobile Phone</span>
+                </button>
+            </div>
+
+            <!-- Right: Apply Action & Close Modal -->
+            <div class="flex items-center gap-2">
+                <button type="button" wire:click="applyTemplate('{{ $this->previewTemplate['id'] }}', '{{ $this->previewTemplate['suggested_color'] }}')" class="px-4 py-2 rounded-xl text-white font-bold text-xs shadow-md transition flex items-center gap-1.5 cursor-pointer hover:scale-[1.02]" style="background-color: {{ $this->previewTemplate['suggested_color'] }};">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Apply Template</span>
+                </button>
+                <button type="button" wire:click="$set('showTemplatePreviewModal', false)" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition cursor-pointer">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Center: Device Viewport Canvas (Real Live Website) -->
+        <div class="flex-1 overflow-y-auto p-4 sm:p-6 flex justify-center items-start bg-slate-950/70 custom-scrollbar">
+            
+            @if($previewDevice === 'desktop')
+            <!-- 💻 Desktop Device Frame -->
+            <div class="w-full max-w-6xl bg-white rounded-2xl shadow-2xl border border-slate-700/60 overflow-hidden flex flex-col transition-all duration-300 text-slate-800">
+                
+                <!-- Mock Browser Header Bar -->
+                <div class="bg-slate-100 border-b border-slate-200 px-4 py-2.5 flex items-center justify-between text-xs text-slate-500 select-none">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded-full bg-rose-400 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-lg px-6 py-1 text-[11px] font-mono text-slate-600 flex items-center gap-2 shadow-xs">
+                        <i class="fa-solid fa-lock text-emerald-500 text-[10px]"></i>
+                        <span>{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}</span>
+                    </div>
+                    <a href="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}" target="_blank" class="text-[11px] font-bold text-purple-600 hover:text-purple-700 flex items-center gap-1">
+                        <span>Open In Full Tab</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- REAL LIVE STORE EMBEDDED IFRAME -->
+                <div class="w-full bg-white relative" style="height: 750px;">
+                    <iframe src="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}" class="w-full h-full border-0" title="Real Live Website Preview"></iframe>
+                </div>
+
+            </div>
+            @else
+            <!-- 📱 Mobile Phone Device Frame -->
+            <div class="w-[380px] bg-slate-900 rounded-[44px] shadow-2xl border-4 border-slate-800 p-2.5 flex flex-col transition-all duration-300 relative my-4">
+                <!-- Speaker / Camera Notch -->
+                <div class="w-32 h-5 bg-slate-900 rounded-b-2xl mx-auto absolute top-2.5 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
+                    <div class="w-12 h-1 bg-slate-800 rounded-full"></div>
+                </div>
+
+                <!-- Real Mobile Website Screen -->
+                <div class="w-full h-[680px] bg-white rounded-[34px] overflow-hidden relative shadow-inner">
+                    <iframe src="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}" class="w-full h-full border-0" title="Real Live Website Mobile Preview"></iframe>
+                </div>
+            </div>
+            @endif
+
+        </div>
+
+        <!-- Modal Bottom Bar (Apply & Info) -->
+        <div class="bg-slate-900 border-t border-slate-800 px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3 shrink-0">
+            <div class="flex items-center gap-2 text-xs text-slate-400">
+                <i class="fa-solid fa-shield-halved text-purple-400 text-sm"></i>
+                <span><strong class="text-white">Zero Data Loss:</strong> Applying this template retains all your existing products, prices, images, and WhatsApp configuration.</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button type="button" wire:click="$set('showTemplatePreviewModal', false)" class="px-4 py-2 rounded-xl border border-slate-700 text-slate-300 hover:bg-slate-800 text-xs font-semibold transition cursor-pointer">
+                    Close Preview
+                </button>
+                <button type="button" wire:click="applyTemplate('{{ $this->previewTemplate['id'] }}', '{{ $this->previewTemplate['suggested_color'] }}')" class="px-5 py-2 rounded-xl text-white font-bold text-xs shadow-md transition flex items-center gap-1.5 cursor-pointer hover:scale-[1.02]" style="background-color: {{ $this->previewTemplate['suggested_color'] }};">
+                    <i class="fa-solid fa-check"></i> <span>Apply "{{ $this->previewTemplate['title'] }}" Now</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+    @endif
+
 </div>
+

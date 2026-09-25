@@ -54,9 +54,10 @@ class Tenant extends Model
     public function getWhatsAppUrl(string $message = ''): string
     {
         $number = preg_replace('/[^0-9]/', '', $this->whatsapp_number ?? $this->phone ?? '');
-        if (!str_starts_with($number, '91') && strlen($number) === 10) {
-            $number = '91' . $number;
+        if (! str_starts_with($number, '91') && strlen($number) === 10) {
+            $number = '91'.$number;
         }
-        return "https://wa.me/{$number}?text=" . urlencode($message);
+
+        return "https://wa.me/{$number}?text=".urlencode($message);
     }
 }

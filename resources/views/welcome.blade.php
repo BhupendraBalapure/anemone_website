@@ -104,39 +104,65 @@
 
     <!-- 🧭 Glassmorphism Navbar -->
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             
             <!-- Brand Logo with Screenshot Gradient Swirl -->
-            <a href="{{ route('home') }}" wire:navigate class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl gradient-logo-swirl flex items-center justify-center text-white shadow-lg shadow-purple-500/25 group-hover:scale-105 transition-transform duration-300">
+            <a href="{{ route('home') }}" wire:navigate class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl gradient-logo-swirl flex items-center justify-center text-white shadow-lg shadow-purple-500/25 group-hover:scale-105 transition-transform duration-300 shrink-0">
                     <!-- Swirl Ribbon SVG Matching User's Screenshot -->
-                    <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 24 24" fill="none" class="w-5 h-5 sm:w-6 sm:h-6" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2C8 2 4 6 4 11C4 16 8 20 13 20C17.5 20 20 16.5 20 12.5C20 8.5 16.5 5 12 5C9 5 7 7.5 7 10.5C7 13.5 9.5 15.5 12.5 15.5C15 15.5 16.5 14 16.5 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
                 <div class="flex items-baseline">
-                    <span class="text-2xl font-black tracking-tight text-slate-900">
+                    <span class="text-xl sm:text-2xl font-black tracking-tight text-slate-900">
                         Anemony<span class="text-rose-500">.</span>
                     </span>
                 </div>
             </a>
 
             <!-- Navigation Links -->
-            <div class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-600">
-                <a href="#solutions" class="hover:text-purple-600 transition">Industry Solutions</a>
-                <a href="#features" class="hover:text-purple-600 transition">Features</a>
-                <a href="#demos" class="hover:text-purple-600 transition flex items-center gap-1.5">
+            <div class="hidden lg:flex items-center gap-3.5 xl:gap-7 text-xs xl:text-sm font-semibold text-slate-600 whitespace-nowrap">
+                <a href="#solutions" class="hover:text-purple-600 transition whitespace-nowrap">Industry Solutions</a>
+                <a href="#features" class="hover:text-purple-600 transition whitespace-nowrap">Features</a>
+                <a href="#demos" class="hover:text-purple-600 transition flex items-center gap-1.5 whitespace-nowrap">
                     <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span> Live Demos
                 </a>
-                <a href="#why-anemony" class="hover:text-purple-600 transition">Why Anemony?</a>
-                <a href="#testimonials" class="hover:text-purple-600 transition">Reviews</a>
-                <a href="#faq" class="hover:text-purple-600 transition">FAQs</a>
+                <a href="#why-anemony" class="hover:text-purple-600 transition whitespace-nowrap hidden 2xl:inline">Why Anemony?</a>
+                <a href="#testimonials" class="hover:text-purple-600 transition whitespace-nowrap hidden xl:inline">Reviews</a>
+                <a href="#faq" class="hover:text-purple-600 transition whitespace-nowrap">FAQs</a>
             </div>
 
-            <!-- Header Action Button -->
-            <div class="flex items-center gap-3">
-                <a href="{{ route('onboarding') }}" wire:navigate class="btn-brand-gradient text-white text-sm font-bold px-5 py-2.5 rounded-xl shadow-md flex items-center gap-2">
-                    <i class="fa-solid fa-bolt text-amber-300"></i> Create Free Store
+            <!-- Header Action Buttons -->
+            <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
+                @auth
+                    @if(auth()->user()->isSuperAdmin())
+                        <a href="{{ route('admin.dashboard') }}" wire:navigate class="inline-flex items-center justify-center gap-2 h-10 px-3.5 sm:px-4 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold text-xs sm:text-sm border border-purple-200 transition shadow-xs whitespace-nowrap shrink-0">
+                            <i class="fa-solid fa-crown text-amber-500 text-xs sm:text-sm"></i>
+                            <span>Admin Panel</span>
+                        </a>
+                    @elseif(auth()->user()->tenant)
+                        <a href="{{ route('store.dashboard', auth()->user()->tenant->slug) }}" wire:navigate class="inline-flex items-center justify-center gap-2 h-10 px-3.5 sm:px-4 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold text-xs sm:text-sm border border-purple-200 transition shadow-xs whitespace-nowrap shrink-0">
+                            <i class="fa-solid fa-store text-purple-600 text-xs sm:text-sm"></i>
+                            <span>My Store</span>
+                        </a>
+                    @endif
+                    <a href="{{ route('logout') }}" class="h-10 w-10 inline-flex items-center justify-center text-slate-500 hover:text-rose-500 rounded-xl hover:bg-slate-100 text-sm font-bold transition shrink-0" title="Logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" wire:navigate class="hidden sm:inline-flex items-center justify-center gap-2 h-10 px-3.5 sm:px-4 rounded-xl bg-slate-100/90 hover:bg-purple-50 text-slate-700 hover:text-purple-700 font-bold text-xs sm:text-sm border border-slate-200/90 hover:border-purple-200 transition shadow-xs whitespace-nowrap shrink-0">
+                        <i class="fa-solid fa-right-to-bracket text-purple-600 text-xs sm:text-sm"></i>
+                        <span>Sign In</span>
+                    </a>
+                    <a href="{{ route('admin.dashboard') }}" wire:navigate class="hidden md:inline-flex items-center justify-center gap-2 h-10 px-3.5 sm:px-4 rounded-xl bg-slate-100/90 hover:bg-amber-50 text-slate-700 hover:text-amber-800 border border-slate-200/90 hover:border-amber-200 transition shadow-xs whitespace-nowrap shrink-0">
+                        <i class="fa-solid fa-crown text-amber-500 text-xs sm:text-sm"></i>
+                        <span>Super Admin</span>
+                    </a>
+                @endauth
+                <a href="{{ route('onboarding') }}" wire:navigate class="btn-brand-gradient text-white text-xs sm:text-sm font-bold h-10 px-4 sm:px-5 rounded-xl shadow-md hover:shadow-lg hover:brightness-105 inline-flex items-center justify-center gap-2 whitespace-nowrap shrink-0 transition">
+                    <i class="fa-solid fa-bolt text-amber-300 text-xs sm:text-sm"></i>
+                    <span>Create Free Store</span>
                 </a>
             </div>
 
@@ -783,6 +809,14 @@
             <div class="border-t border-slate-900 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <p>&copy; {{ date('Y') }} Anemony Technologies. All rights reserved.</p>
                 <div class="flex items-center gap-4 text-slate-500">
+                    <a href="{{ route('login') }}" wire:navigate class="hover:text-purple-400 text-slate-400 font-semibold flex items-center gap-1">
+                        <i class="fa-solid fa-right-to-bracket text-purple-400 text-xs"></i> Sign In
+                    </a>
+                    <span class="text-slate-800">|</span>
+                    <a href="{{ route('admin.dashboard') }}" wire:navigate class="hover:text-purple-400 text-slate-400 font-semibold flex items-center gap-1">
+                        <i class="fa-solid fa-crown text-amber-400 text-xs"></i> Super Admin
+                    </a>
+                    <span class="text-slate-800">|</span>
                     <a href="#" class="hover:text-slate-300">About Us</a>
                     <a href="#" class="hover:text-slate-300">Privacy Policy</a>
                     <a href="#" class="hover:text-slate-300">Terms & Conditions</a>

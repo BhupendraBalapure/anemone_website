@@ -41,6 +41,16 @@ class ArchetypeSeeder extends Seeder
                 'schema_type' => 'Restaurant',
             ],
             [
+                'name' => 'Hotels & Hospitality (Hotels / Motels / Resorts)',
+                'code' => 'hospitality',
+                'icon' => 'hotel',
+                'description' => 'For hotels, motels, resorts, and homestays requiring room bookings and stay inquiries.',
+                'enabled_features' => ['room_booking', 'amenities', 'checkin_checkout', 'whatsapp_stay_inquiry'],
+                'default_cta' => 'book_stay',
+                'cta_label' => 'Book Room / Check Availability',
+                'schema_type' => 'Hotel',
+            ],
+            [
                 'name' => 'B2B & Manufacturing (Factories / Wholesalers)',
                 'code' => 'b2b',
                 'icon' => 'building',
