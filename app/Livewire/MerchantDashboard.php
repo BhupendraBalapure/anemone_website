@@ -559,9 +559,350 @@ class MerchantDashboard extends Component
                     ['title' => 'Minimalist Everyday Sneaker', 'price' => 2199, 'mrp' => 2999, 'badge' => 'Comfort Fit', 'img' => 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&auto=format&fit=crop&q=80'],
                 ],
             ],
+            'salon_bridal' => [
+                'id' => 'salon_bridal',
+                'title' => 'Bridal Makeover & Celebrity Glamour Studio',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-wand-magic-sparkles',
+                'suggested_color' => '#BE185D',
+                'headline' => 'HD Bridal Makeup, Pre-Bridal Skin Care & Celebrity Styling',
+                'subheadline' => "Bespoke bridal makeovers, airbrush HD makeup, and pre-wedding grooming rituals in {$city}",
+                'badge' => '👰 Luxury Bridal & Glamour Studio',
+                'cta_text' => 'Book Bridal Consultation',
+                'hero_img' => 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=900&auto=format&fit=crop&q=80',
+                'features' => ['HD Airbrush Makeup', 'Pre-Bridal Grooming Packages', 'Lookbook & Portfolio', 'VIP Stylist Consultation'],
+                'highlights' => [
+                    ['icon' => 'fa-wand-magic-sparkles', 'title' => 'HD Airbrush Makeup', 'desc' => 'Long-lasting flawless waterproof makeup for high-res photography'],
+                    ['icon' => 'fa-gem', 'title' => 'Pre-Bridal Regimen', 'desc' => 'Custom 30-day glow therapies, detan, hydra facials, and hair spa'],
+                    ['icon' => 'fa-crown', 'title' => 'VIP Private Suites', 'desc' => 'Dedicated air-conditioned bridal lounge with privacy and dressing mirrors'],
+                ],
+                'sample_items' => [
+                    ['title' => 'Celebrity HD Bridal Airbrush Package', 'price' => 15000, 'mrp' => 18000, 'badge' => 'Full Day VIP', 'img' => 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Pre-Bridal 30-Day Glow Therapy', 'price' => 8500, 'mrp' => 11000, 'badge' => 'Complete Skin & Hair', 'img' => 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Reception & Engagement Glamour Look', 'price' => 6500, 'mrp' => 8000, 'badge' => '3 Hours', 'img' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Bridal Saree Draping & Hair Styling', 'price' => 2500, 'mrp' => 3500, 'badge' => 'Hairstyle + Draping', 'img' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
+            'salon_barber_lounge' => [
+                'id' => 'salon_barber_lounge',
+                'title' => "Men's Executive Barber & Grooming Lounge",
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-scissors',
+                'suggested_color' => '#1E293B',
+                'headline' => 'Master Barbers, Hot Towel Shaves & Beard Styling',
+                'subheadline' => "Modern men's grooming lounge with classic fades, charcoal skin detan, and express queue booking in {$city}",
+                'badge' => "💈 Executive Men's Barber Lounge",
+                'cta_text' => 'Reserve Barber Chair',
+                'hero_img' => 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=900&auto=format&fit=crop&q=80',
+                'features' => ['Hot Towel Razor Shave', 'Beard Spa & Sculpting', 'Executive Skin Detan', 'Zero-Wait Queue Booking'],
+                'highlights' => [
+                    ['icon' => 'fa-scissors', 'title' => 'Master Craftsmen', 'desc' => 'Experienced barbers specializing in skin fades, pompadours, and beard design'],
+                    ['icon' => 'fa-fire-flame-curved', 'title' => 'Hot Towel Experience', 'desc' => 'Relaxing straight-razor shave with essential eucalyptus oils'],
+                    ['icon' => 'fa-clock', 'title' => 'Express Queue', 'desc' => 'Book exact time slot and skip the waiting lounge'],
+                ],
+                'sample_items' => [
+                    ['title' => 'Signature Fade Haircut + Beard Styling', 'price' => 650, 'mrp' => 850, 'badge' => '45 Mins', 'img' => 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Hot Towel Straight-Razor Luxury Shave', 'price' => 350, 'mrp' => 500, 'badge' => 'Classic Razor', 'img' => 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Charcoal Deep Cleansing Detan Facial', 'price' => 950, 'mrp' => 1300, 'badge' => 'Instant Glow', 'img' => 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Keratin Hair Spa & Dandruff Treatment', 'price' => 1200, 'mrp' => 1600, 'badge' => 'Scalp Therapy', 'img' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
+            'salon_nail_lashes' => [
+                'id' => 'salon_nail_lashes',
+                'title' => 'Nail Art Studio, Lash & Brow Aesthetics Bar',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-gem',
+                'suggested_color' => '#7C3AED',
+                'headline' => 'Bespoke Gel Nail Extensions, Lash Lifting & Brow Art',
+                'subheadline' => "Trending hand-painted nail designs, acrylic extensions, and Korean lash perms in {$city}",
+                'badge' => '💅 Nail & Lash Aesthetics Bar',
+                'cta_text' => 'Book Nail / Lash Session',
+                'hero_img' => 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&auto=format&fit=crop&q=80',
+                'features' => ['Gel & Acrylic Extensions', 'Korean Lash Perms', 'Ombre Powder Brows', '100% Autoclaved Tools'],
+                'highlights' => [
+                    ['icon' => 'fa-gem', 'title' => 'Handmade Nail Art', 'desc' => 'Chrome, marble, 3D charms, and customized French tips'],
+                    ['icon' => 'fa-eye', 'title' => 'Korean Lash Lifting', 'desc' => 'Volumizing lash perms lasting 6-8 weeks with zero damage'],
+                    ['icon' => 'fa-shield-halved', 'title' => 'Medical-Grade Hygiene', 'desc' => 'Individually sealed and autoclaved stainless steel instruments'],
+                ],
+                'sample_items' => [
+                    ['title' => 'Luxury Gel Nail Extensions with Custom Art', 'price' => 1800, 'mrp' => 2400, 'badge' => 'Full Set', 'img' => 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Korean Keratin Lash Lift & Tint', 'price' => 1400, 'mrp' => 1900, 'badge' => 'Lasts 8 Weeks', 'img' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Gel Polish Manicure & Pedicure Combo', 'price' => 1200, 'mrp' => 1600, 'badge' => 'Mani + Pedi', 'img' => 'https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Ombre Powder Brow Shaping & Microblading', 'price' => 3500, 'mrp' => 4500, 'badge' => 'Semi-Permanent', 'img' => 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
+            'salon_landing_hair_botox' => [
+                'id' => 'salon_landing_hair_botox',
+                'title' => 'Keratin & Hair Botox Treatment Flash Sale Funnel',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-bolt',
+                'suggested_color' => '#8B5CF6',
+                'headline' => 'Flat 40% Off Keratin Smoothening & Botox Therapies',
+                'subheadline' => "Mirror-shine, frizz-free hair with certified Brazilian keratin in {$city}. 48-Hour voucher window.",
+                'badge' => '⚡ Limited 48-Hour Flash Funnel',
+                'cta_text' => 'Claim 40% Off Voucher',
+                'hero_img' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&auto=format&fit=crop&q=80',
+                'features' => ['48-Hr Countdown Timer', 'Hair Transformation Slider', 'Instant Voucher via WhatsApp', 'Frizz-Free Guarantee'],
+                'highlights' => [
+                    ['icon' => 'fa-bolt', 'title' => 'Instant Hair Botox', 'desc' => 'Restores moisture, seals split ends, and leaves hair silky smooth'],
+                    ['icon' => 'fa-shield-halved', 'title' => 'Formaldehyde-Free', 'desc' => '100% safe, non-toxic, organic keratin formulas'],
+                    ['icon' => 'fa-tag', 'title' => 'Flash 40% Savings', 'desc' => 'Includes complimentary deep scalp nourishment spa'],
+                ],
+                'sample_items' => [
+                    ['title' => 'Brazilian Keratin Smoothening (Full Hair)', 'price' => 2999, 'mrp' => 4999, 'badge' => '40% OFF', 'img' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Deep Conditioning Hair Botox Therapy', 'price' => 2499, 'mrp' => 3999, 'badge' => 'Frizz-Free', 'img' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Cysteine Protein Hair Rebonding', 'price' => 3499, 'mrp' => 5500, 'badge' => 'Zero Damage', 'img' => 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Moroccan Argan Oil Post-Care Spa', 'price' => 999, 'mrp' => 1500, 'badge' => 'Gloss Boost', 'img' => 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
+            'salon_landing_hydrafacial' => [
+                'id' => 'salon_landing_hydrafacial',
+                'title' => 'HydraFacial & Glass Skin Glow Funnel',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-droplet',
+                'suggested_color' => '#0284C7',
+                'headline' => '7-Step Medical HydraFacial & Instant Glass Skin Radiance',
+                'subheadline' => "Painless vortex extraction, deep hydration, and LED phototherapy in {$city}. First 25 registrations only.",
+                'badge' => '💎 Glass Skin Glow Campaign',
+                'cta_text' => 'Reserve HydraFacial Slot',
+                'hero_img' => 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&auto=format&fit=crop&q=80',
+                'features' => ['7-Step Treatment Video Hook', 'Dermatologist Certified', 'Before & After Glow Proof', 'Direct Slot Reservation'],
+                'highlights' => [
+                    ['icon' => 'fa-droplet', 'title' => 'Vortex Hydration', 'desc' => 'Infuses hyaluronic acid and antioxidants deep into dermal layers'],
+                    ['icon' => 'fa-sparkles', 'title' => 'Glass Skin Finish', 'desc' => 'Immediate visible radiance with zero post-procedure redness'],
+                    ['icon' => 'fa-user-check', 'title' => 'Certified Cosmetologists', 'desc' => 'Trained with authentic US-FDA approved aesthetic equipment'],
+                ],
+                'sample_items' => [
+                    ['title' => '7-Step Signature Medical HydraFacial', 'price' => 1999, 'mrp' => 3500, 'badge' => 'Instant Glow', 'img' => 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Carbon Laser Peel (Hollywood Facial)', 'price' => 2499, 'mrp' => 4000, 'badge' => 'Pore Tightening', 'img' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Oxygen Jet Radiance Infusion', 'price' => 1499, 'mrp' => 2200, 'badge' => '45 Mins', 'img' => 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Derma Suction Blackhead Extraction', 'price' => 799, 'mrp' => 1200, 'badge' => 'Deep Clean', 'img' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
+            'salon_landing_spa_pass' => [
+                'id' => 'salon_landing_spa_pass',
+                'title' => 'Ayurvedic Detox & Stress-Relief Spa Weekend Pass',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-leaf',
+                'suggested_color' => '#059669',
+                'headline' => '90-Minute Ayurvedic Detox Therapy & Herbal Steam Bath',
+                'subheadline' => "Recharge your mind and muscles with pure sesame oil Abhyanga and steam therapy in {$city}.",
+                'badge' => '🌿 Weekend Spa Pass Funnel',
+                'cta_text' => 'Get Weekend Spa Pass',
+                'hero_img' => 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&auto=format&fit=crop&q=80',
+                'features' => ['Weekend Rejuvenation Pass', 'Herbal Steam Included', 'Aromatherapy Oils Selector', '1-Tap WhatsApp Token'],
+                'highlights' => [
+                    ['icon' => 'fa-leaf', 'title' => 'Pure Herbal Formulations', 'desc' => 'Freshly extracted cold-pressed oils infused with ancient healing herbs'],
+                    ['icon' => 'fa-spa', 'title' => 'Herbal Steam Sauna', 'desc' => 'Detoxify pores and relax stiff joints in steam cabins'],
+                    ['icon' => 'fa-heart', 'title' => 'Couple Suite Option', 'desc' => 'Book adjoining suites with personal therapists and soft ambient sound'],
+                ],
+                'sample_items' => [
+                    ['title' => '90-Min Full-Body Abhyanga + Herbal Steam', 'price' => 1899, 'mrp' => 2800, 'badge' => 'Best Value Pass', 'img' => 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Shirodhara Medicated Oil Brain Calm', 'price' => 1999, 'mrp' => 2600, 'badge' => 'Stress Relief', 'img' => 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Deep Tissue Muscle Recovery Therapy', 'price' => 2199, 'mrp' => 3000, 'badge' => '75 Mins', 'img' => 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Couple Rejuvenation Weekend Combo', 'price' => 3499, 'mrp' => 5200, 'badge' => 'Couple Special', 'img' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
+            'salon_landing_men_club' => [
+                'id' => 'salon_landing_men_club',
+                'title' => "Men's VIP Grooming & Beard Detan Club Funnel",
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-user-tie',
+                'suggested_color' => '#F59E0B',
+                'headline' => 'Executive Haircut + Beard Sculpting + Detan Combo',
+                'subheadline' => "Transform your look in 45 minutes flat with master barbers in {$city}. Special introductory combo price.",
+                'badge' => "💈 Men's Grooming Combo Pass",
+                'cta_text' => 'Book VIP Barber Chair',
+                'hero_img' => 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=900&auto=format&fit=crop&q=80',
+                'features' => ['3-in-1 Combo Offer', 'Express 40-Min Turnaround', 'VIP Lounge Barbers', 'Zero Waiting Queue'],
+                'highlights' => [
+                    ['icon' => 'fa-scissors', 'title' => 'Razor-Sharp Precision', 'desc' => 'Taper fades, crop cuts, and beard contouring done to perfection'],
+                    ['icon' => 'fa-face-smile', 'title' => 'Charcoal Detan Scrub', 'desc' => 'Removes pollution grime, blackheads, and sun tan instantly'],
+                    ['icon' => 'fa-clock', 'title' => 'Express Queue Pass', 'desc' => 'Your chair is ready when you arrive. Zero lobby wait time.'],
+                ],
+                'sample_items' => [
+                    ['title' => '3-in-1 Executive Combo (Cut + Beard + Detan)', 'price' => 999, 'mrp' => 1600, 'badge' => '38% OFF', 'img' => 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Hot Towel Razor Shave + Face Massage', 'price' => 499, 'mrp' => 750, 'badge' => 'VIP Shave', 'img' => 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Charcoal Deep Detox Facial Therapy', 'price' => 799, 'mrp' => 1200, 'badge' => 'Skin Glow', 'img' => 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Hair Loss Prevention & Scalp Therapy', 'price' => 1299, 'mrp' => 1800, 'badge' => 'Scalp Care', 'img' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
+            'salon_landing_nail_lash' => [
+                'id' => 'salon_landing_nail_lash',
+                'title' => 'Gel Nails & Korean Lash Perm Launch Funnel',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-hand-sparkles',
+                'suggested_color' => '#D946EF',
+                'headline' => 'Gel Nail Extensions & Korean Lash Perm @ Flat ₹999',
+                'subheadline' => "Trending Instagram nail art, acrylic extensions, and 8-week lash lifts in {$city}. Limited slots.",
+                'badge' => '💅 Launch Offer • Flat ₹999',
+                'cta_text' => 'Claim ₹999 Launch Token',
+                'hero_img' => 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&auto=format&fit=crop&q=80',
+                'features' => ['₹999 Intro Promo Hook', 'Nail Lookbook Showcase', 'Korean Lash Lift Demo', 'Instant Slot Calendar'],
+                'highlights' => [
+                    ['icon' => 'fa-gem', 'title' => 'Long-Lasting Gel Art', 'desc' => 'Chip-resistant glossy finish lasting over 4 weeks'],
+                    ['icon' => 'fa-eye', 'title' => 'Keratin Lash Perm', 'desc' => 'Dramatically lifted, dark lashes without mascara or extensions'],
+                    ['icon' => 'fa-shield-halved', 'title' => 'Nail Bed Protection', 'desc' => 'Gentle buffing and calcium-enriched base coats for healthy natural nails'],
+                ],
+                'sample_items' => [
+                    ['title' => 'Gel Nail Extension Set + 2 Accent Nails Art', 'price' => 999, 'mrp' => 1800, 'badge' => 'Launch Promo', 'img' => 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Korean Keratin Lash Lift & Dark Tint', 'price' => 1199, 'mrp' => 1900, 'badge' => '8-Week Curl', 'img' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Chrome Mirror Finish Nail Add-on', 'price' => 399, 'mrp' => 600, 'badge' => 'Trending', 'img' => 'https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Ombre Brow Lamination & Tint Combo', 'price' => 1499, 'mrp' => 2200, 'badge' => 'Full Brows', 'img' => 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
+            'salon_ecom_organic_skincare' => [
+                'id' => 'salon_ecom_organic_skincare',
+                'title' => 'Luxury Organic Skincare & Serum Boutique',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-leaf',
+                'suggested_color' => '#059669',
+                'headline' => 'Dermatologist-Curated Organic Skincare & Potent Serums',
+                'subheadline' => "Clean beauty essentials, cruelty-free formulas, and daily routines delivered to your door in {$city}",
+                'badge' => '✨ Clean Skincare Apothecary',
+                'cta_text' => 'Shop Organic Serums',
+                'hero_img' => 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900&auto=format&fit=crop&q=80',
+                'features' => ['Clean Beauty Badges', 'Morning/Night Bundles', 'Ingredient Transparency', 'WhatsApp Checkout'],
+                'highlights' => [
+                    ['icon' => 'fa-leaf', 'title' => '100% Vegan & Clean', 'desc' => 'Paraben-free, sulfate-free, and ethically formulated for sensitive Indian skin'],
+                    ['icon' => 'fa-droplet', 'title' => 'Cold-Pressed Actives', 'desc' => 'Retains maximum botanical nutrients and antioxidant potency'],
+                    ['icon' => 'fa-truck-fast', 'title' => 'Quick Home Delivery', 'desc' => 'Eco-friendly cardboard bubble-wrapped shipping to your doorstep'],
+                ],
+                'sample_items' => [
+                    ['title' => '2% Hyaluronic Radiance Dew Serum 30ml', 'price' => 699, 'mrp' => 999, 'badge' => 'Best Seller', 'img' => 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Rosehip & Vitamin C Cold-Pressed Face Oil', 'price' => 849, 'mrp' => 1200, 'badge' => 'Pure Botanical', 'img' => 'https://images.unsplash.com/photo-1608248597359-00995fa1b6cf?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Centella Soothing Barrier Repair Cream', 'price' => 599, 'mrp' => 799, 'badge' => 'Skin Calming', 'img' => 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Green Tea & Niacinamide Pore Toner 100ml', 'price' => 449, 'mrp' => 650, 'badge' => 'Pore Control', 'img' => 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
+            'salon_ecom_haircare_tools' => [
+                'id' => 'salon_ecom_haircare_tools',
+                'title' => 'Professional Salon Haircare & Styling Tools Mart',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-wind',
+                'suggested_color' => '#7C3AED',
+                'headline' => 'Professional Salon Equipment, Styling Tools & Liters',
+                'subheadline' => "Ionic hair dryers, ceramic straighteners, and salon-size keratin shampoos in {$city}",
+                'badge' => '💇 Salon Pro Tools & Haircare',
+                'cta_text' => 'Shop Styling Tools',
+                'hero_img' => 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=900&auto=format&fit=crop&q=80',
+                'features' => ['Brand Warranty Badges', 'Salon-Size Liter Bottles', 'Styling Tool Guides', 'Instant COD & WhatsApp'],
+                'highlights' => [
+                    ['icon' => 'fa-shield-halved', 'title' => '2-Year Replacement Warranty', 'desc' => 'Guaranteed genuine salon-grade electronics with full brand warranty'],
+                    ['icon' => 'fa-bottle-droplet', 'title' => 'Jumbo 1-Litre Refills', 'desc' => 'Save up to 35% on high-volume professional salon shampoo bottles'],
+                    ['icon' => 'fa-bolt', 'title' => 'Tourmaline Ionic Tech', 'desc' => 'Cuts drying time in half with zero heat frizz or cuticle damage'],
+                ],
+                'sample_items' => [
+                    ['title' => 'Pro Ionic AC Motor Salon Hair Dryer 2200W', 'price' => 2499, 'mrp' => 3800, 'badge' => '2-Yr Warranty', 'img' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Moroccan Argan Deep Repair Hair Mask 500g', 'price' => 899, 'mrp' => 1299, 'badge' => 'Salon Grade', 'img' => 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Ceramic Tourmaline Floating Plate Straightener', 'price' => 1999, 'mrp' => 2999, 'badge' => 'Fast Heat', 'img' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Keratin Smooth Shampoo Jumbo Refill 1000ml', 'price' => 1199, 'mrp' => 1650, 'badge' => '1 Litre Pack', 'img' => 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
+            'salon_ecom_bridal_vanity' => [
+                'id' => 'salon_ecom_bridal_vanity',
+                'title' => 'Bridal Beauty Vanity & Makeup Kit Shop',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-spray-can-sparkles',
+                'suggested_color' => '#BE185D',
+                'headline' => 'Complete Bridal Trousseau Vanity Boxes & Waterproof Makeup',
+                'subheadline' => "Curated bridal trousseau kits, HD waterproof cosmetics, and luxury makeup vanity trunks in {$city}",
+                'badge' => '💄 Bridal Vanity & Trousseau Shop',
+                'cta_text' => 'Explore Bridal Kits',
+                'hero_img' => 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=900&auto=format&fit=crop&q=80',
+                'features' => ['Pre-Made Vanity Boxes', 'Shade Match Swatches', 'Gift Packaging Included', 'Free Pan-India Delivery'],
+                'highlights' => [
+                    ['icon' => 'fa-gift', 'title' => 'Luxury Velvet Trunk Box', 'desc' => 'Elegant keepsake trunk box included with multi-tier cosmetic compartments'],
+                    ['icon' => 'fa-water', 'title' => '24-Hr Waterproof Pigments', 'desc' => 'Tear-proof, humidity-proof formulas curated for Indian wedding functions'],
+                    ['icon' => 'fa-gem', 'title' => 'Curated by Bridal Artists', 'desc' => 'Pre-selected makeup palettes tested by senior bridal artists'],
+                ],
+                'sample_items' => [
+                    ['title' => 'Royal Bridal 18-Piece Trousseau Vanity Trunk', 'price' => 5999, 'mrp' => 8500, 'badge' => 'Complete Kit', 'img' => 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'HD Waterproof Matte Foundation (6 Swatches)', 'price' => 799, 'mrp' => 1100, 'badge' => '24-Hr Wear', 'img' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Velvet Matte Liquid Lipstick Trio (Nude / Crimson)', 'price' => 649, 'mrp' => 999, 'badge' => 'Pack of 3', 'img' => 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Bridal Glamour 35-Color Eyeshadow Palette', 'price' => 1299, 'mrp' => 1800, 'badge' => 'High Pigment', 'img' => 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
+            'salon_ecom_men_grooming' => [
+                'id' => 'salon_ecom_men_grooming',
+                'title' => "Men's Beard Craft & Daily Grooming Store",
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-user-tie',
+                'suggested_color' => '#1E293B',
+                'headline' => "Men's Beard Care, Matte Styling Clay & Daily Grooming",
+                'subheadline' => "Cedarwood beard growth oils, matte finish pomades, and charcoal facewashes in {$city}",
+                'badge' => "💈 Men's Grooming Apothecary",
+                'cta_text' => 'Shop Beard & Grooming',
+                'hero_img' => 'https://images.unsplash.com/photo-1621607512214-68297480165e?w=900&auto=format&fit=crop&q=80',
+                'features' => ['Beard Growth Bundles', 'Subscription & Save', 'Travel-Friendly Kits', '1-Click WhatsApp Order'],
+                'highlights' => [
+                    ['icon' => 'fa-mustache', 'title' => '100% Pure Beard Oils', 'desc' => 'Stimulates dormant follicles with argan, jojoba, and cedarwood extracts'],
+                    ['icon' => 'fa-hand-fist', 'title' => 'All-Day Matte Hold', 'desc' => 'High hold without greasy residue, washes off effortlessly with water'],
+                    ['icon' => 'fa-shield-halved', 'title' => 'Toxin-Free Daily Care', 'desc' => 'Zero parabens, SLS, or harsh alcohols that dry out masculine skin'],
+                ],
+                'sample_items' => [
+                    ['title' => 'Ultimate Beard Growth & Grooming Kit (Oil + Balm)', 'price' => 899, 'mrp' => 1400, 'badge' => 'Top Rated', 'img' => 'https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Strong Hold Matte Clay Hair Pomade 100g', 'price' => 499, 'mrp' => 750, 'badge' => 'Matte Finish', 'img' => 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Activated Charcoal Deep Detox Face Wash 150ml', 'price' => 349, 'mrp' => 499, 'badge' => 'Oil-Free', 'img' => 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Sandalwood & Aloe Pre-Shave Soothing Butter', 'price' => 399, 'mrp' => 550, 'badge' => 'Zero Burn', 'img' => 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
+            'salon_luxury_hair_studio' => [
+                'id' => 'salon_luxury_hair_studio',
+                'title' => 'Celebrity Hair Studio & Balayage Color Bar',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-scissors',
+                'suggested_color' => '#D97706',
+                'headline' => 'French Balayage, Olaplex Bond Repair & Celebrity Hair Transformations',
+                'subheadline' => "Bespoke hair color styling, global keratin smoothening, and precision cuts in {$city}",
+                'badge' => '💇 Hair Studio & Color Bar',
+                'cta_text' => 'Book Hair Consultation',
+                'hero_img' => 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=900&auto=format&fit=crop&q=80',
+                'features' => ['French Balayage Color', 'Olaplex Bond Repair', 'Celebrity Stylists', 'VIP Salon Chair'],
+                'highlights' => [
+                    ['icon' => 'fa-palette', 'title' => 'Master Colorists', 'desc' => 'Hand-painted French balayage, ombre, and pastel highlights customized to your skin tone'],
+                    ['icon' => 'fa-shield-heart', 'title' => 'Olaplex Bond Therapy', 'desc' => 'Multi-step bond multiplying treatment preventing breakage during bleaching'],
+                    ['icon' => 'fa-chair', 'title' => 'VIP Private Styling Station', 'desc' => 'Dedicated luxury salon chair with complimentary gourmet coffee & Wi-Fi'],
+                ],
+                'sample_items' => [
+                    ['title' => 'Signature French Balayage + Gloss Toner', 'price' => 4500, 'mrp' => 6000, 'badge' => 'Top Rated', 'img' => 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Olaplex No. 1 & No. 2 Bond Repair Therapy', 'price' => 1999, 'mrp' => 2800, 'badge' => 'Bond Multiplier', 'img' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Global Keratin Smooth Therapy (Full Hair)', 'price' => 3800, 'mrp' => 5200, 'badge' => 'Frizz-Free', 'img' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Master Precision Cut & Blowdry Styling', 'price' => 850, 'mrp' => 1200, 'badge' => 'Master Stylist', 'img' => 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
+            'salon_ecom_perfume_bath_body' => [
+                'id' => 'salon_ecom_perfume_bath_body',
+                'title' => 'Artisanal Luxury Perfumes & Bath Boutique',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-spray-can-sparkles',
+                'suggested_color' => '#BE185D',
+                'headline' => 'Artisanal Long-Lasting Perfumes & Botanical Bath Luxury',
+                'subheadline' => "French extrait de parfums, whipped shea body butters, and aromatherapy bath salts delivered in {$city}",
+                'badge' => '🌸 Fragrance & Bath Boutique',
+                'cta_text' => 'Shop Artisanal Perfumes',
+                'hero_img' => 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=900&auto=format&fit=crop&q=80',
+                'features' => ['Long-Lasting Perfumes', 'Organic Body Butters', 'Luxury Gift Sets', 'Express 48h Delivery'],
+                'highlights' => [
+                    ['icon' => 'fa-spray-can-sparkles', 'title' => 'Extrait de Parfum Grade', 'desc' => 'High 25-30% oil concentration providing 12+ hours of lingering sillage'],
+                    ['icon' => 'fa-jar', 'title' => 'Whipped Shea Butters', 'desc' => 'Raw Ghanaian shea butter infused with cold-pressed sweet almond and jojoba oils'],
+                    ['icon' => 'fa-box-open', 'title' => 'Luxury Gift Packaging', 'desc' => 'Hand-wrapped magnetic gift boxes with personalized wax seals and ribbons'],
+                ],
+                'sample_items' => [
+                    ['title' => 'Velvet Rose & Smoked Oud Extrait 50ml', 'price' => 1499, 'mrp' => 2200, 'badge' => 'Best Seller', 'img' => 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Whipped Vanilla Shea Body Butter 200g', 'price' => 599, 'mrp' => 850, 'badge' => 'Ultra Hydrating', 'img' => 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Himalayan Pink Salt & Lavender Bath Soak 350g', 'price' => 449, 'mrp' => 650, 'badge' => 'Stress Relief', 'img' => 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&auto=format&fit=crop&q=80'],
+                    ['title' => 'Artisanal Scented Soy Candle Gift Duo', 'price' => 899, 'mrp' => 1300, 'badge' => 'Gift Set', 'img' => 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&auto=format&fit=crop&q=80'],
+                ],
+            ],
         ];
 
-        return $templates[$this->previewTemplateId] ?? $templates['doctor_clinic'];
+        $selected = $templates[$this->previewTemplateId] ?? $templates['salon_wellness'] ?? $templates['doctor_clinic'];
+        if (! isset($selected['type'])) {
+            $selected['type'] = TemplateCatalog::getTemplateType($selected['id'] ?? $this->previewTemplateId, $this->activeCategory);
+        }
+
+        return $selected;
     }
 
     public function applyTemplate($themeName, $suggestedColor = null)
@@ -573,50 +914,42 @@ class MerchantDashboard extends Component
             $updateData['brand_color'] = $suggestedColor;
         }
 
-        $themeToArchetype = [
-            'hotel_business' => 'hospitality',
-            'motel_highway' => 'hospitality',
-            'hotel_boutique' => 'hospitality',
-            'hotel_grand_luxury' => 'hospitality',
-            'hotel_resort' => 'hospitality',
-            'hotel_budget' => 'hospitality',
-            'hotel_family' => 'hospitality',
-            'modern_clean' => 'hospitality',
-            'dark_luxury' => 'hospitality',
-            'minimal_card' => 'hospitality',
-            'nature_retreat' => 'hospitality',
-            'coastal_beach' => 'hospitality',
-            'heritage_haveli' => 'hospitality',
-            'mountain_chalet' => 'hospitality',
-            'wellness_sanctuary' => 'hospitality',
-            'doctor_clinic' => 'service',
-            'salon_wellness' => 'service',
-            'real_estate' => 'service',
-            'food_restaurant' => 'food',
-            'restaurant_cafe' => 'food',
-            'retail_store' => 'retail',
-            'retail_supermarket' => 'retail',
-            'b2b_industrial' => 'b2b',
-            'b2b_wholesale' => 'b2b',
-        ];
+        $templateType = TemplateCatalog::getTemplateType($themeName, $this->activeCategory);
+        $settings = $this->tenant->settings ?? [];
+        $settings['website_type'] = $templateType;
+        $updateData['settings'] = $settings;
 
-        if (isset($themeToArchetype[$themeName])) {
-            $arch = Archetype::where('code', $themeToArchetype[$themeName])->first();
-            if ($arch) {
-                $updateData['archetype_id'] = $arch->id;
-            }
+        $archetypeCode = TemplateCatalog::getArchetypeForTheme($themeName, $this->activeCategory);
+        $arch = Archetype::where('code', $archetypeCode)->first();
+        if ($arch) {
+            $updateData['archetype_id'] = $arch->id;
         }
 
         $this->tenant->update($updateData);
         $this->tenant->load('archetype');
         $this->showTemplatePreviewModal = false;
-        $this->flashMessage = "Template '".ucwords(str_replace('_', ' ', $themeName))."' applied successfully to your live website with zero data loss!";
+        $this->flashMessage = "Template '".ucwords(str_replace('_', ' ', $themeName))."' applied successfully as ".ucwords(str_replace('_', ' ', $templateType)).' with zero data loss!';
     }
 
     public function selectTheme($themeName)
     {
         $this->activeTheme = $themeName;
-        $this->tenant->update(['active_theme' => $themeName]);
+        $templateType = TemplateCatalog::getTemplateType($themeName, $this->activeCategory);
+        $settings = $this->tenant->settings ?? [];
+        $settings['website_type'] = $templateType;
+
+        $archetypeCode = TemplateCatalog::getArchetypeForTheme($themeName, $this->activeCategory);
+        $arch = Archetype::where('code', $archetypeCode)->first();
+        $updateData = [
+            'active_theme' => $themeName,
+            'settings' => $settings,
+        ];
+        if ($arch) {
+            $updateData['archetype_id'] = $arch->id;
+        }
+
+        $this->tenant->update($updateData);
+        $this->tenant->load('archetype');
         $this->flashMessage = 'Theme updated to '.ucfirst(str_replace('_', ' ', $themeName)).'! Content preserved (Zero Data Loss).';
     }
 

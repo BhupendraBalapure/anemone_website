@@ -1,5 +1,5 @@
 <div class="{{ match($currentTheme) {
-    'dark_luxury' => 'bg-[#090D16] text-zinc-100 min-h-screen',
+    'dark_luxury', 'salon_landing_hair_botox', 'salon_landing_hydrafacial', 'salon_landing_spa_pass', 'salon_landing_men_club', 'salon_landing_nail_lash' => 'bg-[#090D16] text-zinc-100 min-h-screen',
     'hotel_business' => 'bg-[#0B132B] text-slate-100 min-h-screen',
     'motel_highway' => 'bg-[#18181B] text-slate-100 min-h-screen',
     'hotel_boutique' => 'bg-[#120E24] text-slate-100 min-h-screen',
@@ -21,13 +21,10 @@
             <span class="bg-gradient-to-r from-rose-500 to-purple-600 text-white font-bold px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-wider">
                 <i class="fa-solid fa-layer-group text-[9px] mr-1"></i> Archetype: {{ strtoupper($archetype->code) }}
             </span>
-            @php
-                $wType = $tenant->settings['website_type'] ?? 'business_website';
-            @endphp
             <span class="bg-purple-900/60 border border-purple-700/60 text-purple-200 font-bold px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider">
-                @if($wType === 'ecommerce')
+                @if($this->isEcommerce)
                     <i class="fa-solid fa-cart-shopping text-[9px] mr-1"></i> Mode: E-Commerce
-                @elseif($wType === 'landing_page')
+                @elseif($this->isLandingPage)
                     <i class="fa-solid fa-bullhorn text-[9px] mr-1"></i> Mode: Landing Page
                 @else
                     <i class="fa-solid fa-globe text-[9px] mr-1"></i> Mode: Business Website
@@ -40,7 +37,7 @@
             
             @php
                 $bizCat = $tenant->settings['business_category'] ?? '';
-                $isHotelCategory = stripos($bizCat, 'Hotel') !== false || stripos($bizCat, 'Motel') !== false || $archetype->code === 'hospitality';
+                $isHotelCategory = stripos($bizCat, 'Hotel') !== false || stripos($bizCat, 'Motel') !== false || ($archetype->code === 'hospitality' && empty($bizCat));
             @endphp
 
             @if($isHotelCategory)
@@ -63,15 +60,64 @@
                     🌴 Family &amp; Lawn
                 </button>
             @elseif($bizCat === 'Beauty & Salons')
-                <button wire:click="switchTheme('salon_spa')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ in_array($currentTheme, ['salon_spa', 'salon_wellness']) ? 'bg-pink-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
-                    ✂️ Salon &amp; Spa
-                </button>
-                <button wire:click="switchTheme('dark_luxury')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'dark_luxury' ? 'bg-amber-500 text-slate-950 font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
-                    👑 VIP Bridal Funnel
-                </button>
-                <button wire:click="switchTheme('minimal_card')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'minimal_card' ? 'bg-sky-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
-                    ✨ Boutique Studio
-                </button>
+                @if($this->isEcommerce)
+                    <button wire:click="switchTheme('retail_supermarket')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'retail_supermarket' ? 'bg-pink-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        🛍️ Beauty Store
+                    </button>
+                    <button wire:click="switchTheme('salon_ecom_organic_skincare')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_ecom_organic_skincare' ? 'bg-emerald-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        ✨ Organic Skincare
+                    </button>
+                    <button wire:click="switchTheme('salon_ecom_haircare_tools')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_ecom_haircare_tools' ? 'bg-purple-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        💇 Hair Pro Mart
+                    </button>
+                    <button wire:click="switchTheme('salon_ecom_bridal_vanity')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_ecom_bridal_vanity' ? 'bg-rose-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        💄 Bridal Vanity
+                    </button>
+                    <button wire:click="switchTheme('salon_ecom_men_grooming')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_ecom_men_grooming' ? 'bg-slate-700 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        💈 Men's Grooming
+                    </button>
+                    <button wire:click="switchTheme('salon_ecom_perfume_bath_body')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_ecom_perfume_bath_body' ? 'bg-pink-700 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        🌸 Luxury Perfumes
+                    </button>
+                @elseif($this->isLandingPage)
+                    <button wire:click="switchTheme('dark_luxury')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'dark_luxury' ? 'bg-pink-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        👑 Bridal Funnel
+                    </button>
+                    <button wire:click="switchTheme('salon_landing_hair_botox')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_landing_hair_botox' ? 'bg-purple-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        ⚡ Hair Botox Flash
+                    </button>
+                    <button wire:click="switchTheme('salon_landing_hydrafacial')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_landing_hydrafacial' ? 'bg-sky-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        💎 HydraFacial Glow
+                    </button>
+                    <button wire:click="switchTheme('salon_landing_spa_pass')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_landing_spa_pass' ? 'bg-emerald-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        🌿 Spa Weekend Pass
+                    </button>
+                    <button wire:click="switchTheme('salon_landing_men_club')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_landing_men_club' ? 'bg-amber-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        💈 Men's VIP Club
+                    </button>
+                    <button wire:click="switchTheme('salon_landing_nail_lash')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_landing_nail_lash' ? 'bg-fuchsia-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        💅 ₹999 Nail &amp; Lash
+                    </button>
+                @else
+                    <button wire:click="switchTheme('salon_wellness')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ in_array($currentTheme, ['salon_spa', 'salon_wellness']) ? 'bg-pink-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        ✂️ Unisex Salon
+                    </button>
+                    <button wire:click="switchTheme('salon_bridal')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_bridal' ? 'bg-rose-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        👰 Bridal Studio
+                    </button>
+                    <button wire:click="switchTheme('wellness_sanctuary')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'wellness_sanctuary' ? 'bg-emerald-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        🌿 Ayurvedic Spa
+                    </button>
+                    <button wire:click="switchTheme('salon_barber_lounge')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_barber_lounge' ? 'bg-slate-700 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        💈 Men's Barber
+                    </button>
+                    <button wire:click="switchTheme('salon_nail_lashes')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_nail_lashes' ? 'bg-purple-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        💅 Nail Aesthetics
+                    </button>
+                    <button wire:click="switchTheme('salon_luxury_hair_studio')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'salon_luxury_hair_studio' ? 'bg-amber-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
+                        💇 Balayage &amp; Hair
+                    </button>
+                @endif
             @elseif(in_array($bizCat, ['Clinics & Hospitals', 'Doctors & Specialists']))
                 <button wire:click="switchTheme('doctor_clinic')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap {{ $currentTheme === 'doctor_clinic' ? 'bg-sky-600 text-white font-bold shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300' }}">
                     🩺 Hospital &amp; OPD
@@ -174,6 +220,19 @@
     </div>
     @endif
 
+    <!-- ⚡ Mode-Specific Top Announcement Ribbon -->
+    @if($this->isLandingPage)
+    <div class="bg-gradient-to-r from-rose-600 via-purple-600 to-amber-600 text-white text-[11px] sm:text-xs py-1.5 px-4 text-center font-black tracking-wide flex items-center justify-center gap-2 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-amber-300 animate-ping"></span>
+        <span>🔥 LIMITED TIME VOUCHER: Flat 40% Off First Visit &bull; Only 5 Slots Left This Week in {{ $tenant->city ?: 'Nagpur' }}!</span>
+    </div>
+    @elseif($this->isEcommerce)
+    <div class="bg-slate-900 text-slate-200 text-[11px] sm:text-xs py-1.5 px-4 text-center font-bold tracking-wide flex items-center justify-center gap-2 border-b border-slate-800">
+        <i class="fa-solid fa-truck-fast text-emerald-400"></i>
+        <span>🚚 FREE SHIPPING on orders above ₹499 &bull; 100% Genuine Certified &bull; Fast WhatsApp Order Delivery</span>
+    </div>
+    @endif
+
     <!-- 🧭 Main Website Navbar -->
     <nav class="sticky top-9 z-30 backdrop-blur-md border-b transition-colors {{ 
         $currentTheme === 'dark_luxury' ? 'bg-[#090D16]/95 border-zinc-800 text-white' : (
@@ -240,14 +299,28 @@
             </a>
 
             <!-- Desktop Nav Links -->
-            <div class="hidden lg:flex items-center gap-6 text-sm font-semibold opacity-85">
-                <a href="#services" class="hover:text-amber-400 transition">{{ $archetype->code === 'hospitality' ? 'Suites & Rooms' : ($archetype->code === 'service' ? 'Services' : ($archetype->code === 'b2b' ? 'Products' : 'Catalog')) }}</a>
-                <a href="#about" class="hover:text-amber-400 transition">About</a>
-                <a href="#highlights" class="hover:text-amber-400 transition">Why Us</a>
-                <a href="#timings" class="hover:text-amber-400 transition">{{ $archetype->code === 'hospitality' ? 'Check-in Desk' : 'Hours' }}</a>
-                <a href="#reviews" class="hover:text-amber-400 transition">Reviews</a>
-                <a href="#contact" class="hover:text-amber-400 transition">Contact</a>
-            </div>
+            @if($this->isLandingPage)
+                <div class="hidden md:flex items-center gap-2 text-xs font-bold text-amber-400 bg-amber-500/10 border border-amber-500/30 px-3.5 py-1.5 rounded-full backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+                    <span>⚡ Special Offer Funnel &bull; 40% Off Limited Slots</span>
+                </div>
+            @elseif($this->isEcommerce)
+                <div class="hidden lg:flex items-center gap-6 text-sm font-semibold opacity-85">
+                    <a href="#services" class="hover:text-amber-400 transition">Shop Products</a>
+                    <a href="#about" class="hover:text-amber-400 transition">About Store</a>
+                    <a href="#reviews" class="hover:text-amber-400 transition">Customer Reviews</a>
+                    <a href="#contact" class="hover:text-amber-400 transition">Contact & Help</a>
+                </div>
+            @else
+                <div class="hidden lg:flex items-center gap-6 text-sm font-semibold opacity-85">
+                    <a href="#services" class="hover:text-amber-400 transition">{{ $archetype->code === 'hospitality' ? 'Suites & Rooms' : ($archetype->code === 'service' ? 'Services' : ($archetype->code === 'b2b' ? 'Products' : 'Catalog')) }}</a>
+                    <a href="#about" class="hover:text-amber-400 transition">About</a>
+                    <a href="#highlights" class="hover:text-amber-400 transition">Why Us</a>
+                    <a href="#timings" class="hover:text-amber-400 transition">{{ $archetype->code === 'hospitality' ? 'Check-in Desk' : 'Hours' }}</a>
+                    <a href="#reviews" class="hover:text-amber-400 transition">Reviews</a>
+                    <a href="#contact" class="hover:text-amber-400 transition">Contact</a>
+                </div>
+            @endif
 
             <!-- Navbar Quick Actions -->
             <div class="flex items-center gap-2.5">
@@ -269,7 +342,7 @@
                     <i class="fa-brands fa-whatsapp text-sm"></i> <span class="hidden sm:inline">{{ $currentTheme === 'dark_luxury' ? 'VIP WhatsApp' : (in_array($currentTheme, ['hotel_resort', 'minimal_card', 'nature_retreat', 'coastal_beach', 'heritage_haveli', 'mountain_chalet', 'wellness_sanctuary']) ? 'Concierge' : 'WhatsApp') }}</span>
                 </a>
 
-                @if($archetype->hasFeature('cart'))
+                @if($this->isEcommerce && $archetype->hasFeature('cart'))
                 <button wire:click="$set('showCartModal', true)" class="relative p-2 rounded-xl border transition cursor-pointer {{ in_array($currentTheme, ['dark_luxury', 'hotel_resort', 'nature_retreat', 'heritage_haveli', 'mountain_chalet', 'wellness_sanctuary']) ? 'border-white/20 bg-white/10 text-white' : 'border-slate-200 bg-slate-50 text-slate-800' }}">
                     <i class="fa-solid fa-cart-shopping text-base"></i>
                     @if($this->cartCount > 0)
@@ -677,15 +750,15 @@
         </div>
     </section>
 
-    @elseif($currentTheme === 'dark_luxury')
+    @elseif(in_array($currentTheme, ['dark_luxury', 'salon_landing_hair_botox', 'salon_landing_hydrafacial', 'salon_landing_spa_pass', 'salon_landing_men_club', 'salon_landing_nail_lash']))
     <!-- ======================================================== -->
     <!-- 🌙 THEME: OBSIDIAN DARK LUXURY / HIGH-CONVERTING FUNNEL  -->
     <!-- Adapts automatically to Business Category with Dark VIP  -->
     <!-- ======================================================== -->
     @php
-        $bizCat = $tenant->settings['business_category'] ?? ($tenant->archetype->name ?? 'Other Retail');
+        $bizCat = $tenant->business_category ?: ($tenant->settings['business_category'] ?? ($tenant->archetype->name ?? 'Other Retail'));
         $cityUpper = strtoupper($tenant->city ?: 'YOUR CITY');
-        $isHotelCategory = stripos($bizCat, 'Hotel') !== false || stripos($bizCat, 'Motel') !== false || $archetype->code === 'hospitality';
+        $isHotelCategory = stripos($bizCat, 'Hotel') !== false || stripos($bizCat, 'Motel') !== false || ($archetype->code === 'hospitality' && empty($tenant->business_category));
     @endphp
 
     <section id="hero" class="relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-[#090D16] via-[#0D121F] to-[#090D16] text-white border-b border-zinc-800">
@@ -699,18 +772,68 @@
                 <!-- Left 7 Cols: Narrative -->
                 <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                     @if($bizCat === 'Beauty & Salons')
-                        <!-- Glowing VIP Badge -->
-                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900/90 border border-pink-500/40 text-pink-300 text-xs font-black tracking-widest uppercase shadow-lg shadow-pink-500/10 backdrop-blur-md">
-                            <i class="fa-solid fa-crown text-pink-400"></i> LUXURY BRIDAL &amp; BEAUTY STUDIO &bull; VIP APPOINTMENTS
-                        </div>
-
-                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white">
-                            THE OBSIDIAN BEAUTY EXPERIENCE — BESPOKE SALON &amp; BRIDAL LOUNGE IN <span class="bg-gradient-to-r from-pink-400 via-rose-400 to-amber-300 bg-clip-text text-transparent">{{ $cityUpper }}</span>
-                        </h1>
-
-                        <p class="text-base sm:text-lg text-zinc-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                            Flawless bridal HD makeovers, premium hair therapies, and personalized luxury aesthetics. Experience celebrity stylist appointments in private VIP suites with organic care.
-                        </p>
+                        @if($currentTheme === 'salon_landing_hair_botox')
+                            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900/90 border border-purple-500/40 text-purple-300 text-xs font-black tracking-widest uppercase shadow-lg shadow-purple-500/10 backdrop-blur-md">
+                                <i class="fa-solid fa-bolt text-purple-400"></i> FLASH SALE &bull; FLAT 40% OFF KERATIN &amp; BOTOX
+                            </div>
+                            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white">
+                                MIRROR-SHINE GLOSS &amp; FRIZZ-FREE HAIR MAKEOVER IN <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-amber-300 bg-clip-text text-transparent">{{ $cityUpper }}</span>
+                            </h1>
+                            <p class="text-base sm:text-lg text-zinc-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                                Transform rough, dry hair into silky smooth tresses. Certified Brazilian keratin treatment and deep conditioning hair botox. 48-Hour voucher window!
+                            </p>
+                        @elseif($currentTheme === 'salon_landing_hydrafacial')
+                            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900/90 border border-sky-500/40 text-sky-300 text-xs font-black tracking-widest uppercase shadow-lg shadow-sky-500/10 backdrop-blur-md">
+                                <i class="fa-solid fa-droplet text-sky-400"></i> 7-STEP MEDICAL HYDRAFACIAL &bull; GLASS SKIN
+                            </div>
+                            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white">
+                                INSTANT RADIANCE &amp; GLASS SKIN GLOW IN <span class="bg-gradient-to-r from-sky-400 via-teal-300 to-indigo-300 bg-clip-text text-transparent">{{ $cityUpper }}</span>
+                            </h1>
+                            <p class="text-base sm:text-lg text-zinc-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                                Painless vortex extraction, deep hyaluronic hydration, and medical LED phototherapy. Zero downtime, instant red-carpet glow. First 25 registrations only.
+                            </p>
+                        @elseif($currentTheme === 'salon_landing_spa_pass')
+                            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900/90 border border-emerald-500/40 text-emerald-300 text-xs font-black tracking-widest uppercase shadow-lg shadow-emerald-500/10 backdrop-blur-md">
+                                <i class="fa-solid fa-leaf text-emerald-400"></i> WEEKEND SPA PASS &bull; HERBAL STEAM INCLUDED
+                            </div>
+                            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white">
+                                AYURVEDIC DETOX &amp; 90-MIN FULL BODY THERAPY IN <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 bg-clip-text text-transparent">{{ $cityUpper }}</span>
+                            </h1>
+                            <p class="text-base sm:text-lg text-zinc-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                                Unwind with warm sesame Abhyanga massage, herbal steam bath, and tension-melting shoulder therapy. Rejuvenate your body and soul this weekend.
+                            </p>
+                        @elseif($currentTheme === 'salon_landing_men_club')
+                            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900/90 border border-amber-500/40 text-amber-300 text-xs font-black tracking-widest uppercase shadow-lg shadow-amber-500/10 backdrop-blur-md">
+                                <i class="fa-solid fa-user-tie text-amber-400"></i> MEN'S VIP GROOMING COMBO &bull; ZERO-WAIT QUEUE
+                            </div>
+                            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white">
+                                EXECUTIVE FADE, BEARD SCULPTING &amp; CHARCOAL DETAN IN <span class="bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400 bg-clip-text text-transparent">{{ $cityUpper }}</span>
+                            </h1>
+                            <p class="text-base sm:text-lg text-zinc-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                                Look sharp in 45 minutes flat. Precision scissor work, hot towel straight-razor shave, and instant pollution detan scrub by master barbers.
+                            </p>
+                        @elseif($currentTheme === 'salon_landing_nail_lash')
+                            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900/90 border border-fuchsia-500/40 text-fuchsia-300 text-xs font-black tracking-widest uppercase shadow-lg shadow-fuchsia-500/10 backdrop-blur-md">
+                                <i class="fa-solid fa-hand-sparkles text-fuchsia-400"></i> LAUNCH OFFER &bull; FLAT ₹999 INTRO PASS
+                            </div>
+                            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white">
+                                TRENDING GEL NAILS &amp; KOREAN LASH PERMS IN <span class="bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-300 bg-clip-text text-transparent">{{ $cityUpper }}</span>
+                            </h1>
+                            <p class="text-base sm:text-lg text-zinc-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                                Chip-resistant gel nail extensions with custom hand-painted nail art, plus 8-week volumizing Korean lash lifts. Grab your ₹999 launch pass now!
+                            </p>
+                        @else
+                            <!-- Default Bridal HD Makeover Funnel -->
+                            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900/90 border border-pink-500/40 text-pink-300 text-xs font-black tracking-widest uppercase shadow-lg shadow-pink-500/10 backdrop-blur-md">
+                                <i class="fa-solid fa-crown text-pink-400"></i> LUXURY BRIDAL &amp; BEAUTY STUDIO &bull; VIP APPOINTMENTS
+                            </div>
+                            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white">
+                                THE OBSIDIAN BEAUTY EXPERIENCE — BESPOKE SALON &amp; BRIDAL LOUNGE IN <span class="bg-gradient-to-r from-pink-400 via-rose-400 to-amber-300 bg-clip-text text-transparent">{{ $cityUpper }}</span>
+                            </h1>
+                            <p class="text-base sm:text-lg text-zinc-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                                Flawless bridal HD makeovers, premium hair therapies, and personalized luxury aesthetics. Experience celebrity stylist appointments in private VIP suites with organic care.
+                            </p>
+                        @endif
 
                         <!-- Glassmorphic Perks Box -->
                         <div class="bg-zinc-900/70 border border-zinc-700/80 rounded-2xl p-4 max-w-lg mx-auto lg:mx-0 backdrop-blur-md grid grid-cols-3 gap-3 text-center">
@@ -1108,10 +1231,30 @@
                 <!-- Right 5 Cols: Photo matching category -->
                 <div class="lg:col-span-5">
                     @php
-                        if ($bizCat === 'Beauty & Salons') {
-                            $heroImg = 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80';
-                            $imgRating = '★ 5.0 LUXURY SALON';
-                            $imgBadge = 'Flagship Beauty Lounge';
+                        if ($currentTheme === 'salon_landing_hair_botox') {
+                            $heroImg = 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&auto=format&fit=crop&q=80';
+                            $imgRating = '★ 4.9 FLASH VOUCHER';
+                            $imgBadge = 'Keratin & Botox Offer';
+                        } elseif ($currentTheme === 'salon_landing_hydrafacial') {
+                            $heroImg = 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&auto=format&fit=crop&q=80';
+                            $imgRating = '★ 5.0 GLOW RESULT';
+                            $imgBadge = '7-Step HydraFacial';
+                        } elseif ($currentTheme === 'salon_landing_spa_pass') {
+                            $heroImg = 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&auto=format&fit=crop&q=80';
+                            $imgRating = '★ 5.0 SPA PASS';
+                            $imgBadge = 'Ayurvedic Detox Pass';
+                        } elseif ($currentTheme === 'salon_landing_men_club') {
+                            $heroImg = 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&auto=format&fit=crop&q=80';
+                            $imgRating = '★ 4.9 BARBER COMBO';
+                            $imgBadge = 'VIP Grooming Club';
+                        } elseif ($currentTheme === 'salon_landing_nail_lash') {
+                            $heroImg = 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&auto=format&fit=crop&q=80';
+                            $imgRating = '★ 5.0 INTRO PASS';
+                            $imgBadge = 'Gel Nails & Lash Lift';
+                        } elseif ($bizCat === 'Beauty & Salons' || $currentTheme === 'dark_luxury') {
+                            $heroImg = 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&auto=format&fit=crop&q=80';
+                            $imgRating = '★ 5.0 BRIDAL HD';
+                            $imgBadge = 'Obsidian Bridal Lounge';
                         } elseif (in_array($bizCat, ['Clinics & Hospitals', 'Doctors & Specialists'])) {
                             $heroImg = 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&auto=format&fit=crop&q=80';
                             $imgRating = '★ 5.0 PATIENT RATING';
@@ -1561,6 +1704,245 @@
         </div>
     </section>
 
+    @elseif(in_array($currentTheme, ['salon_wellness', 'salon_bridal', 'salon_barber_lounge', 'salon_nail_lashes', 'salon_luxury_hair_studio']) || ($this->isBusinessWebsite && $bizCat === 'Beauty & Salons'))
+    <!-- ======================================================== -->
+    <!-- ✂️ LAYOUT: PREMIER SALON, SPA & AESTHETICS STUDIO (WEBSITE) -->
+    <!-- Soft Rose / Pearl Champagne Palette + Booking Calendar   -->
+    <!-- ======================================================== -->
+    @php
+        $salonConfig = match($currentTheme) {
+            'salon_bridal' => [
+                'badge' => '👰 Luxury Bridal & HD Makeover Studio',
+                'title' => 'Celebrity Bridal Makeovers, HD Airbrush & Pre-Wedding Rituals',
+                'desc' => 'High-definition bridal artistry, pre-wedding skin detan therapies, saree draping, and VIP bridal suites in ' . ($tenant->city ?: 'Nagpur') . '.',
+                'hero_img' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80',
+                'side_img1' => 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&auto=format&fit=crop&q=80',
+                'side_img2' => 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&auto=format&fit=crop&q=80',
+                'pills' => ['HD Airbrush Makeup', 'Pre-Bridal Glow Packages', 'Saree Draping & Hair', 'VIP AC Lounge'],
+                'tag' => '★ 5.0 BRIDAL ARTIST',
+            ],
+            'salon_barber_lounge' => [
+                'badge' => "💈 Men's Executive Barber & Grooming Lounge",
+                'title' => 'Precision Fades, Hot Towel Straight-Razor Shaves & Beard Styling',
+                'desc' => "Modern men's grooming lounge with classic fades, charcoal skin detan, and express zero-wait queue booking in " . ($tenant->city ?: 'Nagpur') . '.',
+                'hero_img' => 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=800&auto=format&fit=crop&q=80',
+                'side_img1' => 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&auto=format&fit=crop&q=80',
+                'side_img2' => 'https://images.unsplash.com/photo-1621607512214-68297480165e?w=400&auto=format&fit=crop&q=80',
+                'pills' => ['Hot Towel Shave', 'Beard Spa & Contouring', 'Executive Detan Facial', 'Zero Lobby Waiting'],
+                'tag' => '★ 4.9 MASTER BARBER',
+            ],
+            'salon_nail_lashes' => [
+                'badge' => '💅 Nail Art Studio, Lash & Brow Aesthetics Bar',
+                'title' => 'Bespoke Gel Nail Extensions, Korean Lash Lifts & Brow Styling',
+                'desc' => 'Hand-painted custom nail art, acrylic extensions, Korean lash perming, and sterile autoclaved hygiene protocols in ' . ($tenant->city ?: 'Nagpur') . '.',
+                'hero_img' => 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=800&auto=format&fit=crop&q=80',
+                'side_img1' => 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&auto=format&fit=crop&q=80',
+                'side_img2' => 'https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=400&auto=format&fit=crop&q=80',
+                'pills' => ['Gel & Acrylic Nails', 'Korean Lash Perms', 'Ombre Powder Brows', '100% Sterile Tools'],
+                'tag' => '★ 5.0 NAIL AESTHETICS',
+            ],
+            'salon_luxury_hair_studio' => [
+                'badge' => '💇 Celebrity Hair Studio & Balayage Color Bar',
+                'title' => 'French Balayage, Olaplex Bond Repair & Hair Transformations',
+                'desc' => 'High-end designer hair salon specializing in bespoke French balayage, ombre highlights, Olaplex bond repair treatments, and precision styling in ' . ($tenant->city ?: 'Nagpur') . '.',
+                'hero_img' => 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&auto=format&fit=crop&q=80',
+                'side_img1' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&auto=format&fit=crop&q=80',
+                'side_img2' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&auto=format&fit=crop&q=80',
+                'pills' => ['French Balayage Color', 'Olaplex Bond Repair', 'Global Keratin Therapy', 'VIP Salon Chair'],
+                'tag' => '★ 5.0 HAIR COLOR BAR',
+            ],
+            default => [
+                'badge' => '✂️ Premier Luxury Unisex Salon & Spa Studio',
+                'title' => 'Luxury Hair Styling, Therapeutic Spa & Bespoke Glow',
+                'desc' => 'Relax, revitalize and glow with certified beauty artists, organic therapies, and dedicated bridal suites in ' . ($tenant->city ?: 'Nagpur') . '.',
+                'hero_img' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80',
+                'side_img1' => 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&auto=format&fit=crop&q=80',
+                'side_img2' => 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&auto=format&fit=crop&q=80',
+                'pills' => ['Certified Stylists', 'Duration Badges (30m, 60m)', 'Organic Products', 'Private AC Suites'],
+                'tag' => '★ 5.0 LUXURY SALON',
+            ],
+        };
+    @endphp
+    <section id="hero" class="relative overflow-hidden py-14 lg:py-20 bg-gradient-to-b from-rose-50/70 via-white to-pink-50/30 border-b border-rose-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-rose-200 text-rose-700 text-xs font-black shadow-xs">
+                        <span>{{ $salonConfig['badge'] }}</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12]">
+                        {{ $salonConfig['title'] }} in <span class="bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent">{{ $tenant->city ?: 'Your City' }}</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                        {{ $salonConfig['desc'] }}
+                    </p>
+
+                    <div class="flex flex-wrap gap-2 justify-center lg:justify-start pt-1">
+                        @foreach($salonConfig['pills'] as $pill)
+                            <span class="px-3.5 py-1.5 rounded-xl bg-white border border-rose-100 text-xs font-bold text-slate-700 shadow-2xs flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-check text-rose-500 text-[11px]"></i> {{ $pill }}
+                            </span>
+                        @endforeach
+                    </div>
+
+                    <!-- Appointment Booking Action Strip -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-3">
+                        <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 text-white font-black text-sm shadow-xl shadow-rose-500/20 transition hover:scale-[1.02] flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-calendar-check"></i> Book Appointment Slot
+                        </a>
+                        <a href="{{ $tenant->getWhatsAppUrl('Hello ' . $tenant->business_name . ', I would like to book a salon appointment.') }}" target="_blank" class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md transition hover:scale-[1.02] flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Instant WhatsApp Booking
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right 5 Cols: Salon Bento Gallery -->
+                <div class="lg:col-span-5">
+                    <div class="grid grid-cols-2 gap-3.5">
+                        <div class="col-span-2 relative rounded-3xl overflow-hidden shadow-2xl border-2 border-rose-100 aspect-16/10 group">
+                            <img src="{{ $salonConfig['hero_img'] }}" alt="{{ $salonConfig['title'] }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                            <div class="absolute top-3.5 left-3.5 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black text-rose-700 shadow flex items-center gap-1.5">
+                                <i class="fa-solid fa-star text-amber-400"></i> {{ $salonConfig['tag'] }}
+                            </div>
+                            <div class="absolute bottom-3.5 left-3.5 right-3.5 text-white">
+                                <span class="font-black text-base block">{{ $tenant->business_name }}</span>
+                                <span class="text-xs text-white/80"><i class="fa-solid fa-location-dot text-rose-400"></i> {{ $tenant->address ?: $tenant->city }}</span>
+                            </div>
+                        </div>
+
+                        <div class="relative rounded-2xl overflow-hidden shadow-md border border-rose-100 aspect-4/3 group">
+                            <img src="{{ $salonConfig['side_img1'] }}" alt="Salon Detail" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-2.5">
+                                <span class="text-[11px] font-bold text-white">Private Suites</span>
+                            </div>
+                        </div>
+
+                        <div class="relative rounded-2xl overflow-hidden shadow-md border border-rose-100 aspect-4/3 group">
+                            <img src="{{ $salonConfig['side_img2'] }}" alt="Salon Styling" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-2.5">
+                                <span class="text-[11px] font-bold text-white">Certified Stylists</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @elseif(in_array($currentTheme, ['retail_supermarket', 'salon_ecom_organic_skincare', 'salon_ecom_haircare_tools', 'salon_ecom_bridal_vanity', 'salon_ecom_men_grooming', 'salon_ecom_perfume_bath_body']) || ($this->isEcommerce && $bizCat === 'Beauty & Salons'))
+    <!-- ======================================================== -->
+    <!-- 🛍️ LAYOUT: ONLINE BEAUTY, SKINCARE & COSMETICS STORE     -->
+    <!-- E-Commerce Storefront + Slide Cart Drawer + Fast Shipping -->
+    <!-- ======================================================== -->
+    @php
+        $ecomConfig = match($currentTheme) {
+            'salon_ecom_organic_skincare' => [
+                'badge' => '✨ Clean Skincare & Active Serums Boutique',
+                'title' => 'Cold-Pressed Facial Oils, Hyaluronic Serums & Botanical Care',
+                'desc' => 'Dermatologist-curated clean skincare apothecary. 100% cruelty-free, vegan formulations, ingredient transparency, and door delivery in ' . ($tenant->city ?: 'Nagpur') . '.',
+                'hero_img' => 'https://images.unsplash.com/photo-1608248597359-00995fa1b6cf?w=800&auto=format&fit=crop&q=80',
+                'pills' => ['100% Vegan & Clean', 'Cold-Pressed Actives', 'Zero Parabens', 'Express Delivery'],
+                'tag' => '★ 5.0 ORGANIC APOTHECARY',
+            ],
+            'salon_ecom_haircare_tools' => [
+                'badge' => '💇 Salon Pro Styling Tools & Haircare Mart',
+                'title' => 'Ionic Hair Dryers, Straighteners & Salon-Size Liter Refills',
+                'desc' => 'Professional-grade styling equipment with brand warranties, argan hair serums, and bulk salon refills delivered to your door in ' . ($tenant->city ?: 'Nagpur') . '.',
+                'hero_img' => 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&auto=format&fit=crop&q=80',
+                'pills' => ['2-Yr Brand Warranty', 'Jumbo 1-Litre Packs', 'Tourmaline Ionic Tech', 'COD & WhatsApp'],
+                'tag' => '★ 4.9 PRO TOOLS MART',
+            ],
+            'salon_ecom_bridal_vanity' => [
+                'badge' => '💄 Bridal Vanity & Makeup Trousseau Shop',
+                'title' => 'Complete Bridal Trousseau Vanity Trunks & HD Cosmetics',
+                'desc' => 'Curated bridal trousseau kits, 24-hr waterproof foundations, high-pigment eyeshadow palettes, and luxury gift trunk boxes in ' . ($tenant->city ?: 'Nagpur') . '.',
+                'hero_img' => 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=800&auto=format&fit=crop&q=80',
+                'pills' => ['Pre-Made Vanity Boxes', '24-Hr Waterproof', 'Gift Trunk Packaging', 'Free Delivery'],
+                'tag' => '★ 5.0 BRIDAL TROUSSEAU',
+            ],
+            'salon_ecom_men_grooming' => [
+                'badge' => "💈 Men's Beard Craft & Grooming Apothecary",
+                'title' => 'Cedarwood Beard Oils, Matte Styling Clay & Daily Detox Washes',
+                'desc' => "High-performance men's daily grooming essentials. Natural beard growth blends, sulfate-free charcoal facewashes, and subscription refill discounts in " . ($tenant->city ?: 'Nagpur') . '.',
+                'hero_img' => 'https://images.unsplash.com/photo-1621607512214-68297480165e?w=800&auto=format&fit=crop&q=80',
+                'pills' => ['Pure Cold-Pressed Oils', 'All-Day Matte Hold', 'Toxin-Free Daily Care', '1-Click Order'],
+                'tag' => "★ 4.9 MEN'S APOTHECARY",
+            ],
+            'salon_ecom_perfume_bath_body' => [
+                'badge' => '🌸 Artisanal Luxury Perfumes & Bath Boutique',
+                'title' => 'Long-Lasting French Extrait Perfumes & Whipped Shea Butters',
+                'desc' => 'Artisanal high-concentration extrait de parfums, whipped Ghanaian body butters, and aromatherapy bath salt gift sets delivered to your doorstep in ' . ($tenant->city ?: 'Nagpur') . '.',
+                'hero_img' => 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=800&auto=format&fit=crop&q=80',
+                'pills' => ['Extrait de Parfum Grade', 'Whipped Shea Butters', 'Luxury Gift Packaging', '48h Dispatch'],
+                'tag' => '★ 5.0 PERFUME BOUTIQUE',
+            ],
+            default => [
+                'badge' => '🛍️ Beauty, Skincare & Cosmetics Online Store',
+                'title' => 'Curated Cosmetics, Hair Serums & Organic Skincare Essentials',
+                'desc' => 'Explore premium beauty essentials with interactive cart drawer, MRP discounts, and direct WhatsApp delivery checkout in ' . ($tenant->city ?: 'Nagpur') . '.',
+                'hero_img' => 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&auto=format&fit=crop&q=80',
+                'pills' => ['100% Genuine Certified', 'Slide Cart Drawer', 'WhatsApp Checkout', 'Instant Stock Alerts'],
+                'tag' => '★ 5.0 BEAUTY STORE',
+            ],
+        };
+    @endphp
+    <section id="hero" class="relative overflow-hidden py-14 lg:py-20 bg-gradient-to-b from-purple-50/60 via-white to-slate-50 border-b border-purple-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-purple-200 text-purple-700 text-xs font-black shadow-xs">
+                        <span>{{ $ecomConfig['badge'] }}</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12]">
+                        {{ $ecomConfig['title'] }} in <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 bg-clip-text text-transparent">{{ $tenant->city ?: 'Your City' }}</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                        {{ $ecomConfig['desc'] }}
+                    </p>
+
+                    <div class="flex flex-wrap gap-2 justify-center lg:justify-start pt-1">
+                        @foreach($ecomConfig['pills'] as $pill)
+                            <span class="px-3.5 py-1.5 rounded-xl bg-white border border-purple-100 text-xs font-bold text-slate-700 shadow-2xs flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-check text-purple-600 text-[11px]"></i> {{ $pill }}
+                            </span>
+                        @endforeach
+                    </div>
+
+                    <!-- E-Commerce CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-3">
+                        <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black text-sm shadow-xl shadow-purple-600/20 transition hover:scale-[1.02] flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bag-shopping"></i> Shop Products &amp; Add to Cart
+                        </a>
+                        <button type="button" wire:click="$set('showCartModal', true)" class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-white hover:bg-slate-50 border-2 border-purple-200 text-purple-900 font-bold text-sm shadow-xs transition hover:scale-[1.02] flex items-center justify-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-cart-shopping text-purple-600"></i> View Cart ({{ $this->cartCount }})
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right 5 Cols: Product Showcase Card -->
+                <div class="lg:col-span-5">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-purple-100 group aspect-4/3">
+                        <img src="{{ $ecomConfig['hero_img'] }}" alt="{{ $ecomConfig['title'] }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+                        <div class="absolute top-3.5 left-3.5 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[11px] font-black text-purple-700 shadow flex items-center gap-1.5">
+                            <i class="fa-solid fa-truck-fast text-emerald-500"></i> Free 48-Hour Delivery
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <span class="text-purple-300 text-[10px] font-black uppercase tracking-widest block mb-0.5">{{ $ecomConfig['tag'] }}</span>
+                            <h3 class="font-black text-lg sm:text-xl">{{ $tenant->business_name }}</h3>
+                            <p class="text-xs text-slate-300 mt-1"><i class="fa-brands fa-whatsapp text-emerald-400"></i> Direct WhatsApp Order Dispatch &bull; {{ $tenant->city }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     @else
     <!-- ======================================================== -->
     <!-- 🏡 LAYOUT 2: MODERN BOUTIQUE & AIRBNB VILLA (DEFAULT)     -->
@@ -1643,7 +2025,11 @@
                     <!-- CTAs -->
                     <div class="flex flex-col sm:flex-row items-center gap-3 pt-3">
                         <a href="#services" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-sm shadow-lg shadow-sky-600/20 transition hover:scale-[1.02] flex items-center justify-center gap-2">
-                            @if($archetype->code === 'hospitality')
+                            @if($this->isLandingPage)
+                                <i class="fa-solid fa-gift"></i> Claim Limited Promo Offer
+                            @elseif($this->isEcommerce)
+                                <i class="fa-solid fa-bag-shopping"></i> Shop Online Products
+                            @elseif($archetype->code === 'hospitality')
                                 <i class="fa-solid fa-bed"></i> Browse Suites &amp; Reserve
                             @elseif($archetype->code === 'b2b')
                                 <i class="fa-solid fa-file-invoice-dollar"></i> Request a Quote
@@ -1698,6 +2084,106 @@
     </section>
     @endif
 
+    @if($this->isLandingPage)
+    <!-- ======================================================== -->
+    <!-- 🚀 DEDICATED HIGH-CONVERSION LANDING PAGE SPOTLIGHT     -->
+    <!-- (NO CART • PROMOTIONAL FUNNEL & VOUCHER CLAIM)          -->
+    <!-- ======================================================== -->
+    <section id="promo-offer" class="py-14 {{ $currentTheme === 'dark_luxury' ? 'bg-[#090D16] text-white border-b border-zinc-800' : 'bg-slate-50 text-slate-900 border-b border-slate-200' }}">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <span class="text-xs font-black uppercase tracking-widest text-purple-500 bg-purple-500/10 px-3.5 py-1 rounded-full border border-purple-500/20">
+                    ⭐ EXCLUSIVE PROMOTIONAL PACKAGE
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black mt-3 tracking-tight">
+                    Lock In Your VIP Discount Voucher Today
+                </h2>
+                <p class="text-sm sm:text-base opacity-75 max-w-2xl mx-auto mt-2">
+                    Experience world-class treatment by certified specialists with our all-inclusive limited promotional bundle in {{ $tenant->city ?: 'Nagpur' }}.
+                </p>
+            </div>
+
+            <!-- Spotlight Deal Card -->
+            <div class="rounded-3xl border-2 {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-purple-500/40 shadow-2xl shadow-purple-500/10' : 'bg-white border-purple-200 shadow-xl' }} p-6 sm:p-10 relative overflow-hidden">
+                <div class="absolute -top-12 -right-12 w-40 h-40 bg-purple-500/20 rounded-full blur-2xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-500 font-extrabold text-xs">
+                            <i class="fa-solid fa-fire"></i> Best Value All-In-One Deal &bull; Save ₹1,500
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-black leading-tight">
+                            Complete Transformation &amp; Rejuvenation Package
+                        </h3>
+                        <p class="text-sm opacity-80 leading-relaxed">
+                            Includes complete personal consultation, hair/skin diagnosis, full therapy session using premium dermatological products, and complimentary aftercare kit.
+                        </p>
+
+                        <!-- Feature Checklist -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                            <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold">
+                                <i class="fa-solid fa-circle-check text-emerald-500 text-base shrink-0"></i>
+                                <span>Certified Senior Specialist</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold">
+                                <i class="fa-solid fa-circle-check text-emerald-500 text-base shrink-0"></i>
+                                <span>100% Genuine Imported Products</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold">
+                                <i class="fa-solid fa-circle-check text-emerald-500 text-base shrink-0"></i>
+                                <span>Private Air-Conditioned Suite</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold">
+                                <i class="fa-solid fa-circle-check text-emerald-500 text-base shrink-0"></i>
+                                <span>Zero Hidden Costs Guarantee</span>
+                            </div>
+                        </div>
+
+                        <!-- Price Tag -->
+                        <div class="pt-4 flex flex-wrap items-baseline gap-4">
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-3xl sm:text-4xl font-black text-emerald-500">₹1,999</span>
+                                <span class="text-base text-slate-400 line-through">₹3,500</span>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-black bg-rose-500 text-white shadow">
+                                43% FLAT DISCOUNT
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Instant Claim Form -->
+                    <div class="lg:col-span-5 p-6 rounded-2xl {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-950 border border-zinc-800' : 'bg-slate-50 border border-slate-200' }} space-y-4">
+                        <div class="text-center">
+                            <span class="text-xs font-black uppercase tracking-wider text-purple-500">Fast Voucher Claim</span>
+                            <h4 class="font-bold text-base mt-0.5">Claim Your Offer Voucher</h4>
+                            <p class="text-[11px] opacity-70">Takes 10 seconds. Locks in price instantly.</p>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-[11px] font-bold mb-1 opacity-80">Your Name *</label>
+                                <input wire:model="leadName" type="text" placeholder="Enter your full name" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-white text-slate-900' }} outline-none focus:ring-2 focus:ring-purple-500">
+                                @error('leadName') <span class="text-rose-500 text-[10px]">{{ $message }}</span> @enderror
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold mb-1 opacity-80">WhatsApp Mobile Number *</label>
+                                <input wire:model="leadPhone" type="tel" placeholder="10-digit mobile number" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-white text-slate-900' }} outline-none focus:ring-2 focus:ring-purple-500">
+                                @error('leadPhone') <span class="text-rose-500 text-[10px]">{{ $message }}</span> @enderror
+                            </div>
+                            <button wire:click="claimOffer('Exclusive VIP Package (Flat 40% Off)')" class="w-full py-3 px-4 rounded-xl btn-brand-gradient text-white font-extrabold text-xs shadow-lg transition flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]">
+                                <i class="fa-solid fa-gift"></i> Claim Instant WhatsApp Voucher
+                            </button>
+                            <p class="text-[10px] text-center opacity-60">
+                                <i class="fa-solid fa-lock text-[9px]"></i> 100% Privacy. Zero Spam. Instant WhatsApp Delivery.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @endif
+
     <!-- 💎 KEY HIGHLIGHTS / WHY CHOOSE US -->
     <section id="highlights" class="py-14 border-b {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900/50 border-zinc-800' : ($currentTheme === 'minimal_card' ? 'bg-neutral-50 border-neutral-200' : 'bg-white border-slate-200/80') }}">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1712,35 +2198,67 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 
                 @if($archetype->code === 'service')
-                <!-- Service / Clinic 4 Highlights -->
-                <div class="p-6 rounded-2xl border transition hover-lift {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-800' : ($currentTheme === 'minimal_card' ? 'bg-white border-neutral-200' : 'bg-slate-50 border-slate-200/80') }}">
-                    <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 flex items-center justify-center text-xl mb-4 font-bold">
-                        <i class="fa-solid fa-user-doctor"></i>
+                    @if($bizCat === 'Beauty & Salons' || str_starts_with($currentTheme, 'salon_') || $currentTheme === 'wellness_sanctuary')
+                    <!-- 💇 BEAUTY & SALONS 4 DISTINCT HIGHLIGHTS -->
+                    <div class="p-6 rounded-2xl border transition hover-lift {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-800' : ($currentTheme === 'minimal_card' ? 'bg-white border-neutral-200' : 'bg-slate-50 border-slate-200/80') }}">
+                        <div class="w-12 h-12 rounded-2xl bg-pink-500/10 text-pink-600 flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <h4 class="font-bold text-base mb-1.5 {{ $currentTheme === 'dark_luxury' ? 'text-white' : 'text-slate-900' }}">Master Stylists &amp; Artists</h4>
+                        <p class="text-xs leading-relaxed {{ $currentTheme === 'dark_luxury' ? 'text-zinc-400' : 'text-slate-600' }}">Internationally certified beauty artists specializing in precision haircuts, balayage color, and HD makeup.</p>
                     </div>
-                    <h4 class="font-bold text-base mb-1.5 {{ $currentTheme === 'dark_luxury' ? 'text-white' : 'text-slate-900' }}">Licensed Specialists</h4>
-                    <p class="text-xs leading-relaxed {{ $currentTheme === 'dark_luxury' ? 'text-zinc-400' : 'text-slate-600' }}">Experienced doctors dedicated to thorough checkups, honest advice, and empathetic care.</p>
-                </div>
-                <div class="p-6 rounded-2xl border transition hover-lift {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-800' : ($currentTheme === 'minimal_card' ? 'bg-white border-neutral-200' : 'bg-slate-50 border-slate-200/80') }}">
-                    <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-600 flex items-center justify-center text-xl mb-4 font-bold">
-                        <i class="fa-solid fa-microscope"></i>
+                    <div class="p-6 rounded-2xl border transition hover-lift {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-800' : ($currentTheme === 'minimal_card' ? 'bg-white border-neutral-200' : 'bg-slate-50 border-slate-200/80') }}">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-600 flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h4 class="font-bold text-base mb-1.5 {{ $currentTheme === 'dark_luxury' ? 'text-white' : 'text-slate-900' }}">Organic &amp; Cruelty-Free</h4>
+                        <p class="text-xs leading-relaxed {{ $currentTheme === 'dark_luxury' ? 'text-zinc-400' : 'text-slate-600' }}">Only dermatologist-tested, 100% vegan, and toxin-free luxury products used on your hair and skin.</p>
                     </div>
-                    <h4 class="font-bold text-base mb-1.5 {{ $currentTheme === 'dark_luxury' ? 'text-white' : 'text-slate-900' }}">Modern Diagnostics</h4>
-                    <p class="text-xs leading-relaxed {{ $currentTheme === 'dark_luxury' ? 'text-zinc-400' : 'text-slate-600' }}">Equipped with high-precision instruments to provide accurate treatment in sterile conditions.</p>
-                </div>
-                <div class="p-6 rounded-2xl border transition hover-lift {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-800' : ($currentTheme === 'minimal_card' ? 'bg-white border-neutral-200' : 'bg-slate-50 border-slate-200/80') }}">
-                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-xl mb-4 font-bold">
-                        <i class="fa-solid fa-calendar-check"></i>
+                    <div class="p-6 rounded-2xl border transition hover-lift {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-800' : ($currentTheme === 'minimal_card' ? 'bg-white border-neutral-200' : 'bg-slate-50 border-slate-200/80') }}">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-couch"></i>
+                        </div>
+                        <h4 class="font-bold text-base mb-1.5 {{ $currentTheme === 'dark_luxury' ? 'text-white' : 'text-slate-900' }}">Private VIP Lounges</h4>
+                        <p class="text-xs leading-relaxed {{ $currentTheme === 'dark_luxury' ? 'text-zinc-400' : 'text-slate-600' }}">Peaceful ambient lighting, acoustic privacy, comfortable recliner chairs, and soothing aromatherapy music.</p>
                     </div>
-                    <h4 class="font-bold text-base mb-1.5 {{ $currentTheme === 'dark_luxury' ? 'text-white' : 'text-slate-900' }}">Zero Wait Time Slots</h4>
-                    <p class="text-xs leading-relaxed {{ $currentTheme === 'dark_luxury' ? 'text-zinc-400' : 'text-slate-600' }}">Pick your preferred appointment slot online and get instant WhatsApp confirmation.</p>
-                </div>
-                <div class="p-6 rounded-2xl border transition hover-lift {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-800' : ($currentTheme === 'minimal_card' ? 'bg-white border-neutral-200' : 'bg-slate-50 border-slate-200/80') }}">
-                    <div class="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-600 flex items-center justify-center text-xl mb-4 font-bold">
-                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    <div class="p-6 rounded-2xl border transition hover-lift {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-800' : ($currentTheme === 'minimal_card' ? 'bg-white border-neutral-200' : 'bg-slate-50 border-slate-200/80') }}">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h4 class="font-bold text-base mb-1.5 {{ $currentTheme === 'dark_luxury' ? 'text-white' : 'text-slate-900' }}">Autoclaved Hygiene</h4>
+                        <p class="text-xs leading-relaxed {{ $currentTheme === 'dark_luxury' ? 'text-zinc-400' : 'text-slate-600' }}">Individually sealed and autoclaved instruments, sanitized linens, and single-use disposable kits.</p>
                     </div>
-                    <h4 class="font-bold text-base mb-1.5 {{ $currentTheme === 'dark_luxury' ? 'text-white' : 'text-slate-900' }}">Transparent Pricing</h4>
-                    <p class="text-xs leading-relaxed {{ $currentTheme === 'dark_luxury' ? 'text-zinc-400' : 'text-slate-600' }}">Transparent consultation fees with no surprise hidden bills or unnecessary tests.</p>
-                </div>
+                    @else
+                    <!-- Service / Clinic 4 Highlights -->
+                    <div class="p-6 rounded-2xl border transition hover-lift {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-800' : ($currentTheme === 'minimal_card' ? 'bg-white border-neutral-200' : 'bg-slate-50 border-slate-200/80') }}">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <h4 class="font-bold text-base mb-1.5 {{ $currentTheme === 'dark_luxury' ? 'text-white' : 'text-slate-900' }}">Licensed Specialists</h4>
+                        <p class="text-xs leading-relaxed {{ $currentTheme === 'dark_luxury' ? 'text-zinc-400' : 'text-slate-600' }}">Experienced doctors dedicated to thorough checkups, honest advice, and empathetic care.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl border transition hover-lift {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-800' : ($currentTheme === 'minimal_card' ? 'bg-white border-neutral-200' : 'bg-slate-50 border-slate-200/80') }}">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-600 flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-microscope"></i>
+                        </div>
+                        <h4 class="font-bold text-base mb-1.5 {{ $currentTheme === 'dark_luxury' ? 'text-white' : 'text-slate-900' }}">Modern Diagnostics</h4>
+                        <p class="text-xs leading-relaxed {{ $currentTheme === 'dark_luxury' ? 'text-zinc-400' : 'text-slate-600' }}">Equipped with high-precision instruments to provide accurate treatment in sterile conditions.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl border transition hover-lift {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-800' : ($currentTheme === 'minimal_card' ? 'bg-white border-neutral-200' : 'bg-slate-50 border-slate-200/80') }}">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h4 class="font-bold text-base mb-1.5 {{ $currentTheme === 'dark_luxury' ? 'text-white' : 'text-slate-900' }}">Zero Wait Time Slots</h4>
+                        <p class="text-xs leading-relaxed {{ $currentTheme === 'dark_luxury' ? 'text-zinc-400' : 'text-slate-600' }}">Pick your preferred appointment slot online and get instant WhatsApp confirmation.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl border transition hover-lift {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-800' : ($currentTheme === 'minimal_card' ? 'bg-white border-neutral-200' : 'bg-slate-50 border-slate-200/80') }}">
+                        <div class="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-600 flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                        </div>
+                        <h4 class="font-bold text-base mb-1.5 {{ $currentTheme === 'dark_luxury' ? 'text-white' : 'text-slate-900' }}">Transparent Pricing</h4>
+                        <p class="text-xs leading-relaxed {{ $currentTheme === 'dark_luxury' ? 'text-zinc-400' : 'text-slate-600' }}">Transparent consultation fees with no surprise hidden bills or unnecessary tests.</p>
+                    </div>
+                    @endif
 
                 @elseif($archetype->code === 'hospitality')
                 <!-- Hospitality / Hotel Highlights per Theme -->
@@ -2253,25 +2771,33 @@
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
                 <div>
                     <h2 class="text-xs font-bold uppercase tracking-widest text-purple-600 mb-1">
-                        @if($archetype->code === 'service')
-                            Clinical Specialities & Treatments
+                        @if($this->isEcommerce)
+                            Online Products Store
+                        @elseif($this->isLandingPage)
+                            Featured Promotional Offers
+                        @elseif($archetype->code === 'service')
+                            Clinical Specialities &amp; Treatments
                         @elseif($archetype->code === 'b2b')
-                            Fabrication & Engineering Line
+                            Fabrication &amp; Engineering Line
                         @elseif($archetype->code === 'hospitality')
-                            Accommodations & Suites
+                            Accommodations &amp; Suites
                         @else
                             Featured Store Items
                         @endif
                     </h2>
                     <h3 class="text-2xl sm:text-3xl font-black tracking-tight {{ $currentTheme === 'dark_luxury' ? 'text-white' : 'text-slate-900' }}">
-                        @if($archetype->code === 'service')
-                            Available Doctor Consultations & Services
+                        @if($this->isEcommerce)
+                            Shop Beauty &amp; Essentials (Add to Cart)
+                        @elseif($this->isLandingPage)
+                            Select Your Discounted Promo Session
+                        @elseif($archetype->code === 'service')
+                            Available Appointments &amp; Services Menu
                         @elseif($archetype->code === 'b2b')
-                            Industrial Products & Custom Components
+                            Industrial Products &amp; Custom Components
                         @elseif($archetype->code === 'hospitality')
-                            Luxury Rooms & Suites Availability
+                            Luxury Rooms &amp; Suites Availability
                         @else
-                            Explore Catalog & Order Online
+                            Explore Catalog &amp; Inquire
                         @endif
                     </h3>
                 </div>
@@ -3238,23 +3764,34 @@
 
                     <!-- Dynamic Action CTA Button -->
                     <div class="p-6 pt-0">
-                        @if($archetype->code === 'service')
-                            <button wire:click="openBookingModal({{ $item->id }})" class="w-full py-3 px-4 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.01]">
-                                <i class="fa-regular fa-calendar-check"></i> Book Appointment Slot
-                            </button>
-                        @elseif($archetype->code === 'b2b')
-                            <button wire:click="openQuoteModal({{ $item->id }})" class="w-full py-3 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.01]">
-                                <i class="fa-solid fa-file-invoice-dollar"></i> Request Bulk Quote
-                            </button>
-                        @else
+                        @if($this->isEcommerce)
                             <div class="flex items-center gap-2">
-                                <button wire:click="addToCart({{ $item->id }})" class="flex-1 py-3 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition flex items-center justify-center gap-1.5 cursor-pointer">
+                                <button wire:click="addToCart({{ $item->id }})" class="flex-1 py-3 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition flex items-center justify-center gap-1.5 cursor-pointer hover:scale-[1.01]">
                                     <i class="fa-solid fa-cart-plus"></i> Add to Cart
                                 </button>
                                 <a href="{{ $tenant->getWhatsAppUrl('Hi, I want to buy: ' . $item->title . ' (₹' . $item->price . ')') }}" target="_blank" class="p-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold flex items-center justify-center shadow">
                                     <i class="fa-brands fa-whatsapp text-lg"></i>
                                 </a>
                             </div>
+                        @elseif($this->isLandingPage)
+                            <a href="{{ $tenant->getWhatsAppUrl('Hi ' . $tenant->business_name . ', I want to claim the limited offer for: ' . $item->title . ' (₹' . $item->price . ').') }}" target="_blank" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-rose-600 hover:from-purple-500 hover:to-rose-500 text-white font-extrabold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02]">
+                                <i class="fa-solid fa-gift"></i> Claim Limited Offer
+                            </a>
+                        @else
+                            {{-- Business Website Mode --}}
+                            @if($archetype->code === 'service' || $item->type === 'service')
+                                <button wire:click="openBookingModal({{ $item->id }})" class="w-full py-3 px-4 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.01]">
+                                    <i class="fa-regular fa-calendar-check"></i> Book Appointment Slot
+                                </button>
+                            @elseif($archetype->code === 'b2b')
+                                <button wire:click="openQuoteModal({{ $item->id }})" class="w-full py-3 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.01]">
+                                    <i class="fa-solid fa-file-invoice-dollar"></i> Request Bulk Quote
+                                </button>
+                            @else
+                                <a href="{{ $tenant->getWhatsAppUrl('Hi ' . $tenant->business_name . ', I would like to inquire about: ' . $item->title) }}" target="_blank" class="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+                                    <i class="fa-brands fa-whatsapp text-emerald-400"></i> Inquire via WhatsApp
+                                </a>
+                            @endif
                         @endif
                     </div>
 
@@ -3701,7 +4238,7 @@
     </footer>
 
     <!-- 🛍️ Cart Modal for Retail & Food -->
-    @if($showCartModal)
+    @if($this->isEcommerce && $showCartModal)
     <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
         <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
             <div class="p-5 border-b flex items-center justify-between bg-slate-50">
@@ -3868,6 +4405,19 @@
                 </button>
             </form>
         </div>
+    </div>
+    @endif
+
+    @if($this->isLandingPage)
+    <!-- ⚡ Sticky Bottom Urgency Voucher Bar for Landing Page -->
+    <div class="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 backdrop-blur-md border-t border-purple-500/40 p-3 flex items-center justify-between gap-3 shadow-2xl">
+        <div>
+            <span class="text-[10px] text-amber-400 font-extrabold uppercase block">⚡ Limited Offer &bull; 40% Off</span>
+            <span class="text-xs font-black text-white">VIP Voucher @ ₹1,999</span>
+        </div>
+        <a href="{{ $tenant->getWhatsAppUrl('Hi ' . $tenant->business_name . ', I want to claim the Flat 40% Off Promo Voucher.') }}" target="_blank" class="px-4 py-2 rounded-xl btn-brand-gradient text-white font-extrabold text-xs shadow flex items-center gap-1.5">
+            <i class="fa-brands fa-whatsapp text-sm"></i> Claim Voucher
+        </a>
     </div>
     @endif
 

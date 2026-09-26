@@ -222,7 +222,7 @@
                     <div class="flex items-center gap-2 mb-1">
                         <span class="text-[11px] font-black uppercase tracking-wider text-purple-600">Zero Data Loss Theme Engine</span>
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-50 border border-purple-200 text-[11px] font-bold text-purple-700">
-                            {{ $tenant->business_category ?? $tenant->archetype->name }}
+                            {{ $tenant->business_category ?: ($this->activeCategory ?: $tenant->archetype->name) }}
                         </span>
                     </div>
                     <h2 class="text-2xl font-black text-slate-900 tracking-tight">Website Templates & Layout Studio</h2>
@@ -243,7 +243,7 @@
             <!-- 1. Real Industry Business Templates Gallery -->
             <div>
                 @php
-                    $cat = $tenant->settings['business_category'] ?? ($businessCategory ?: ($tenant->archetype->name ?? 'Hotels & Motels'));
+                    $cat = $tenant->business_category ?: ($tenant->settings['business_category'] ?? ($businessCategory ?: ($tenant->archetype->name ?? 'Hotels & Motels')));
                     $isHotelCategory = stripos($cat, 'Hotel') !== false || stripos($cat, 'Motel') !== false;
                 @endphp
 
@@ -254,7 +254,7 @@
                             Real-World Industry Website Templates
                         </h3>
                         <p class="text-xs text-slate-500 mt-0.5">
-                            Industry-crafted templates matching your registered business. Applying a template adapts your live storefront, hero imagery, room tariffs, and booking CTAs with zero data loss.
+                            Industry-crafted templates matching your registered business. Applying a template adapts your live storefront, hero imagery, catalog offerings, and booking CTAs with zero data loss.
                         </p>
                     </div>
                 </div>
@@ -1070,16 +1070,16 @@
                     </div>
                     <div class="bg-white border border-slate-200 rounded-lg px-6 py-1 text-[11px] font-mono text-slate-600 flex items-center gap-2 shadow-xs">
                         <i class="fa-solid fa-lock text-emerald-500 text-[10px]"></i>
-                        <span>{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}</span>
+                        <span>{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}</span>
                     </div>
-                    <a href="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}" target="_blank" class="text-[11px] font-bold text-purple-600 hover:text-purple-700 flex items-center gap-1">
+                    <a href="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}" target="_blank" class="text-[11px] font-bold text-purple-600 hover:text-purple-700 flex items-center gap-1">
                         <span>Open In Full Tab</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 </div>
 
                 <!-- REAL LIVE STORE EMBEDDED IFRAME -->
                 <div class="w-full bg-white relative" style="height: 750px;">
-                    <iframe src="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}" class="w-full h-full border-0" title="Real Live Website Preview"></iframe>
+                    <iframe src="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}" class="w-full h-full border-0" title="Real Live Website Preview"></iframe>
                 </div>
 
             </div>
@@ -1093,7 +1093,7 @@
 
                 <!-- Real Mobile Website Screen -->
                 <div class="w-full h-[680px] bg-white rounded-[34px] overflow-hidden relative shadow-inner">
-                    <iframe src="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}" class="w-full h-full border-0" title="Real Live Website Mobile Preview"></iframe>
+                    <iframe src="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}" class="w-full h-full border-0" title="Real Live Website Mobile Preview"></iframe>
                 </div>
             </div>
             @endif

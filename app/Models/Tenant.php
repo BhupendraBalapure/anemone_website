@@ -33,6 +33,11 @@ class Tenant extends Model
         'is_active' => 'boolean',
     ];
 
+    public function getBusinessCategoryAttribute(): ?string
+    {
+        return $this->settings['business_category'] ?? null;
+    }
+
     public function archetype(): BelongsTo
     {
         return $this->belongsTo(Archetype::class);

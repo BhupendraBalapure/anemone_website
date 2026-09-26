@@ -30,6 +30,20 @@ class TemplateCatalog
     {
         return match ($themeId) {
             'salon_wellness' => 'fa-spa',
+            'salon_bridal' => 'fa-wand-magic-sparkles',
+            'salon_barber_lounge' => 'fa-scissors',
+            'salon_nail_lashes' => 'fa-gem',
+            'salon_luxury_hair_studio' => 'fa-scissors',
+            'salon_ecom_organic_skincare' => 'fa-leaf',
+            'salon_ecom_haircare_tools' => 'fa-wind',
+            'salon_ecom_bridal_vanity' => 'fa-spray-can-sparkles',
+            'salon_ecom_men_grooming' => 'fa-user-tie',
+            'salon_ecom_perfume_bath_body' => 'fa-spray-can-sparkles',
+            'salon_landing_hair_botox' => 'fa-bolt',
+            'salon_landing_hydrafacial' => 'fa-droplet',
+            'salon_landing_spa_pass' => 'fa-leaf',
+            'salon_landing_men_club' => 'fa-user-tie',
+            'salon_landing_nail_lash' => 'fa-hand-sparkles',
             'doctor_clinic' => 'fa-stethoscope',
             'minimal_card' => 'fa-graduation-cap',
             'wellness_sanctuary' => 'fa-leaf',
@@ -81,6 +95,28 @@ class TemplateCatalog
             if ($filterMode === 'all') {
                 return array_merge(self::getHotelWebsiteTemplates(), [$catData['ecommerce'], $catData['landing_page']]);
             }
+            if ($filterMode === 'ecommerce') {
+                return [$catData['ecommerce']];
+            }
+            if ($filterMode === 'landing_page') {
+                return [$catData['landing_page']];
+            }
+        }
+
+        if ($category === 'Beauty & Salons') {
+            $salonTemplates = self::getBeautySalonTemplates();
+            if ($filterMode === 'business_website') {
+                return array_values(array_filter($salonTemplates, fn ($t) => ($t['type'] ?? '') === 'business_website'));
+            }
+            if ($filterMode === 'ecommerce') {
+                return array_values(array_filter($salonTemplates, fn ($t) => ($t['type'] ?? '') === 'ecommerce'));
+            }
+            if ($filterMode === 'landing_page') {
+                return array_values(array_filter($salonTemplates, fn ($t) => ($t['type'] ?? '') === 'landing_page'));
+            }
+
+            // Default 'category' or 'all': return all authentic Beauty & Salons templates!
+            return $salonTemplates;
         }
 
         if ($filterMode === 'ecommerce') {
@@ -101,6 +137,100 @@ class TemplateCatalog
             $catData['ecommerce'],
             $catData['landing_page'],
         ];
+    }
+
+    /**
+     * Get the appropriate archetype code for a given theme in context of category.
+     */
+    public static function getArchetypeForTheme(string $themeId, ?string $category = null): string
+    {
+        if ($category === 'Beauty & Salons') {
+            foreach (self::getBeautySalonTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['archetype'] ?? 'service';
+                }
+            }
+
+            return 'service';
+        }
+
+        if (str_starts_with($themeId, 'hotel_') || str_starts_with($themeId, 'motel_')) {
+            return 'hospitality';
+        }
+
+        $all = self::catalog();
+        if ($category && isset($all[$category])) {
+            foreach ($all[$category] as $tpl) {
+                if (($tpl['id'] ?? '') === $themeId) {
+                    return $tpl['archetype'] ?? 'service';
+                }
+            }
+        }
+
+        $map = [
+            'doctor_clinic' => 'service',
+            'salon_wellness' => 'service',
+            'salon_bridal' => 'service',
+            'salon_barber_lounge' => 'service',
+            'salon_nail_lashes' => 'service',
+            'salon_luxury_hair_studio' => 'service',
+            'wellness_sanctuary' => 'service',
+            'real_estate' => 'service',
+            'minimal_card' => 'service',
+            'restaurant_cafe' => 'food',
+            'retail_supermarket' => 'retail',
+            'salon_ecom_perfume_bath_body' => 'retail',
+            'modern_clean' => 'retail',
+            'b2b_industrial' => 'b2b',
+            'dark_luxury' => 'service',
+        ];
+
+        return $map[$themeId] ?? 'service';
+    }
+
+    /**
+     * Get the website layout mode ('business_website', 'ecommerce', 'landing_page') for a given theme.
+     */
+    public static function getTemplateType(string $themeId, ?string $category = null): string
+    {
+        if ($category === 'Beauty & Salons' || empty($category)) {
+            foreach (self::getBeautySalonTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['type'] ?? 'business_website';
+                }
+            }
+        }
+
+        if (str_starts_with($themeId, 'hotel_') || str_starts_with($themeId, 'motel_')) {
+            return 'business_website';
+        }
+
+        $all = self::catalog();
+        if ($category && isset($all[$category])) {
+            foreach (['business_website', 'ecommerce', 'landing_page'] as $mode) {
+                if (isset($all[$category][$mode]) && ($all[$category][$mode]['id'] ?? '') === $themeId) {
+                    return $mode;
+                }
+            }
+        }
+
+        foreach ($all as $cat => $types) {
+            foreach (['business_website', 'ecommerce', 'landing_page'] as $mode) {
+                if (isset($types[$mode]) && ($types[$mode]['id'] ?? '') === $themeId) {
+                    return $mode;
+                }
+            }
+        }
+
+        if (str_contains($themeId, 'landing')) {
+            return 'landing_page';
+        }
+
+        if (str_contains($themeId, 'ecom') || in_array($themeId, ['retail_supermarket', 'modern_clean'])) {
+            return 'ecommerce';
+        }
+
+        return 'business_website';
     }
 
     /**
@@ -217,6 +347,269 @@ class TemplateCatalog
     }
 
     /**
+     * 7 Authentic Beauty & Salon Templates.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public static function getBeautySalonTemplates(): array
+    {
+        return [
+            [
+                'id' => 'salon_wellness',
+                'type' => 'business_website',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-spa',
+                'title' => 'Luxury Unisex Salon & Spa Studio',
+                'badge' => '✂️ Luxury Salon & Spa',
+                'subheadline' => 'Hair Styling • Therapeutic Spa • Bridal Lounge',
+                'description' => 'Complete beauty salon presence with treatment duration badges (30m, 60m, 90m), certified stylist portfolio, bridal packages, and direct appointment booking.',
+                'suggested_color' => '#EC4899',
+                'features' => ['Stylist Specialist Selector', 'Treatment Duration Badges', 'Bridal HD Packages', 'Instant WhatsApp Booking'],
+                'image_url' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'salon_bridal',
+                'type' => 'business_website',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-wand-magic-sparkles',
+                'title' => 'Bridal Makeover & Celebrity Glamour Studio',
+                'badge' => '👰 Bridal & HD Makeover',
+                'subheadline' => 'HD Bridal Makeup • Pre-Bridal Skin Detan • Airbrush Art',
+                'description' => 'Dedicated bridal luxury makeover studio featuring high-definition portfolios, saree draping, pre-wedding skin therapies, and VIP consultation booking.',
+                'suggested_color' => '#BE185D',
+                'features' => ['HD Airbrush Makeup', 'Pre-Bridal Grooming Packages', 'Lookbook & Portfolio', 'VIP Stylist Consultation'],
+                'image_url' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'wellness_sanctuary',
+                'type' => 'business_website',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-leaf',
+                'title' => 'Ayurvedic Day Spa & Holistic Wellness Sanctuary',
+                'badge' => '🌿 Ayurvedic Day Spa',
+                'subheadline' => 'Swedish Massage • Herbal Steam Bath • Shirodhara',
+                'description' => 'Soothing wellness sanctuary offering authentic Ayurvedic body massages, organic herbal steam baths, sound healing, and certified therapists.',
+                'suggested_color' => '#059669',
+                'features' => ['Aromatherapy Massage', 'Herbal Steam & Sauna', 'Couple Therapy Suites', 'Certified Therapists'],
+                'image_url' => 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'salon_barber_lounge',
+                'type' => 'business_website',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-scissors',
+                'title' => "Men's Executive Barber & Grooming Lounge",
+                'badge' => "💈 Men's Grooming Lounge",
+                'subheadline' => 'Precision Fades • Beard Styling • Charcoal Detan • Express Walk-in',
+                'description' => "Modern men's grooming parlor with luxury leather salon chairs, hot towel straight-razor shaves, beard sculpting, and express time-slot reservation.",
+                'suggested_color' => '#1E293B',
+                'features' => ['Hot Towel Shave', 'Beard Spa & Styling', 'Executive Detan Facial', 'Zero-Wait Queue Booking'],
+                'image_url' => 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'salon_nail_lashes',
+                'type' => 'business_website',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-gem',
+                'title' => 'Nail Art Studio, Lash & Brow Aesthetics Bar',
+                'badge' => '💅 Nail & Lash Aesthetics',
+                'subheadline' => 'Custom Gel Extensions • Lash Lifting • Microblading • Chrome Art',
+                'description' => 'Trendy aesthetics bar focused on custom hand-painted nail extensions, Korean lash perming, ombré brows, and hygiene-certified sterilization protocols.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['Gel & Acrylic Extensions', 'Korean Lash Perms', 'Ombre Powder Brows', '100% Autoclaved Tools'],
+                'image_url' => 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'salon_luxury_hair_studio',
+                'type' => 'business_website',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-scissors',
+                'title' => 'Celebrity Hair Studio & Balayage Color Bar',
+                'badge' => '💇 Hair Studio & Color Bar',
+                'subheadline' => 'French Balayage • Olaplex Hair Botox • Global Keratin • Precision Cuts',
+                'description' => 'High-end designer hair salon specializing in bespoke French balayage, ombre highlights, Olaplex bond repair treatments, and celebrity hair transformations.',
+                'suggested_color' => '#D97706',
+                'features' => ['French Balayage Color', 'Olaplex Bond Repair', 'Celebrity Stylists', 'VIP Salon Chair'],
+                'image_url' => 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'retail_supermarket',
+                'type' => 'ecommerce',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-cart-shopping',
+                'title' => 'Beauty & Cosmetics Online Store',
+                'badge' => '🛍️ Beauty Online Store',
+                'subheadline' => 'Hair Serums • Organic Skincare • Nail Care • Cart',
+                'description' => 'Online beauty and cosmetics store with interactive cart drawer, product categories (Hair, Skin, Essentials), MRP discounts, and direct WhatsApp delivery checkout.',
+                'suggested_color' => '#EC4899',
+                'features' => ['Slide Cart Drawer', 'Cosmetics Catalog', 'WhatsApp Delivery Bill', 'Stock Indicators'],
+                'image_url' => 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'salon_ecom_organic_skincare',
+                'type' => 'ecommerce',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-leaf',
+                'title' => 'Luxury Organic Skincare & Serum Boutique',
+                'badge' => '✨ Skincare Boutique',
+                'subheadline' => 'Cold-Pressed Facial Oils • Hyaluronic Serums • Clean Beauty',
+                'description' => 'Dermatologist-curated skincare apothecary featuring ingredient transparencies, cruelty-free vegan badges, routine bundling discounts, and 1-tap cart checkout.',
+                'suggested_color' => '#059669',
+                'features' => ['Clean Beauty Badges', 'Morning/Night Bundles', 'Ingredient Transparency', 'WhatsApp Checkout'],
+                'image_url' => 'https://images.unsplash.com/photo-1608248597359-00995fa1b6cf?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'salon_ecom_haircare_tools',
+                'type' => 'ecommerce',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-wind',
+                'title' => 'Professional Salon Haircare & Styling Tools Mart',
+                'badge' => '💇 Haircare & Tools Store',
+                'subheadline' => 'Salon Hair Dryers • Moroccan Argan Oils • Ceramic Straighteners',
+                'description' => 'Professional-grade haircare equipment and styling tools store with warranty registration, volume shampoo refills, heat-protectant sprays, and express delivery.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['Brand Warranty Badges', 'Salon-Size Liter Bottles', 'Styling Tool Guides', 'Instant COD & WhatsApp'],
+                'image_url' => 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'salon_ecom_bridal_vanity',
+                'type' => 'ecommerce',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-spray-can-sparkles',
+                'title' => 'Bridal Beauty Vanity & Makeup Kit Shop',
+                'badge' => '💄 Bridal Vanity Shop',
+                'subheadline' => 'Waterproof Foundations • Velvet Lipshades • Complete Troussier Kits',
+                'description' => 'Complete bridal trousseau and beauty vanity boutique with shade-finder color pickers, gift box packaging, pre-assembled bridal makeup boxes, and doorstep delivery.',
+                'suggested_color' => '#BE185D',
+                'features' => ['Pre-Made Vanity Boxes', 'Shade Match Swatches', 'Gift Packaging Included', 'Free Pan-India Delivery'],
+                'image_url' => 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'salon_ecom_men_grooming',
+                'type' => 'ecommerce',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-user-tie',
+                'title' => "Men's Beard Craft & Daily Grooming Store",
+                'badge' => "💈 Men's Grooming Shop",
+                'subheadline' => 'Cedarwood Beard Oils • Matte Pomades • Sulfate-Free Face Washes',
+                'description' => "High-conversion D2C men's grooming brand store featuring beard growth kits, matte clay pomades, charcoal facewashes, and subscription refill discounts.",
+                'suggested_color' => '#1E293B',
+                'features' => ['Beard Growth Bundles', 'Subscription & Save', 'Travel-Friendly Kits', '1-Click WhatsApp Order'],
+                'image_url' => 'https://images.unsplash.com/photo-1621607512214-68297480165e?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'salon_ecom_perfume_bath_body',
+                'type' => 'ecommerce',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-spray-can-sparkles',
+                'title' => 'Artisanal Luxury Perfumes & Bath Boutique',
+                'badge' => '🌸 Fragrance & Bath Boutique',
+                'subheadline' => 'French EDP Perfumes • Whipped Body Butters • Botanical Bath Salts',
+                'description' => 'Artisanal luxury fragrance and aromatherapy bath body store featuring long-lasting extrait de parfums, organic whipped shea body butters, and scented candle gift sets.',
+                'suggested_color' => '#BE185D',
+                'features' => ['Long-Lasting Perfumes', 'Organic Body Butters', 'Luxury Gift Sets', 'Express 48h Delivery'],
+                'image_url' => 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'dark_luxury',
+                'type' => 'landing_page',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-bullhorn',
+                'title' => 'Bridal HD Makeover & Spa Lead Funnel',
+                'badge' => '🚀 Bridal Lead Funnel',
+                'subheadline' => 'Flat 50% Off First Visit • Limited Slots • Lead Capture',
+                'description' => 'High-converting single-page bridal makeover funnel with obsidian aesthetics, before/after makeover portfolio, client ratings, and instant WhatsApp booking lead form.',
+                'suggested_color' => '#EC4899',
+                'features' => ['50% Off Promo Hook', 'Bridal Portfolio Gallery', 'Instant WhatsApp Lead Form', 'Direct Stylist Call'],
+                'image_url' => 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'salon_landing_hair_botox',
+                'type' => 'landing_page',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-bolt',
+                'title' => 'Keratin & Hair Botox Treatment Flash Sale Funnel',
+                'badge' => '⚡ Flash Offer Funnel',
+                'subheadline' => 'Flat 40% Off Keratin & Hair Botox • Free Hair Spa • 48-Hour Timer',
+                'description' => 'High-urgency promotional campaign page for hair smoothening, Brazilian keratin treatment, and deep nourishing botox therapy with countdown timer and instant WhatsApp voucher claim.',
+                'suggested_color' => '#8B5CF6',
+                'features' => ['48-Hr Countdown Timer', 'Hair Transformation Slider', 'Instant Voucher via WhatsApp', 'Frizz-Free Guarantee'],
+                'image_url' => 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'salon_landing_hydrafacial',
+                'type' => 'landing_page',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-droplet',
+                'title' => 'HydraFacial & Glass Skin Glow Funnel',
+                'badge' => '💎 Glass Skin Glow Funnel',
+                'subheadline' => '7-Step Medical HydraFacial • Instant Radiance • First 25 Bookings Only',
+                'description' => 'Laser-focused aesthetic lead page promoting 7-step medical-grade HydraFacials, deep blackhead extraction, LED light therapy, and direct time-slot reservation.',
+                'suggested_color' => '#0284C7',
+                'features' => ['7-Step Treatment Video Hook', 'Dermatologist Certified', 'Before & After Glow Proof', 'Direct Slot Reservation'],
+                'image_url' => 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'salon_landing_spa_pass',
+                'type' => 'landing_page',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-leaf',
+                'title' => 'Ayurvedic Detox & Stress-Relief Spa Weekend Pass',
+                'badge' => '🌿 Spa Weekend Pass Funnel',
+                'subheadline' => '90 Mins Full Body Therapy • Free Herbal Steam • Couple Discounts',
+                'description' => 'Rejuvenation weekend special funnel designed to drive immediate weekend spa bookings, corporate wellness passes, and couple massage inquiries.',
+                'suggested_color' => '#059669',
+                'features' => ['Weekend Rejuvenation Pass', 'Herbal Steam Included', 'Aromatherapy Oils Selector', '1-Tap WhatsApp Token'],
+                'image_url' => 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'salon_landing_men_club',
+                'type' => 'landing_page',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-user-tie',
+                'title' => "Men's VIP Grooming & Beard Detan Club Funnel",
+                'badge' => "💈 Men's Grooming Funnel",
+                'subheadline' => 'Haircut + Beard Styling + Charcoal Detan @ Special Intro Price',
+                'description' => 'Sleek high-energy landing page for executive men grooming combos, wedding season party prep, beard sculpting, and quick WhatsApp appointment scheduling.',
+                'suggested_color' => '#F59E0B',
+                'features' => ['3-in-1 Combo Offer', 'Express 40-Min Turnaround', 'VIP Lounge Barbers', 'Zero Waiting Queue'],
+                'image_url' => 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'salon_landing_nail_lash',
+                'type' => 'landing_page',
+                'category' => 'Beauty & Salons',
+                'icon' => 'fa-hand-sparkles',
+                'title' => 'Gel Nails & Korean Lash Perm Launch Funnel',
+                'badge' => '💅 Nail & Lash Launch',
+                'subheadline' => 'Flat ₹999 Intro Offer • Free Nail Art on 2 Nails • Limited Slots',
+                'description' => 'Instagram-aesthetic viral landing page for nail extensions, chrome art, Korean lash perming, and ombré brow styling with direct WhatsApp consultation booking.',
+                'suggested_color' => '#D946EF',
+                'features' => ['₹999 Intro Promo Hook', 'Nail Lookbook Showcase', 'Korean Lash Lift Demo', 'Instant Slot Calendar'],
+                'image_url' => 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+        ];
+    }
+
+    /**
      * Master Category-Aware Templates Catalog for all 11 Business Categories.
      *
      * @return array<string, array<string, array<string, mixed>>>
@@ -248,7 +641,7 @@ class TemplateCatalog
                     'description' => 'Online beauty and cosmetics store with interactive cart drawer, product categories (Hair, Skin, Essentials), MRP discounts, and direct WhatsApp delivery checkout.',
                     'suggested_color' => '#EC4899',
                     'features' => ['Slide Cart Drawer', 'Cosmetics Catalog', 'WhatsApp Delivery Bill', 'Stock Indicators'],
-                    'image_url' => 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&auto=format&fit=crop&q=80',
+                    'image_url' => 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'retail',
                 ],
                 'landing_page' => [

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Order;
 use App\Models\Tenant;
+use App\Services\TemplateCatalog;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -61,6 +62,16 @@ class StoreHome extends Component
 
     public $inquiryMessage = '';
 
+    // Website Layout Mode ('business_website', 'ecommerce', 'landing_page')
+    public $websiteType = 'business_website';
+
+    // Landing Page Lead & Offer State
+    public $leadName = '';
+
+    public $leadPhone = '';
+
+    public $leadOffer = 'Exclusive Promo Offer';
+
     // Live Theme Switcher (Zero Data Loss Demonstration)
     public $currentTheme = 'modern_clean'; // modern_clean, minimal_card, dark_luxury
 
@@ -72,7 +83,41 @@ class StoreHome extends Component
         $this->tenant = Tenant::with(['archetype', 'catalogItems'])->where('slug', $slug)->firstOrFail();
         $this->archetype = $this->tenant->archetype;
         $this->currentTheme = request()->query('theme', $this->tenant->active_theme ?? 'modern_clean');
+
+        $category = $this->tenant->business_category ?? 'Other Retail';
+        $detectedType = TemplateCatalog::getTemplateType($this->currentTheme, $category);
+        $typeParam = request()->query('type');
+        $this->websiteType = (! empty($typeParam) && in_array($typeParam, ['business_website', 'ecommerce', 'landing_page']))
+            ? $typeParam
+            : ($detectedType ?: ($this->tenant->settings['website_type'] ?? 'business_website'));
         $this->bookingDate = now()->addDay()->format('Y-m-d');
+    }
+
+    public function getIsEcommerceProperty(): bool
+    {
+        if ($this->websiteType === 'ecommerce') {
+            return true;
+        }
+
+        if ($this->websiteType === 'landing_page') {
+            return false;
+        }
+
+        if ($this->archetype?->code === 'retail') {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getIsLandingPageProperty(): bool
+    {
+        return $this->websiteType === 'landing_page';
+    }
+
+    public function getIsBusinessWebsiteProperty(): bool
+    {
+        return ! $this->isEcommerce && ! $this->isLandingPage;
     }
 
     // --- CART ACTIONS (Retail & Food) ---
@@ -292,17 +337,72 @@ class StoreHome extends Component
         return redirect()->away($url);
     }
 
+    // --- LANDING PAGE VOUCHER CLAIM ---
+    public function claimOffer($offerTitle = 'Exclusive Promo Offer')
+    {
+        $this->validate([
+            'leadName' => 'required|min:2',
+            'leadPhone' => 'required|min:10',
+        ]);
+
+        Order::create([
+            'tenant_id' => $this->tenant->id,
+            'order_number' => 'OFFER-'.strtoupper(Str::random(6)),
+            'type' => 'inquiry',
+            'customer_name' => $this->leadName,
+            'customer_phone' => $this->leadPhone,
+            'total_amount' => 0,
+            'payment_status' => 'unpaid',
+            'status' => 'new',
+            'items_payload' => [
+                ['title' => $offerTitle, 'offer' => true],
+            ],
+            'metadata' => [
+                'lead_type' => 'landing_page_offer',
+                'offer_name' => $offerTitle,
+            ],
+        ]);
+
+        $text = "🎉 Hello {$this->tenant->business_name}, I want to claim the Special Offer: *{$offerTitle}*.\n\n*Name:* {$this->leadName}\n*Mobile:* {$this->leadPhone}";
+        $url = $this->tenant->getWhatsAppUrl($text);
+
+        $this->leadName = '';
+        $this->leadPhone = '';
+        $this->flashMessage = 'Congratulations! Your offer voucher has been claimed. Redirecting to WhatsApp...';
+
+        return redirect()->away($url);
+    }
+
     // --- THEME SWITCHER (Zero Data Loss) ---
     public function switchTheme($themeName)
     {
         $this->currentTheme = $themeName;
-        $this->tenant->update(['active_theme' => $themeName]);
+        $category = $this->tenant->business_category ?? 'Other Retail';
+        $this->websiteType = TemplateCatalog::getTemplateType($themeName, $category);
+        $settings = $this->tenant->settings ?? [];
+        $settings['website_type'] = $this->websiteType;
+        $this->tenant->update([
+            'active_theme' => $themeName,
+            'settings' => $settings,
+        ]);
         $this->flashMessage = 'Theme switched to '.ucfirst(str_replace('_', ' ', $themeName)).' instantly without data loss!';
     }
 
     public function render()
     {
         $query = $this->tenant->catalogItems();
+
+        if ($this->isEcommerce) {
+            $hasProducts = (clone $query)->where('type', 'product')->exists();
+            if ($hasProducts) {
+                $query->where('type', 'product');
+            }
+        } elseif ($this->isBusinessWebsite) {
+            $hasServices = (clone $query)->where('type', 'service')->exists();
+            if ($hasServices) {
+                $query->where('type', 'service');
+            }
+        }
 
         if ($this->selectedCategory !== 'all') {
             $query->where('category_name', $this->selectedCategory);

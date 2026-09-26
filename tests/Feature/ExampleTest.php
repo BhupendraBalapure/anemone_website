@@ -375,4 +375,110 @@ class ExampleTest extends TestCase
             ->assertSee('Restaurant &amp; Cafes', false)
             ->assertDontSee('Bridal HD Makeover', false);
     }
+
+    public function test_website_ecommerce_and_landing_page_modes_have_distinct_layouts_and_cart_visibility(): void
+    {
+        $this->seed([ArchetypeSeeder::class]);
+        $serviceArchetype = Archetype::where('code', 'service')->first();
+
+        $salonTenant = Tenant::create([
+            'business_name' => 'Rose Glamour Salon',
+            'slug' => 'rose-glamour-salon',
+            'archetype_id' => $serviceArchetype->id,
+            'phone' => '9888877777',
+            'city' => 'Nagpur',
+            'active_theme' => 'salon_wellness',
+            'settings' => [
+                'business_category' => 'Beauty & Salons',
+                'website_type' => 'business_website',
+            ],
+        ]);
+
+        $salonTenant->catalogItems()->createMany([
+            [
+                'title' => 'Keratin Hair Spa Treatment',
+                'category_name' => 'Services',
+                'price' => 1500,
+                'type' => 'service',
+                'duration_minutes' => 60,
+                'in_stock' => true,
+            ],
+            [
+                'title' => 'Argan Smooth Hair Serum',
+                'category_name' => 'Products',
+                'price' => 599,
+                'type' => 'product',
+                'in_stock' => true,
+            ],
+        ]);
+
+        // 1. Business Website Mode: Should show Book Appointment Slot, NO Add to Cart
+        $responseWebsite = $this->get('/store/rose-glamour-salon?type=business_website');
+        $responseWebsite->assertStatus(200);
+        $responseWebsite->assertSee('Book Appointment Slot');
+        $responseWebsite->assertDontSee('Add to Cart');
+        $responseWebsite->assertDontSee('fa-cart-shopping');
+
+        // 2. E-Commerce Mode: Should show Add to Cart and Cart Icon, NO Book Appointment Slot
+        $responseEcom = $this->get('/store/rose-glamour-salon?theme=salon_ecom_organic_skincare&type=ecommerce');
+        $responseEcom->assertStatus(200);
+        $responseEcom->assertSee('Add to Cart');
+        $responseEcom->assertSee('fa-cart-shopping');
+        $responseEcom->assertDontSee('Book Appointment Slot');
+
+        // 3. Landing Page Mode: Should show Claim Offer / Voucher Hook, NO Add to Cart, NO Cart Icon
+        $responseLanding = $this->get('/store/rose-glamour-salon?theme=salon_landing_hair_botox&type=landing_page');
+        $responseLanding->assertStatus(200);
+        $responseLanding->assertSee('Claim Limited Offer');
+        $responseLanding->assertSee('Claim Your Offer Voucher');
+        $responseLanding->assertDontSee('Add to Cart');
+        $responseLanding->assertDontSee('fa-cart-shopping');
+    }
+
+    public function test_beauty_salon_has_six_templates_each_for_website_ecommerce_and_landing_page(): void
+    {
+        $websites = TemplateCatalog::getForCategory('Beauty & Salons', 'business_website');
+        $ecommerces = TemplateCatalog::getForCategory('Beauty & Salons', 'ecommerce');
+        $landings = TemplateCatalog::getForCategory('Beauty & Salons', 'landing_page');
+        $all = TemplateCatalog::getForCategory('Beauty & Salons', 'all');
+
+        $this->assertCount(6, $websites);
+        $this->assertCount(6, $ecommerces);
+        $this->assertCount(6, $landings);
+        $this->assertCount(18, $all);
+
+        // Verify that every single template has its own unique image (zero duplicates)
+        $images = array_column($all, 'image_url');
+        $this->assertCount(18, array_unique($images));
+
+        $this->seed([ArchetypeSeeder::class]);
+        $serviceArchetype = Archetype::where('code', 'service')->first();
+
+        $salonTenant = Tenant::create([
+            'business_name' => 'Rose Glamour Salon',
+            'slug' => 'rose-glamour-salon-2',
+            'archetype_id' => $serviceArchetype->id,
+            'phone' => '9888877777',
+            'city' => 'Nagpur',
+            'active_theme' => 'salon_luxury_hair_studio',
+            'settings' => [
+                'business_category' => 'Beauty & Salons',
+                'website_type' => 'business_website',
+            ],
+        ]);
+
+        Livewire::test(MerchantDashboard::class, ['slug' => $salonTenant->slug])
+            ->call('openTemplatePreview', 'salon_luxury_hair_studio')
+            ->assertSee('Celebrity Hair Studio &amp; Balayage Color Bar', false)
+            ->call('openTemplatePreview', 'salon_ecom_perfume_bath_body')
+            ->assertSee('Artisanal Luxury Perfumes &amp; Bath Boutique', false);
+
+        // Verify that the website layout renders salon content and NOT clinic or hotel content
+        $response = $this->get('/store/rose-glamour-salon-2?type=business_website&theme=salon_luxury_hair_studio');
+        $response->assertStatus(200);
+        $response->assertSee('French Balayage');
+        $response->assertSee('Master Stylists &amp; Artists', false);
+        $response->assertDontSee('Certified Healthcare &amp; Consultation Clinic', false);
+        $response->assertDontSee('Self Check-In Smart Lock');
+    }
 }
