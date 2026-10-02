@@ -5,6 +5,7 @@ use App\Livewire\MerchantDashboard;
 use App\Livewire\OnboardingWizard;
 use App\Livewire\StoreHome;
 use App\Livewire\SuperAdminDashboard;
+use App\Livewire\TemplateEditor;
 use App\Models\Tenant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,9 @@ Route::get('/store/{slug}', StoreHome::class)->name('store.show');
 
 // Merchant Template Studio & Store Management Dashboard
 Route::get('/store/{slug}/dashboard', MerchantDashboard::class)->name('store.dashboard');
+
+// Visual Template Editor (Shopify / Webflow Style Customizer)
+Route::get('/store/{slug}/editor', TemplateEditor::class)->name('store.editor');
 
 // 🧭 Dynamic Multi-Tenant Role-Based Dashboard Router
 Route::get('/dashboard', function () {

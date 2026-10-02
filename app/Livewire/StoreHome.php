@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Archetype;
 use App\Models\Order;
 use App\Models\Tenant;
 use App\Services\TemplateCatalog;
@@ -87,9 +88,21 @@ class StoreHome extends Component
         $category = $this->tenant->business_category ?? 'Other Retail';
         $detectedType = TemplateCatalog::getTemplateType($this->currentTheme, $category);
         $typeParam = request()->query('type');
-        $this->websiteType = (! empty($typeParam) && in_array($typeParam, ['business_website', 'ecommerce', 'landing_page']))
-            ? $typeParam
-            : ($detectedType ?: ($this->tenant->settings['website_type'] ?? 'business_website'));
+
+        if ($detectedType && (
+            (str_contains($this->currentTheme, '_ecom_') && $typeParam !== 'ecommerce') ||
+            (str_contains($this->currentTheme, '_web_') && $typeParam !== 'business_website') ||
+            (str_contains($this->currentTheme, '_landing_') && $typeParam !== 'landing_page')
+        )) {
+            $this->websiteType = $detectedType;
+        } elseif (! empty($typeParam) && in_array($typeParam, ['business_website', 'ecommerce', 'landing_page'])) {
+            $this->websiteType = $typeParam;
+        } elseif ($detectedType) {
+            $this->websiteType = $detectedType;
+        } else {
+            $this->websiteType = $this->tenant->settings['website_type'] ?? 'business_website';
+        }
+
         $this->bookingDate = now()->addDay()->format('Y-m-d');
     }
 
@@ -100,6 +113,14 @@ class StoreHome extends Component
         }
 
         if ($this->websiteType === 'landing_page') {
+            return false;
+        }
+
+        if ($this->websiteType === 'business_website') {
+            if ($this->archetype?->code === 'retail' && empty(request()->query('type')) && ! str_contains($this->currentTheme, '_web_')) {
+                return true;
+            }
+
             return false;
         }
 
@@ -117,7 +138,34 @@ class StoreHome extends Component
 
     public function getIsBusinessWebsiteProperty(): bool
     {
-        return ! $this->isEcommerce && ! $this->isLandingPage;
+        return $this->websiteType === 'business_website' || (! $this->isEcommerce && ! $this->isLandingPage);
+    }
+
+    public function getCustomizationsProperty(): array
+    {
+        return $this->tenant->settings['template_customizations'] ?? [];
+    }
+
+    public function getSectionsOrderProperty(): array
+    {
+        return $this->customizations['sections_order'] ?? ['hero', 'trust', 'catalog', 'reviews', 'inquiry', 'footer'];
+    }
+
+    public function getSectionsVisibilityProperty(): array
+    {
+        return $this->customizations['sections_visibility'] ?? [
+            'hero' => true,
+            'trust' => true,
+            'catalog' => true,
+            'reviews' => true,
+            'inquiry' => true,
+            'footer' => true,
+        ];
+    }
+
+    public function isSectionVisible(string $section): bool
+    {
+        return $this->sectionsVisibility[$section] ?? true;
     }
 
     // --- CART ACTIONS (Retail & Food) ---
@@ -373,7 +421,6 @@ class StoreHome extends Component
         return redirect()->away($url);
     }
 
-    // --- THEME SWITCHER (Zero Data Loss) ---
     public function switchTheme($themeName)
     {
         $this->currentTheme = $themeName;
@@ -381,10 +428,20 @@ class StoreHome extends Component
         $this->websiteType = TemplateCatalog::getTemplateType($themeName, $category);
         $settings = $this->tenant->settings ?? [];
         $settings['website_type'] = $this->websiteType;
-        $this->tenant->update([
+
+        $updateData = [
             'active_theme' => $themeName,
             'settings' => $settings,
-        ]);
+        ];
+
+        $archetypeCode = TemplateCatalog::getArchetypeForTheme($themeName, $category);
+        $arch = Archetype::where('code', $archetypeCode)->first();
+        if ($arch) {
+            $updateData['archetype_id'] = $arch->id;
+            $this->archetype = $arch;
+        }
+
+        $this->tenant->update($updateData);
         $this->flashMessage = 'Theme switched to '.ucfirst(str_replace('_', ' ', $themeName)).' instantly without data loss!';
     }
 

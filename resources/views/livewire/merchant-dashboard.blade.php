@@ -96,6 +96,17 @@
                             </span>
                         </button>
 
+                        <!-- Visual Template Editor (Shopify/Webflow Style) -->
+                        <a href="{{ route('store.editor', $tenant->slug) }}" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow hover:shadow-md hover:opacity-95">
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-paintbrush w-4 text-center"></i>
+                                <span>Visual Template Editor</span>
+                            </div>
+                            <span class="text-[9px] uppercase px-1.5 py-0.5 rounded font-black bg-white/20 text-white">
+                                STUDIO
+                            </span>
+                        </a>
+
                     </div>
                 </div>
 
@@ -231,6 +242,9 @@
                     </p>
                 </div>
                 <div class="flex items-center gap-2">
+                    <a href="{{ route('store.editor', $tenant->slug) }}" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs shadow hover:opacity-95 transition flex items-center gap-2">
+                        <i class="fa-solid fa-paintbrush"></i> Customize in Visual Editor
+                    </a>
                     <a href="{{ route('store.show', $tenant->slug) }}" target="_blank" class="px-5 py-2.5 rounded-xl border border-slate-300 font-bold text-xs hover:bg-slate-50 transition flex items-center gap-2">
                         <i class="fa-solid fa-eye text-slate-500"></i> Preview Website
                     </a>
@@ -1011,39 +1025,45 @@
 
     <!-- 🌟 Interactive Industry Template Device Preview Modal -->
     @if($showTemplatePreviewModal && $this->previewTemplate)
-    <div class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex flex-col justify-between overflow-hidden animate-fadeIn">
+    <div class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex flex-col justify-between overflow-hidden animate-fadeIn">
         
         <!-- Modal Top Control Bar -->
         <div class="bg-slate-900 border-b border-slate-800 px-4 sm:px-6 py-3 flex items-center justify-between gap-4 shrink-0 shadow-lg">
             
             <!-- Left: Template Metadata -->
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md" style="background-color: {{ $this->previewTemplate['suggested_color'] }};">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md shrink-0" style="background-color: {{ $this->previewTemplate['suggested_color'] }};">
                     <i class="fa-solid {{ $this->previewTemplate['icon'] }}"></i>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
-                        <h3 class="text-white font-black text-sm sm:text-base tracking-tight leading-tight">{{ $this->previewTemplate['title'] }}</h3>
-                        <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full text-white hidden sm:inline" style="background-color: {{ $this->previewTemplate['suggested_color'] }};">
+                        <h3 class="text-white font-black text-sm sm:text-base tracking-tight leading-tight line-clamp-1">{{ $this->previewTemplate['title'] }}</h3>
+                        <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full text-white hidden sm:inline shrink-0" style="background-color: {{ $this->previewTemplate['suggested_color'] }};">
                             {{ $this->previewTemplate['category'] }}
                         </span>
                     </div>
-                    <p class="text-xs text-slate-400">Live Interactive Architecture Preview &bull; Responsive Multi-Device</p>
+                    <p class="text-xs text-slate-400 hidden sm:block">Live Interactive Architecture Preview &bull; Responsive Multi-Device</p>
                 </div>
             </div>
 
-            <!-- Center: Device Switcher (Desktop vs Mobile Phone) -->
+            <!-- Center: Device Switcher (Desktop vs Tablet vs Mobile) -->
             <div class="flex items-center bg-slate-950 border border-slate-800 p-1 rounded-xl shadow-inner">
                 <button type="button" wire:click="$set('previewDevice', 'desktop')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer {{ $previewDevice === 'desktop' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white' }}">
-                    <i class="fa-solid fa-laptop"></i> <span class="hidden md:inline">Desktop</span>
+                    <i class="fa-solid fa-desktop"></i> <span class="hidden md:inline">Desktop</span>
+                </button>
+                <button type="button" wire:click="$set('previewDevice', 'tablet')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer {{ $previewDevice === 'tablet' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white' }}">
+                    <i class="fa-solid fa-tablet-screen-button"></i> <span class="hidden md:inline">Tablet</span>
                 </button>
                 <button type="button" wire:click="$set('previewDevice', 'mobile')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer {{ $previewDevice === 'mobile' ? 'bg-purple-600 text-white shadow' : 'text-slate-400 hover:text-white' }}">
-                    <i class="fa-solid fa-mobile-screen"></i> <span class="hidden md:inline">Mobile Phone</span>
+                    <i class="fa-solid fa-mobile-screen"></i> <span class="hidden md:inline">Mobile</span>
                 </button>
             </div>
 
-            <!-- Right: Apply Action & Close Modal -->
+            <!-- Right: Actions & Close Modal -->
             <div class="flex items-center gap-2">
+                <a href="{{ route('store.editor', $tenant->slug) }}?theme={{ $previewTemplateId }}" target="_top" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs shadow transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-paintbrush"></i> <span class="hidden sm:inline">Customize in Visual Editor</span>
+                </a>
                 <button type="button" wire:click="applyTemplate('{{ $this->previewTemplate['id'] }}', '{{ $this->previewTemplate['suggested_color'] }}')" class="px-4 py-2 rounded-xl text-white font-bold text-xs shadow-md transition flex items-center gap-1.5 cursor-pointer hover:scale-[1.02]" style="background-color: {{ $this->previewTemplate['suggested_color'] }};">
                     <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Apply Template</span>
                 </button>
@@ -1054,46 +1074,65 @@
 
         </div>
 
-        <!-- Center: Device Viewport Canvas (Real Live Website) -->
-        <div class="flex-1 overflow-y-auto p-4 sm:p-6 flex justify-center items-start bg-slate-950/70 custom-scrollbar">
+        <!-- Center: Device Viewport Canvas (Ultra-Spacious Live Website) -->
+        <div class="flex-1 overflow-hidden p-2 sm:p-4 flex justify-center items-center bg-slate-950/90">
             
             @if($previewDevice === 'desktop')
-            <!-- 💻 Desktop Device Frame -->
-            <div class="w-full max-w-6xl bg-white rounded-2xl shadow-2xl border border-slate-700/60 overflow-hidden flex flex-col transition-all duration-300 text-slate-800">
+            <!-- 💻 Desktop Device Frame: Expansive Edge-to-Edge -->
+            <div class="w-full h-full max-w-[98vw] 2xl:max-w-[1900px] bg-slate-900 rounded-2xl shadow-2xl border border-slate-800 overflow-hidden flex flex-col transition-all duration-300">
                 
                 <!-- Mock Browser Header Bar -->
-                <div class="bg-slate-100 border-b border-slate-200 px-4 py-2.5 flex items-center justify-between text-xs text-slate-500 select-none">
+                <div class="h-9 bg-slate-900 border-b border-slate-800 px-4 flex items-center justify-between text-xs text-slate-400 select-none shrink-0">
                     <div class="flex items-center gap-1.5">
-                        <span class="w-3 h-3 rounded-full bg-rose-400 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+                        <span class="text-[10px] font-bold text-slate-500 ml-2 uppercase tracking-wider hidden sm:inline">Desktop Viewport</span>
                     </div>
-                    <div class="bg-white border border-slate-200 rounded-lg px-6 py-1 text-[11px] font-mono text-slate-600 flex items-center gap-2 shadow-xs">
-                        <i class="fa-solid fa-lock text-emerald-500 text-[10px]"></i>
-                        <span>{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}</span>
+                    <div class="bg-slate-950 border border-slate-800 px-3.5 py-0.5 rounded-lg text-[11px] font-mono text-slate-300 flex items-center gap-2 shadow-inner max-w-lg truncate">
+                        <i class="fa-solid fa-lock text-emerald-400 text-[10px]"></i>
+                        <span class="truncate">{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}</span>
                     </div>
-                    <a href="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}" target="_blank" class="text-[11px] font-bold text-purple-600 hover:text-purple-700 flex items-center gap-1">
-                        <span>Open In Full Tab</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
+                    <div class="flex items-center gap-2">
+                        <a href="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}" target="_blank" class="px-2.5 py-1 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 text-xs font-bold transition flex items-center gap-1.5" title="Open Storefront in New Tab">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> <span>Open Full Tab</span>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- REAL LIVE STORE EMBEDDED IFRAME -->
-                <div class="w-full bg-white relative" style="height: 750px;">
-                    <iframe src="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}" class="w-full h-full border-0" title="Real Live Website Preview"></iframe>
+                <!-- REAL LIVE STORE EMBEDDED IFRAME (Edge-to-edge, full available viewport) -->
+                <div class="flex-1 w-full bg-white relative overflow-hidden">
+                    <iframe src="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}&in_preview=1" class="w-full h-full border-0" title="Real Live Website Preview"></iframe>
                 </div>
 
             </div>
+            @elseif($previewDevice === 'tablet')
+            <!-- 📟 Tablet Device Frame (iPad View) -->
+            <div class="w-[768px] h-full max-h-[calc(100vh-140px)] bg-slate-900 rounded-[36px] p-3 shadow-2xl border-4 border-slate-800 flex flex-col my-auto transition-all duration-300">
+                <div class="h-7 flex items-center justify-between px-3 text-[10px] text-slate-400 shrink-0">
+                    <div class="flex items-center gap-1.5 font-bold">
+                        <i class="fa-solid fa-tablet-screen-button text-purple-400"></i>
+                        <span>iPad Tablet View (768px)</span>
+                    </div>
+                    <a href="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}" target="_blank" class="hover:text-white transition flex items-center gap-1 font-bold">
+                        <span>Full Tab</span> <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                    </a>
+                </div>
+                <div class="flex-1 w-full bg-white rounded-2xl overflow-hidden shadow-inner">
+                    <iframe src="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}&in_preview=1" class="w-full h-full border-0" title="Real Live Website Tablet Preview"></iframe>
+                </div>
+            </div>
             @else
-            <!-- 📱 Mobile Phone Device Frame -->
-            <div class="w-[380px] bg-slate-900 rounded-[44px] shadow-2xl border-4 border-slate-800 p-2.5 flex flex-col transition-all duration-300 relative my-4">
+            <!-- 📱 Mobile Phone Device Frame (iPhone View) -->
+            <div class="w-[390px] h-full max-h-[calc(100vh-140px)] bg-slate-900 rounded-[44px] shadow-2xl border-4 border-slate-800 p-2.5 flex flex-col transition-all duration-300 relative my-auto">
                 <!-- Speaker / Camera Notch -->
                 <div class="w-32 h-5 bg-slate-900 rounded-b-2xl mx-auto absolute top-2.5 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
                     <div class="w-12 h-1 bg-slate-800 rounded-full"></div>
                 </div>
 
                 <!-- Real Mobile Website Screen -->
-                <div class="w-full h-[680px] bg-white rounded-[34px] overflow-hidden relative shadow-inner">
-                    <iframe src="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}" class="w-full h-full border-0" title="Real Live Website Mobile Preview"></iframe>
+                <div class="flex-1 w-full bg-white rounded-[34px] overflow-hidden relative shadow-inner pt-2">
+                    <iframe src="{{ route('store.show', $tenant->slug) }}?theme={{ $previewTemplateId }}&type={{ $this->previewTemplate['type'] ?? '' }}&in_preview=1" class="w-full h-full border-0" title="Real Live Website Mobile Preview"></iframe>
                 </div>
             </div>
             @endif
@@ -1111,6 +1150,9 @@
                 <button type="button" wire:click="$set('showTemplatePreviewModal', false)" class="px-4 py-2 rounded-xl border border-slate-700 text-slate-300 hover:bg-slate-800 text-xs font-semibold transition cursor-pointer">
                     Close Preview
                 </button>
+                <a href="{{ route('store.editor', $tenant->slug) }}?theme={{ $previewTemplateId }}" target="_top" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-blue-400 text-xs font-bold transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-paintbrush"></i> <span>Open in Visual Editor</span>
+                </a>
                 <button type="button" wire:click="applyTemplate('{{ $this->previewTemplate['id'] }}', '{{ $this->previewTemplate['suggested_color'] }}')" class="px-5 py-2 rounded-xl text-white font-bold text-xs shadow-md transition flex items-center gap-1.5 cursor-pointer hover:scale-[1.02]" style="background-color: {{ $this->previewTemplate['suggested_color'] }};">
                     <i class="fa-solid fa-check"></i> <span>Apply "{{ $this->previewTemplate['title'] }}" Now</span>
                 </button>

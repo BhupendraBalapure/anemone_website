@@ -897,9 +897,46 @@ class MerchantDashboard extends Component
             ],
         ];
 
-        $selected = $templates[$this->previewTemplateId] ?? $templates['salon_wellness'] ?? $templates['doctor_clinic'];
+        if (isset($templates[$this->previewTemplateId])) {
+            $selected = $templates[$this->previewTemplateId];
+        } else {
+            $catalogTemplates = TemplateCatalog::getForCategory($this->activeCategory, 'all');
+            $foundCatTpl = null;
+            foreach ($catalogTemplates as $catTpl) {
+                if ($catTpl['id'] === $this->previewTemplateId) {
+                    $foundCatTpl = $catTpl;
+                    break;
+                }
+            }
+
+            if ($foundCatTpl) {
+                $type = $foundCatTpl['type'] ?? TemplateCatalog::getTemplateType($foundCatTpl['id'], $this->activeCategory);
+                $selected = [
+                    'id' => $foundCatTpl['id'],
+                    'type' => $type,
+                    'title' => $foundCatTpl['title'] ?? '',
+                    'category' => $foundCatTpl['category'] ?? $this->activeCategory,
+                    'icon' => $foundCatTpl['icon'] ?? 'fa-layer-group',
+                    'suggested_color' => $foundCatTpl['suggested_color'] ?? '#2563EB',
+                    'headline' => $foundCatTpl['subheadline'] ?? $foundCatTpl['title'],
+                    'subheadline' => $foundCatTpl['description'] ?? '',
+                    'badge' => $foundCatTpl['badge'] ?? '',
+                    'cta_text' => ($type === 'ecommerce') ? 'Order Online / Add to Cart' : (($type === 'landing_page') ? 'Claim Special Promo Offer' : 'Explore Services / Admissions'),
+                    'hero_img' => $foundCatTpl['image_url'] ?? 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=900&auto=format&fit=crop&q=80',
+                    'features' => $foundCatTpl['features'] ?? ['100% Quality Guaranteed', 'Expert Team', 'Fast Service', 'WhatsApp Support'],
+                    'highlights' => [
+                        ['icon' => 'fa-check-circle', 'title' => 'Verified Quality', 'desc' => 'Calibrated to the highest industry standards'],
+                        ['icon' => 'fa-bolt', 'title' => 'Instant Response', 'desc' => 'Quick turn-around and 24/7 client communication'],
+                        ['icon' => 'fa-shield', 'title' => 'Direct Support', 'desc' => 'Direct guidance and assistance via WhatsApp'],
+                    ],
+                ];
+            } else {
+                $selected = $templates['salon_wellness'] ?? $templates['doctor_clinic'];
+            }
+        }
+
         if (! isset($selected['type'])) {
-            $selected['type'] = TemplateCatalog::getTemplateType($selected['id'] ?? $this->previewTemplateId, $this->activeCategory);
+            $selected['type'] = TemplateCatalog::getTemplateType($this->previewTemplateId, $this->activeCategory);
         }
 
         return $selected;

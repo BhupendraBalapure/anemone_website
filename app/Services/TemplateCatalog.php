@@ -45,6 +45,150 @@ class TemplateCatalog
             'salon_landing_men_club' => 'fa-user-tie',
             'salon_landing_nail_lash' => 'fa-hand-sparkles',
             'doctor_clinic' => 'fa-stethoscope',
+            'clinic_multispecialty_hospital' => 'fa-hospital',
+            'clinic_dental_implant' => 'fa-tooth',
+            'clinic_maternity_pediatric' => 'fa-baby',
+            'clinic_cardiology_heart' => 'fa-heart-pulse',
+            'clinic_eyecare_lasik' => 'fa-eye',
+            'clinic_ortho_physio' => 'fa-bone',
+            'clinic_ecom_pharmacy_rx' => 'fa-pills',
+            'clinic_ecom_diagnostic_tests' => 'fa-vial-virus',
+            'clinic_ecom_ortho_surgical' => 'fa-wheelchair',
+            'clinic_ecom_baby_pediatric' => 'fa-baby-carriage',
+            'clinic_ecom_diabetic_devices' => 'fa-kit-medical',
+            'clinic_ecom_dental_hygiene' => 'fa-teeth-open',
+            'clinic_landing_urgent_opd' => 'fa-truck-medical',
+            'clinic_landing_health_checkup' => 'fa-microscope',
+            'clinic_landing_dental_laser' => 'fa-tooth',
+            'clinic_landing_lasik_vision' => 'fa-eye',
+            'clinic_landing_knee_replacement' => 'fa-crutch',
+            'clinic_landing_maternity_package' => 'fa-person-pregnant',
+            'coaching_web_iit_jee_neet' => 'fa-graduation-cap',
+            'coaching_web_upsc_ias' => 'fa-landmark',
+            'coaching_web_commerce_ca' => 'fa-calculator',
+            'coaching_web_ielts_abroad' => 'fa-earth-americas',
+            'coaching_web_coding_tech' => 'fa-code',
+            'coaching_web_school_tuition' => 'fa-book-open-reader',
+            'coaching_ecom_test_series' => 'fa-clipboard-check',
+            'coaching_ecom_study_notes' => 'fa-book-bookmark',
+            'coaching_ecom_recorded_lectures' => 'fa-video',
+            'coaching_ecom_pyq_question_banks' => 'fa-book',
+            'coaching_ecom_language_kits' => 'fa-language',
+            'coaching_ecom_school_stationery' => 'fa-pen-ruler',
+            'coaching_landing_scholarship_admission' => 'fa-award',
+            'coaching_landing_crash_course_neet_jee' => 'fa-bolt',
+            'coaching_landing_free_demo_class' => 'fa-chalkboard-user',
+            'coaching_landing_upsc_foundation_batch' => 'fa-scale-balanced',
+            'coaching_landing_coding_placement_bootcamp' => 'fa-laptop-code',
+            'coaching_landing_study_abroad_visa' => 'fa-passport',
+            'doctor_web_consultant_physician' => 'fa-stethoscope',
+            'doctor_web_pediatrician_child' => 'fa-baby',
+            'doctor_web_gynecologist_women' => 'fa-person-breastfeeding',
+            'doctor_web_ortho_surgeon' => 'fa-bone',
+            'doctor_web_derma_trichologist' => 'fa-user-doctor',
+            'doctor_web_cardio_heart' => 'fa-heart-pulse',
+            'doctor_ecom_prescription_refills' => 'fa-prescription',
+            'doctor_ecom_supplements_nutrition' => 'fa-capsules',
+            'doctor_ecom_ortho_supports' => 'fa-crutch',
+            'doctor_ecom_baby_pediatric_care' => 'fa-baby-carriage',
+            'doctor_ecom_derma_skincare_cosmeceuticals' => 'fa-pump-medical',
+            'doctor_ecom_chronic_monitoring_kits' => 'fa-heart-circle-bolt',
+            'doctor_landing_second_opinion' => 'fa-file-medical',
+            'doctor_landing_teleconsult_urgent' => 'fa-video',
+            'doctor_landing_diabetes_reversal' => 'fa-chart-line',
+            'doctor_landing_pcod_pcos_clinic' => 'fa-person-dots-from-line',
+            'doctor_landing_joint_pain_prp' => 'fa-syringe',
+            'doctor_landing_hair_loss_trichology' => 'fa-wand-magic-sparkles',
+            'herbal_web_panchakarma_sanctuary' => 'fa-leaf',
+            'herbal_web_nadi_pariksha_clinic' => 'fa-hand-holding-heart',
+            'herbal_web_herbal_farm_apothecary' => 'fa-seedling',
+            'herbal_web_ayurvedic_lifestyle_retreat' => 'fa-spa',
+            'herbal_web_classical_vaidya_hospital' => 'fa-hospital',
+            'herbal_web_ayurvedic_fertility_care' => 'fa-person-breastfeeding',
+            'herbal_ecom_classical_churnas_kadha' => 'fa-mortar-pestle',
+            'herbal_ecom_cold_pressed_oils' => 'fa-bottle-droplet',
+            'herbal_ecom_immunity_rasayanas' => 'fa-shield-halved',
+            'herbal_ecom_ayurvedic_skincare_ubtan' => 'fa-wand-magic-sparkles',
+            'herbal_ecom_organic_teas_infusions' => 'fa-mug-hot',
+            'herbal_ecom_joint_pain_balms' => 'fa-hand-dots',
+            'herbal_landing_hair_fall_oil' => 'fa-spray-can-sparkles',
+            'herbal_landing_weight_detox_tea' => 'fa-fire',
+            'herbal_landing_panchakarma_7day_pass' => 'fa-calendar-check',
+            'herbal_landing_skin_glow_kumkumadi' => 'fa-gem',
+            'herbal_landing_diabetes_madhumeh_churn' => 'fa-chart-line',
+            'herbal_landing_joint_pain_oil' => 'fa-bone',
+            'mfg_web_precision_machining_plant' => 'fa-gears',
+            'mfg_web_sheet_metal_laser_fabrication' => 'fa-fire-burner',
+            'mfg_web_injection_moulding_polymers' => 'fa-cube',
+            'mfg_web_industrial_automation_robotics' => 'fa-robot',
+            'mfg_web_corrugated_packaging_boxes' => 'fa-box-archive',
+            'mfg_web_textile_garment_spinning_mill' => 'fa-vest-patches',
+            'mfg_ecom_industrial_fasteners_hardware' => 'fa-screwdriver-wrench',
+            'mfg_ecom_protective_safety_ppe_gear' => 'fa-shield-halved',
+            'mfg_ecom_hydraulic_pneumatic_valves' => 'fa-gauge-high',
+            'mfg_ecom_packaging_supplies_tapes' => 'fa-box-open',
+            'mfg_ecom_electrical_switchgear_cables' => 'fa-plug-circle-bolt',
+            'mfg_ecom_raw_metal_pipes_structural' => 'fa-trowel-bricks',
+            'mfg_landing_custom_oem_rfq' => 'fa-file-contract',
+            'mfg_landing_dealership_distributor_franchise' => 'fa-handshake',
+            'mfg_landing_contract_packaging_private_label' => 'fa-tag',
+            'mfg_landing_rapid_prototyping_3d_printing' => 'fa-print',
+            'mfg_landing_solar_structural_mounting_oem' => 'fa-solar-panel',
+            'mfg_landing_export_bulk_container_sourcing' => 'fa-ship',
+            'retail_web_luxury_jewelry_showroom' => 'fa-gem',
+            'retail_web_designer_apparel_boutique' => 'fa-shirt',
+            'retail_web_smart_electronics_megastore' => 'fa-tv',
+            'retail_web_luxury_home_furniture_gallery' => 'fa-couch',
+            'retail_web_premium_optical_eyewear_lounge' => 'fa-glasses',
+            'retail_web_artisan_organic_supermarket' => 'fa-basket-shopping',
+            'retail_ecom_modern_fashion_apparel' => 'fa-vest',
+            'retail_ecom_mobile_accessories_gadgets' => 'fa-headphones',
+            'retail_ecom_artisanal_dryfruits_spices' => 'fa-jar',
+            'retail_ecom_activewear_fitness_gear' => 'fa-person-running',
+            'retail_ecom_baby_care_kids_toys' => 'fa-shapes',
+            'retail_ecom_ceramic_kitchen_tableware' => 'fa-mug-saucer',
+            'retail_landing_mega_clearance_sale' => 'fa-fire',
+            'retail_landing_festive_bridal_combo' => 'fa-wand-magic-sparkles',
+            'retail_landing_smartphone_exchange_bonus' => 'fa-mobile-screen-button',
+            'retail_landing_modular_kitchen_makeover' => 'fa-kitchen-set',
+            'retail_landing_vip_loyalty_gold_pass' => 'fa-credit-card',
+            'retail_landing_corporate_festive_gift_hamper' => 'fa-gift',
+            'rest_web_fine_dining_royal_awadh' => 'fa-utensils',
+            'rest_web_artisanal_rooftop_cafe' => 'fa-mug-hot',
+            'rest_web_woodfired_italian_pizzeria' => 'fa-pizza-slice',
+            'rest_web_pure_veg_thali_bhojanalaya' => 'fa-bowl-food',
+            'rest_web_coastal_seafood_lounge' => 'fa-shrimp',
+            'rest_web_pan_asian_dimsum_teppanyaki' => 'fa-bowl-rice',
+            'rest_ecom_cloud_kitchen_biryani_box' => 'fa-box-archive',
+            'rest_ecom_artisan_french_bakery_pastry' => 'fa-cake-candles',
+            'rest_ecom_gourmet_smash_burgers_wings' => 'fa-burger',
+            'rest_ecom_homestyle_healthy_tiffin' => 'fa-cubes-stacked',
+            'rest_ecom_handcrafted_icecream_desserts' => 'fa-ice-cream',
+            'rest_ecom_signature_rolls_street_bites' => 'fa-hotdog',
+            'rest_landing_unlimited_grand_buffet' => 'fa-fire',
+            'rest_landing_banquet_party_hall_celebration' => 'fa-champagne-glasses',
+            'rest_landing_midnight_cravings_flash_deal' => 'fa-moon',
+            'rest_landing_corporate_executive_lunch_catering' => 'fa-briefcase',
+            'rest_landing_romantic_candlelight_dinner' => 'fa-heart',
+            'rest_landing_wedding_festive_outdoor_catering' => 'fa-crown',
+            'service_web_corporate_law_legal_firm' => 'fa-scale-balanced',
+            'service_web_chartered_accountants_tax' => 'fa-calculator',
+            'service_web_digital_marketing_creative_agency' => 'fa-bullhorn',
+            'service_web_express_logistics_supply_chain' => 'fa-truck-fast',
+            'service_web_architecture_interior_design_studio' => 'fa-compass-drafting',
+            'service_web_facility_management_security' => 'fa-shield-halved',
+            'service_ecom_home_deep_cleaning_pest_control' => 'fa-broom',
+            'service_ecom_appliance_repair_ac_maintenance' => 'fa-screwdriver-wrench',
+            'service_ecom_company_startup_registration_compliance' => 'fa-file-signature',
+            'service_ecom_event_wedding_planning_decor' => 'fa-champagne-glasses',
+            'service_ecom_packers_movers_relocation' => 'fa-boxes-packing',
+            'service_ecom_it_support_cloud_cybersecurity' => 'fa-server',
+            'service_landing_emergency_plumbing_electrical' => 'fa-faucet-drip',
+            'service_landing_gst_tax_audit_notice_resolution' => 'fa-gavel',
+            'service_landing_termite_rodent_pest_free_pass' => 'fa-bug',
+            'service_landing_corporate_annual_housekeeping_contract' => 'fa-building',
+            'service_landing_iso_certification_fasttrack' => 'fa-certificate',
+            'service_landing_solar_rooftop_epc_installation' => 'fa-solar-panel',
             'minimal_card' => 'fa-graduation-cap',
             'wellness_sanctuary' => 'fa-leaf',
             'hotel_business' => 'fa-briefcase',
@@ -119,6 +263,134 @@ class TemplateCatalog
             return $salonTemplates;
         }
 
+        if ($category === 'Clinics & Hospitals') {
+            $clinicTemplates = self::getClinicHospitalTemplates();
+            if ($filterMode === 'business_website') {
+                return array_values(array_filter($clinicTemplates, fn ($t) => ($t['type'] ?? '') === 'business_website'));
+            }
+            if ($filterMode === 'ecommerce') {
+                return array_values(array_filter($clinicTemplates, fn ($t) => ($t['type'] ?? '') === 'ecommerce'));
+            }
+            if ($filterMode === 'landing_page') {
+                return array_values(array_filter($clinicTemplates, fn ($t) => ($t['type'] ?? '') === 'landing_page'));
+            }
+
+            // Default 'category' or 'all': return all authentic Clinics & Hospitals templates!
+            return $clinicTemplates;
+        }
+
+        if ($category === 'Coaching & Institutes') {
+            $coachingTemplates = self::getCoachingInstituteTemplates();
+            if ($filterMode === 'business_website') {
+                return array_values(array_filter($coachingTemplates, fn ($t) => ($t['type'] ?? '') === 'business_website'));
+            }
+            if ($filterMode === 'ecommerce') {
+                return array_values(array_filter($coachingTemplates, fn ($t) => ($t['type'] ?? '') === 'ecommerce'));
+            }
+            if ($filterMode === 'landing_page') {
+                return array_values(array_filter($coachingTemplates, fn ($t) => ($t['type'] ?? '') === 'landing_page'));
+            }
+
+            // Default 'category' or 'all': return all authentic Coaching & Institutes templates!
+            return $coachingTemplates;
+        }
+
+        if ($category === 'Doctors & Specialists') {
+            $doctorTemplates = self::getDoctorSpecialistTemplates();
+            if ($filterMode === 'business_website') {
+                return array_values(array_filter($doctorTemplates, fn ($t) => ($t['type'] ?? '') === 'business_website'));
+            }
+            if ($filterMode === 'ecommerce') {
+                return array_values(array_filter($doctorTemplates, fn ($t) => ($t['type'] ?? '') === 'ecommerce'));
+            }
+            if ($filterMode === 'landing_page') {
+                return array_values(array_filter($doctorTemplates, fn ($t) => ($t['type'] ?? '') === 'landing_page'));
+            }
+
+            // Default 'category' or 'all': return all authentic Doctors & Specialists templates!
+            return $doctorTemplates;
+        }
+
+        if ($category === 'Herbal Care') {
+            $herbalTemplates = self::getHerbalCareTemplates();
+            if ($filterMode === 'business_website') {
+                return array_values(array_filter($herbalTemplates, fn ($t) => ($t['type'] ?? '') === 'business_website'));
+            }
+            if ($filterMode === 'ecommerce') {
+                return array_values(array_filter($herbalTemplates, fn ($t) => ($t['type'] ?? '') === 'ecommerce'));
+            }
+            if ($filterMode === 'landing_page') {
+                return array_values(array_filter($herbalTemplates, fn ($t) => ($t['type'] ?? '') === 'landing_page'));
+            }
+
+            // Default 'category' or 'all': return all authentic Herbal Care templates!
+            return $herbalTemplates;
+        }
+
+        if ($category === 'Manufacturers') {
+            $mfgTemplates = self::getManufacturerTemplates();
+            if ($filterMode === 'business_website') {
+                return array_values(array_filter($mfgTemplates, fn ($t) => ($t['type'] ?? '') === 'business_website'));
+            }
+            if ($filterMode === 'ecommerce') {
+                return array_values(array_filter($mfgTemplates, fn ($t) => ($t['type'] ?? '') === 'ecommerce'));
+            }
+            if ($filterMode === 'landing_page') {
+                return array_values(array_filter($mfgTemplates, fn ($t) => ($t['type'] ?? '') === 'landing_page'));
+            }
+
+            // Default 'category' or 'all': return all authentic Manufacturers templates!
+            return $mfgTemplates;
+        }
+
+        if ($category === 'Other Retail') {
+            $retailTemplates = self::getOtherRetailTemplates();
+            if ($filterMode === 'business_website') {
+                return array_values(array_filter($retailTemplates, fn ($t) => ($t['type'] ?? '') === 'business_website'));
+            }
+            if ($filterMode === 'ecommerce') {
+                return array_values(array_filter($retailTemplates, fn ($t) => ($t['type'] ?? '') === 'ecommerce'));
+            }
+            if ($filterMode === 'landing_page') {
+                return array_values(array_filter($retailTemplates, fn ($t) => ($t['type'] ?? '') === 'landing_page'));
+            }
+
+            // Default 'category' or 'all': return all authentic Other Retail templates!
+            return $retailTemplates;
+        }
+
+        if ($category === 'Restaurant & Cafes') {
+            $restTemplates = self::getRestaurantCafeTemplates();
+            if ($filterMode === 'business_website') {
+                return array_values(array_filter($restTemplates, fn ($t) => ($t['type'] ?? '') === 'business_website'));
+            }
+            if ($filterMode === 'ecommerce') {
+                return array_values(array_filter($restTemplates, fn ($t) => ($t['type'] ?? '') === 'ecommerce'));
+            }
+            if ($filterMode === 'landing_page') {
+                return array_values(array_filter($restTemplates, fn ($t) => ($t['type'] ?? '') === 'landing_page'));
+            }
+
+            // Default 'category' or 'all': return all authentic Restaurant & Cafes templates!
+            return $restTemplates;
+        }
+
+        if ($category === 'Other Services') {
+            $serviceTemplates = self::getOtherServicesTemplates();
+            if ($filterMode === 'business_website') {
+                return array_values(array_filter($serviceTemplates, fn ($t) => ($t['type'] ?? '') === 'business_website'));
+            }
+            if ($filterMode === 'ecommerce') {
+                return array_values(array_filter($serviceTemplates, fn ($t) => ($t['type'] ?? '') === 'ecommerce'));
+            }
+            if ($filterMode === 'landing_page') {
+                return array_values(array_filter($serviceTemplates, fn ($t) => ($t['type'] ?? '') === 'landing_page'));
+            }
+
+            // Default 'category' or 'all': return all authentic Other Services templates!
+            return $serviceTemplates;
+        }
+
         if ($filterMode === 'ecommerce') {
             return [$catData['ecommerce']];
         }
@@ -146,6 +418,86 @@ class TemplateCatalog
     {
         if ($category === 'Beauty & Salons') {
             foreach (self::getBeautySalonTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['archetype'] ?? 'service';
+                }
+            }
+
+            return 'service';
+        }
+
+        if ($category === 'Clinics & Hospitals' || str_starts_with($themeId, 'clinic_')) {
+            foreach (self::getClinicHospitalTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['archetype'] ?? 'service';
+                }
+            }
+
+            return str_contains($themeId, 'ecom') ? 'retail' : 'service';
+        }
+
+        if ($category === 'Coaching & Institutes' || str_starts_with($themeId, 'coaching_')) {
+            foreach (self::getCoachingInstituteTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['archetype'] ?? 'service';
+                }
+            }
+
+            return str_contains($themeId, 'ecom') ? 'retail' : 'service';
+        }
+
+        if ($category === 'Doctors & Specialists' || str_starts_with($themeId, 'doctor_')) {
+            foreach (self::getDoctorSpecialistTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['archetype'] ?? 'service';
+                }
+            }
+
+            return str_contains($themeId, 'ecom') ? 'retail' : 'service';
+        }
+
+        if ($category === 'Herbal Care' || str_starts_with($themeId, 'herbal_')) {
+            foreach (self::getHerbalCareTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['archetype'] ?? 'service';
+                }
+            }
+
+            return str_contains($themeId, 'ecom') ? 'retail' : 'service';
+        }
+
+        if ($category === 'Manufacturers' || str_starts_with($themeId, 'mfg_')) {
+            foreach (self::getManufacturerTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['archetype'] ?? 'b2b';
+                }
+            }
+
+            return 'b2b';
+        }
+
+        if ($category === 'Other Retail' || str_starts_with($themeId, 'retail_')) {
+            foreach (self::getOtherRetailTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['archetype'] ?? 'retail';
+                }
+            }
+
+            return 'retail';
+        }
+
+        if ($category === 'Restaurant & Cafes' || str_starts_with($themeId, 'rest_')) {
+            foreach (self::getRestaurantCafeTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['archetype'] ?? 'food';
+                }
+            }
+
+            return 'food';
+        }
+
+        if ($category === 'Other Services' || str_starts_with($themeId, 'service_')) {
+            foreach (self::getOtherServicesTemplates() as $tpl) {
                 if ($tpl['id'] === $themeId) {
                     return $tpl['archetype'] ?? 'service';
                 }
@@ -201,6 +553,70 @@ class TemplateCatalog
             }
         }
 
+        if ($category === 'Clinics & Hospitals' || str_starts_with($themeId, 'clinic_')) {
+            foreach (self::getClinicHospitalTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['type'] ?? 'business_website';
+                }
+            }
+        }
+
+        if ($category === 'Coaching & Institutes' || str_starts_with($themeId, 'coaching_')) {
+            foreach (self::getCoachingInstituteTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['type'] ?? 'business_website';
+                }
+            }
+        }
+
+        if ($category === 'Doctors & Specialists' || str_starts_with($themeId, 'doctor_')) {
+            foreach (self::getDoctorSpecialistTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['type'] ?? 'business_website';
+                }
+            }
+        }
+
+        if ($category === 'Herbal Care' || str_starts_with($themeId, 'herbal_')) {
+            foreach (self::getHerbalCareTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['type'] ?? 'business_website';
+                }
+            }
+        }
+
+        if ($category === 'Manufacturers' || str_starts_with($themeId, 'mfg_')) {
+            foreach (self::getManufacturerTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['type'] ?? 'business_website';
+                }
+            }
+        }
+
+        if ($category === 'Other Retail' || str_starts_with($themeId, 'retail_')) {
+            foreach (self::getOtherRetailTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['type'] ?? 'business_website';
+                }
+            }
+        }
+
+        if ($category === 'Restaurant & Cafes' || str_starts_with($themeId, 'rest_')) {
+            foreach (self::getRestaurantCafeTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['type'] ?? 'business_website';
+                }
+            }
+        }
+
+        if ($category === 'Other Services' || str_starts_with($themeId, 'service_')) {
+            foreach (self::getOtherServicesTemplates() as $tpl) {
+                if ($tpl['id'] === $themeId) {
+                    return $tpl['type'] ?? 'business_website';
+                }
+            }
+        }
+
         if (str_starts_with($themeId, 'hotel_') || str_starts_with($themeId, 'motel_')) {
             return 'business_website';
         }
@@ -226,7 +642,7 @@ class TemplateCatalog
             return 'landing_page';
         }
 
-        if (str_contains($themeId, 'ecom') || in_array($themeId, ['retail_supermarket', 'modern_clean'])) {
+        if (str_contains($themeId, 'ecom') || in_array($themeId, ['retail_supermarket'])) {
             return 'ecommerce';
         }
 
@@ -610,6 +1026,2198 @@ class TemplateCatalog
     }
 
     /**
+     * 18 Authentic Clinics & Hospitals Templates (6 Websites, 6 E-Commerces, 6 Landing Pages).
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public static function getClinicHospitalTemplates(): array
+    {
+        return [
+            // ==========================================
+            // 🌐 6 BUSINESS WEBSITE TEMPLATES
+            // ==========================================
+            [
+                'id' => 'clinic_multispecialty_hospital',
+                'type' => 'business_website',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-hospital',
+                'title' => 'Metro Multi-Specialty Hospital & 24/7 Trauma Center',
+                'badge' => '🏥 Multi-Specialty Hospital',
+                'subheadline' => 'NABH Accredited • 24/7 ICU & Trauma • 40+ Super Specialists • Cashless Mediclaim',
+                'description' => 'Comprehensive tertiary healthcare hospital presence featuring 24/7 emergency & trauma response, ICU critical care, multi-specialty OPD schedules, specialist doctor directories, and instant digital appointment booking.',
+                'suggested_color' => '#0284C7',
+                'features' => ['24/7 Emergency & ICU', '40+ Super Specialists', 'Cashless Mediclaim TPA', 'Digital OPD Token'],
+                'image_url' => 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'clinic_dental_implant',
+                'type' => 'business_website',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-tooth',
+                'title' => 'Advanced Dental Care, Implantology & Smile Studio',
+                'badge' => '🦷 Advanced Dental & Implant Center',
+                'subheadline' => 'Laser Dentistry • Painless Root Canal • Invisible Aligners • 3D CBCT Scan',
+                'description' => 'Modern high-tech dental operatory website with treatment duration badges, before/after smile transformations, painless rotary root canals, clear aligner consultations, and zero-wait slot booking.',
+                'suggested_color' => '#0D9488',
+                'features' => ['Painless Rotary RCT', 'Clear Aligners & Braces', 'Swiss Dental Implants', '100% Autoclaved Sterile'],
+                'image_url' => 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'clinic_maternity_pediatric',
+                'type' => 'business_website',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-baby',
+                'title' => 'Bliss Mother & Child Hospital, Maternity & Neonatal ICU',
+                'badge' => '👶 Maternity & Child Hospital',
+                'subheadline' => 'Luxury LDR Birthing Suites • Level-3 NICU • Painless Delivery • Vaccination Desk',
+                'description' => 'Dedicated maternal and pediatric hospital with private air-conditioned birthing suites, 24/7 senior gynaecologists, pediatric vaccination schedules, lactation counseling, and pre-natal packages.',
+                'suggested_color' => '#EC4899',
+                'features' => ['Private LDR Birthing Suites', 'Level-3 Advanced NICU', 'Painless Labor Support', 'Pediatric Vaccination Desk'],
+                'image_url' => 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'clinic_cardiology_heart',
+                'type' => 'business_website',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-heart-pulse',
+                'title' => 'Apex Heart Care & Cardiovascular Diagnostics Institute',
+                'badge' => '❤️ Heart & Cardiac Care Institute',
+                'subheadline' => 'Digital 2D Echo & TMT • Cath Lab Angiography • Preventive Heart OPD • ECG in 5 Mins',
+                'description' => 'Premier heart institute website featuring diagnostic protocols, senior interventional cardiologists, chest pain emergency triage hotline, preventive cardiac screening, and online OPD appointments.',
+                'suggested_color' => '#DC2626',
+                'features' => ['Digital ECG & 2D Echo', 'Computerized TMT Stress Test', 'Emergency Chest Pain Desk', 'Senior MD Cardiologists'],
+                'image_url' => 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'clinic_eyecare_lasik',
+                'type' => 'business_website',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-eye',
+                'title' => 'Vision Super-Specialty Eye Hospital & Robotic LASIK Bar',
+                'badge' => '👁️ Eye Care & LASIK Hospital',
+                'subheadline' => 'Blade-Free Femto LASIK • Micro-Phaco Cataract • Glaucoma & Retina • Computer Vision OPD',
+                'description' => 'State-of-the-art ophthalmic center website highlighting refractive bladeless LASIK suite, painless 10-minute micro-cataract surgery, optical retina diagnostics, and online vision checkup booking.',
+                'suggested_color' => '#2563EB',
+                'features' => ['Bladeless Femto LASIK', 'MICS Micro Cataract', 'Retina & Glaucoma Clinic', 'Free Vision Screening'],
+                'image_url' => 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'clinic_ortho_physio',
+                'type' => 'business_website',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-bone',
+                'title' => 'Spine, Bone, Joint Replacement & Advanced Physiotherapy Clinic',
+                'badge' => '🦴 Ortho, Spine & Rehab Clinic',
+                'subheadline' => 'Robotic Knee Replacement • Sports Injury Rehab • Spine Decompression • Digital X-Ray',
+                'description' => 'Specialized musculoskeletal center featuring robotic joint surgeries, arthroscopic ligament reconstructions, computer-assisted spine therapy, on-site digital radiology, and recovery appointment scheduling.',
+                'suggested_color' => '#4F46E5',
+                'features' => ['Robotic Knee Replacement', 'Sports Physiotherapy Gym', 'Keyhole Arthroscopy', 'On-Site Digital X-Ray'],
+                'image_url' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+
+            // ==========================================
+            // 🛍️ 6 E-COMMERCE TEMPLATES
+            // ==========================================
+            [
+                'id' => 'clinic_ecom_pharmacy_rx',
+                'type' => 'ecommerce',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-pills',
+                'title' => 'Express Chemist & Online Prescription Pharmacy',
+                'badge' => '💊 24/7 Digital Pharmacy',
+                'subheadline' => 'Upload Doctor Prescription • 100% Genuine Medicines • Flat 20% Off • Fast Delivery',
+                'description' => 'Online digital pharmacy with prescription Rx upload hook, cold-chain insulin storage, chronic medicine refills, discount pricing badges, and doorstep WhatsApp delivery checkout.',
+                'suggested_color' => '#0284C7',
+                'features' => ['Prescription Rx Upload', 'Cold-Chain Insulin Storage', 'Flat 20% Off Medicines', 'Doorstep WhatsApp Bill'],
+                'image_url' => 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'clinic_ecom_diagnostic_tests',
+                'type' => 'ecommerce',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-vial-virus',
+                'title' => 'Pathology Lab Tests & Preventive Full Body Checkup Store',
+                'badge' => '🧪 Diagnostics & Lab Packages',
+                'subheadline' => 'Free Home Blood Collection • 80+ Test Health Packages • NABL Certified Reports in 6 Hrs',
+                'description' => 'Diagnostic and pathology lab e-commerce store with comprehensive test bundles (Thyroid, CBC, Lipid, Diabetes), home phlebotomist booking, interactive cart drawer, and digital report delivery.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['Free Home Sample Pickup', 'NABL Accredited Reports', 'Full Body Health Packages', 'Digital Smart Report in 6h'],
+                'image_url' => 'https://images.unsplash.com/photo-1579165466791-788226ab77b6?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'clinic_ecom_ortho_surgical',
+                'type' => 'ecommerce',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-wheelchair',
+                'title' => 'Orthopedic Braces, Wheelchairs & Home Care Equipment Mart',
+                'badge' => '🦽 Mobility & Surgical Mart',
+                'subheadline' => 'Lumbar Belts • Knee Braces • Hospital Beds • Oxygen Concentrators • Walkers',
+                'description' => 'Medical-grade mobility, surgical rehabilitation, and patient home care store featuring adjustable lumbar supports, lightweight foldable wheelchairs, walkers, and direct WhatsApp delivery billing.',
+                'suggested_color' => '#0D9488',
+                'features' => ['Medical-Grade Ortho Belts', 'Lightweight Wheelchairs', 'Oxygen Concentrators Rental', 'Express COD Delivery'],
+                'image_url' => 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'clinic_ecom_baby_pediatric',
+                'type' => 'ecommerce',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-baby-carriage',
+                'title' => 'Pediatric Nutrition, Baby Formulas & Maternity Care Store',
+                'badge' => '🍼 Baby & Mom Wellness Mart',
+                'subheadline' => 'Hypoallergenic Baby Skincare • Infant Milk Formulas • Postpartum Maternity Recovery Kits',
+                'description' => 'Pediatrician-approved mom and baby care store featuring organic infant cereals, colic-relief drops, postpartum recovery essentials, sterilizers, and doorstep delivery.',
+                'suggested_color' => '#EC4899',
+                'features' => ['Pediatrician Approved Formula', 'Chemical-Free Baby Care', 'New Mom Recovery Kits', 'Fast WhatsApp Order'],
+                'image_url' => 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'clinic_ecom_diabetic_devices',
+                'type' => 'ecommerce',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-kit-medical',
+                'title' => 'Chronic Care, Glucometer Strips & Digital BP Monitors Mart',
+                'badge' => '🩸 Diabetic & Chronic Care Mart',
+                'subheadline' => 'Sugar Test Strips • Digital BP Monitors • Diabetic Footwear • Sugar-Free Nutrition',
+                'description' => 'Dedicated chronic condition management store for diabetic and hypertensive patients. Features glucometer lancets, blood pressure monitors, orthotic diabetic footwear, and monthly auto-refills.',
+                'suggested_color' => '#E11D48',
+                'features' => ['Accu-Chek Strips Refill', 'Omron Digital BP Cuffs', 'Orthotic Diabetic Footwear', 'Auto-Refill Monthly Savings'],
+                'image_url' => 'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'clinic_ecom_dental_hygiene',
+                'type' => 'ecommerce',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-teeth-open',
+                'title' => 'Professional Sonic Brushes, Cordless Flossers & Oral Care Shop',
+                'badge' => '🪥 Oral Care & Dental Shop',
+                'subheadline' => 'Dentist-Approved Sonic Toothbrushes • Pro Water Flossers • Enamel Remineralizing Gels',
+                'description' => 'Clinical-grade oral aesthetics and hygiene storefront with waterproof cordless water flossers, ultrasonic electric toothbrushes, aligner cleaning foams, and dentist-recommended sensitivity care.',
+                'suggested_color' => '#0284C7',
+                'features' => ['Sonic Electric Toothbrushes', 'Pro Cordless Water Flossers', 'Whitening Foam & Gels', 'Dental Care Bundles'],
+                'image_url' => 'https://images.unsplash.com/photo-1559591937-e1032b4b455b?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+
+            // ==========================================
+            // 🚀 6 LANDING PAGE FUNNELS
+            // ==========================================
+            [
+                'id' => 'clinic_landing_urgent_opd',
+                'type' => 'landing_page',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-truck-medical',
+                'title' => 'Same-Day Specialist Doctor OPD Consultation Funnel',
+                'badge' => '⚡ Urgent OPD Slot Funnel',
+                'subheadline' => 'Skip The Long Waiting Queue • Verified Senior MD Specialists • Instant Token on WhatsApp',
+                'description' => 'High-urgency single-page patient lead funnel featuring live doctor OPD schedules, verified senior physician credentials, zero-waiting promise, and instant WhatsApp appointment token booking.',
+                'suggested_color' => '#0284C7',
+                'features' => ['Zero Waiting Guarantee', 'Instant Token via WhatsApp', 'Senior MD Consultants', '₹200 Off First Visit'],
+                'image_url' => 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'clinic_landing_health_checkup',
+                'type' => 'landing_page',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-microscope',
+                'title' => '85-Parameter Comprehensive Full Body Health Screening Funnel',
+                'badge' => '🔬 Full Body Checkup Offer',
+                'subheadline' => 'Flat 60% Off This Week • Free Home Sample Collection • Cardiac & Cancer Marker Tests',
+                'description' => 'Laser-focused preventive health screening page with live promotional countdown timer, complete 85-test parameter breakdown, free doorstep blood collection, and WhatsApp voucher redemption.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['85 Parameters Included', 'Free Home Sample Pickup', 'NABL Certified Lab', '48-Hr Slot Countdown'],
+                'image_url' => 'https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'clinic_landing_dental_laser',
+                'type' => 'landing_page',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-tooth',
+                'title' => 'Single-Sitting Painless Laser Root Canal & Smile Makeover Offer',
+                'badge' => '🦷 Painless Laser Dental Funnel',
+                'subheadline' => 'Zero Pain Guarantee • Free 3D Digital X-Ray Worth ₹800 • First 20 Patients Only',
+                'description' => 'High-conversion aesthetic dental landing page featuring painless laser root canal procedures, smile makeover before/after transformations, free 3D digital X-ray offer, and direct WhatsApp slot claim.',
+                'suggested_color' => '#0D9488',
+                'features' => ['Painless Laser RCT', 'Free 3D X-Ray Included', 'Zero Waiting Time', '1-Tap WhatsApp Slot'],
+                'image_url' => 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'clinic_landing_lasik_vision',
+                'type' => 'landing_page',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-eye',
+                'title' => 'Get Freedom From Spectacles in Just 10 Minutes with Robotic Femto LASIK',
+                'badge' => '👁️ Bladeless LASIK Funnel',
+                'subheadline' => 'No Blades • No Stitches • US-FDA Approved Femtosecond Laser • 0% Interest EMI',
+                'description' => 'High-impact vision correction landing funnel highlighting 10-minute spectacle removal, US-FDA approved German laser precision, zero down-payment EMI options, and free suitability scan registration.',
+                'suggested_color' => '#2563EB',
+                'features' => ['10-Min Spectacle Removal', 'US-FDA Approved Laser', '0% Easy EMI Available', 'Free Suitability Test'],
+                'image_url' => 'https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'clinic_landing_knee_replacement',
+                'type' => 'landing_page',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-crutch',
+                'title' => 'Sub-Millimeter Robotic Knee Replacement & Fast Walking Recovery',
+                'badge' => '🦴 Robotic Knee Surgery Funnel',
+                'subheadline' => 'Walk The Next Day • 30-Year Implant Longevity • 100% Cashless Mediclaim Approved',
+                'description' => 'High-ticket joint reconstruction funnel featuring robotic sub-millimeter surgical accuracy, next-day walking recovery protocol, patient mobility video proof, and cashless insurance pre-authorization.',
+                'suggested_color' => '#DC2626',
+                'features' => ['Next-Day Walking Recovery', '30-Year Swiss Implants', '100% Cashless TPA', 'Free Senior Ortho Consult'],
+                'image_url' => 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'clinic_landing_maternity_package',
+                'type' => 'landing_page',
+                'category' => 'Clinics & Hospitals',
+                'icon' => 'fa-person-pregnant',
+                'title' => 'All-Inclusive Luxury Maternity Normal & C-Sec Delivery Package',
+                'badge' => '👶 Bliss Maternity Suite Funnel',
+                'subheadline' => 'Private AC Suite • 24/7 Gynaecologist & Paediatrician • Complimentary Baby Photoshoot',
+                'description' => 'Emotional and premium maternity package booking page featuring all-inclusive transparent delivery rates, private luxury birthing suites, 24/7 neonatal intensive care backup, and hospital tour booking.',
+                'suggested_color' => '#EC4899',
+                'features' => ['All-Inclusive Delivery Cost', 'Private Suite Included', 'Free Newborn Baby Kit', 'Pre-Book Hospital Tour'],
+                'image_url' => 'https://images.unsplash.com/photo-1537673156864-5d2c72de7824?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+        ];
+    }
+
+    /**
+     * 18 Authentic Coaching & Institutes Templates (6 Websites, 6 E-Commerces, 6 Landing Pages).
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public static function getCoachingInstituteTemplates(): array
+    {
+        return [
+            // ==========================================
+            // 🌐 6 BUSINESS WEBSITE TEMPLATES
+            // ==========================================
+            [
+                'id' => 'coaching_web_iit_jee_neet',
+                'type' => 'business_website',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-graduation-cap',
+                'title' => 'Apex IIT-JEE & NEET Premier Academy',
+                'badge' => '🎯 IIT-JEE & NEET Academy',
+                'subheadline' => 'Kota Classroom System • AIR Top 100 Ranks • Daily Practice Papers (DPP) • AIIMS & IIT Faculty',
+                'description' => 'Top-tier engineering and medical entrance coaching institute with Kota pedagogy, daily doubt resolution counters, All-India test benchmarking, and proven top rankers.',
+                'suggested_color' => '#2563EB',
+                'features' => ['Kota Coaching Pedagogy', 'Daily Practice Papers (DPP)', 'Dedicated Doubt Counters', 'Bi-weekly All India CBTs'],
+                'image_url' => 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'coaching_web_upsc_ias',
+                'type' => 'business_website',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-landmark',
+                'title' => 'Sankalp IAS & Civil Services Academy',
+                'badge' => '🏛️ UPSC & Civil Services Institute',
+                'subheadline' => 'UPSC Prelims, Mains & Interview • Ex-Bureaucrats Mentorship • Daily Editorial & Current Affairs',
+                'description' => 'Premier civil services institute featuring comprehensive GS foundation batches, daily Mains answer writing drills, optional subjects guidance, and mock interview boards.',
+                'suggested_color' => '#1E3A8A',
+                'features' => ['Ex-Bureaucrat Mentorship', 'Daily Mains Answer Writing', 'In-depth GS Curriculum', 'Mock Interview Board'],
+                'image_url' => 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'coaching_web_commerce_ca',
+                'type' => 'business_website',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-calculator',
+                'title' => 'Excel CA, CS & Commerce Professional Institute',
+                'badge' => '📊 CA, CS & Commerce Academy',
+                'subheadline' => 'CA Foundation, Inter & Final • Industry Expert CAs • Practical Tax & Audit Lab • High Pass %',
+                'description' => 'Chartered Accountancy and commerce coaching hub featuring practical articleship training, topic-wise exam drill sheets, fast-track revision marathons, and All-India ranker mentorship.',
+                'suggested_color' => '#0D9488',
+                'features' => ['Practical Articleship Training', 'High All-India Pass %', 'Topic-wise Exam Drill', 'Fast-Track Revision Batches'],
+                'image_url' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'coaching_web_ielts_abroad',
+                'type' => 'business_website',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-earth-americas',
+                'title' => 'GlobalEdge IELTS, GRE & Study Abroad Academy',
+                'badge' => '✈️ Study Abroad & IELTS Academy',
+                'subheadline' => 'Band 8+ Guaranteed Coaching • Certified British Council Trainers • Visa & University Filing Desk',
+                'description' => 'International overseas education training center with 1-on-1 speaking interviews, AI mock scoring, Ivy & Russell group university shortlisting, and end-to-end visa counseling.',
+                'suggested_color' => '#0284C7',
+                'features' => ['Band 8+ Scoring Method', '1-on-1 Speaking Interviews', 'University Shortlisting', 'Free Visa Assessment'],
+                'image_url' => 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'coaching_web_coding_tech',
+                'type' => 'business_website',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-code',
+                'title' => 'CodeCraft Full-Stack & AI Coding Bootcamp',
+                'badge' => '💻 Coding & Tech Bootcamp',
+                'subheadline' => 'Web Dev, Python & GenAI • 100% Placement Assistance • 10+ Live Projects • Top Tech Mentors',
+                'description' => 'Modern software development institute with hands-on coding curriculum, FAANG engineer mentorship, Git project portfolios, daily coding sprints, and top hiring partner placement drives.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['10+ Real-World Capstones', '100% Job Placement Cell', '1-on-1 Code Reviews', 'Hackathons & Mock Tests'],
+                'image_url' => 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'coaching_web_school_tuition',
+                'type' => 'business_website',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-book-open-reader',
+                'title' => 'BrightMinds K-12 Foundation & Board Tuitions',
+                'badge' => '📚 K-12 Foundation & Board Tuitions',
+                'subheadline' => 'Classes 6th to 12th (CBSE / ICSE / State) • Small Batches of 15 • Weekly Tests & Parent PTM',
+                'description' => 'Personalized school academic coaching center emphasizing fundamental concept clarity, school board syllabus completion 3 months in advance, Olympiad preparation, and regular parent reports.',
+                'suggested_color' => '#D97706',
+                'features' => ['Max 15 Students Per Batch', 'Weekly Progress Reports', 'Olympiad & NTSE Prep', 'Concept Clearing Classes'],
+                'image_url' => 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+
+            // ==========================================
+            // 🛒 6 E-COMMERCE TEMPLATES
+            // ==========================================
+            [
+                'id' => 'coaching_ecom_test_series',
+                'type' => 'ecommerce',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-clipboard-check',
+                'title' => 'EduTest All-India Mock Test Series & CBT Portal',
+                'badge' => '📝 All-India Test Series Portal',
+                'subheadline' => 'Real NTA/UPSC Exam Interface • Instant Percentile & Rank Predictor • Detailed Video Solutions',
+                'description' => 'Computer-based mock test series store. Purchase chapter tests, subject mocks, and full-syllabus All India tests with instant rank predictor and detailed step-by-step video solutions.',
+                'suggested_color' => '#2563EB',
+                'features' => ['Real NTA Pattern CBT', 'All India Rank Predictor', 'Video Solutions for Every Q', 'Chapter-wise Mock Tests'],
+                'image_url' => 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'coaching_ecom_study_notes',
+                'type' => 'ecommerce',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-book-bookmark',
+                'title' => 'ToppersHandwritten Notes, Mindmaps & Formula Books',
+                'badge' => '📖 Toppers Notes & Mindmaps Store',
+                'subheadline' => 'High-Yield Handwritten Notes • Formula Cheat Sheets • Spiral Bound Courier Delivery Across India',
+                'description' => 'Curated color-coded handwritten notes prepared by top rankers. Includes rapid revision mind maps, formula pocket books, and high-yield summary charts with doorstep delivery.',
+                'suggested_color' => '#059669',
+                'features' => ['Color-Coded Diagram Notes', 'Formula Pocketbooks', 'Spiral Binding Doorstep Delivery', 'Free Sample PDF Previews'],
+                'image_url' => 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'coaching_ecom_recorded_lectures',
+                'type' => 'ecommerce',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-video',
+                'title' => 'MasterClass Video Courses & Recorded Pen-Drive Kits',
+                'badge' => '🎥 Recorded Video Courses & Kits',
+                'subheadline' => 'Full Syllabus 4K Video Lectures • Offline Pen-Drive / Google Drive Mode • 24-Month Unlimited Views',
+                'description' => 'Studio-recorded high-definition video lecture packages covering complete exam syllabi. Delivered via encrypted pen-drives or Google Drive with digital doubt resolution access.',
+                'suggested_color' => '#DC2626',
+                'features' => ['4K HD Studio Recorded Lectures', 'Pen-drive / Drive Delivery', 'Unlimited View Access', 'Digital Doubt Clearing'],
+                'image_url' => 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'coaching_ecom_pyq_question_banks',
+                'type' => 'ecommerce',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-book',
+                'title' => 'ExamCracker 25 Years Solved PYQ Question Banks',
+                'badge' => '📚 25 Years PYQ Book Mart',
+                'subheadline' => 'Topic-Wise Solved Past Papers • Error-Free Explanations • Hardcopy Book Bundles',
+                'description' => 'Comprehensive past 25 years question bank store. Chapter-wise categorized previous year questions with step-by-step verified explanations, speed tricks, and free Pan-India shipping.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['Chapter-wise Categorized PYQs', 'Step-by-Step Verified Solutions', 'Speed & Accuracy Tips', 'Free Express Shipping'],
+                'image_url' => 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'coaching_ecom_language_kits',
+                'type' => 'ecommerce',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-language',
+                'title' => 'LinguaPro Spoken English & Foreign Language Toolkits',
+                'badge' => '🗣️ Language Learning Toolkits',
+                'subheadline' => 'German, French, Spoken English Kits • Audio Flashcards, Workbooks & Daily Audio Guides',
+                'description' => 'Self-paced foreign language and spoken English learning bundles. Includes pronunciation CDs, audio flashcards, interactive grammar workbooks, and conversation audio manuals.',
+                'suggested_color' => '#0891B2',
+                'features' => ['Audio Flashcard Sets', 'Interactive Grammar Workbooks', 'Pronunciation Audio Pen-Drives', 'Pocket Vocabulary Dictionaries'],
+                'image_url' => 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'coaching_ecom_school_stationery',
+                'type' => 'ecommerce',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-pen-ruler',
+                'title' => 'StudentHub Exam Kits, Geometry & Scientific Calculators',
+                'badge' => '📐 Exam Kits & Stationery Store',
+                'subheadline' => 'Casio Scientific Calculators • OMR Sheet Bundles • Premium Highlighters & Geometry Kits',
+                'description' => 'All-in-one exam prep essentials store. Original scientific calculators, 500-pack OMR evaluation sheets, drafting instruments, exam clipboards, and smooth ink gel pens with express delivery.',
+                'suggested_color' => '#EA580C',
+                'features' => ['Original Casio Exam Calculators', '500-Pack OMR Practice Sheets', 'Drafting & Geometry Sets', 'Express Fast Dispatch'],
+                'image_url' => 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+
+            // ==========================================
+            // 🎯 6 HIGH-CONVERTING LANDING PAGES
+            // ==========================================
+            [
+                'id' => 'coaching_landing_scholarship_admission',
+                'type' => 'landing_page',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-award',
+                'title' => 'National Talent Scholarship Test (Up to 100% Fee Waiver)',
+                'badge' => '🏆 Up to 100% Scholarship Test Funnel',
+                'subheadline' => 'Register for Admission Cum Scholarship Test • Win Up to 100% Scholarship • Limited 50 Slots per Center',
+                'description' => 'High-conversion scholarship admission funnel featuring online test pass booking, instant WhatsApp admit card, detailed aptitude report, and zero registration fee countdown.',
+                'suggested_color' => '#2563EB',
+                'features' => ['Up to 100% Fee Waiver', 'Free Diagnostic Aptitude Report', 'Registration Fee ₹0 Today', 'Instant WhatsApp Admit Card'],
+                'image_url' => 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'coaching_landing_crash_course_neet_jee',
+                'type' => 'landing_page',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-bolt',
+                'title' => '90-Day Intensive Crash Course for NEET/JEE Entrance',
+                'badge' => '⚡ 90-Day Intensive Crash Course Funnel',
+                'subheadline' => 'Fast-Track Complete Revision • 1200+ High-Yield Questions • 30 Full Mocks • Starting Next Monday',
+                'description' => 'Urgent batch enrollment landing page for students targeting upcoming competitive exams. Features 6-hour daily intensive masterclasses, formula cheat sheets, and rank booster drills.',
+                'suggested_color' => '#DC2626',
+                'features' => ['6-Hour Daily Master Classes', 'Formula Cram Sheets Provided', '30 Full Length Mock Tests', 'Small 25-Student Batches'],
+                'image_url' => 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'coaching_landing_free_demo_class',
+                'type' => 'landing_page',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-chalkboard-user',
+                'title' => 'Book 3 Days Free Live Classroom & Faculty Demo Session',
+                'badge' => '🆓 3 Days Free Live Demo Pass',
+                'subheadline' => 'Experience Our Star Faculty Live • Attend 3 Days Without Paying Any Fee • Free Study Bag Included',
+                'description' => 'Zero-risk trial class funnel allowing parents and students to experience classroom coaching, inspect smart study labs, interact directly with star educators, and receive free notes.',
+                'suggested_color' => '#059669',
+                'features' => ['100% Zero Obligation Demo', 'Meet Star Faculty Directly', 'Free Chapter Concept Workbook', 'Instant Seat Reservation'],
+                'image_url' => 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'coaching_landing_upsc_foundation_batch',
+                'type' => 'landing_page',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-scale-balanced',
+                'title' => 'UPSC 1-Year Comprehensive Foundation Batch (Prelims + Mains)',
+                'badge' => '🏛️ UPSC 1-Year Foundation Batch Funnel',
+                'subheadline' => 'From Zero to Mains Clearance • Daily 1-on-1 Mentor Allocation • Early Bird ₹15,000 Off Closes Tonight',
+                'description' => 'Premium civil services enrollment funnel offering comprehensive GS coverage, daily Mains answer evaluation by ex-civil servants, current affairs compilation, and early bird discounts.',
+                'suggested_color' => '#1E3A8A',
+                'features' => ['Personal IAS Officer Mentor', 'Daily Answer Evaluation', 'Complete Prelims + Mains Syllabus', 'Early Bird ₹15,000 Discount'],
+                'image_url' => 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'coaching_landing_coding_placement_bootcamp',
+                'type' => 'landing_page',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-laptop-code',
+                'title' => 'Guaranteed Placement Assistance Full-Stack Web Dev Bootcamp',
+                'badge' => '🚀 Pay-After-Placement Bootcamp Funnel',
+                'subheadline' => '6-Month Intensive Cohort • Pay After Placement Option Available • Minimum 6 LPA CTC Target',
+                'description' => 'High-impact tech bootcamp conversion funnel featuring live coding capstone demos, hiring partner roster, resume review sessions, and pay-after-placement enrollment options.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['Pay When You Get Placed', '150+ Top Hiring Partners', 'Portfolio Review by FAANG Engineers', 'Zero Prior Coding Required'],
+                'image_url' => 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'coaching_landing_study_abroad_visa',
+                'type' => 'landing_page',
+                'category' => 'Coaching & Institutes',
+                'icon' => 'fa-passport',
+                'title' => 'Guaranteed Canada & UK Student Visa & IELTS Counselling Session',
+                'badge' => '🛂 Free Study Abroad Counselling Funnel',
+                'subheadline' => 'Free 45-Min 1-on-1 Profile Evaluation • Guaranteed University Offer Letter Assistance',
+                'description' => 'High-converting study abroad lead generation funnel offering free profile evaluation, university scholarship matching, statement of purpose drafting, and visa filing guidance.',
+                'suggested_color' => '#0284C7',
+                'features' => ['100% Free Profile Assessment', 'Ivy & Russell Group Experts', 'Guaranteed Offer Letter Help', 'Fast-Track Visa File Check'],
+                'image_url' => 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+        ];
+    }
+
+    /**
+     * 18 Authentic Doctors & Specialists Templates (6 Websites, 6 E-Commerces, 6 Landing Pages).
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public static function getDoctorSpecialistTemplates(): array
+    {
+        return [
+            // ==========================================
+            // 🌐 6 BUSINESS WEBSITE TEMPLATES
+            // ==========================================
+            [
+                'id' => 'doctor_web_consultant_physician',
+                'type' => 'business_website',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-stethoscope',
+                'title' => 'Dr. Rajesh Sharma MD - Senior Consultant Physician & Diabetologist',
+                'badge' => '🩺 Senior Consultant Physician',
+                'subheadline' => 'MBBS, MD (Internal Medicine) • 22+ Years Experience • Adult Health, Diabetes & Lifestyle Disorders',
+                'description' => 'Senior consultant physician clinical practice website with verified credentials, daily clinic OPD hours, comprehensive diabetes management, digital prescriptions, and home consultation visits.',
+                'suggested_color' => '#0284C7',
+                'features' => ['Senior MD Consultant', 'Diabetes Reversal Care', 'Daily Clinic OPD Hours', 'Digital Prescription Slips'],
+                'image_url' => 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'doctor_web_pediatrician_child',
+                'type' => 'business_website',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-baby',
+                'title' => 'Dr. Ananya Roy MD - Pediatrician & Neonatologist',
+                'badge' => '👶 Child Specialist & Pediatrician',
+                'subheadline' => 'MBBS, MD (Pediatrics) • Infant Growth Tracking • Vaccination Chart • Child Emergency Desk',
+                'description' => 'Compassionate child health clinic providing newborn neonatal care, complete immunization schedules, developmental milestone screenings, and urgent pediatric consultations.',
+                'suggested_color' => '#EC4899',
+                'features' => ['Newborn & Infant Care', 'Complete Vaccination Chart', 'Milestone Assessments', 'Child-Friendly OPD'],
+                'image_url' => 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'doctor_web_gynecologist_women',
+                'type' => 'business_website',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-person-breastfeeding',
+                'title' => 'Dr. Meenakshi Iyer MS - Senior Obstetrician & Gynecologist',
+                'badge' => '🌸 Women\'s Health & Gynecologist',
+                'subheadline' => 'MBBS, MS (OB-GYN), DGO • High-Risk Pregnancy Care • PCOD/PCOS Management • Menopause Wellness',
+                'description' => 'Comprehensive female healthcare and maternal advisory clinic offering confidential consultations, high-risk pregnancy management, hormonal balancing, and laparoscopic guidance.',
+                'suggested_color' => '#BE185D',
+                'features' => ['High-Risk Pregnancy Care', 'PCOD / PCOS Reversal', 'Pre-Conception Guidance', 'Confidential Female OPD'],
+                'image_url' => 'https://images.unsplash.com/photo-1594824813524-8b63e9f45209?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'doctor_web_ortho_surgeon',
+                'type' => 'business_website',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-bone',
+                'title' => 'Dr. Vikram Malhotra MS - Joint Replacement & Spine Surgeon',
+                'badge' => '🦴 Orthopedic & Spine Surgeon',
+                'subheadline' => 'MBBS, MS (Ortho), M.Ch • Robotic Knee & Hip Surgeon • Keyhole Arthroscopy • Sports Injury Clinic',
+                'description' => 'Super-specialist orthopedic surgical chamber featuring sub-millimeter robotic joint replacements, sports ligament repairs, fast-track rehabilitation protocols, and surgical second opinions.',
+                'suggested_color' => '#0D9488',
+                'features' => ['Robotic Joint Replacement', 'Keyhole Arthroscopy', 'Fast-Track Mobility', 'Second Opinion Chamber'],
+                'image_url' => 'https://images.unsplash.com/photo-1584467735871-8e85353a8413?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'doctor_web_derma_trichologist',
+                'type' => 'business_website',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-user-doctor',
+                'title' => 'Dr. Siddharth Sen MD - Dermatologist & Hair Transplant Specialist',
+                'badge' => '💆 Derma & Hair Specialist',
+                'subheadline' => 'MBBS, MD (Dermatology), Fellow FAAD • Clinical Dermatology • PRP Hair Regrowth • Laser Aesthetics',
+                'description' => 'Aesthetic dermatology and hair restoration practice featuring AI scalp trichoscopy, growth factor concentrate (GFC) therapy, acne scar resurfacing, and US-FDA approved clinical protocols.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['Clinical Skin Diagnostics', 'PRP & GFC Hair Regrowth', 'Acne Scar Laser Treatment', 'US-FDA Approved Protocols'],
+                'image_url' => 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'doctor_web_cardio_heart',
+                'type' => 'business_website',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-heart-pulse',
+                'title' => 'Dr. Arvind Kulkarni DM - Senior Interventional Cardiologist',
+                'badge' => '❤️ Interventional Cardiologist',
+                'subheadline' => 'MBBS, MD, DM (Cardiology) • Senior Consultant • Preventive Heart Care • Angiography & Pacemaker',
+                'description' => 'Cardiovascular consultation chamber offering digital 2D echocardiography, preventive cardiac screenings, lipid profiling, pacemaker checks, and post-angioplasty wellness monitoring.',
+                'suggested_color' => '#DC2626',
+                'features' => ['Digital 2D Echo & ECG', 'Preventive Heart Screening', 'Lipid Profiling Desk', 'Post-Op Cardiac Rehab'],
+                'image_url' => 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+
+            // ==========================================
+            // 🛒 6 E-COMMERCE TEMPLATES
+            // ==========================================
+            [
+                'id' => 'doctor_ecom_prescription_refills',
+                'type' => 'ecommerce',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-prescription',
+                'title' => 'Dr. Care 24/7 Prescription Refill & Maintenance Medicine Store',
+                'badge' => '💊 Prescription Refill Desk',
+                'subheadline' => 'Direct Doctor Rx Refills • Diabetic, BP & Thyroid Daily Medications • 100% Genuine Certified',
+                'description' => 'Online patient medicine re-order portal. Upload existing doctor prescription, set monthly chronic medicine auto-refills, and receive tamper-proof doorstep medicine delivery.',
+                'suggested_color' => '#0284C7',
+                'features' => ['1-Tap Doctor Rx Re-order', 'Monthly Auto Refills', 'Cold-Chain Insulin Dispatch', 'WhatsApp Order Invoice'],
+                'image_url' => 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'doctor_ecom_supplements_nutrition',
+                'type' => 'ecommerce',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-capsules',
+                'title' => 'Doctor-Formulated Clinical Nutraceuticals & Vitamins Store',
+                'badge' => '🌿 Clinical Nutraceuticals Mart',
+                'subheadline' => 'Therapeutic Grade Vitamin D3, B12, Omega-3, Magnesium & Joint Collagen Peptides',
+                'description' => 'Doctor-curated clean nutritional supplements store. Bioavailable vitamins, mineral formulations, gut probiotics, and joint collagen peptides with certified purity guarantees.',
+                'suggested_color' => '#059669',
+                'features' => ['Third-Party Tested Purity', 'Clinically Proven Dosages', 'Sugar-Free Formulations', 'Free Doctor Guidance'],
+                'image_url' => 'https://images.unsplash.com/photo-1577401239170-897942555fb3?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'doctor_ecom_ortho_supports',
+                'type' => 'ecommerce',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-crutch',
+                'title' => 'Doctor-Curated Orthopedic Braces, Belts & Rehab Gear',
+                'badge' => '🦿 Ortho Supports & Braces',
+                'subheadline' => 'Medical Lumbar Sacral Belts, Cervical Collars, Knee Hinged Supports & Gel Insoles',
+                'description' => 'Certified medical rehabilitation equipment store. Orthopedic lumbar supports, immobilizer braces, walker supports, and ergonomic pain-relief cushions with home delivery.',
+                'suggested_color' => '#0D9488',
+                'features' => ['Doctor Sizing Guide', 'Breathable Neoprene Fabric', 'Ergonomic Posture Belts', 'Express COD Dispatch'],
+                'image_url' => 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'doctor_ecom_baby_pediatric_care',
+                'type' => 'ecommerce',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-baby-carriage',
+                'title' => 'Pediatrician-Approved Newborn Care, Colic Relief & Baby Wellness',
+                'badge' => '🍼 Pediatric Care Essentials',
+                'subheadline' => 'Pediatric Vitamin D Drops, Hypoallergenic Baby Washes, Nasal Aspirators & Teething Relief',
+                'description' => 'Pediatrician-vetted infant health and wellness store. Hypoallergenic barrier balms, infant probiotics, gentle saline nasal sprays, and safe feeding accessories.',
+                'suggested_color' => '#EC4899',
+                'features' => ['Pediatrician Recommended', '100% Toxin-Free & Clean', 'Colic Relief Drops', 'Fast Home Delivery'],
+                'image_url' => 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'doctor_ecom_derma_skincare_cosmeceuticals',
+                'type' => 'ecommerce',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-pump-medical',
+                'title' => 'Prescription Cosmeceuticals, Mineral Sunscreens & Derma Actives',
+                'badge' => '✨ Clinical Cosmeceuticals Shop',
+                'subheadline' => 'Broad-Spectrum Mineral Sunscreens, 10% Niacinamide, Retinol 0.5% & Ceramide Creams',
+                'description' => 'Medical-grade dermatological skincare store. Non-comedogenic formulations, clinical sunscreen lotions, active serums, and barrier repair creams with ingredient transparency.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['Non-Comedogenic Tested', 'Dermatologist Formulated', 'Active Percentage Clarity', 'Free Delivery'],
+                'image_url' => 'https://images.unsplash.com/photo-1608248597359-00995fa1b6cf?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'doctor_ecom_chronic_monitoring_kits',
+                'type' => 'ecommerce',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-heart-circle-bolt',
+                'title' => 'Doctor-Approved Home Health Vitals & Diagnostic Kits',
+                'badge' => '🩸 Home Vitals Monitoring Mart',
+                'subheadline' => 'Clinically Validated Digital BP Monitors, Blood Glucose Meters, Nebulizers & Pulse Oximeters',
+                'description' => 'Medical-grade home diagnostic device store. Automated blood pressure cuffs, continuous glucose monitors, mesh nebulizers, and digital thermometers with brand warranties.',
+                'suggested_color' => '#DC2626',
+                'features' => ['Clinically Validated Accuracy', '3-Year Brand Warranties', 'Memory Recall Log', 'Cash on Delivery'],
+                'image_url' => 'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+
+            // ==========================================
+            // 🎯 6 HIGH-CONVERTING LANDING PAGES
+            // ==========================================
+            [
+                'id' => 'doctor_landing_second_opinion',
+                'type' => 'landing_page',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-file-medical',
+                'title' => 'Expert Super-Specialist Second Opinion & Surgery Review Funnel',
+                'badge' => '🔍 24-Hr Second Opinion Funnel',
+                'subheadline' => 'Don\'t Rush Into Surgery • Upload Your MRI / CT / Angio Reports • Comprehensive Video Review in 24 Hours',
+                'description' => 'High-conversion medical second opinion funnel. Patients upload radiology scans and diagnostic reports for comprehensive review by senior super-specialists before major surgery.',
+                'suggested_color' => '#0284C7',
+                'features' => ['24-Hr Expert Report Review', 'Save Unnecessary Surgeries', 'Super-Specialist Board', '100% Confidential'],
+                'image_url' => 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'doctor_landing_teleconsult_urgent',
+                'type' => 'landing_page',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-video',
+                'title' => 'Instant 15-Minute Video Consultation with Senior MD Doctor',
+                'badge' => '📱 15-Min Tele-Consult Funnel',
+                'subheadline' => 'Consult from Home Anywhere • Zero Lobby Waiting • Verified Digital Prescription Sent on WhatsApp',
+                'description' => 'High-urgency telemedicine lead funnel offering guaranteed 15-minute doctor video connects, instant digitally signed prescriptions, and free 7-day chat follow-ups.',
+                'suggested_color' => '#2563EB',
+                'features' => ['Connect in 15 Minutes', 'Digital Signed Prescription', 'HD Secure Video Call', 'Free 7-Day Follow-Up'],
+                'image_url' => 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'doctor_landing_diabetes_reversal',
+                'type' => 'landing_page',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-chart-line',
+                'title' => 'Doctor-Led 90-Day Type-2 Diabetes Reversal & HbA1c Reduction Program',
+                'badge' => '📉 Diabetes Reversal Program Funnel',
+                'subheadline' => 'Lower Your HbA1c Below 6.5% • Reduce or Stop Daily Medications • Continuous CGM Glucose Tracking',
+                'description' => 'High-ticket chronic health reversal funnel featuring physician-guided metabolic nutrition, continuous glucose monitoring (CGM) sensors, and customized lifestyle protocols.',
+                'suggested_color' => '#059669',
+                'features' => ['90-Day Medical Supervision', 'CGM Sensor Included', 'Custom Metabolic Diet', 'Personal Physician Coach'],
+                'image_url' => 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'doctor_landing_pcod_pcos_clinic',
+                'type' => 'landing_page',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-person-dots-from-line',
+                'title' => 'Doctor-Guided Holistic PCOD/PCOS Hormonal Balancing & Fertility Protocol',
+                'badge' => '🌸 PCOD / PCOS Hormonal Care Funnel',
+                'subheadline' => 'Regulate Cycles Naturally • Treat Acne & Hair Loss • Medical Hormonal Mapping & Ultrasound Review',
+                'description' => 'Dedicated women\'s hormone wellness funnel offering clinical ultrasound and blood hormone panel evaluations, customized metabolic plans, and private gynecologist support.',
+                'suggested_color' => '#BE185D',
+                'features' => ['Comprehensive Hormone Profile', 'Root-Cause Medical Care', 'Diet & Ovulation Tracking', 'Private Female Doctor OPD'],
+                'image_url' => 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'doctor_landing_joint_pain_prp',
+                'type' => 'landing_page',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-syringe',
+                'title' => 'Single-Sitting Regenerative PRP & Knee Joint Lubrication Therapy',
+                'badge' => '🦴 Non-Surgical Joint Pain Relief',
+                'subheadline' => 'Avoid Joint Replacement Surgery • US-FDA Centrifuged Platelet-Rich Plasma • Walk Out in 45 Minutes',
+                'description' => 'Targeted orthopedic pain management landing page featuring non-surgical platelet-rich plasma (PRP) joint injections, rapid pain relief, and zero hospital stay.',
+                'suggested_color' => '#0D9488',
+                'features' => ['Zero Surgery or Stitches', 'Natural Autologous Healing', 'Walk Out Same Day', '85%+ Patient Pain Relief'],
+                'image_url' => 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'doctor_landing_hair_loss_trichology',
+                'type' => 'landing_page',
+                'category' => 'Doctors & Specialists',
+                'icon' => 'fa-wand-magic-sparkles',
+                'title' => 'Medical Hair Loss Reversal, GFC Therapy & Follicle Revival Consult',
+                'badge' => '💇 Medical Hair Loss Revival Funnel',
+                'subheadline' => 'Stop Hair Fall Within 30 Days • AI Trichoscopy Scalp Analysis • Certified Dermatologist Assessment',
+                'description' => 'High-conversion aesthetic trichology funnel offering digital scalp follicle scans, medical-grade DHT blockers, and growth factor concentrate (GFC) therapy.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['Digital Trichoscopy Scalp Scan', 'Doctor Prescribed DHT Blockers', 'Growth Factor GFC Sessions', '₹500 Intro Consult'],
+                'image_url' => 'https://images.unsplash.com/photo-1512290900672-1f4967396752?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+        ];
+    }
+
+    /**
+     * Get the 18 authentic templates for Herbal Care & Ayurveda.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public static function getHerbalCareTemplates(): array
+    {
+        return [
+            // ==========================================
+            // 🌐 6 BUSINESS WEBSITES
+            // ==========================================
+            [
+                'id' => 'herbal_web_panchakarma_sanctuary',
+                'type' => 'business_website',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-leaf',
+                'title' => 'Panchakarma Detox & Classical Ayurvedic Wellness Sanctuary',
+                'badge' => '🌿 Authentic Panchakarma Sanctuary',
+                'subheadline' => 'Classical 7-Day Shodhana Therapies • Certified BAMS Vaidyas • Medicated Herbal Steam',
+                'description' => 'Traditional Ayurvedic retreat specializing in Panchakarma therapies (Vamana, Virechana, Basti), authentic Nadi Pariksha pulse diagnosis, and custom dietary regimens.',
+                'suggested_color' => '#059669',
+                'features' => ['Classical Panchakarma Suites', 'BAMS Certified Vaidyas', 'Authentic Nadi Pariksha', 'Herbal Steam & Shirodhara'],
+                'image_url' => 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'herbal_web_nadi_pariksha_clinic',
+                'type' => 'business_website',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-hand-holding-heart',
+                'title' => 'Ayurvedic Pulse Diagnosis & Chronic Disease Consultation Clinic',
+                'badge' => '🧘 Classical Nadi Pariksha Clinic',
+                'subheadline' => 'Root-Cause Tridosha Assessment • Vata-Pitta-Kapha Balancing • Custom Herbal Formulations',
+                'description' => 'Clinical Ayurvedic healing center focusing on ancient Nadi Pariksha pulse diagnosis, natural management of arthritis, digestive disorders, skin diseases, and holistic vitality.',
+                'suggested_color' => '#0D9488',
+                'features' => ['Ancient Pulse Diagnosis', 'Tridosha Balance Map', 'Non-Invasive Root Cause', 'Custom Herb Decotions'],
+                'image_url' => 'https://images.unsplash.com/photo-1512290903671-17adc5ae042e?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'herbal_web_herbal_farm_apothecary',
+                'type' => 'business_website',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-seedling',
+                'title' => 'Organic Herbal Herbarium, Botanical Nursery & Farm Apothecary',
+                'badge' => '🌱 Organic Herbal Farm & Apothecary',
+                'subheadline' => 'Farm-Fresh Medicinal Plants • Zero Pesticide Botanical Gardens • Heritage Seed Bank',
+                'description' => 'Certified organic botanical farm cultivating endangered Ayurvedic herbs, fresh medicinal plants, raw dried botanicals, and guided herbal wisdom garden tours.',
+                'suggested_color' => '#16A34A',
+                'features' => ['Certified Organic Cultivation', 'Living Herbal Museum', 'Farm-to-Bottle Traceability', 'Heritage Herb Seeds'],
+                'image_url' => 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'herbal_web_ayurvedic_lifestyle_retreat',
+                'type' => 'business_website',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-spa',
+                'title' => 'Holistic Yoga, Satvik Nutrition & Ayurvedic Wellness Retreat',
+                'badge' => '🕊️ Satvik Living & Yoga Retreat',
+                'subheadline' => 'Daily Morning Asanas • Organic Satvik Farm Dining • Mindful Meditation & Detox',
+                'description' => 'Peaceful holistic living community offering residential weekend retreats, guided pranayama, Satvik organic culinary workshops, and body-mind harmony therapy.',
+                'suggested_color' => '#D97706',
+                'features' => ['Daily Guided Asana & Dhyan', 'Farm-to-Table Satvik Meals', 'Nature Forest Cottages', 'Holistic Mind Healing'],
+                'image_url' => 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'herbal_web_classical_vaidya_hospital',
+                'type' => 'business_website',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-hospital',
+                'title' => 'Classical Ayurvedic Hospital & Integrated Holistic Health Center',
+                'badge' => '🏥 NABH-Accredited Ayurvedic Hospital',
+                'subheadline' => 'In-Patient Care Suites • Integrated Naturopathy & Yoga • 24/7 Vaidya Supervision',
+                'description' => 'Premier in-patient Ayurvedic healthcare facility with specialized departments for spine disorders, stroke rehabilitation, skin health, and elderly rejuvenation.',
+                'suggested_color' => '#0284C7',
+                'features' => ['In-Patient Ayurvedic Suites', 'Spine & Neuro Care Wing', 'NABH Accredited Hospital', 'Integrated Physio-Ayurveda'],
+                'image_url' => 'https://images.unsplash.com/photo-1583912267670-6575ad362e3b?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'herbal_web_ayurvedic_fertility_care',
+                'type' => 'business_website',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-person-breastfeeding',
+                'title' => 'Ayurvedic Garbh Sanskar, Fertility & Postnatal Mother Care Center',
+                'badge' => '🌸 Garbh Sanskar & Mother Wellness',
+                'subheadline' => 'Classical Beej Shuddhi • Pre-Conception Cleansing • Postpartum Ayurvedic Care',
+                'description' => 'Specialized Ayurvedic maternity center offering classical Garbh Sanskar guidance, natural fertility enhancement, prenatal yoga, and traditional 40-day postnatal mother recovery care.',
+                'suggested_color' => '#BE185D',
+                'features' => ['Classical Garbh Sanskar', 'Natural Beej Shuddhi', '40-Day Sutika Recovery', 'Ayurvedic Lactation Care'],
+                'image_url' => 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+
+            // ==========================================
+            // 🛍️ 6 E-COMMERCE STORES
+            // ==========================================
+            [
+                'id' => 'herbal_ecom_classical_churnas_kadha',
+                'type' => 'ecommerce',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-mortar-pestle',
+                'title' => 'Classical Ayurvedic Churnas, Kwaths & Herbal Decotions Mart',
+                'badge' => '🏺 Classical Churnas & Kwaths',
+                'subheadline' => 'Triple-Sifted Pure Powders • Triphala & Ashwagandha • 100% Zero Fillers',
+                'description' => 'Authentic Ayurvedic powders and decoctions manufactured per Sharangadhara Samhita standards with zero preservatives, high phytochemical potency, and laboratory test reports.',
+                'suggested_color' => '#059669',
+                'features' => ['Triple Micro-Sifted', 'Zero Starch or Additives', 'Batch Heavy Metal Tested', 'Fast Courier Dispatch'],
+                'image_url' => 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'herbal_ecom_cold_pressed_oils',
+                'type' => 'ecommerce',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-bottle-droplet',
+                'title' => 'Wood Cold-Pressed Herbal Hair & Body Tailam Apothecary',
+                'badge' => '💧 Cold-Pressed Medicated Oils',
+                'subheadline' => 'Traditional Wood Ghani Pressed • Kshirpak Vidhi Boiling • Pure Sesame & Coconut Base',
+                'description' => 'Classical Ayurvedic medicated oils prepared through traditional Kshirpak and Sneha Kalpana methods using cold-pressed virgin base oils and potent forest herbs.',
+                'suggested_color' => '#D97706',
+                'features' => ['Traditional Ghani Pressed', 'Kshirpak Vidhi Boiling', 'Virgin Sesame & Coconut', 'Tamper-Proof Glass Jars'],
+                'image_url' => 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'herbal_ecom_immunity_rasayanas',
+                'type' => 'ecommerce',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-shield-halved',
+                'title' => 'Gold Grade Chyawanprash, Shilajit & Vitality Rasayanas',
+                'badge' => '✨ Gold Grade Vitality Rasayanas',
+                'subheadline' => 'Amla-Rich Chyawanprash • Pure Himalayan Shilajit Resin • Saffron & Swarna Bhasma',
+                'description' => 'Premium restorative Rasayanas formulated with wild forest Amla, A2 cow ghee, certified Himalayan shilajit resin, and pure organic forest honey for whole-family vitality.',
+                'suggested_color' => '#B45309',
+                'features' => ['Wild Organic Amla Base', 'Pure Himalayan Shilajit', 'A2 Desi Cow Ghee', 'Swarna Bhasma Infused'],
+                'image_url' => 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'herbal_ecom_ayurvedic_skincare_ubtan',
+                'type' => 'ecommerce',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-wand-magic-sparkles',
+                'title' => 'Handmade Saffron Kumkumadi Ubtans & Herbal Beauty Soaps',
+                'badge' => '🌸 Vedic Ubtans & Glowing Skincare',
+                'subheadline' => 'Pure Kashmiri Saffron • Sandalwood & Rose Petal Ubtans • Cold Processed Goat Milk Soaps',
+                'description' => 'Clean botanical skincare formulated without parabens or mineral oils. Featuring Ayurvedic bridal ubtans, therapeutic kumkumadi facial oils, and artisan botanical soaps.',
+                'suggested_color' => '#BE185D',
+                'features' => ['Pure Kashmiri Saffron', 'Sandalwood & Turmeric', 'Cold-Processed Artisan', '100% Chemical Free'],
+                'image_url' => 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'herbal_ecom_organic_teas_infusions',
+                'type' => 'ecommerce',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-mug-hot',
+                'title' => 'Vedic Herbal Green Teas, Ashwagandha & Tulsi Infusions',
+                'badge' => '☕ Loose Leaf Herbal Teas',
+                'subheadline' => 'Whole Leaf Krishna Tulsi • Calming Chamomile & Brahmi • Plastic-Free Pyramids',
+                'description' => 'Artisanal herbal wellness teas blending adaptogenic Ashwagandha, certified organic Tulsi trio, ginger root, and digestion-soothing fennel for daily detoxification.',
+                'suggested_color' => '#15803D',
+                'features' => ['Organic Certified Leaves', 'Adaptogenic Ashwagandha', 'Plastic-Free Tea Bags', 'Zero Artificial Flavor'],
+                'image_url' => 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'herbal_ecom_joint_pain_balms',
+                'type' => 'ecommerce',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-hand-dots',
+                'title' => 'Herbal Joint Pain Relief Oils, Potli Pouches & Liniments',
+                'badge' => '🦴 Orthovedic Pain Relief Care',
+                'subheadline' => 'Gandhapura & Camphor Liniments • Herbal Heated Potli Packs • Rapid Joint Comfort',
+                'description' => 'Doctor-recommended Ayurvedic pain management store offering fast-acting herb-infused roll-ons, classical Mahanarayan liniments, and heated herbal potli pouches.',
+                'suggested_color' => '#0D9488',
+                'features' => ['Pure Gandhapura Tailam', 'Herbal Heated Potlis', 'Non-Greasy Rapid Action', 'Doctor Formulated'],
+                'image_url' => 'https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+
+            // ==========================================
+            // 🎯 6 HIGH-CONVERTING LANDING PAGES
+            // ==========================================
+            [
+                'id' => 'herbal_landing_hair_fall_oil',
+                'type' => 'landing_page',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-spray-can-sparkles',
+                'title' => '100-Day Ayurvedic Hair Regrowth & Anti-Hairfall Oil Funnel',
+                'badge' => '💇 100-Day Hair Regrowth Funnel',
+                'subheadline' => 'Stop Hair Fall in 14 Days • 21 Classical Forest Herbs • 100% Money-Back Guarantee',
+                'description' => 'High-conversion hair wellness funnel showcasing clinical before/after results, herb-boiling video documentation, customer video reviews, and combo pack discounts.',
+                'suggested_color' => '#059669',
+                'features' => ['21 Classical Herbs', 'Zero Mineral Oils', '100% Money-Back Promise', 'Free Scalp Comb Included'],
+                'image_url' => 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'herbal_landing_weight_detox_tea',
+                'type' => 'landing_page',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-fire',
+                'title' => '21-Day Ayurvedic Belly Fat Detox & Metabolism Cleansing Pass',
+                'badge' => '🔥 21-Day Metabolism Detox Pass',
+                'subheadline' => 'Burn Stubborn Belly Fat • Flush Digestive Ama Toxins • Doctor Diet Chart Included',
+                'description' => 'High-energy weight management funnel featuring Triphala guggul blend, metabolism boosting green tea extract, and instant WhatsApp nutritionist consultation.',
+                'suggested_color' => '#EA580C',
+                'features' => ['Flush Digestive Toxins', 'Custom Satvik Diet Chart', 'Zero Laxatives or Chemicals', 'WhatsApp Vaidya Support'],
+                'image_url' => 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'herbal_landing_panchakarma_7day_pass',
+                'type' => 'landing_page',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-calendar-check',
+                'title' => 'Exclusive 7-Day Residential Panchakarma Rejuvenation Package',
+                'badge' => '🌿 7-Day Classical Detox Pass',
+                'subheadline' => 'Deep Cellular Rejuvenation • Classical Abhyanga & Shirodhara • Private Nature Villa Stay',
+                'description' => 'High-ticket retreat enrollment landing page featuring complete daily therapy schedules, private herbal steam suites, all-inclusive Satvik dining, and limited batch booking.',
+                'suggested_color' => '#0D9488',
+                'features' => ['Classical Shirodhara & Basti', 'Private Steam & Pool Villa', '100% Satvik Organic Meals', 'Daily Doctor Assessment'],
+                'image_url' => 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'herbal_landing_skin_glow_kumkumadi',
+                'type' => 'landing_page',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-gem',
+                'title' => 'Authentic Kashmiri Saffron Kumkumadi Miraculous Beauty Oil',
+                'badge' => '✨ 100% Pure Saffron Kumkumadi Tailam',
+                'subheadline' => 'Fade Dark Spots & Pigmentation • Pure Red Gold Saffron • 7-Day Radiance Challenge',
+                'description' => 'Luxury Ayurvedic facial elixir offer funnel with ingredient origin proof, cruelty-free certification, glowing user testimonials, and complimentary rose quartz roller.',
+                'suggested_color' => '#D97706',
+                'features' => ['Grade-1 Kashmiri Saffron', 'Fade Stubborn Dark Spots', 'Complimentary Gua Sha Stone', 'Express Fast Delivery'],
+                'image_url' => 'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'herbal_landing_diabetes_madhumeh_churn',
+                'type' => 'landing_page',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-chart-line',
+                'title' => 'Doctor-Formulated Madhumeh Herbal Powder for Natural Sugar Control',
+                'badge' => '📉 Natural Blood Sugar Control Formula',
+                'subheadline' => 'Jamun Seed, Karela & Gurmar Active Herbs • Regulate Fasting Sugar • Zero Side Effects',
+                'description' => 'Evidence-based Ayurvedic chronic health landing page focusing on natural beta-cell rejuvenation, appetite control, and personalized WhatsApp Vaidya monitoring.',
+                'suggested_color' => '#16A34A',
+                'features' => ['Active Gurmar Gymnema', 'Lower Post-Meal Spikes', 'Certified BAMS Formulation', 'Free Diet & Exercise Plan'],
+                'image_url' => 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'herbal_landing_joint_pain_oil',
+                'type' => 'landing_page',
+                'category' => 'Herbal Care',
+                'icon' => 'fa-bone',
+                'title' => 'Orthovedic Maha Narayan Joint & Knee Pain Relief Oil Offer',
+                'badge' => '🦴 Instant Knee & Joint Relief Liniment',
+                'subheadline' => 'Relieve Stiffness in 10 Minutes • Deep Penetrating Herbal Formula • Buy 1 Get 1 Free',
+                'description' => 'High-conversion chronic joint pain liniment landing page with fast relief action demonstration, elderly mobility testimonials, and limited-time Buy 1 Get 1 Free offer.',
+                'suggested_color' => '#0284C7',
+                'features' => ['10-Min Fast Absorption', 'Classical Maha Narayan Taila', 'Buy 1 Get 1 Free Promo', 'Cash on Delivery Available'],
+                'image_url' => 'https://images.unsplash.com/photo-1584365685547-9a5fb6f3a70c?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+        ];
+    }
+
+    /**
+     * 18 Authentic Manufacturers Templates (6 Websites, 6 E-Commerces, 6 Landing Pages).
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public static function getManufacturerTemplates(): array
+    {
+        return [
+            // ==========================================
+            // 🌐 6 BUSINESS WEBSITES
+            // ==========================================
+            [
+                'id' => 'mfg_web_precision_machining_plant',
+                'type' => 'business_website',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-gears',
+                'title' => 'Precision CNC Machining, Heavy Engineering & Component Plant',
+                'badge' => '🏭 Precision CNC & Engineering Plant',
+                'subheadline' => 'ISO 9001:2015 & IATF 16949 Certified • 5-Axis VMC & CNC Turning • 10-Micron Tolerance Guaranteed',
+                'description' => 'Premier precision component manufacturing plant equipped with multi-axis VMC machining centers, CMM inspection labs, and high-volume automotive & aerospace parts machining.',
+                'suggested_color' => '#1E3A8A',
+                'features' => ['5-Axis VMC Machining', 'IATF 16949 Certified', 'CMM Quality Inspection', 'High-Volume Production'],
+                'image_url' => 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_web_sheet_metal_laser_fabrication',
+                'type' => 'business_website',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-fire-burner',
+                'title' => 'Sheet Metal Fabrication, CNC Laser Cutting & Bending Works',
+                'badge' => '⚡ Fiber Laser & Sheet Metal Works',
+                'subheadline' => '12kW Fiber Laser Cutting • 250-Ton CNC Press Brakes • Heavy Structural & Enclosure Fabrication',
+                'description' => 'Advanced sheet metal engineering facility specializing in laser cut profiles, electrical control panel enclosures, architectural metal cladding, and robotic MIG/TIG welding.',
+                'suggested_color' => '#EA580C',
+                'features' => ['12kW Fiber Laser Bed', '250-Ton CNC Press Brake', 'Robotic TIG/MIG Welding', 'Powder Coating Line'],
+                'image_url' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_web_injection_moulding_polymers',
+                'type' => 'business_website',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-cube',
+                'title' => 'Precision Plastic Injection Moulding & In-House Tool Room',
+                'badge' => '🧪 Polymer Injection & Moulding Unit',
+                'subheadline' => '50T to 850T Injection Presses • In-House CAD Mould Design • Medical & Automotive Grade Resins',
+                'description' => 'High-speed thermoplastic injection moulding and mold manufacturing unit. Clean-room certified production, insert moulding, and precision polymer components for healthcare and consumer electronics.',
+                'suggested_color' => '#0284C7',
+                'features' => ['50T-850T All-Electric Presses', 'In-House Tool & Die Shop', 'Clean Room Assembly', 'UL-94 Flame Retardant'],
+                'image_url' => 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_web_industrial_automation_robotics',
+                'type' => 'business_website',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-robot',
+                'title' => 'Industrial Automation Systems, PLC Panels & Robotic Assembly',
+                'badge' => '🤖 Smart Factory & Robotics OEM',
+                'subheadline' => 'Turnkey SCADA & PLC Engineering • Pick & Place Delta Robots • Industry 4.0 Smart Conveyors',
+                'description' => 'Turnkey industrial automation and custom machinery builder. Designing automated packaging lines, robotic welding cells, SCADA process monitoring, and custom SPM machinery.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['Turnkey PLC & SCADA', 'Robotic Handling Cells', 'Custom SPM Machinery', 'Industry 4.0 IoT Cloud'],
+                'image_url' => 'https://images.unsplash.com/photo-1617788138017-80ad40651399?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_web_corrugated_packaging_boxes',
+                'type' => 'business_website',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-box-archive',
+                'title' => 'Corrugated Box Manufacturing, Heavy-Duty Cartons & Offset Printing',
+                'badge' => '📦 Corrugated Cartons & Packaging Mill',
+                'subheadline' => '5-Ply & 7-Ply Heavy Duty Fluting • Auto Flexo Folder Gluer • 100% Recyclable Kraft Paper',
+                'description' => 'Large-scale corrugated packaging and box factory manufacturing export-grade heavy-duty cartons, printed retail boxes, honeycomb buffers, and bulk palletized shipping boxes.',
+                'suggested_color' => '#B45309',
+                'features' => ['5-Ply & 7-Ply Fluting', 'Export Heavy-Duty Cartons', 'Auto Flexo Printing', 'Bursting Strength Testing'],
+                'image_url' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_web_textile_garment_spinning_mill',
+                'type' => 'business_website',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-vest-patches',
+                'title' => 'Integrated Textile Spinning, Knitted Fabrics & Garment Mill',
+                'badge' => '🧵 Integrated Textile & Fabric Mill',
+                'subheadline' => '50,000 Spindles Spinning Plant • Circular Knitting Machines • OEKO-TEX Standard 100 Certified',
+                'description' => 'Vertically integrated textile manufacturing mill producing combed cotton yarn, circular knitted fabrics, organic dyeing, and private label bulk uniform & apparel manufacturing.',
+                'suggested_color' => '#059669',
+                'features' => ['OEKO-TEX 100 Certified', '50,000 Ring Spindles', 'Zero Liquid Discharge Dyeing', 'Private Label Apparel'],
+                'image_url' => 'https://images.unsplash.com/photo-1606744824163-985d376605aa?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+
+            // ==========================================
+            // 🛍️ 6 E-COMMERCE STORES (B2B WHOLESALE & MOQs)
+            // ==========================================
+            [
+                'id' => 'mfg_ecom_industrial_fasteners_hardware',
+                'type' => 'ecommerce',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-screwdriver-wrench',
+                'title' => 'High-Tensile Industrial Fasteners, Bolts & Stainless Hardware Mart',
+                'badge' => '🔩 Grade 8.8/10.9 Fasteners & Bolts',
+                'subheadline' => 'Hex Bolts, Nyloc Nuts, Studs & Anchors • Tiered Volume Slabs • Dispatch in Tonnes',
+                'description' => 'Direct-from-factory wholesale fastener store. Grade 8.8, 10.9, and SS316 stainless bolts, heavy hex nuts, spring washers, and anchor fasteners with bulk MOQ volume discounts.',
+                'suggested_color' => '#334155',
+                'features' => ['Grade 8.8 & 10.9 Steel', 'MOQ Volume Slabs', 'Mill Test Certificate', 'Same-Day Pallet Dispatch'],
+                'image_url' => 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_ecom_protective_safety_ppe_gear',
+                'type' => 'ecommerce',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-shield-halved',
+                'title' => 'Factory Direct Industrial Safety PPE, Helmets & Workwear Store',
+                'badge' => '🦺 Certified Industrial Safety & PPE',
+                'subheadline' => 'ISI/CE Steel-Toe Safety Shoes • High-Visibility Vests • Fall Arrest Harnesses • Bulk Carton Orders',
+                'description' => 'Factory wholesale e-commerce store supplying CE & ISI certified safety equipment, steel-toe boots, chemical gloves, safety eyewear, and corporate industrial uniform bundles.',
+                'suggested_color' => '#D97706',
+                'features' => ['CE & EN 345 Certified', 'Bulk Carton Wholesale', 'Custom Logo Printing', 'Direct Factory Price'],
+                'image_url' => 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_ecom_hydraulic_pneumatic_valves',
+                'type' => 'ecommerce',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-gauge-high',
+                'title' => 'Hydraulic Fittings, Pneumatic Cylinders & Industrial Valves Supply',
+                'badge' => '⚙️ Hydraulic & Pneumatic Components',
+                'subheadline' => '3000 PSI High-Pressure Hoses • Solenoid Valves • Air Cylinders • Precision BSP/NPT Threads',
+                'description' => 'High-pressure fluid power component wholesale store. Hydraulic hose assemblies, quick release couplers, directional control valves, and pneumatic air preparation units.',
+                'suggested_color' => '#2563EB',
+                'features' => ['3000 PSI Hydro Tested', 'BSP & NPT Standards', 'CAD Datasheets Included', 'Wholesale B2B Cart'],
+                'image_url' => 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_ecom_packaging_supplies_tapes',
+                'type' => 'ecommerce',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-box-open',
+                'title' => 'Bulk Corrugated Mailers, BOPP Tapes & Stretch Film Wholesaler',
+                'badge' => '📦 Factory Direct Packaging & Tapes',
+                'subheadline' => '50-Micron BOPP Packing Tape • 23-Micron Pallet Stretch Film • Die-Cut 3-Ply E-com Mailer Boxes',
+                'description' => 'Factory wholesale packaging material store. Bulk cases of BOPP carton tapes, cast stretch wrap rolls, bubble rolls, and corrugated shipper boxes for e-commerce warehouses.',
+                'suggested_color' => '#CA8A04',
+                'features' => ['50 Micron Strong Adhesion', 'Pallet Quantity Discounts', 'Printed Tape Customization', 'GST B2B Invoicing'],
+                'image_url' => 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_ecom_electrical_switchgear_cables',
+                'type' => 'ecommerce',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-plug-circle-bolt',
+                'title' => 'Industrial Electrical Switchgear, MCBs, Contactors & Armoured Cables',
+                'badge' => '⚡ Heavy Electrical Switchgear & Cables',
+                'subheadline' => '4-Pole MCB/MCCB Breakers • Copper Armoured Power Cables • Push Button Stations • ISI Marked',
+                'description' => 'Wholesale electrical power distribution equipment store. Industrial circuit breakers, thermal overload relays, multi-core flexible copper cables, and junction box accessories.',
+                'suggested_color' => '#DC2626',
+                'features' => ['IS/IEC 60947 Standards', '100% Pure Electrolytic Copper', 'OEM Panel Builder Rates', 'Test Certificates Provided'],
+                'image_url' => 'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_ecom_raw_metal_pipes_structural',
+                'type' => 'ecommerce',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-trowel-bricks',
+                'title' => 'Structural Steel Pipes, Hollow Sections & MS Angle Channel Stockyard',
+                'badge' => '🏗️ Structural Steel & ERW Pipes',
+                'subheadline' => 'Square & Rectangular Hollow Sections • IS 4923 Grade • Bundles & Trailer Load Delivery',
+                'description' => 'B2B raw materials store for metal fabricators. Direct mill prices on mild steel square pipes, galvanized tubes, equal angles, and structural channels with weight calculator and trailer delivery.',
+                'suggested_color' => '#0284C7',
+                'features' => ['IS 4923 / IS 2062 Grade', 'Trailer Load Direct Billing', 'Weight per Metre Calculator', 'Mill Test Certificate (MTC)'],
+                'image_url' => 'https://images.unsplash.com/photo-1535813547-99c456a41d4a?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+
+            // ==========================================
+            // 🎯 6 HIGH-CONVERTING LANDING PAGES (RFQ & PARTNERSHIPS)
+            // ==========================================
+            [
+                'id' => 'mfg_landing_custom_oem_rfq',
+                'type' => 'landing_page',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-file-contract',
+                'title' => 'Custom OEM Part Manufacturing & 24-Hour Blueprint RFQ Funnel',
+                'badge' => '📋 Instant Blueprint RFQ Funnel',
+                'subheadline' => 'Upload 2D PDF / 3D STEP File • Get Fixed Factory Quote within 24 Hours • Strict NDA Protected',
+                'description' => 'High-conversion B2B lead generation funnel engineered for contract manufacturing. CAD/blueprint upload, material selection matrix, tolerance specs, and signed NDA guarantee.',
+                'suggested_color' => '#1E3A8A',
+                'features' => ['24-Hour Quotation Turnaround', '3D CAD & PDF Upload', 'Mutual Non-Disclosure NDA', 'DFM Feasibility Feedback'],
+                'image_url' => 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_landing_dealership_distributor_franchise',
+                'type' => 'landing_page',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-handshake',
+                'title' => 'Pan-India Authorized Dealership & Distributor Onboarding Funnel',
+                'badge' => '🤝 Regional Distributor Partnership',
+                'subheadline' => 'High Margin Factory-Direct Supply • Exclusive Territory Rights • Marketing & Credit Support',
+                'description' => 'High-converting channel partner recruitment funnel. Inviting established industrial distributors, stockists, and regional dealers with attractive ROI, exclusive territory, and credit support.',
+                'suggested_color' => '#D97706',
+                'features' => ['Exclusive Territory Allotment', '35% Gross Operating Margin', 'Credit Facility for Stockists', 'Marketing Collateral Kit'],
+                'image_url' => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_landing_contract_packaging_private_label',
+                'type' => 'landing_page',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-tag',
+                'title' => 'Turnkey Contract Packaging & Private Label Manufacturing Funnel',
+                'badge' => '🏷️ Private Label & Contract Packing',
+                'subheadline' => 'Launch Your Brand in 30 Days • Formulation, Bottling & FSSAI/GMP Compliant Packaging',
+                'description' => 'Turnkey white-label contract packaging lead funnel. Assisting D2C brands with bulk formulation, blister/sachet packaging, custom labeling, and regulatory compliance.',
+                'suggested_color' => '#059669',
+                'features' => ['Turnkey Brand Launch in 30 Days', 'GMP & ISO 22000 Facility', 'Batch Pilot Run (Low MOQ)', 'Complete Barcode & Labeling'],
+                'image_url' => 'https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_landing_rapid_prototyping_3d_printing',
+                'type' => 'landing_page',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-print',
+                'title' => '3-Day Rapid Prototyping & CNC Functional Sample Funnel',
+                'badge' => '⏱️ 72-Hour Rapid Prototyping',
+                'subheadline' => 'Functional Metal & Polymer Samples • DMLS 3D Printing & 5-Axis CNC • Fast Track Dispatch',
+                'description' => 'High-speed prototyping conversion funnel for R&D engineers and product designers. Get functional testing parts in aluminum, titanium, or peek shipped in 72 hours.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['72-Hour Express Delivery', 'DMLS Metal 3D Printing', 'Full CMM Dimensional Report', 'Zero Mould Investment'],
+                'image_url' => 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_landing_solar_structural_mounting_oem',
+                'type' => 'landing_page',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-solar-panel',
+                'title' => 'Utility Solar Mounting Structures & Cold-Roll Formed OEM Funnel',
+                'badge' => '☀️ Solar Mounting Structures RFQ',
+                'subheadline' => 'Galvalume & Pre-Galvanized C/Z Purlins • 150 km/h Wind Speed Certified • MW-Scale Production',
+                'description' => 'Utility-scale solar EPC conversion funnel offering custom ground mount, tracker, and rooftop mounting structures with structural wind-tunnel certifications and megawatt delivery schedules.',
+                'suggested_color' => '#0284C7',
+                'features' => ['150 km/h Wind Certified', 'PosMAC / Galvalume 550 GSM', 'MW-Scale Daily Dispatch', 'IIT Structural Vetted'],
+                'image_url' => 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+            [
+                'id' => 'mfg_landing_export_bulk_container_sourcing',
+                'type' => 'landing_page',
+                'category' => 'Manufacturers',
+                'icon' => 'fa-ship',
+                'title' => 'Export Container Sourcing & Global Supply Chain Procurement Funnel',
+                'badge' => '🌐 Global Export & FCL Container Sourcing',
+                'subheadline' => 'FOB / CIF Global Shipping • SGS / Bureau Veritas Pre-Shipment Inspection • Zero-Defect Guarantee',
+                'description' => 'International procurement funnel tailored for overseas importers, procurement managers, and trading houses seeking verified Indian manufacturing capacity and compliant export packaging.',
+                'suggested_color' => '#0D9488',
+                'features' => ['FOB / CIF Global Seaports', 'SGS Pre-Shipment Inspection', 'Letter of Credit (LC) Accepted', 'Fumigated Pallet Export Packaging'],
+                'image_url' => 'https://images.unsplash.com/photo-1586528116493-a029325540fa?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'b2b',
+            ],
+        ];
+    }
+
+    /**
+     * 18 Authentic Retail Store & E-Commerce Templates (6 Websites, 6 Ecom, 6 Landing Pages).
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public static function getOtherRetailTemplates(): array
+    {
+        return [
+            // ==========================================
+            // 🌐 6 BUSINESS WEBSITES (SHOWROOMS & FLAGSHIPS)
+            // ==========================================
+            [
+                'id' => 'retail_web_luxury_jewelry_showroom',
+                'type' => 'business_website',
+                'category' => 'Other Retail',
+                'icon' => 'fa-gem',
+                'title' => 'Heritage Gold, Solitaire Diamond & Bridal Jewelry Showroom',
+                'badge' => '💎 Heritage Gold & Diamonds',
+                'subheadline' => 'Hallmark 916 Gold • IGI Solitaires • Private VIP Suite • Custom Karigari',
+                'description' => 'Prestigious heirloom jewelry house featuring BIS 916 hallmarked bridal gold, certified diamond solitaires, private bridal VIP lounge, and custom bespoke Karigari design studio.',
+                'suggested_color' => '#D97706',
+                'features' => ['BIS 916 Hallmark Certified', 'IGI Certified Solitaires', 'Private Bridal Lounge', 'Custom Karigari Design'],
+                'image_url' => 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_web_designer_apparel_boutique',
+                'type' => 'business_website',
+                'category' => 'Other Retail',
+                'icon' => 'fa-shirt',
+                'title' => 'Couture Bridal Lehengas & Designer Ethnic Fashion Studio',
+                'badge' => '👗 Haute Couture Studio',
+                'subheadline' => 'Handcrafted Lehengas • Sherwanis • Master Tailoring • Personal Stylist',
+                'description' => 'Curated couture boutique showcasing handcrafted zardozi bridal lehengas, royal wedding sherwanis, bespoke fitting trials, and personal stylist consultations.',
+                'suggested_color' => '#BE185D',
+                'features' => ['Handcrafted Zardozi Art', 'Bespoke Fitting Trials', 'Celebrity Bridal Stylists', 'Doorstep Trial Service'],
+                'image_url' => 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_web_smart_electronics_megastore',
+                'type' => 'business_website',
+                'category' => 'Other Retail',
+                'icon' => 'fa-tv',
+                'title' => 'Next-Gen Smart Home Electronics & Mobile Gadget Megastore',
+                'badge' => '⚡ Smart Tech Megastore',
+                'subheadline' => 'Flagship Smartphones • 4K OLED TVs • Smart Home Demo • 0% Easy EMI',
+                'description' => 'Multi-brand electronics flagship showroom with live interactive demo zones, official brand warranty, instant exchange bonuses, and 0% interest paperless EMI.',
+                'suggested_color' => '#2563EB',
+                'features' => ['Live Hands-on Demo Zone', 'Instant Exchange Bonus', 'Brand Authorised Warranty', 'Paperless 0% Easy EMI'],
+                'image_url' => 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_web_luxury_home_furniture_gallery',
+                'type' => 'business_website',
+                'category' => 'Other Retail',
+                'icon' => 'fa-couch',
+                'title' => 'Contemporary Teak Wood & Italian Leather Furniture Studio',
+                'badge' => '🛋️ Luxury Living Studio',
+                'subheadline' => 'Solid Sheesham • Italian Sofas • 3D Interior Visualizer • 10-Yr Warranty',
+                'description' => 'Architectural furniture experience center displaying handcrafted solid wood dining sets, imported motorized recliners, custom modular wardrobes, and free 3D room styling.',
+                'suggested_color' => '#92400E',
+                'features' => ['100% Solid Teak & Sheesham', 'Free 3D Living Room Layout', 'Motorized Recliner Lounges', '10-Year Termite Warranty'],
+                'image_url' => 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_web_premium_optical_eyewear_lounge',
+                'type' => 'business_website',
+                'category' => 'Other Retail',
+                'icon' => 'fa-glasses',
+                'title' => 'German Precision Eye Testing & Designer Eyewear Boutique',
+                'badge' => '👓 Precision Eyecare Lounge',
+                'subheadline' => 'Zeiss Digital Eye Exam • Luxury Frames • Blue-Cut Lenses • 30-Min Glasses',
+                'description' => 'Modern vision boutique equipped with German Zeiss digital refractive eye testing, international designer sunglass frames, progressive lenses, and 30-minute quick lens crafting.',
+                'suggested_color' => '#0284C7',
+                'features' => ['Zeiss 3D Digital Eye Exam', 'Designer Eyewear Brands', 'Progressive Precision Lenses', '30-Minute Spectacle Delivery'],
+                'image_url' => 'https://images.unsplash.com/photo-1591076482161-42ce6da69f67?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_web_artisan_organic_supermarket',
+                'type' => 'business_website',
+                'category' => 'Other Retail',
+                'icon' => 'fa-basket-shopping',
+                'title' => 'Farm-Direct Organic Gourmet Grocery & Fresh Supermarket',
+                'badge' => '🥦 Farm Fresh Supermarket',
+                'subheadline' => 'Certified Organic • Hydroponic Greens • Cold-Pressed • Same-Day Delivery',
+                'description' => 'Wholesome farm-fresh supermarket offering residue-free organic fruits, pesticide-free hydroponic vegetables, cold-pressed artisanal groceries, and express neighborhood delivery.',
+                'suggested_color' => '#16A34A',
+                'features' => ['Residue-Free Organics', 'Hydroponic Salad Greens', 'Bulk Dispenser Pantry', 'Express 2-Hour Delivery'],
+                'image_url' => 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+
+            // ==========================================
+            // 🛒 6 E-COMMERCE STORES (CART & CHECKOUT)
+            // ==========================================
+            [
+                'id' => 'retail_ecom_modern_fashion_apparel',
+                'type' => 'ecommerce',
+                'category' => 'Other Retail',
+                'icon' => 'fa-vest',
+                'title' => 'Everyday Minimalist Streetwear & Contemporary Casuals Store',
+                'badge' => '👕 Streetwear & Essentials',
+                'subheadline' => '100% Pima Cotton • Boxy Fits • COD Available • Easy 7-Day Returns',
+                'description' => 'Fast-fashion e-commerce store with size/color variant selectors, 240 GSM heavy cotton tees, cargo joggers, real-time inventory alerts, and instant WhatsApp tracking.',
+                'suggested_color' => '#4F46E5',
+                'features' => ['Size & Color Variants', '240 GSM Heavy Cotton', 'Cash on Delivery (COD)', 'Instant WhatsApp Invoice'],
+                'image_url' => 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_ecom_mobile_accessories_gadgets',
+                'type' => 'ecommerce',
+                'category' => 'Other Retail',
+                'icon' => 'fa-headphones',
+                'title' => 'Fast Chargers, TWS Audio & Rugged Mobile Armor Store',
+                'badge' => '🎧 Audio & Charging Hub',
+                'subheadline' => 'GaN Fast Chargers • ANC Earbuds • Military Cases • 1-Yr Replacement',
+                'description' => 'Direct-to-consumer gadget shop featuring 65W GaN laptop fast chargers, active noise-cancelling earbuds, braided cables, and military-grade drop test phone cases.',
+                'suggested_color' => '#0284C7',
+                'features' => ['65W GaN Fast Charging', 'Military Drop-Tested Cases', '1-Year Free Replacement', 'Express Delivery Checkout'],
+                'image_url' => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_ecom_artisanal_dryfruits_spices',
+                'type' => 'ecommerce',
+                'category' => 'Other Retail',
+                'icon' => 'fa-jar',
+                'title' => 'Kashmiri Mamra Almonds, Saffron & Royal Exotic Dry Fruits Store',
+                'badge' => '🌰 Premium Royal Dryfruits',
+                'subheadline' => 'Vacuum-Sealed • Grade-A Mamra • Zero Preservatives • Gift Boxes',
+                'description' => 'Premium dry fruit apothecary featuring oil-rich Kashmiri Mamra badam, roasted salted Iranian pistachios, Grade-A Medjool dates, and luxury corporate festive gift hampers.',
+                'suggested_color' => '#D97706',
+                'features' => ['Vacuum Nitrogen Pack', 'Zero Artificial Preservatives', 'Luxury Gift Packaging', 'Tiered 500g/1kg Slabs'],
+                'image_url' => 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_ecom_activewear_fitness_gear',
+                'type' => 'ecommerce',
+                'category' => 'Other Retail',
+                'icon' => 'fa-person-running',
+                'title' => 'Seamless Gym Wear, Resistance Bands & Sports Equipment Mart',
+                'badge' => '🏃 Pro Fitness Gear',
+                'subheadline' => 'Sweat-Wicking Fabrics • 4-Way Stretch • Gym Equipment • COD Available',
+                'description' => 'High-octane activewear store with seamless squat-proof compression leggings, dry-fit athletic tops, Olympic bumper plates, and dumbbell sets with home doorstep delivery.',
+                'suggested_color' => '#DC2626',
+                'features' => ['Squat-Proof Compression', 'Anti-Odor Sweat Wicking', 'Home Gym Equipment', 'COD & Prepaid UPI Perks'],
+                'image_url' => 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_ecom_baby_care_kids_toys',
+                'type' => 'ecommerce',
+                'category' => 'Other Retail',
+                'icon' => 'fa-shapes',
+                'title' => 'BPA-Free Newborn Essentials, Organic Clothing & STEM Toys Store',
+                'badge' => '🧸 Baby Care & STEM Toys',
+                'subheadline' => 'Non-Toxic Silicon • 100% Bamboo Cotton • Montessori Toys • Safe Delivery',
+                'description' => 'Trusted parenting store featuring dermatologist-approved infant skincare, organic bamboo rompers, ergonomic baby carriers, and non-toxic wooden Montessori learning toys.',
+                'suggested_color' => '#F43F5E',
+                'features' => ['100% Organic Bamboo Fibers', 'Non-Toxic Wooden Toys', 'Pediatrician Approved', 'Safe Sterilized Packaging'],
+                'image_url' => 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_ecom_ceramic_kitchen_tableware',
+                'type' => 'ecommerce',
+                'category' => 'Other Retail',
+                'icon' => 'fa-mug-saucer',
+                'title' => 'Handcrafted Ceramic Tableware, Cast Iron & Minimalist Cookware',
+                'badge' => '🍳 Stoneware & Kitchenware',
+                'subheadline' => 'Microwave & Dishwasher Safe • Pre-Seasoned Cast Iron • Safe Transit Pack',
+                'description' => 'Artisan tableware boutique offering handmade stoneware dinner sets, lead-free studio pottery mugs, heavy pre-seasoned cast iron skillets, and shatter-proof transit packing.',
+                'suggested_color' => '#EA580C',
+                'features' => ['Lead-Free Food Safe Glazes', 'Pre-Seasoned Heavy Cast Iron', 'Shatter-Proof Transit Packing', 'Complete Dining Set Bundles'],
+                'image_url' => 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+
+            // ==========================================
+            // 🎯 6 HIGH-CONVERTING LANDING FUNNELS
+            // ==========================================
+            [
+                'id' => 'retail_landing_mega_clearance_sale',
+                'type' => 'landing_page',
+                'category' => 'Other Retail',
+                'icon' => 'fa-fire',
+                'title' => 'Annual Clearance Blowout & Midnight Mega Sale Funnel',
+                'badge' => '🔥 Annual Clearance • Flat 70% Off',
+                'subheadline' => 'Last 24 Hours • Doorbuster Steals • First 100 Buyers Get Free Gift',
+                'description' => 'High-urgency blowout clearance funnel with dynamic countdown timer, doorbuster flat ₹499/₹999 deals, stock depletion progress bar, and instant WhatsApp flash order.',
+                'suggested_color' => '#DC2626',
+                'features' => ['Up to 70% Off Doorbuster', 'Live Stock Countdown', 'Free Gift for First 100', '1-Click WhatsApp Claim'],
+                'image_url' => 'https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_landing_festive_bridal_combo',
+                'type' => 'landing_page',
+                'category' => 'Other Retail',
+                'icon' => 'fa-wand-magic-sparkles',
+                'title' => 'Grand Wedding Festive Trousseau & Bridal Jewelry Combo Pass',
+                'badge' => '👑 Bridal Trousseau Combo • Flat 35% Off',
+                'subheadline' => 'Complete 5-Outfit Wedding Wardrobe + Matching Kundan Set Voucher',
+                'description' => 'Curated bridal trousseau package offering full wedding day bridal lehenga, reception gown, mehendi outfit, and matching artisan jewelry set with free personal styling.',
+                'suggested_color' => '#BE185D',
+                'features' => ['Complete 5-Outfit Trousseau', 'Complimentary Kundan Set', 'Personal Bridal Stylist', 'Free Custom Tailoring'],
+                'image_url' => 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_landing_smartphone_exchange_bonus',
+                'type' => 'landing_page',
+                'category' => 'Other Retail',
+                'icon' => 'fa-mobile-screen-button',
+                'title' => 'Mega 5G Smartphone Exchange Carnival & ₹5,000 Extra Trade-In',
+                'badge' => '📱 5G Exchange Carnival • ₹5,000 Bonus',
+                'subheadline' => 'Exchange Any Old Phone • 0% Interest 12-Month EMI • Free Screen Guard',
+                'description' => 'High-converting smartphone upgrade funnel offering instant door-to-door phone evaluation, extra ₹5,000 exchange bonus, zero down payment EMI, and free tempered glass.',
+                'suggested_color' => '#2563EB',
+                'features' => ['Instant Old Phone Value', '₹5,000 Extra Exchange Bonus', 'Zero Down-Payment EMI', 'Free Tempered Glass & Cover'],
+                'image_url' => 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_landing_modular_kitchen_makeover',
+                'type' => 'landing_page',
+                'category' => 'Other Retail',
+                'icon' => 'fa-kitchen-set',
+                'title' => 'Complete German Modular Kitchen Makeover in 21 Days',
+                'badge' => '🍳 21-Day Modular Kitchen • Free Chimney & Hob',
+                'subheadline' => 'Marine Ply BWP • Soft-Close Tandem • Free Auto-Clean Chimney Worth ₹18,000',
+                'description' => 'Turnkey kitchen renovation package featuring waterproof boiling waterproof plywood, German soft-close hardware, 10-year warranty, and complimentary auto-clean chimney.',
+                'suggested_color' => '#D97706',
+                'features' => ['21-Day Turnkey Handover', 'Free Auto-Clean Chimney', 'German Soft-Close Tandem', '10-Year Marine Ply Warranty'],
+                'image_url' => 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_landing_vip_loyalty_gold_pass',
+                'type' => 'landing_page',
+                'category' => 'Other Retail',
+                'icon' => 'fa-credit-card',
+                'title' => 'Annual VIP Shopper Membership Pass & Guaranteed 15% Cashbacks',
+                'badge' => '⭐ VIP Gold Privilege Pass • Flat ₹500 Welcome Gift',
+                'subheadline' => 'Extra 15% Off Every Bill • Free Home Delivery • Early Sale Access',
+                'description' => 'Exclusive customer loyalty funnel offering 1-year VIP gold member benefits, free express home delivery on all orders, birthday double discounts, and dedicated store concierge.',
+                'suggested_color' => '#CA8A04',
+                'features' => ['Extra 15% Cashback Always', 'Free Express Home Delivery', 'Early 24h Sale Access', 'Dedicated Store Concierge'],
+                'image_url' => 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+            [
+                'id' => 'retail_landing_corporate_festive_gift_hamper',
+                'type' => 'landing_page',
+                'category' => 'Other Retail',
+                'icon' => 'fa-gift',
+                'title' => 'Corporate Gourmet Gift Hampers & Custom Branded Festive Boxes',
+                'badge' => '🎁 Corporate Gifting Suite • Bulk Discounts',
+                'subheadline' => 'Custom Logo Engraving • Premium Dryfruits & Sweets • Bulk GST Invoice',
+                'description' => 'B2B corporate festive gifting funnel with personalized laser engraved wooden boxes, FSSAI certified gourmet sweets and nuts, sample box door delivery, and volume pricing.',
+                'suggested_color' => '#059669',
+                'features' => ['Free Custom Logo Branding', 'Sample Box Doorstep Dispatch', '100% GST Tax Invoicing', 'Tiered 50+ Bulk MOQ Slabs'],
+                'image_url' => 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'retail',
+            ],
+        ];
+    }
+
+    /**
+     * Get the 18 authentic Restaurant & Cafes templates (6 Business Websites, 6 E-Commerce Stores, 6 High-Converting Landing Pages).
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public static function getRestaurantCafeTemplates(): array
+    {
+        return [
+            // ==========================================
+            // 🌐 6 BUSINESS WEBSITES (Fine Dining & Ambience)
+            // ==========================================
+            [
+                'id' => 'rest_web_fine_dining_royal_awadh',
+                'type' => 'business_website',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-utensils',
+                'title' => 'Royal Awadh Dastarkhwan & Mughlai Dum Pukht Fine Dining',
+                'badge' => '👑 Royal Awadhi Fine Dining',
+                'subheadline' => 'Centuries-Old Dum Pukht Recipes • Slow-Cooked Galawati Kebabs • Live Classical Sitar',
+                'description' => 'Opulent heritage dining sanctuary serving authentic Awadhi slow-cooked biryanis, silken kakori kebabs, silver-leaf warqi parathas, and private family dastarkhwan seating.',
+                'suggested_color' => '#B45309',
+                'features' => ['Slow-Cooked Dum Pukht', 'Royal Family Dastarkhwan', 'Live Classical Sitar', 'Private Dining Rooms'],
+                'image_url' => 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_web_artisanal_rooftop_cafe',
+                'type' => 'business_website',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-mug-hot',
+                'title' => 'Skyline Sunset Bistro, Artisanal Brews & Gourmet Pizzeria',
+                'badge' => '☕ Rooftop Bistro & Brew Bar',
+                'subheadline' => 'Panoramic City Views • Single-Origin Pour Over Coffee • Wood-Fired Sourdough Pizzas',
+                'description' => 'Aesthetic open-air rooftop cafe featuring manual brew pour-overs, cold brew mocktails, hand-tossed artisan thin-crust pizzas, and fairy-lit evening acoustic live sessions.',
+                'suggested_color' => '#D97706',
+                'features' => ['Open-Air Skyline Sunset', 'Single-Origin Coffee Bar', 'Acoustic Weekend Nights', 'Pet-Friendly Outdoor Deck'],
+                'image_url' => 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_web_woodfired_italian_pizzeria',
+                'type' => 'business_website',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-pizza-slice',
+                'title' => 'Napoli Wood-Fired Pizzeria & Authentic Italian Trattoria',
+                'badge' => '🍕 Wood-Fired Neapolitan Pizza',
+                'subheadline' => '48-Hour Fermented Sourdough • Imported San Marzano Tomatoes • Fresh Buffalo Mozzarella',
+                'description' => 'Authentic Italian trattoria with a 900°F volcanic stone wood-fired oven, hand-stretched Neapolitan sourdough pizzas, creamy truffle pastas, and artisanal tiramisu.',
+                'suggested_color' => '#DC2626',
+                'features' => ['48h Sourdough Ferment', 'Volcanic Stone Oven', 'San Marzano & Fior di Latte', 'Chef Pasta Tasting Menu'],
+                'image_url' => 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_web_pure_veg_thali_bhojanalaya',
+                'type' => 'business_website',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-bowl-food',
+                'title' => 'Padharo Sa - Grand Rajasthani & Gujarati Heritage Thali',
+                'badge' => '🍲 Pure Veg Heritage Thali',
+                'subheadline' => 'Unlimited 28-Item Royal Feast • Pure Desi Ghee Preparation • Traditional Manuhar Hospitality',
+                'description' => 'Authentic 100% pure vegetarian culinary temple presenting traditional brass thali dining with Dal Baati Churma, Gujarati kadhi, seasonal rotlas, and warm hospitality.',
+                'suggested_color' => '#EA580C',
+                'features' => ['100% Pure Desi Ghee', 'Unlimited 28-Item Thali', 'Traditional Manuhar Service', 'Separate Jain Preparation'],
+                'image_url' => 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_web_coastal_seafood_lounge',
+                'type' => 'business_website',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-shrimp',
+                'title' => 'Fisherman\'s Wharf - Fresh Catch Coastal Seafood & Mangalorean Curry Shack',
+                'badge' => '🦀 Fresh Catch Coastal Seafood',
+                'subheadline' => 'Today\'s Sea Catch Display • Kundapura Ghee Roast • Malabar Fish Curry & Neer Dosas',
+                'description' => 'Coastal seafood dining lounge showcasing fresh daily harbor catch, spicy tawa fry surmai, butter garlic crab, tender coconut curries, and authentic beach shack vibes.',
+                'suggested_color' => '#0284C7',
+                'features' => ['Live Catch Weight Weighing', 'Kundapura Ghee Roast', 'Authentic Neer Dosa & Appam', 'Fresh Sea Prawns & Crabs'],
+                'image_url' => 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_web_pan_asian_dimsum_teppanyaki',
+                'type' => 'business_website',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-bowl-rice',
+                'title' => 'Zen Wok - Live Teppanyaki, Sushi & Pan-Asian Dim Sum Bar',
+                'badge' => '🥢 Live Teppanyaki & Dim Sum',
+                'subheadline' => 'Live Chef Teppanyaki Show • Crystal Truffle Dim Sums • Fresh Nigiri & Bao Buns',
+                'description' => 'Contemporary Asian gastronomic lounge featuring dramatic teppanyaki live cooking tables, hand-rolled sushi platters, steaming bamboo dim sum baskets, and artisan ramen.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['Live Teppanyaki Counter', 'Hand-Rolled Sushi Platters', 'Crystal Truffle Dim Sum', 'Artisan Pork & Veg Ramen'],
+                'image_url' => 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+
+            // ==========================================
+            // 🛍️ 6 E-COMMERCE STORES (Food Delivery & Cart)
+            // ==========================================
+            [
+                'id' => 'rest_ecom_cloud_kitchen_biryani_box',
+                'type' => 'ecommerce',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-box-archive',
+                'title' => 'Dum Handi Biryani, Galawati Kebabs & Curries Express Delivery',
+                'badge' => '🍗 Dum Biryani Cloud Kitchen',
+                'subheadline' => 'Clay Handi Sealed • Charcoal Dum Cooking • 30-Minute Doorstep Delivery',
+                'description' => 'Specialized biryani cloud kitchen delivering royal Nizami and Kolkata dum biryanis in earthen clay handis with cooling burani raita, salan, and gulab jamun combos.',
+                'suggested_color' => '#C2410C',
+                'features' => ['Earthen Handi Sealed', 'Charcoal Slow Dum', '30-Minute Express Delivery', 'Tamper-Proof Hot Packing'],
+                'image_url' => 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_ecom_artisan_french_bakery_pastry',
+                'type' => 'ecommerce',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-cake-candles',
+                'title' => 'Le Petit Four - French Patisserie, Viennoiserie & Custom Cakes',
+                'badge' => '🥐 French Bakery & Custom Cakes',
+                'subheadline' => '100% French Butter Croissants • Belgian Chocolate Gateaux • Custom Birthday Cakes',
+                'description' => 'Artisanal bakehouse delivering European butter croissants, sourdough loaves, Parisian macarons, customized fondant celebration cakes, and dessert boxes.',
+                'suggested_color' => '#BE185D',
+                'features' => ['Pure French Butter Lamination', 'Same-Day Cake Delivery', 'Eggless Options Available', 'Customized Name Plaque'],
+                'image_url' => 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_ecom_gourmet_smash_burgers_wings',
+                'type' => 'ecommerce',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-burger',
+                'title' => 'Smash & Crunch - Double Smashed Burgers & Nashville Hot Wings',
+                'badge' => '🍔 Gourmet Smash Burgers & Wings',
+                'subheadline' => 'Crispy Caramelized Smashed Patties • Brioche Buns • Loaded Animal Fries & Shakes',
+                'description' => 'Late-night gourmet burger joint delivering double-smashed beef/chicken patties on toasted potato brioche buns with secret sauce, Nashville hot tenders, and thick shakes.',
+                'suggested_color' => '#B91C1C',
+                'features' => ['Double Smashed Crust', 'Toasted Brioche Buns', 'Nashville Spiced Heat', 'Thick Hand-Spun Shakes'],
+                'image_url' => 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_ecom_homestyle_healthy_tiffin',
+                'type' => 'ecommerce',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-cubes-stacked',
+                'title' => 'Ghar Ka Swaad - Daily Homestyle Tiffin & Calorie-Counted Meal Plans',
+                'badge' => '🥗 Daily Homestyle Tiffin Store',
+                'subheadline' => 'Low Oil & Desi Ghee Cooking • High-Protein Diet Options • Weekly/Monthly Flexi Plans',
+                'description' => 'Nutritious homestyle office and home meal service delivering balanced, hygienic thali boxes, fresh multigrain phulkas, dal tadka, and seasonal subzis with zero preservatives.',
+                'suggested_color' => '#15803D',
+                'features' => ['Zero Palm Oil / Clean Fuel', 'Daily Changing Menu', 'Flexible Pause/Resume', 'Eco-Friendly Paper Trays'],
+                'image_url' => 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_ecom_handcrafted_icecream_desserts',
+                'type' => 'ecommerce',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-ice-cream',
+                'title' => 'Gelato Artisans - Handcrafted Small-Batch Ice Creams & Sundaes',
+                'badge' => '🍨 Artisan Small-Batch Gelato',
+                'subheadline' => 'Pure Whole Buffalo Milk • No Artificial Stabilizers • Dry Ice Packed 45-Min Delivery',
+                'description' => 'Artisan creamery delivering gourmet gelatos, seasonal mango Alphonso tubs, dark Belgian chocolate fudge sundaes, and waffle bowls packed in insulated dry ice tubs.',
+                'suggested_color' => '#9333EA',
+                'features' => ['100% Real Dairy & Fruits', 'Dry Ice Cold-Chain Tubs', 'Zero Artificial Flavoring', 'Vegan Sorbets Available'],
+                'image_url' => 'https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_ecom_signature_rolls_street_bites',
+                'type' => 'ecommerce',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-hotdog',
+                'title' => 'Street Eats - Kolkata Kathi Rolls, Steamed Momos & Indo-Chinese',
+                'badge' => '🌯 Kathi Rolls & Street Bites',
+                'subheadline' => 'Flaky Paratha Kathi Rolls • Darjeeling Momos with Spicy Chutney • Hakka Noodles',
+                'description' => 'Iconic street food favorites crafted with hygienic quality ingredients: flaky Mughlai egg chicken rolls, paneer kathi wraps, authentic steamed momos, and wok tossed noodles.',
+                'suggested_color' => '#F59E0B',
+                'features' => ['Crispy Paratha Rolls', 'Darjeeling Momos & Chutney', 'Hygienic Kitchen Certified', 'Fast Combo Delivery'],
+                'image_url' => 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+
+            // ==========================================
+            // 🚀 6 LANDING FUNNELS (Deals & Feasts)
+            // ==========================================
+            [
+                'id' => 'rest_landing_unlimited_grand_buffet',
+                'type' => 'landing_page',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-fire',
+                'title' => 'Sunday Grand Royal Feast: 50-Item Unlimited Buffet at Flat ₹599',
+                'badge' => '🔥 Unlimited Buffet • Flat ₹599 Pass',
+                'subheadline' => '12 Starters • Live Chaat & Barbeque Counters • 8 Desserts • Prior Pass Mandatory',
+                'description' => 'High-conversion buffet deal landing page with live available table countdown, photo food wall, instant WhatsApp pass generation, and child discount tokens.',
+                'suggested_color' => '#E11D48',
+                'features' => ['50+ Multi-Cuisine Items', 'Live Barbeque & Chaat Counter', 'Flat ₹599 Limited Passes', 'Instant QR Pass on WhatsApp'],
+                'image_url' => 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_landing_banquet_party_hall_celebration',
+                'type' => 'landing_page',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-champagne-glasses',
+                'title' => 'Private AC Banquet & Birthday Celebration Package (50-250 Guests)',
+                'badge' => '🎉 All-Inclusive Banquet Hall Package',
+                'subheadline' => 'Complete Balloon/Floral Decor + DJ Sound Setup + Unlimited 4-Course Buffet at ₹750/Plate',
+                'description' => 'Event booking funnel designed for milestone birthdays, anniversaries, kitty parties, and corporate get-togethers with all-inclusive venue, decor, and dining.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['Zero Venue Rental Fee', 'Custom Balloon/Floral Decor', 'DJ Sound & Lighting Included', 'Veg & Non-Veg Multi-Cuisine'],
+                'image_url' => 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_landing_midnight_cravings_flash_deal',
+                'type' => 'landing_page',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-moon',
+                'title' => 'Midnight Food Delivery Flash Fest: Flat 40% Off on All Orders Post 11 PM',
+                'badge' => '⚡ Midnight Flash Deal • Flat 40% Off',
+                'subheadline' => 'Piping Hot Biryani, Rolls, Burgers & Desserts Delivered till 4 AM',
+                'description' => 'High-urgency midnight food delivery funnel targeting nocturnal foodies, students, and night-shift workers with lightning-fast 25-minute delivery.',
+                'suggested_color' => '#DC2626',
+                'features' => ['Open Till 4:00 AM', 'Guaranteed 25-Min Delivery', 'Flat 40% Off Midnight Code', 'Live WhatsApp Delivery Pin'],
+                'image_url' => 'https://images.unsplash.com/photo-1526367790999-0150786686a2?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_landing_corporate_executive_lunch_catering',
+                'type' => 'landing_page',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-briefcase',
+                'title' => 'Corporate Executive Bento Box & Office Luncheon Catering Solutions',
+                'badge' => '💼 Corporate Bento & Meal Catering',
+                'subheadline' => 'Starting ₹180/Box • Hot Insulated Delivery • GST Invoicing • Free Sample Tasting',
+                'description' => 'B2B food catering funnel for tech parks, MNC boardrooms, and training events offering sanitized, spill-proof premium bento boxes with customized corporate billing.',
+                'suggested_color' => '#2563EB',
+                'features' => ['GST Invoicing & Bulk Slips', 'Free Executive Sample Tasting', 'Hot-Insulated Bento Packing', 'Punctual Desk Delivery'],
+                'image_url' => 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_landing_romantic_candlelight_dinner',
+                'type' => 'landing_page',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-heart',
+                'title' => 'Private Rooftop Candlelight Dinner & 4-Course Chef Degustation for Couples',
+                'badge' => '❤️ VIP Candlelight Couple Experience',
+                'subheadline' => 'Rose Petal Pathway • Reserved Skyline Cabana • Custom Cake • Complimentary Mocktail',
+                'description' => 'Exclusive anniversary and date night reservation funnel featuring fairy-lit private cabanas, customized photo frame moments, and personalized 4-course dining.',
+                'suggested_color' => '#BE185D',
+                'features' => ['Private Fairy-Lit Cabana', 'Rose Petal & Candle Decor', 'Custom Anniversary Heart Cake', 'Dedicated Private Butler'],
+                'image_url' => 'https://images.unsplash.com/photo-1544025162-d76694265947?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+            [
+                'id' => 'rest_landing_wedding_festive_outdoor_catering',
+                'type' => 'landing_page',
+                'category' => 'Restaurant & Cafes',
+                'icon' => 'fa-crown',
+                'title' => 'Grand Royal Wedding & Festive Outdoor Catering (100 to 2,000+ Guests)',
+                'badge' => '👑 Grand Wedding & Outdoor Catering',
+                'subheadline' => 'Live International Counters • Halwai Desserts • Uniformed Staff • Free Food Tasting',
+                'description' => 'Luxury wedding and reception catering funnel offering live chaat stalls, wood-fired tandoor, pasta stations, royal Indian main courses, and end-to-end banquet crockery.',
+                'suggested_color' => '#B45309',
+                'features' => ['Live International Stalls', 'Traditional Royal Halwai', 'Free 4-Person Tasting Session', 'Complete Glassware & Linens'],
+                'image_url' => 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'food',
+            ],
+        ];
+    }
+
+    /**
+     * Get all 18 authentic templates for Other Services across Website, E-Commerce, and Landing Page.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public static function getOtherServicesTemplates(): array
+    {
+        return [
+            // ==========================================
+            // 🌐 6 BUSINESS WEBSITES (Agencies, Firms & Corporate Services)
+            // ==========================================
+            [
+                'id' => 'service_web_corporate_law_legal_firm',
+                'type' => 'business_website',
+                'category' => 'Other Services',
+                'icon' => 'fa-scale-balanced',
+                'title' => 'Corporate Law, Mergers, IPR & High Court Litigation Firm',
+                'badge' => '⚖️ Corporate Legal Counsel & Litigation Chambers',
+                'subheadline' => 'Contract Due Diligence • High Court Litigation • Trademark & Patent Filing • Board Advisory',
+                'description' => 'Distinguished legal advisory and litigation chambers representing corporate boards, emerging startups, and HNIs in company law, arbitration, intellectual property, and regulatory compliance.',
+                'suggested_color' => '#1E293B',
+                'features' => ['Corporate Due Diligence', 'Arbitration & Litigation', 'IPR Trademark Filing', 'Confidential Board Advisory'],
+                'image_url' => 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_web_chartered_accountants_tax',
+                'type' => 'business_website',
+                'category' => 'Other Services',
+                'icon' => 'fa-calculator',
+                'title' => 'Chartered Accountants, Statutory Audit & Corporate Tax Advisory',
+                'badge' => '📊 Premier CA Practice & Financial Advisory',
+                'subheadline' => 'Statutory Auditing • GST & Income Tax Advisory • ROC Compliance • Virtual CFO',
+                'description' => 'Reputed Chartered Accountancy firm delivering forensic auditing, GST tax dispute resolution, cross-border remittance, ROC compliance, and virtual CFO advisory.',
+                'suggested_color' => '#0F766E',
+                'features' => ['Statutory & Internal Audit', 'GST & Direct Tax Appeals', 'Virtual CFO Services', 'Startup Incorporation ROC'],
+                'image_url' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_web_digital_marketing_creative_agency',
+                'type' => 'business_website',
+                'category' => 'Other Services',
+                'icon' => 'fa-bullhorn',
+                'title' => 'Performance Marketing, SEO, Social Media & Creative Growth Agency',
+                'badge' => '🚀 Full-Funnel Digital Growth & Brand Strategy',
+                'subheadline' => 'Performance Paid Ads • Technical SEO • UI/UX Design • Viral Social Media Campaigns',
+                'description' => 'Award-winning digital acceleration agency engineering ROI-driven meta and google ad campaigns, search engine domination, high-converting brand identities, and modern web apps.',
+                'suggested_color' => '#6366F1',
+                'features' => ['ROAS Paid Ads Management', 'Technical SEO Growth', 'Conversion Rate Optimization', 'Bespoke UI/UX Branding'],
+                'image_url' => 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_web_express_logistics_supply_chain',
+                'type' => 'business_website',
+                'category' => 'Other Services',
+                'icon' => 'fa-truck-fast',
+                'title' => 'Pan-India Express Logistics, Cold Chain & 3PL Warehousing',
+                'badge' => '🚚 Tech-Enabled Supply Chain & 3PL Fleet Network',
+                'subheadline' => 'FTL & PTL Road Transport • Temperature-Controlled Cold Chain • Real-Time IoT GPS Fleet',
+                'description' => 'End-to-end supply chain conglomerate providing multi-city fleet logistics, temperature-controlled pharma transport, automated fulfillment hubs, and same-day express transit.',
+                'suggested_color' => '#0369A1',
+                'features' => ['Real-Time IoT GPS Fleet', '3PL Warehousing Hubs', 'Cold Chain Refrigerated', 'Pan-India FTL/PTL Freight'],
+                'image_url' => 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_web_architecture_interior_design_studio',
+                'type' => 'business_website',
+                'category' => 'Other Services',
+                'icon' => 'fa-compass-drafting',
+                'title' => 'Bespoke Architecture, Luxury Interiors & Turnkey Execution Studio',
+                'badge' => '📐 Architectural Design & Luxury Interior Studio',
+                'subheadline' => 'Sustainable Architecture • 3D BIM Visualization • Luxury Residential & Commercial Turnkey',
+                'description' => 'Acclaimed architectural design atelier specializing in contemporary bioclimatic villas, bespoke penthouse interior styling, commercial workspaces, and turnkey project contracting.',
+                'suggested_color' => '#78350F',
+                'features' => ['3D Photorealistic Renders', 'Turnkey Interior Contracting', 'Sustainable Green Building', 'Bespoke Custom Furniture'],
+                'image_url' => 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_web_facility_management_security',
+                'type' => 'business_website',
+                'category' => 'Other Services',
+                'icon' => 'fa-shield-halved',
+                'title' => 'Integrated Facility Management, Commercial Housekeeping & Guarding',
+                'badge' => '🛡️ Corporate Facility & Armed Security Services',
+                'subheadline' => 'Mechanized Deep Cleaning • PSARA Licensed Armed Guards • HVAC & MEP Maintenance',
+                'description' => 'Premier ISO-certified facility services partner managing tech parks, luxury high-rises, and industrial plants with trained security personnel, mechanized housekeeping, and MEP upkeep.',
+                'suggested_color' => '#334155',
+                'features' => ['PSARA Licensed Guards', 'Mechanized Floor Scrubbing', '24/7 MEP Breakdown Support', 'EHS Workplace Compliance'],
+                'image_url' => 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+
+            // ==========================================
+            // 🛍️ 6 E-COMMERCE STORES (Service Packages, AMCs & Retainers)
+            // ==========================================
+            [
+                'id' => 'service_ecom_home_deep_cleaning_pest_control',
+                'type' => 'ecommerce',
+                'category' => 'Other Services',
+                'icon' => 'fa-broom',
+                'title' => 'Full-Home Deep Cleaning, Sanitization & Odorless Pest Control Mart',
+                'badge' => '✨ Professional Home Cleaning & Pest Defense',
+                'subheadline' => 'Hospital-Grade Sanitization • Odorless Cockroach Gel • Sofa & Carpet Shampooing',
+                'description' => 'Book professional home cleaning packs online. Mechanized floor buffing, steam disinfection, kitchen degreasing, bathroom descaling, and 100% odorless pest eradication.',
+                'suggested_color' => '#059669',
+                'features' => ['Eco-Safe Certified Chemicals', 'Industrial Vacuum Extraction', 'Odorless Bayer Gel', 'Instant Slot Booking'],
+                'image_url' => 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_ecom_appliance_repair_ac_maintenance',
+                'type' => 'ecommerce',
+                'category' => 'Other Services',
+                'icon' => 'fa-screwdriver-wrench',
+                'title' => 'HVAC AC Jet Servicing, Inverter PCB Repair & Appliance AMCs',
+                'badge' => '❄️ Doorstep AC Servicing & Appliance Care',
+                'subheadline' => 'High-Pressure Foam Jet AC Clean • 90-Day Repair Warranty • Genuine Spare Parts',
+                'description' => 'Instant online booking for high-pressure jet AC servicing, refrigerator gas charging, washing machine diagnostics, and annual appliance maintenance plans with verified technicians.',
+                'suggested_color' => '#0284C7',
+                'features' => ['High-Pressure Jet Wash', '90-Day Service Warranty', 'Standardized Rate Cards', 'Background-Verified Techs'],
+                'image_url' => 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_ecom_company_startup_registration_compliance',
+                'type' => 'ecommerce',
+                'category' => 'Other Services',
+                'icon' => 'fa-file-signature',
+                'title' => 'Pvt Ltd Registration, GST, Trademark Filing & ROC Compliance Store',
+                'badge' => '📜 Startup Legal Incorporation & Tax Filing Cart',
+                'subheadline' => 'All-Inclusive Incorporation • Fast ROC Approval • Free Startup Kit & Current Account',
+                'description' => 'Digital legal marketplace for entrepreneurs. One-click company formation, trademark filing, GST registration, startup India certification, and annual ROC compliance packages.',
+                'suggested_color' => '#4338CA',
+                'features' => ['All-Inclusive Govt Fee', '10-Day Incorporation SLA', 'Dedicated CA Support', 'Digital Vault for Certificates'],
+                'image_url' => 'https://images.unsplash.com/photo-1450133064473-71024230f91b?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_ecom_event_wedding_planning_decor',
+                'type' => 'ecommerce',
+                'category' => 'Other Services',
+                'icon' => 'fa-champagne-glasses',
+                'title' => 'Curated Wedding Decor Packages, DJ Stage Lighting & Event Catering',
+                'badge' => '🎪 Luxury Event & Wedding Production Mart',
+                'subheadline' => 'Theme Floral Mandaps • Truss Concert Lighting • LED Video Walls • Sound Systems',
+                'description' => 'Pre-configured bespoke wedding and corporate celebration packages online. Exotic floral stage themes, dynamic concert lighting, DJ console setups, and destination event kits.',
+                'suggested_color' => '#E11D48',
+                'features' => ['Transparent Package Pricing', 'Bespoke Theme Customizer', '3D Stage Preview', 'End-to-End Onsite Crew'],
+                'image_url' => 'https://images.unsplash.com/photo-1519741497674-611481863552?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_ecom_packers_movers_relocation',
+                'type' => 'ecommerce',
+                'category' => 'Other Services',
+                'icon' => 'fa-boxes-packing',
+                'title' => 'Intercity Household Relocation, Vehicle Transit & Storage Cart',
+                'badge' => '📦 5-Layer Household Moving & Transit Insurance',
+                'subheadline' => 'Multi-Layer Bubble Packing • Hydraulic Tailgate Trucks • Zero-Damage Transit Policy',
+                'description' => 'Transparent fixed-quote packers and movers e-store. High-grade corrugated wrapping, specialized bike & car transport, climate-controlled warehousing, and instant GPS transit updates.',
+                'suggested_color' => '#D97706',
+                'features' => ['5-Layer Protective Packing', 'Transit Insurance Coverage', 'No Hidden Moving Fees', 'Live GPS Tracking Link'],
+                'image_url' => 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_ecom_it_support_cloud_cybersecurity',
+                'type' => 'ecommerce',
+                'category' => 'Other Services',
+                'icon' => 'fa-server',
+                'title' => 'Managed IT Support, Cloud Server Migration & Firewall Security Plans',
+                'badge' => '💻 Small Business Managed IT & Cyber Protection',
+                'subheadline' => '24/7 Helpdesk SLAs • Office Wi-Fi Optimization • Automated Cloud Disaster Backup',
+                'description' => 'All-inclusive monthly managed IT subscription packages for modern offices. End-user remote ticketing, firewall threat monitoring, Microsoft 365 cloud setup, and offsite disaster recovery.',
+                'suggested_color' => '#2563EB',
+                'features' => ['15-Min Response Helpdesk', 'Enterprise Endpoint Antivirus', 'Automated Daily Cloud Backup', 'Per-Seat Monthly Pricing'],
+                'image_url' => 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+
+            // ==========================================
+            // ⚡ 6 HIGH-CONVERTING LANDING FUNNELS (Urgent Lead Gen & Booking)
+            // ==========================================
+            [
+                'id' => 'service_landing_emergency_plumbing_electrical',
+                'type' => 'landing_page',
+                'category' => 'Other Services',
+                'icon' => 'fa-faucet-drip',
+                'title' => '24/7 Emergency Plumbing, Burst Pipe & Electrical Breakdown Dispatch',
+                'badge' => '⚡ 30-Min Rapid Emergency Dispatch',
+                'subheadline' => '30-Min On-Site Arrival • Certified Master Plumbers & Wiremen • Upfront Flat Rates',
+                'description' => 'High-urgency emergency hotline for short circuits, overhead water tank overflows, main line blockages, burst pipes, and sudden MCB trips with direct WhatsApp technician callout.',
+                'suggested_color' => '#DC2626',
+                'features' => ['30-Min Rapid Doorstep ETA', 'Zero Midnight Surge Fee', 'Master Electricians & Plumbers', '100% Fixed Quote First'],
+                'image_url' => 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_landing_gst_tax_audit_notice_resolution',
+                'type' => 'landing_page',
+                'category' => 'Other Services',
+                'icon' => 'fa-gavel',
+                'title' => 'Urgent GST & Income Tax Department Notice Reply & Audit Defense',
+                'badge' => '⚖️ Urgent Tax Defense & Notice Scrutiny',
+                'subheadline' => 'Notice Scrutiny Within 2 Hours • Ex-IRS & Senior CA Panel • Complete Penalty Shield',
+                'description' => 'Specialized tax litigation funnel for Section 148, 143(1), and GST DRC-01 show-cause notices. Emergency case assessment, verified legal drafting, and department representation.',
+                'suggested_color' => '#D97706',
+                'features' => ['Same-Day Case Assessment', 'Senior Tax Advocates & CAs', 'Penalty & Prosecution Shield', '100% Confidential Review'],
+                'image_url' => 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_landing_termite_rodent_pest_free_pass',
+                'type' => 'landing_page',
+                'category' => 'Other Services',
+                'icon' => 'fa-bug',
+                'title' => '1-Year Guaranteed Termite Drilling & Anti-Pest Warranty Pass',
+                'badge' => '🛡️ 1-Year Termite Drill & Protection Pass',
+                'subheadline' => 'Odorless Chemical Barrier • Deep Wood Infiltration • Free Re-Treatment Guarantee',
+                'description' => 'High-converting termite and pest extermination campaign. Non-toxic drilling barrier along wall perimeter, furniture protection, and hassle-free 12-month re-treatment warranty.',
+                'suggested_color' => '#16A34A',
+                'features' => ['1-Year Official Warranty', 'Wall & Wood Drilling Barrier', 'Child & Pet Safe Chemicals', 'Free 6-Month Inspection'],
+                'image_url' => 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_landing_corporate_annual_housekeeping_contract',
+                'type' => 'landing_page',
+                'category' => 'Other Services',
+                'icon' => 'fa-building',
+                'title' => 'Annual Office Housekeeping, Sanitization & Facility Care Contract',
+                'badge' => '🏢 30-Day Trial Corporate Housekeeping AMC',
+                'subheadline' => 'Uniformed Trained Staff • Industrial Cleaning Machines • GST Input Tax Invoicing',
+                'description' => 'Exclusive corporate AMC onboarding funnel for commercial workspaces, clinics, and banks. Includes 1-month risk-free pilot, standardized green chemical kits, and daily digital attendance.',
+                'suggested_color' => '#0891B2',
+                'features' => ['30-Day Risk-Free Pilot', 'Background-Verified Staff', 'Daily Digital Supervisor Audit', 'Full GST Compliance Invoices'],
+                'image_url' => 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_landing_iso_certification_fasttrack',
+                'type' => 'landing_page',
+                'category' => 'Other Services',
+                'icon' => 'fa-certificate',
+                'title' => 'Fast-Track ISO 9001 / 27001 / 14001 Certification in 7 Working Days',
+                'badge' => '🏅 7-Day Guaranteed ISO Certification',
+                'subheadline' => 'NABCB & IAF Accredited • Complete Audit Documentation • 100% Approval Guarantee',
+                'description' => 'Direct ISO accreditation service funnel for MSMEs and exporters. Pre-audit documentation, gap analysis, employee training SOPs, and accredited digital certificates within 7 days.',
+                'suggested_color' => '#7C3AED',
+                'features' => ['IAF & NABCB Accredited', 'Full Quality Manuals Included', '100% Money-Back Guarantee', 'Tender-Ready Compliance'],
+                'image_url' => 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+            [
+                'id' => 'service_landing_solar_rooftop_epc_installation',
+                'type' => 'landing_page',
+                'category' => 'Other Services',
+                'icon' => 'fa-solar-panel',
+                'title' => 'Rooftop Solar Plant EPC, PM Surya Ghar Subsidy & Net Metering',
+                'badge' => '☀️ Flat ₹78,000 Central Govt Subsidy',
+                'subheadline' => 'Zero Electricity Bill Guarantee • Tier-1 Monocrystalline Panels • 25-Year Performance Warranty',
+                'description' => 'Turnkey residential and commercial rooftop solar EPC funnel. Seamless government subsidy processing, DISCOM net metering sanction, structural load testing, and free generation monitoring app.',
+                'suggested_color' => '#EA580C',
+                'features' => ['₹78,000 Govt Direct Subsidy', '25-Year Linear Power Warranty', 'Zero Electricity Bill Target', 'Net Metering Approval Handled'],
+                'image_url' => 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=700&auto=format&fit=crop&q=80',
+                'archetype' => 'service',
+            ],
+        ];
+    }
+
+    /**
      * Master Category-Aware Templates Catalog for all 11 Business Categories.
      *
      * @return array<string, array<string, array<string, mixed>>>
@@ -661,41 +3269,44 @@ class TemplateCatalog
 
             'Clinics & Hospitals' => [
                 'business_website' => [
-                    'id' => 'doctor_clinic',
+                    'id' => 'clinic_multispecialty_hospital',
                     'type' => 'business_website',
                     'category' => 'Clinics & Hospitals',
-                    'title' => 'Multi-Specialty Hospital & Diagnostics',
-                    'badge' => '🏥 Hospital & OPD Clinic',
-                    'subheadline' => 'NABH Accredited • Specialist MD Profiles • OPD Timings',
-                    'description' => 'Medical hospital website featuring OPD schedules, specialist doctor directories, lab test diagnostic packages, and zero-wait digital appointment booking.',
+                    'icon' => 'fa-hospital',
+                    'title' => 'Metro Multi-Specialty Hospital & 24/7 Trauma Center',
+                    'badge' => '🏥 Multi-Specialty Hospital',
+                    'subheadline' => 'NABH Accredited • 24/7 ICU & Trauma • 40+ Super Specialists • Cashless Mediclaim',
+                    'description' => 'Comprehensive tertiary healthcare hospital presence featuring 24/7 emergency & trauma response, ICU critical care, multi-specialty OPD schedules, specialist doctor directories, and instant digital appointment booking.',
                     'suggested_color' => '#0284C7',
-                    'features' => ['Digital OPD Slot Booking', 'Specialist Doctor Profiles', 'Lab Diagnostic Packages', 'NABH Accreditation'],
+                    'features' => ['24/7 Emergency & ICU', '40+ Super Specialists', 'Cashless Mediclaim TPA', 'Digital OPD Token'],
                     'image_url' => 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'service',
                 ],
                 'ecommerce' => [
-                    'id' => 'retail_supermarket',
+                    'id' => 'clinic_ecom_pharmacy_rx',
                     'type' => 'ecommerce',
                     'category' => 'Clinics & Hospitals',
-                    'title' => 'Online Pharmacy, Meds & Health Supplies',
-                    'badge' => '🛍️ Pharmacy & MedStore',
-                    'subheadline' => 'Prescription Upload • Diagnostics • Supplements • Cart',
-                    'description' => 'Online pharmacy and medical supplies store with prescription upload hooks, immunity boosters, home medical equipment, and WhatsApp order checkout.',
+                    'icon' => 'fa-pills',
+                    'title' => 'Express Chemist & Online Prescription Pharmacy',
+                    'badge' => '💊 24/7 Digital Pharmacy',
+                    'subheadline' => 'Upload Doctor Prescription • 100% Genuine Medicines • Flat 20% Off • Fast Delivery',
+                    'description' => 'Online digital pharmacy with prescription Rx upload hook, cold-chain insulin storage, chronic medicine refills, discount pricing badges, and doorstep WhatsApp delivery checkout.',
                     'suggested_color' => '#0284C7',
-                    'features' => ['Prescription Upload', 'Health Supplements', 'Instant WhatsApp Checkout', 'Emergency Home Delivery'],
+                    'features' => ['Prescription Rx Upload', 'Cold-Chain Insulin Storage', 'Flat 20% Off Medicines', 'Doorstep WhatsApp Bill'],
                     'image_url' => 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'retail',
                 ],
                 'landing_page' => [
-                    'id' => 'doctor_clinic',
+                    'id' => 'clinic_landing_urgent_opd',
                     'type' => 'landing_page',
                     'category' => 'Clinics & Hospitals',
-                    'title' => 'Emergency Care & Fast OPD Slot Funnel',
-                    'badge' => '🚀 Urgent OPD Funnel',
-                    'subheadline' => 'Zero Waiting Time • Verified MD Doctors • Instant Slot',
-                    'description' => 'Laser-focused patient conversion page with doctor availability timer, patient ratings, one-click WhatsApp appointment, and emergency hotline button.',
+                    'icon' => 'fa-truck-medical',
+                    'title' => 'Same-Day Specialist Doctor OPD Consultation Funnel',
+                    'badge' => '⚡ Urgent OPD Slot Funnel',
+                    'subheadline' => 'Skip The Long Waiting Queue • Verified Senior MD Specialists • Instant Token on WhatsApp',
+                    'description' => 'High-urgency single-page patient lead funnel featuring live doctor OPD schedules, verified senior physician credentials, zero-waiting promise, and instant WhatsApp appointment token booking.',
                     'suggested_color' => '#0284C7',
-                    'features' => ['Zero Waiting Promise', 'Instant Slot Booking', 'Direct Call Hotline', 'Patient Ratings'],
+                    'features' => ['Zero Waiting Guarantee', 'Instant Token via WhatsApp', 'Senior MD Consultants', '₹200 Off First Visit'],
                     'image_url' => 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'service',
                 ],
@@ -703,41 +3314,44 @@ class TemplateCatalog
 
             'Coaching & Institutes' => [
                 'business_website' => [
-                    'id' => 'minimal_card',
+                    'id' => 'coaching_web_iit_jee_neet',
                     'type' => 'business_website',
                     'category' => 'Coaching & Institutes',
-                    'title' => 'Premier Academy & Entrance Coaching',
-                    'badge' => '🎓 Coaching Academy',
-                    'subheadline' => 'NEET • JEE • UPSC • Faculty Profiles • Top Rankers',
-                    'description' => 'Academic institute website highlighting classroom infrastructure, topper hall of fame, course curriculum PDFs, and admission counselling forms.',
+                    'icon' => 'fa-graduation-cap',
+                    'title' => 'Apex IIT-JEE & NEET Premier Academy',
+                    'badge' => '🎯 IIT-JEE & NEET Academy',
+                    'subheadline' => 'Kota Classroom System • AIR Top 100 Ranks • Daily Practice Papers (DPP) • AIIMS & IIT Faculty',
+                    'description' => 'Top-tier engineering and medical entrance coaching institute with Kota pedagogy, daily doubt resolution counters, All-India test benchmarking, and proven top rankers.',
                     'suggested_color' => '#2563EB',
-                    'features' => ['Course Syllabus PDFs', 'Toppers Hall of Fame', 'Batch Timetables', 'Scholarship Registration'],
+                    'features' => ['Kota Coaching Pedagogy', 'Daily Practice Papers (DPP)', 'Dedicated Doubt Counters', 'Bi-weekly All India CBTs'],
                     'image_url' => 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'service',
                 ],
                 'ecommerce' => [
-                    'id' => 'retail_supermarket',
+                    'id' => 'coaching_ecom_test_series',
                     'type' => 'ecommerce',
                     'category' => 'Coaching & Institutes',
-                    'title' => 'Test Series, Books & Study Material Store',
-                    'badge' => '🛍️ Study Materials Store',
-                    'subheadline' => 'Mock Test Papers • Handwritten Notes • Book Bundles',
-                    'description' => 'E-Commerce store for students to buy mock test series, solved question banks, and physical study materials with instant payment & WhatsApp dispatch.',
+                    'icon' => 'fa-clipboard-check',
+                    'title' => 'EduTest All-India Mock Test Series & CBT Portal',
+                    'badge' => '📝 All-India Test Series Portal',
+                    'subheadline' => 'Real NTA/UPSC Exam Interface • Instant Percentile & Rank Predictor • Detailed Video Solutions',
+                    'description' => 'Computer-based mock test series store. Purchase chapter tests, subject mocks, and full-syllabus All India tests with instant rank predictor and detailed step-by-step video solutions.',
                     'suggested_color' => '#2563EB',
-                    'features' => ['Test Series Packages', 'Study Material Bundles', 'Instant PDF Access', 'WhatsApp Book Order'],
-                    'image_url' => 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=700&auto=format&fit=crop&q=80',
+                    'features' => ['Real NTA Pattern CBT', 'All India Rank Predictor', 'Video Solutions for Every Q', 'Chapter-wise Mock Tests'],
+                    'image_url' => 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'retail',
                 ],
                 'landing_page' => [
-                    'id' => 'dark_luxury',
+                    'id' => 'coaching_landing_scholarship_admission',
                     'type' => 'landing_page',
                     'category' => 'Coaching & Institutes',
-                    'title' => 'Free Demo Class & Scholarship Admission Funnel',
-                    'badge' => '🚀 Admission Lead Funnel',
-                    'subheadline' => 'Up to 90% Scholarship Test • Limited 30 Seats • Demo Class',
-                    'description' => 'High-urgency student enrollment landing page with countdown timer for upcoming batch, free demo session registration, and direct academic counselor WhatsApp chat.',
+                    'icon' => 'fa-award',
+                    'title' => 'National Talent Scholarship Test (Up to 100% Fee Waiver)',
+                    'badge' => '🏆 Up to 100% Scholarship Test Funnel',
+                    'subheadline' => 'Register for Admission Cum Scholarship Test • Win Up to 100% Scholarship • Limited 50 Slots per Center',
+                    'description' => 'High-conversion scholarship admission funnel featuring online test pass booking, instant WhatsApp admit card, detailed aptitude report, and zero registration fee countdown.',
                     'suggested_color' => '#2563EB',
-                    'features' => ['Scholarship Test Pass', 'Free Demo Booking', 'Counselor Direct Call', 'Limited Batch Seats'],
+                    'features' => ['Up to 100% Fee Waiver', 'Free Diagnostic Aptitude Report', 'Registration Fee ₹0 Today', 'Instant WhatsApp Admit Card'],
                     'image_url' => 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'service',
                 ],
@@ -745,84 +3359,90 @@ class TemplateCatalog
 
             'Doctors & Specialists' => [
                 'business_website' => [
-                    'id' => 'doctor_clinic',
+                    'id' => 'doctor_web_consultant_physician',
                     'type' => 'business_website',
                     'category' => 'Doctors & Specialists',
-                    'title' => 'Specialist Practitioner & Consultant Clinic',
-                    'badge' => '🩺 Specialist Doctor Clinic',
-                    'subheadline' => 'Super-Specialty Care • Verified MD Credentials • Timings',
-                    'description' => 'Doctor practice website showcasing clinical expertise (Cardiology, Ortho, Dental, Pediatrics), clinic hours, consultation fees, and appointment slot booking.',
+                    'icon' => 'fa-stethoscope',
+                    'title' => 'Dr. Rajesh Sharma MD - Senior Consultant Physician & Diabetologist',
+                    'badge' => '🩺 Senior Consultant Physician',
+                    'subheadline' => 'MBBS, MD (Internal Medicine) • 22+ Years Experience • Adult Health, Diabetes & Lifestyle Disorders',
+                    'description' => 'Senior consultant physician clinical practice website with verified credentials, daily clinic OPD hours, comprehensive diabetes management, digital prescriptions, and home consultation visits.',
                     'suggested_color' => '#0284C7',
-                    'features' => ['Specialist MD Profile', 'Clinic OPD Hours', 'Pre-Book Consultation', 'Google Map Navigation'],
+                    'features' => ['Senior MD Consultant', 'Diabetes Reversal Care', 'Daily Clinic OPD Hours', 'Digital Prescription Slips'],
                     'image_url' => 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'service',
                 ],
                 'ecommerce' => [
-                    'id' => 'retail_supermarket',
+                    'id' => 'doctor_ecom_prescription_refills',
                     'type' => 'ecommerce',
                     'category' => 'Doctors & Specialists',
-                    'title' => 'Doctor-Curated Healthcare & Wellness Care',
-                    'badge' => '🛍️ Doctor Curated Store',
-                    'subheadline' => 'Prescribed Supplements • Care Kits • Therapeutic Products',
-                    'description' => 'Online healthcare store curated by doctors for patients to purchase authentic supplements, orthopedic supports, dental hygiene kits, and wellness supplies.',
+                    'icon' => 'fa-prescription',
+                    'title' => 'Dr. Care 24/7 Prescription Refill & Maintenance Medicine Store',
+                    'badge' => '💊 Prescription Refill Desk',
+                    'subheadline' => 'Direct Doctor Rx Refills • Diabetic, BP & Thyroid Daily Medications • 100% Genuine Certified',
+                    'description' => 'Online patient medicine re-order portal. Upload existing doctor prescription, set monthly chronic medicine auto-refills, and receive tamper-proof doorstep medicine delivery.',
                     'suggested_color' => '#0284C7',
-                    'features' => ['Doctor Curated Items', 'Direct Patient Cart', 'WhatsApp Order', 'Safe Home Delivery'],
+                    'features' => ['1-Tap Doctor Rx Re-order', 'Monthly Auto Refills', 'Cold-Chain Insulin Dispatch', 'WhatsApp Order Invoice'],
                     'image_url' => 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'retail',
                 ],
                 'landing_page' => [
-                    'id' => 'doctor_clinic',
+                    'id' => 'doctor_landing_second_opinion',
                     'type' => 'landing_page',
                     'category' => 'Doctors & Specialists',
-                    'title' => 'Direct Doctor Consultation & Second Opinion Funnel',
-                    'badge' => '🚀 Doctor Lead Funnel',
-                    'subheadline' => '15-Min Quick Consultation • WhatsApp OPD Slip • Direct Call',
-                    'description' => 'High-trust single-page doctor funnel with verified credentials, patient recovery stories, instant appointment booking form, and emergency WhatsApp hotline.',
+                    'icon' => 'fa-file-medical',
+                    'title' => 'Expert Super-Specialist Second Opinion & Surgery Review Funnel',
+                    'badge' => '🔍 24-Hr Second Opinion Funnel',
+                    'subheadline' => 'Don\'t Rush Into Surgery • Upload Your MRI / CT / Angio Reports • Comprehensive Video Review in 24 Hours',
+                    'description' => 'High-conversion medical second opinion funnel. Patients upload radiology scans and diagnostic reports for comprehensive review by senior super-specialists before major surgery.',
                     'suggested_color' => '#0284C7',
-                    'features' => ['Instant Slot Picker', 'Verified MD Badge', 'Direct Phone Tap', 'Zero Wait Guarantee'],
-                    'image_url' => 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=700&auto=format&fit=crop&q=80',
+                    'features' => ['24-Hr Expert Report Review', 'Save Unnecessary Surgeries', 'Super-Specialist Board', '100% Confidential'],
+                    'image_url' => 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'service',
                 ],
             ],
 
             'Herbal Care' => [
                 'business_website' => [
-                    'id' => 'wellness_sanctuary',
+                    'id' => 'herbal_web_panchakarma_sanctuary',
                     'type' => 'business_website',
                     'category' => 'Herbal Care',
-                    'title' => 'Ayurvedic & Panchakarma Wellness Sanctuary',
-                    'badge' => '🌿 Ayurvedic Sanctuary',
-                    'subheadline' => 'Authentic Vaidya Therapies • Organic Herbs • Natural Detox',
-                    'description' => 'Serene natural wellness website featuring Panchakarma detoxification treatments, Nadi Pariksha consultations, organic garden herbs, and appointment scheduling.',
+                    'icon' => 'fa-leaf',
+                    'title' => 'Panchakarma Detox & Classical Ayurvedic Wellness Sanctuary',
+                    'badge' => '🌿 Authentic Panchakarma Sanctuary',
+                    'subheadline' => 'Classical 7-Day Shodhana Therapies • Certified BAMS Vaidyas • Medicated Herbal Steam',
+                    'description' => 'Traditional Ayurvedic retreat specializing in Panchakarma therapies (Vamana, Virechana, Basti), authentic Nadi Pariksha pulse diagnosis, and custom dietary regimens.',
                     'suggested_color' => '#059669',
-                    'features' => ['Panchakarma Therapies', 'Nadi Pariksha Consult', 'Organic Herb Sourcing', 'WhatsApp Appointment'],
-                    'image_url' => 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=700&auto=format&fit=crop&q=80',
+                    'features' => ['Classical Panchakarma Suites', 'BAMS Certified Vaidyas', 'Authentic Nadi Pariksha', 'Herbal Steam & Shirodhara'],
+                    'image_url' => 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'service',
                 ],
                 'ecommerce' => [
-                    'id' => 'retail_supermarket',
+                    'id' => 'herbal_ecom_cold_pressed_oils',
                     'type' => 'ecommerce',
                     'category' => 'Herbal Care',
-                    'title' => 'Organic Herbal Oils, Teas & Supplements Store',
-                    'badge' => '🛍️ Herbal E-Commerce Store',
-                    'subheadline' => 'Cold-Pressed Oils • Herbal Powders • Immunity Boosters • Cart',
-                    'description' => 'Ayurvedic e-commerce store with rich herbal product catalog, ingredients purity badges, customer reviews, shopping cart drawer, and WhatsApp checkout.',
-                    'suggested_color' => '#059669',
-                    'features' => ['100% Pure Organic Badges', 'Slide Cart Drawer', 'Wholesale Discounts', 'WhatsApp Delivery Bill'],
-                    'image_url' => 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=700&auto=format&fit=crop&q=80',
+                    'icon' => 'fa-bottle-droplet',
+                    'title' => 'Wood Cold-Pressed Herbal Hair & Body Tailam Apothecary',
+                    'badge' => '💧 Cold-Pressed Medicated Oils',
+                    'subheadline' => 'Traditional Wood Ghani Pressed • Kshirpak Vidhi Boiling • Pure Sesame & Coconut Base',
+                    'description' => 'Classical Ayurvedic medicated oils prepared through traditional Kshirpak and Sneha Kalpana methods using cold-pressed virgin base oils and potent forest herbs.',
+                    'suggested_color' => '#D97706',
+                    'features' => ['Traditional Ghani Pressed', 'Kshirpak Vidhi Boiling', 'Virgin Sesame & Coconut', 'Tamper-Proof Glass Jars'],
+                    'image_url' => 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'retail',
                 ],
                 'landing_page' => [
-                    'id' => 'dark_luxury',
+                    'id' => 'herbal_landing_hair_fall_oil',
                     'type' => 'landing_page',
                     'category' => 'Herbal Care',
-                    'title' => 'Herbal Hair Fall & Wellness Transformation Funnel',
-                    'badge' => '🚀 Herbal Product Funnel',
-                    'subheadline' => '100% Natural Ayurvedic Formula • 90-Day Regrowth Results',
-                    'description' => 'High-converting herbal product funnel featuring clinical before/after results, money-back guarantee, customer video reviews, and 1-tap WhatsApp order button.',
+                    'icon' => 'fa-spray-can-sparkles',
+                    'title' => '100-Day Ayurvedic Hair Regrowth & Anti-Hairfall Oil Funnel',
+                    'badge' => '💇 100-Day Hair Regrowth Funnel',
+                    'subheadline' => 'Stop Hair Fall in 14 Days • 21 Classical Forest Herbs • 100% Money-Back Guarantee',
+                    'description' => 'High-conversion hair wellness funnel showcasing clinical before/after results, herb-boiling video documentation, customer video reviews, and combo pack discounts.',
                     'suggested_color' => '#059669',
-                    'features' => ['90-Day Results Proof', 'Flat 40% Off Offer', 'Direct WhatsApp Order', 'Free Vaidya Consult'],
-                    'image_url' => 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&auto=format&fit=crop&q=80',
+                    'features' => ['21 Classical Herbs', 'Zero Mineral Oils', '100% Money-Back Promise', 'Free Scalp Comb Included'],
+                    'image_url' => 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'retail',
                 ],
             ],
@@ -871,126 +3491,135 @@ class TemplateCatalog
 
             'Manufacturers' => [
                 'business_website' => [
-                    'id' => 'b2b_industrial',
+                    'id' => 'mfg_web_precision_machining_plant',
                     'type' => 'business_website',
                     'category' => 'Manufacturers',
-                    'title' => 'Industrial Manufacturing & CNC Engineering Plant',
-                    'badge' => '🏭 Manufacturing Plant',
-                    'subheadline' => 'ISO 9001:2015 Plant • Heavy Machinery • Precision Engineering',
-                    'description' => 'Engineered for factories, fabricators, and OEMs. Displays manufacturing equipment, production capacity, ISO compliance, technical specs, and plant tour.',
-                    'suggested_color' => '#4F46E5',
-                    'features' => ['ISO 9001 Certification', 'Plant & Machinery Specs', 'Download Catalog PDF', 'Pan-India Freight'],
-                    'image_url' => 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=700&auto=format&fit=crop&q=80',
+                    'icon' => 'fa-gears',
+                    'title' => 'Precision CNC Machining, Heavy Engineering & Component Plant',
+                    'badge' => '🏭 Precision CNC & Engineering Plant',
+                    'subheadline' => 'ISO 9001:2015 & IATF 16949 Certified • 5-Axis VMC & CNC Turning • 10-Micron Tolerance Guaranteed',
+                    'description' => 'Premier precision component manufacturing plant equipped with multi-axis VMC machining centers, CMM inspection labs, and high-volume automotive & aerospace parts machining.',
+                    'suggested_color' => '#1E3A8A',
+                    'features' => ['5-Axis VMC Machining', 'IATF 16949 Certified', 'CMM Quality Inspection', 'High-Volume Production'],
+                    'image_url' => 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'b2b',
                 ],
                 'ecommerce' => [
-                    'id' => 'b2b_industrial',
+                    'id' => 'mfg_ecom_industrial_fasteners_hardware',
                     'type' => 'ecommerce',
                     'category' => 'Manufacturers',
-                    'title' => 'B2B Wholesale Parts, Spares & MOQ Store',
-                    'badge' => '🛍️ Wholesale Spares Store',
-                    'subheadline' => 'Tiered Volume Pricing • Minimum Order Qty • Industrial Spares',
-                    'description' => 'Wholesale industrial e-commerce catalog featuring Minimum Order Quantity (MOQ) controls, volume price slabs, technical data sheets, and wholesale cart checkout.',
-                    'suggested_color' => '#4F46E5',
-                    'features' => ['MOQ Quantity Sliders', 'Volume Tier Discounts', 'Technical Spec Sheets', 'Wholesale Cart'],
-                    'image_url' => 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=700&auto=format&fit=crop&q=80',
+                    'icon' => 'fa-screwdriver-wrench',
+                    'title' => 'High-Tensile Industrial Fasteners, Bolts & Stainless Hardware Mart',
+                    'badge' => '🔩 Grade 8.8/10.9 Fasteners & Bolts',
+                    'subheadline' => 'Hex Bolts, Nyloc Nuts, Studs & Anchors • Tiered Volume Slabs • Dispatch in Tonnes',
+                    'description' => 'Direct-from-factory wholesale fastener store. Grade 8.8, 10.9, and SS316 stainless bolts, heavy hex nuts, spring washers, and anchor fasteners with bulk MOQ volume discounts.',
+                    'suggested_color' => '#334155',
+                    'features' => ['Grade 8.8 & 10.9 Steel', 'MOQ Volume Slabs', 'Mill Test Certificate', 'Same-Day Pallet Dispatch'],
+                    'image_url' => 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'b2b',
                 ],
                 'landing_page' => [
-                    'id' => 'b2b_industrial',
+                    'id' => 'mfg_landing_custom_oem_rfq',
                     'type' => 'landing_page',
                     'category' => 'Manufacturers',
-                    'title' => 'Custom OEM Manufacturing & RFQ Quotation Funnel',
-                    'badge' => '🚀 B2B RFQ Lead Funnel',
-                    'subheadline' => 'Instant Blueprint/CAD Upload • Factory Direct Quote in 24 Hrs',
-                    'description' => 'Dedicated B2B conversion page engineered to capture high-value RFQ leads. Features CAD file upload hook, material specification matrix, and instant WhatsApp RFQ.',
-                    'suggested_color' => '#4F46E5',
-                    'features' => ['Instant RFQ Form', 'CAD/Drawing Hook', 'Direct Factory Price', 'Confidentiality NDA'],
-                    'image_url' => 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=700&auto=format&fit=crop&q=80',
+                    'icon' => 'fa-file-contract',
+                    'title' => 'Custom OEM Part Manufacturing & 24-Hour Blueprint RFQ Funnel',
+                    'badge' => '📋 Instant Blueprint RFQ Funnel',
+                    'subheadline' => 'Upload 2D PDF / 3D STEP File • Get Fixed Factory Quote within 24 Hours • Strict NDA Protected',
+                    'description' => 'High-conversion B2B lead generation funnel engineered for contract manufacturing. CAD/blueprint upload, material selection matrix, tolerance specs, and signed NDA guarantee.',
+                    'suggested_color' => '#1E3A8A',
+                    'features' => ['24-Hour Quotation Turnaround', '3D CAD & PDF Upload', 'Mutual Non-Disclosure NDA', 'DFM Feasibility Feedback'],
+                    'image_url' => 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'b2b',
                 ],
             ],
 
             'Other Retail' => [
                 'business_website' => [
-                    'id' => 'modern_clean',
+                    'id' => 'retail_web_luxury_jewelry_showroom',
                     'type' => 'business_website',
                     'category' => 'Other Retail',
-                    'title' => 'Modern Retail Storefront & Brand Presence',
-                    'badge' => '🏬 Modern Retail Store',
-                    'subheadline' => 'Store Tour • Top Brands • Store Timings • Customer Trust',
-                    'description' => 'Clean, professional retail storefront website showcasing product departments, brand story, physical store location, timings, and local customer ratings.',
-                    'suggested_color' => '#9333EA',
-                    'features' => ['Store Tour & Timings', 'Department Categories', 'Customer Testimonials', 'Google Map Directions'],
-                    'image_url' => 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&auto=format&fit=crop&q=80',
+                    'icon' => 'fa-gem',
+                    'title' => 'Heritage Gold, Solitaire Diamond & Bridal Jewelry Showroom',
+                    'badge' => '💎 Heritage Gold & Diamonds',
+                    'subheadline' => 'Hallmark 916 Gold • IGI Solitaires • Private VIP Suite • Custom Karigari',
+                    'description' => 'Prestigious heirloom jewelry house featuring BIS 916 hallmarked bridal gold, certified diamond solitaires, private bridal VIP lounge, and custom bespoke Karigari design studio.',
+                    'suggested_color' => '#D97706',
+                    'features' => ['BIS 916 Hallmark Certified', 'IGI Certified Solitaires', 'Private Bridal Lounge', 'Custom Karigari Design'],
+                    'image_url' => 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'retail',
                 ],
                 'ecommerce' => [
-                    'id' => 'retail_supermarket',
+                    'id' => 'retail_ecom_modern_fashion_apparel',
                     'type' => 'ecommerce',
                     'category' => 'Other Retail',
-                    'title' => 'Supermarket, Kirana & Daily Essentials Store',
-                    'badge' => '🛍️ Supermarket & Kirana',
-                    'subheadline' => 'Farm Fresh • Daily Groceries • Slide Cart • WhatsApp Checkout',
-                    'description' => 'High-performance online grocery and retail store with instant product search, quantity adjustments, MRP savings calculation, and WhatsApp delivery bill.',
-                    'suggested_color' => '#9333EA',
-                    'features' => ['Slide Cart Drawer', 'Instant Stock Indicators', 'MRP Discount Badges', 'WhatsApp Delivery Bill'],
-                    'image_url' => 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=700&auto=format&fit=crop&q=80',
+                    'icon' => 'fa-vest',
+                    'title' => 'Everyday Minimalist Streetwear & Contemporary Casuals Store',
+                    'badge' => '👕 Streetwear & Essentials',
+                    'subheadline' => '100% Pima Cotton • Boxy Fits • COD Available • Easy 7-Day Returns',
+                    'description' => 'Fast-fashion e-commerce store with size/color variant selectors, 240 GSM heavy cotton tees, cargo joggers, real-time inventory alerts, and instant WhatsApp tracking.',
+                    'suggested_color' => '#4F46E5',
+                    'features' => ['Size & Color Variants', '240 GSM Heavy Cotton', 'Cash on Delivery (COD)', 'Instant WhatsApp Invoice'],
+                    'image_url' => 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'retail',
                 ],
                 'landing_page' => [
-                    'id' => 'dark_luxury',
+                    'id' => 'retail_landing_mega_clearance_sale',
                     'type' => 'landing_page',
                     'category' => 'Other Retail',
-                    'title' => 'Mega Festive Sale & 24-Hr Flash Discount Funnel',
-                    'badge' => '🚀 Flash Sale Lead Funnel',
-                    'subheadline' => 'Flat 50% Off • Clearance Deals • 1-Click WhatsApp Order',
-                    'description' => 'High-energy flash sale landing page with live countdown clock, doorbuster discount cards, stock countdown counter, and instant WhatsApp ordering.',
-                    'suggested_color' => '#9333EA',
-                    'features' => ['Live Countdown Timer', 'Flat 50% Off Deals', 'Limited Stock Alert', 'WhatsApp Flash Order'],
-                    'image_url' => 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=700&auto=format&fit=crop&q=80',
+                    'icon' => 'fa-fire',
+                    'title' => 'Annual Clearance Blowout & Midnight Mega Sale Funnel',
+                    'badge' => '🔥 Annual Clearance • Flat 70% Off',
+                    'subheadline' => 'Last 24 Hours • Doorbuster Steals • First 100 Buyers Get Free Gift',
+                    'description' => 'High-urgency blowout clearance funnel with dynamic countdown timer, doorbuster flat ₹499/₹999 deals, stock depletion progress bar, and instant WhatsApp flash order.',
+                    'suggested_color' => '#DC2626',
+                    'features' => ['Up to 70% Off Doorbuster', 'Live Stock Countdown', 'Free Gift for First 100', '1-Click WhatsApp Claim'],
+                    'image_url' => 'https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'retail',
                 ],
             ],
 
             'Other Services' => [
                 'business_website' => [
-                    'id' => 'minimal_card',
+                    'id' => 'service_web_corporate_law_legal_firm',
                     'type' => 'business_website',
                     'category' => 'Other Services',
-                    'title' => 'Corporate Consulting & Professional Services',
-                    'badge' => '💼 Professional Services',
-                    'subheadline' => 'Business Advisory • Legal • Financial • Case Studies',
-                    'description' => 'Sophisticated editorial website for consulting agencies, chartered accountants, legal firms, and corporate consultants with client portfolio and booking.',
-                    'suggested_color' => '#18181B',
-                    'features' => ['Client Case Studies', 'Scope of Engagement', 'Direct Strategy Consult', 'Verified Credentials'],
-                    'image_url' => 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&auto=format&fit=crop&q=80',
+                    'icon' => 'fa-scale-balanced',
+                    'title' => 'Corporate Law, Mergers, IPR & High Court Litigation Firm',
+                    'badge' => '⚖️ Corporate Legal Counsel & Litigation Chambers',
+                    'subheadline' => 'Contract Due Diligence • High Court Litigation • Trademark & Patent Filing • Board Advisory',
+                    'description' => 'Distinguished legal advisory and litigation chambers representing corporate boards, emerging startups, and HNIs in company law, arbitration, intellectual property, and regulatory compliance.',
+                    'suggested_color' => '#1E293B',
+                    'features' => ['Corporate Due Diligence', 'Arbitration & Litigation', 'IPR Trademark Filing', 'Confidential Board Advisory'],
+                    'image_url' => 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'service',
                 ],
                 'ecommerce' => [
-                    'id' => 'retail_supermarket',
+                    'id' => 'service_ecom_home_deep_cleaning_pest_control',
                     'type' => 'ecommerce',
                     'category' => 'Other Services',
-                    'title' => 'Service Packages & Monthly Retainer Store',
-                    'badge' => '🛍️ Service Packages Store',
-                    'subheadline' => 'Fixed-Scope Plans • Monthly Maintenance • Instant Checkout',
-                    'description' => 'Sell fixed-scope service packages, AMC maintenance contracts, and digital retainers online with structured deliverables and instant billing checkout.',
-                    'suggested_color' => '#18181B',
-                    'features' => ['Tiered Package Pricing', 'Scope Checklist', 'Instant Payment Checkout', 'WhatsApp Onboarding'],
-                    'image_url' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&auto=format&fit=crop&q=80',
-                    'archetype' => 'retail',
+                    'icon' => 'fa-broom',
+                    'title' => 'Full-Home Deep Cleaning, Sanitization & Odorless Pest Control Mart',
+                    'badge' => '✨ Professional Home Cleaning & Pest Defense',
+                    'subheadline' => 'Hospital-Grade Sanitization • Odorless Cockroach Gel • Sofa & Carpet Shampooing',
+                    'description' => 'Book professional home cleaning packs online. Mechanized floor buffing, steam disinfection, kitchen degreasing, bathroom descaling, and 100% odorless pest eradication.',
+                    'suggested_color' => '#059669',
+                    'features' => ['Eco-Safe Certified Chemicals', 'Industrial Vacuum Extraction', 'Odorless Bayer Gel', 'Instant Slot Booking'],
+                    'image_url' => 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=700&auto=format&fit=crop&q=80',
+                    'archetype' => 'service',
                 ],
                 'landing_page' => [
-                    'id' => 'dark_luxury',
+                    'id' => 'service_landing_emergency_plumbing_electrical',
                     'type' => 'landing_page',
                     'category' => 'Other Services',
-                    'title' => 'High-Ticket Client Acquisition Lead Funnel',
-                    'badge' => '🚀 Client Acquisition Funnel',
-                    'subheadline' => 'Book 1-on-1 Growth Consultation • Proven ROI Framework',
-                    'description' => 'Executive conversion funnel designed to attract high-ticket B2B clients with client video testimonials, case study metrics, and calendar booking hook.',
-                    'suggested_color' => '#7C3AED',
-                    'features' => ['High-Ticket Pitch', 'Client Video Testimonials', 'Calendar Booking Hook', 'WhatsApp Lead Inquiries'],
-                    'image_url' => 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=700&auto=format&fit=crop&q=80',
+                    'icon' => 'fa-faucet-drip',
+                    'title' => '24/7 Emergency Plumbing, Burst Pipe & Electrical Breakdown Dispatch',
+                    'badge' => '⚡ 30-Min Rapid Emergency Dispatch',
+                    'subheadline' => '30-Min On-Site Arrival • Certified Master Plumbers & Wiremen • Upfront Flat Rates',
+                    'description' => 'High-urgency emergency hotline for short circuits, overhead water tank overflows, main line blockages, burst pipes, and sudden MCB trips with direct WhatsApp technician callout.',
+                    'suggested_color' => '#DC2626',
+                    'features' => ['30-Min Rapid Doorstep ETA', 'Zero Midnight Surge Fee', 'Master Electricians & Plumbers', '100% Fixed Quote First'],
+                    'image_url' => 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'service',
                 ],
             ],
@@ -1039,42 +3668,45 @@ class TemplateCatalog
 
             'Restaurant & Cafes' => [
                 'business_website' => [
-                    'id' => 'restaurant_cafe',
+                    'id' => 'rest_web_fine_dining_royal_awadh',
                     'type' => 'business_website',
                     'category' => 'Restaurant & Cafes',
-                    'title' => 'Gourmet Dine-In & Fine Dining Restaurant',
-                    'badge' => '🍽️ Gourmet Restaurant & Bar',
-                    'subheadline' => 'Artisanal Recipes • Chef Specials • Table Reservation • QR Menu',
-                    'description' => 'Gastronomic dining website with ambient photo gallery, chef signature dishes, contactless QR menu, and table reservation booking system.',
-                    'suggested_color' => '#F43F5E',
-                    'features' => ['Digital QR Menu', 'Veg / Non-Veg Dots', 'Table Reservation Form', 'Chef Signature Dishes'],
-                    'image_url' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&auto=format&fit=crop&q=80',
+                    'icon' => 'fa-utensils',
+                    'title' => 'Royal Awadh Dastarkhwan & Mughlai Dum Pukht Fine Dining',
+                    'badge' => '👑 Royal Awadhi Fine Dining',
+                    'subheadline' => 'Centuries-Old Dum Pukht Recipes • Slow-Cooked Galawati Kebabs • Live Classical Sitar',
+                    'description' => 'Opulent heritage dining sanctuary serving authentic Awadhi slow-cooked biryanis, silken kakori kebabs, silver-leaf warqi parathas, and private family dastarkhwan seating.',
+                    'suggested_color' => '#B45309',
+                    'features' => ['Slow-Cooked Dum Pukht', 'Royal Family Dastarkhwan', 'Live Classical Sitar', 'Private Dining Rooms'],
+                    'image_url' => 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'food',
                 ],
                 'ecommerce' => [
-                    'id' => 'restaurant_cafe',
+                    'id' => 'rest_ecom_cloud_kitchen_biryani_box',
                     'type' => 'ecommerce',
                     'category' => 'Restaurant & Cafes',
-                    'title' => 'Online Food Delivery & Cloud Kitchen Store',
-                    'badge' => '🛍️ Food Delivery & Kitchen',
-                    'subheadline' => 'Fresh Hot Food • Cart Slide-Over • WhatsApp Kitchen Dispatch',
-                    'description' => 'Fast online food ordering experience with Veg/Non-Veg filters, dish customize options, live cart slide-over, and instant WhatsApp kitchen dispatch.',
-                    'suggested_color' => '#F43F5E',
-                    'features' => ['Interactive Food Cart', 'Veg & Non-Veg Filters', 'MRP Discounts', 'WhatsApp Kitchen Order'],
-                    'image_url' => 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&auto=format&fit=crop&q=80',
+                    'icon' => 'fa-box-archive',
+                    'title' => 'Dum Handi Biryani, Galawati Kebabs & Curries Express Delivery',
+                    'badge' => '🍗 Dum Biryani Cloud Kitchen',
+                    'subheadline' => 'Clay Handi Sealed • Charcoal Dum Cooking • 30-Minute Doorstep Delivery',
+                    'description' => 'Specialized biryani cloud kitchen delivering royal Nizami and Kolkata dum biryanis in earthen clay handis with cooling burani raita, salan, and gulab jamun combos.',
+                    'suggested_color' => '#C2410C',
+                    'features' => ['Earthen Handi Sealed', 'Charcoal Slow Dum', '30-Minute Express Delivery', 'Tamper-Proof Hot Packing'],
+                    'image_url' => 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'food',
                 ],
                 'landing_page' => [
-                    'id' => 'restaurant_cafe',
+                    'id' => 'rest_landing_unlimited_grand_buffet',
                     'type' => 'landing_page',
                     'category' => 'Restaurant & Cafes',
-                    'title' => 'Weekend Grand Buffet & Party Hall Booking Funnel',
-                    'badge' => '🚀 Buffet Deal Lead Funnel',
-                    'subheadline' => 'Unlimited 40-Dish Buffet at ₹499 • Birthday & Party Discounts',
-                    'description' => 'High-converting dining deal funnel with unlimited buffet discount passes, banquet party hall inquiries, photo menu preview, and direct WhatsApp booking.',
-                    'suggested_color' => '#F43F5E',
-                    'features' => ['₹499 Buffet Pass Hook', 'Party Hall Packages', 'Direct WhatsApp Hold', 'Live Seating Counter'],
-                    'image_url' => 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=700&auto=format&fit=crop&q=80',
+                    'icon' => 'fa-fire',
+                    'title' => 'Sunday Grand Royal Feast: 50-Item Unlimited Buffet at Flat ₹599',
+                    'badge' => '🔥 Unlimited Buffet • Flat ₹599 Pass',
+                    'subheadline' => '12 Starters • Live Chaat & Barbeque Counters • 8 Desserts • Prior Pass Mandatory',
+                    'description' => 'High-conversion buffet deal landing page with live available table countdown, photo food wall, instant WhatsApp pass generation, and child discount tokens.',
+                    'suggested_color' => '#E11D48',
+                    'features' => ['50+ Multi-Cuisine Items', 'Live Barbeque & Chaat Counter', 'Flat ₹599 Limited Passes', 'Instant QR Pass on WhatsApp'],
+                    'image_url' => 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=700&auto=format&fit=crop&q=80',
                     'archetype' => 'food',
                 ],
             ],
