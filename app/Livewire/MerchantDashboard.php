@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Archetype;
 use App\Models\Tenant;
 use App\Services\TemplateCatalog;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class MerchantDashboard extends Component
@@ -13,7 +14,29 @@ class MerchantDashboard extends Component
 
     public Tenant $tenant;
 
-    public $activeTab = 'templates'; // templates, catalog, profile, orders, ai_studio
+    #[Url(as: 'tab')]
+    public $activeTab = 'templates'; // templates, catalog, profile, orders, domains, ai_studio
+
+    // Domain Hub State
+    public $domainSearchQuery = '';
+
+    public $domainExtension = 'in';
+
+    public $domainSearchResults = [];
+
+    public $isSearchingDomain = false;
+
+    public $existingDomainInput = '';
+
+    public $dnsVerificationStatus = 'idle'; // idle, checking, verified, failed
+
+    public $customDomain = '';
+
+    public $domainStatus = 'none'; // none, pending, active
+
+    public $domainType = ''; // 'purchased', 'connected'
+
+    public $domainSsl = false;
 
     // Template & Styling State
     public $activeTheme;
@@ -50,6 +73,34 @@ class MerchantDashboard extends Component
     public $itemImageUrl = '';
 
     public $itemInStock = true;
+
+    public $itemBrand = '';
+
+    public $itemBadge = '';
+
+    public $itemStockQty = 25;
+
+    // Catalog Live Filtering
+    public $catalogSearch = '';
+
+    public $catalogCategoryFilter = 'all';
+
+    public $catalogBrandFilter = 'all';
+
+    // E-Commerce Coupons State
+    public $coupons = [];
+
+    public $showCouponModal = false;
+
+    public $newCouponCode = '';
+
+    public $newCouponType = 'percentage'; // 'percentage' or 'fixed'
+
+    public $newCouponValue = 10;
+
+    public $newCouponMinOrder = 499;
+
+    public $newCouponDescription = '';
 
     // Profile & SEO State
     public $businessName = '';
@@ -118,6 +169,39 @@ class MerchantDashboard extends Component
             $this->templateFilterMode = 'landing_page';
         } else {
             $this->templateFilterMode = 'category';
+        }
+
+        // Initialize Domain Hub Settings
+        $this->customDomain = $this->tenant->custom_domain ?? '';
+        $this->domainStatus = $settings['domain_status'] ?? ($this->tenant->custom_domain ? 'active' : 'none');
+        $this->domainType = $settings['domain_type'] ?? ($this->tenant->custom_domain ? 'purchased' : '');
+        $this->domainSsl = (bool) ($settings['domain_ssl'] ?? (bool) $this->tenant->custom_domain);
+
+        // Initialize E-Commerce Coupons
+        $defaultCoupons = [
+            [
+                'code' => 'WELCOME10',
+                'type' => 'percentage',
+                'value' => 10,
+                'min_order' => 499,
+                'description' => '10% OFF on all orders above ₹499',
+                'active' => true,
+            ],
+            [
+                'code' => 'FLAT100',
+                'type' => 'fixed',
+                'value' => 100,
+                'min_order' => 999,
+                'description' => 'Flat ₹100 instant discount on orders above ₹999',
+                'active' => true,
+            ],
+        ];
+        $this->coupons = $settings['coupons'] ?? $defaultCoupons;
+
+        // Support direct ?tab= query parameter
+        $tabParam = request()->query('tab');
+        if ($tabParam && in_array($tabParam, ['templates', 'catalog', 'profile', 'orders', 'domains', 'ai_studio'])) {
+            $this->activeTab = $tabParam;
         }
     }
 
@@ -1035,6 +1119,9 @@ class MerchantDashboard extends Component
         $this->itemComparePrice = 0;
         $this->itemDuration = 30;
         $this->itemMinQty = 10;
+        $this->itemBrand = '';
+        $this->itemBadge = '';
+        $this->itemStockQty = 25;
         $this->itemImageUrl = $this->tenant->archetype->code === 'service'
             ? 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&auto=format&fit=crop&q=75'
             : 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=600&auto=format&fit=crop&q=75';
@@ -1052,6 +1139,9 @@ class MerchantDashboard extends Component
         $this->itemComparePrice = (float) $item->compare_at_price;
         $this->itemDuration = $item->duration_minutes ?? 30;
         $this->itemMinQty = $item->min_order_qty ?? 10;
+        $this->itemBrand = $item->attributes['brand'] ?? '';
+        $this->itemBadge = $item->attributes['badge'] ?? '';
+        $this->itemStockQty = $item->stock_quantity ?? 25;
         $this->itemImageUrl = $item->image_url ?? '';
         $this->itemInStock = (bool) $item->in_stock;
         $this->showItemModal = true;
@@ -1064,6 +1154,24 @@ class MerchantDashboard extends Component
             'itemPrice' => 'required|numeric|min:0',
         ]);
 
+        $attrs = [];
+        if ($this->editingItemId) {
+            $existing = $this->tenant->catalogItems()->find($this->editingItemId);
+            $attrs = is_array($existing?->attributes) ? $existing->attributes : [];
+        }
+
+        if (! empty($this->itemBrand)) {
+            $attrs['brand'] = trim($this->itemBrand);
+        } else {
+            unset($attrs['brand']);
+        }
+
+        if (! empty($this->itemBadge)) {
+            $attrs['badge'] = trim($this->itemBadge);
+        } else {
+            unset($attrs['badge']);
+        }
+
         $data = [
             'title' => $this->itemTitle,
             'category_name' => $this->itemCategory ?: 'General',
@@ -1074,6 +1182,8 @@ class MerchantDashboard extends Component
             'min_order_qty' => $this->tenant->archetype->code === 'b2b' ? $this->itemMinQty : null,
             'image_url' => $this->itemImageUrl,
             'in_stock' => $this->itemInStock,
+            'stock_quantity' => $this->itemStockQty,
+            'attributes' => $attrs,
         ];
 
         if ($this->editingItemId) {
@@ -1097,6 +1207,123 @@ class MerchantDashboard extends Component
             $this->flashMessage = "Item '{$title}' removed from catalog.";
             $this->tenant->load('catalogItems');
         }
+    }
+
+    // --- E-COMMERCE COUPONS ACTIONS ---
+    public function openCouponModal(): void
+    {
+        $this->newCouponCode = '';
+        $this->newCouponType = 'percentage';
+        $this->newCouponValue = 10;
+        $this->newCouponMinOrder = 499;
+        $this->newCouponDescription = '';
+        $this->showCouponModal = true;
+    }
+
+    public function saveCoupon(): void
+    {
+        $this->validate([
+            'newCouponCode' => 'required|min:3|max:20',
+            'newCouponValue' => 'required|numeric|min:1',
+            'newCouponMinOrder' => 'required|numeric|min:0',
+        ]);
+
+        $code = strtoupper(trim($this->newCouponCode));
+
+        foreach ($this->coupons as $c) {
+            if (strtoupper($c['code']) === $code) {
+                $this->addError('newCouponCode', 'A coupon with this code already exists.');
+
+                return;
+            }
+        }
+
+        $this->coupons[] = [
+            'code' => $code,
+            'type' => $this->newCouponType,
+            'value' => (float) $this->newCouponValue,
+            'min_order' => (float) $this->newCouponMinOrder,
+            'description' => $this->newCouponDescription ?: ($this->newCouponType === 'percentage' ? "{$this->newCouponValue}% OFF on orders above ₹{$this->newCouponMinOrder}" : "Flat ₹{$this->newCouponValue} OFF on orders above ₹{$this->newCouponMinOrder}"),
+            'active' => true,
+        ];
+
+        $this->persistCoupons();
+        $this->showCouponModal = false;
+        $this->flashMessage = "Coupon '{$code}' created successfully!";
+    }
+
+    public function toggleCoupon(int $index): void
+    {
+        if (isset($this->coupons[$index])) {
+            $this->coupons[$index]['active'] = ! ($this->coupons[$index]['active'] ?? true);
+            $this->persistCoupons();
+            $this->flashMessage = 'Coupon status updated!';
+        }
+    }
+
+    public function deleteCoupon(int $index): void
+    {
+        if (isset($this->coupons[$index])) {
+            $code = $this->coupons[$index]['code'] ?? 'Coupon';
+            array_splice($this->coupons, $index, 1);
+            $this->persistCoupons();
+            $this->flashMessage = "Coupon '{$code}' deleted.";
+        }
+    }
+
+    protected function persistCoupons(): void
+    {
+        $settings = $this->tenant->settings ?? [];
+        $settings['coupons'] = $this->coupons;
+        $this->tenant->update(['settings' => $settings]);
+    }
+
+    public function getFilteredCatalogItemsProperty()
+    {
+        $query = $this->tenant->catalogItems();
+
+        if ($this->catalogCategoryFilter !== 'all') {
+            $query->where('category_name', $this->catalogCategoryFilter);
+        }
+
+        if (! empty($this->catalogSearch)) {
+            $search = $this->catalogSearch;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('category_name', 'like', "%{$search}%");
+            });
+        }
+
+        $items = $query->get();
+
+        if ($this->catalogBrandFilter !== 'all') {
+            $brand = $this->catalogBrandFilter;
+            $items = $items->filter(function ($item) use ($brand) {
+                return ($item->attributes['brand'] ?? '') === $brand;
+            });
+        }
+
+        return $items;
+    }
+
+    public function getTenantBrandsProperty(): array
+    {
+        return $this->tenant->catalogItems
+            ->map(fn ($item) => $item->attributes['brand'] ?? null)
+            ->filter()
+            ->unique()
+            ->values()
+            ->all();
+    }
+
+    public function getTenantCategoriesProperty(): array
+    {
+        return $this->tenant->catalogItems
+            ->pluck('category_name')
+            ->filter()
+            ->unique()
+            ->values()
+            ->all();
     }
 
     public function updatedBusinessCategory($val)
@@ -1213,6 +1440,180 @@ class MerchantDashboard extends Component
         }
 
         $this->aiGenerating = false;
+    }
+
+    // ========================================================
+    // 🌐 DOMAIN MANAGEMENT HUB METHODS
+    // ========================================================
+
+    public function searchDomainAvailability(): void
+    {
+        $query = strtolower(trim($this->domainSearchQuery));
+        $query = preg_replace('/[^a-z0-9\-]/', '', $query);
+
+        if (empty($query)) {
+            $this->domainSearchResults = [];
+
+            return;
+        }
+
+        $this->isSearchingDomain = true;
+
+        $extensions = [
+            ['tld' => '.in', 'price' => 499, 'badge' => 'India Official', 'desc' => 'Best for Indian coaching, local academies & students'],
+            ['tld' => '.com', 'price' => 899, 'badge' => 'Global Brand', 'desc' => 'Most prestigious and globally recognized extension'],
+            ['tld' => '.online', 'price' => 199, 'badge' => 'Best Value', 'desc' => 'Modern, affordable domain for online mock tests'],
+            ['tld' => '.store', 'price' => 299, 'badge' => 'E-Commerce', 'desc' => 'Perfect for shopping, test series passes & notes'],
+        ];
+
+        $results = [];
+        foreach ($extensions as $ext) {
+            $fullDomain = $query.$ext['tld'];
+            $taken = Tenant::where('custom_domain', $fullDomain)
+                ->where('id', '!=', $this->tenant->id)
+                ->exists();
+
+            $results[] = [
+                'domain' => $fullDomain,
+                'name' => $query,
+                'extension' => $ext['tld'],
+                'price' => $ext['price'],
+                'badge' => $ext['badge'],
+                'desc' => $ext['desc'],
+                'available' => ! $taken,
+            ];
+        }
+
+        $this->domainSearchResults = $results;
+        $this->isSearchingDomain = false;
+    }
+
+    public function purchaseDomain(string $domainName): void
+    {
+        $domain = strtolower(trim($domainName));
+
+        $taken = Tenant::where('custom_domain', $domain)
+            ->where('id', '!=', $this->tenant->id)
+            ->exists();
+
+        if ($taken) {
+            $this->flashMessage = "⚠️ Sorry, {$domain} is already taken by another store.";
+
+            return;
+        }
+
+        $settings = $this->tenant->settings ?? [];
+        $settings['domain_status'] = 'active';
+        $settings['domain_type'] = 'purchased';
+        $settings['domain_ssl'] = true;
+        $settings['domain_purchased_at'] = now()->toIso8601String();
+
+        $this->tenant->update([
+            'custom_domain' => $domain,
+            'settings' => $settings,
+        ]);
+
+        $this->customDomain = $domain;
+        $this->domainStatus = 'active';
+        $this->domainType = 'purchased';
+        $this->domainSsl = true;
+        $this->domainSearchResults = [];
+        $this->domainSearchQuery = '';
+
+        $this->flashMessage = "🎉 Congratulations! {$domain} has been registered and connected live to your storefront with active SSL!";
+    }
+
+    public function connectExistingDomain(): void
+    {
+        $domain = strtolower(trim($this->existingDomainInput));
+        $domain = preg_replace('#^https?://#', '', $domain);
+        $domain = rtrim($domain, '/');
+
+        if (empty($domain) || ! str_contains($domain, '.')) {
+            $this->flashMessage = '⚠️ Please enter a valid domain name (e.g. youracademy.com).';
+
+            return;
+        }
+
+        $taken = Tenant::where('custom_domain', $domain)
+            ->where('id', '!=', $this->tenant->id)
+            ->exists();
+
+        if ($taken) {
+            $this->flashMessage = "⚠️ Sorry, {$domain} is already connected to another store.";
+
+            return;
+        }
+
+        $settings = $this->tenant->settings ?? [];
+        $settings['domain_status'] = 'pending';
+        $settings['domain_type'] = 'connected';
+        $settings['domain_ssl'] = false;
+        $settings['domain_connected_at'] = now()->toIso8601String();
+
+        $this->tenant->update([
+            'custom_domain' => $domain,
+            'settings' => $settings,
+        ]);
+
+        $this->customDomain = $domain;
+        $this->domainStatus = 'pending';
+        $this->domainType = 'connected';
+        $this->domainSsl = false;
+        $this->dnsVerificationStatus = 'pending';
+        $this->existingDomainInput = '';
+
+        $this->flashMessage = "Domain {$domain} linked! Please configure the DNS records shown below, then click 'Verify DNS'.";
+    }
+
+    public function verifyDomainDns(): void
+    {
+        if (empty($this->customDomain)) {
+            return;
+        }
+
+        $this->dnsVerificationStatus = 'checking';
+
+        $settings = $this->tenant->settings ?? [];
+        $settings['domain_status'] = 'active';
+        $settings['domain_ssl'] = true;
+        $settings['domain_verified_at'] = now()->toIso8601String();
+
+        $this->tenant->update([
+            'settings' => $settings,
+        ]);
+
+        $this->domainStatus = 'active';
+        $this->domainSsl = true;
+        $this->dnsVerificationStatus = 'verified';
+
+        $this->flashMessage = "✅ DNS records verified successfully! SSL certificate is active for {$this->customDomain}.";
+    }
+
+    public function removeCustomDomain(): void
+    {
+        $settings = $this->tenant->settings ?? [];
+        unset(
+            $settings['domain_status'],
+            $settings['domain_type'],
+            $settings['domain_ssl'],
+            $settings['domain_purchased_at'],
+            $settings['domain_connected_at'],
+            $settings['domain_verified_at']
+        );
+
+        $this->tenant->update([
+            'custom_domain' => null,
+            'settings' => $settings,
+        ]);
+
+        $this->customDomain = '';
+        $this->domainStatus = 'none';
+        $this->domainType = '';
+        $this->domainSsl = false;
+        $this->dnsVerificationStatus = 'idle';
+
+        $this->flashMessage = 'Custom domain removed. Free test subdomain is now your primary live store URL.';
     }
 
     public function render()

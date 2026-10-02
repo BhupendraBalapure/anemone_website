@@ -30,6 +30,15 @@
                             <span class="text-slate-500 truncate">{{ $tenant->city }}</span>
                             @endif
                         </div>
+                        <div class="flex items-center justify-between gap-1 text-[10px] text-slate-400 mt-2 pt-1.5 border-t border-slate-100">
+                            <a href="{{ $tenant->primary_domain_url }}" target="_blank" class="font-mono truncate text-slate-600 font-medium hover:text-purple-600 flex items-center min-w-0" title="Local: {{ $tenant->primary_domain_url }} | Production: {{ $tenant->custom_domain ?: 'Pending' }}">
+                                <i class="fa-solid fa-globe text-emerald-600 text-[9px] mr-1 shrink-0"></i>
+                                <span class="truncate">{{ preg_replace('#^https?://#', '', rtrim($tenant->primary_domain_url, '/')) }}</span>
+                            </a>
+                            <button wire:click="$set('activeTab', 'domains')" class="text-purple-600 hover:text-purple-800 font-bold shrink-0 hover:underline cursor-pointer">
+                                {{ $tenant->hasCustomDomain() ? 'Manage' : '+ Custom' }}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,6 +92,23 @@
                             <span class="text-[10px] px-2 py-0.5 rounded-full font-bold {{ $activeTab === 'orders' ? 'bg-purple-200/60 text-purple-800' : 'bg-slate-100 text-slate-600' }}">
                                 {{ $ordersCount }}
                             </span>
+                        </button>
+
+                        <!-- Custom Domains & Subdomains -->
+                        <button wire:click="$set('activeTab', 'domains')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer {{ $activeTab === 'domains' ? 'bg-purple-50 text-purple-700 border border-purple-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50' }}">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-globe w-4 text-center {{ $activeTab === 'domains' ? 'text-purple-600' : 'text-slate-400' }}"></i>
+                                <span>Domains &amp; URLs</span>
+                            </div>
+                            @if($tenant->hasCustomDomain())
+                                <span class="text-[9px] uppercase px-1.5 py-0.5 rounded font-bold bg-emerald-100 text-emerald-800 flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+                                </span>
+                            @else
+                                <span class="text-[9px] uppercase px-1.5 py-0.5 rounded font-bold bg-blue-100 text-blue-800">
+                                    Free
+                                </span>
+                            @endif
                         </button>
 
                         <!-- AI Template Studio -->
@@ -188,6 +214,9 @@
                     @elseif($activeTab === 'orders')
                         <i class="fa-solid fa-inbox text-purple-600 text-xs"></i>
                         <span class="text-sm font-black text-slate-900">Orders & Inquiries</span>
+                    @elseif($activeTab === 'domains')
+                        <i class="fa-solid fa-globe text-purple-600 text-xs"></i>
+                        <span class="text-sm font-black text-slate-900">Domains &amp; URLs</span>
                     @elseif($activeTab === 'ai_studio')
                         <i class="fa-solid fa-wand-magic-sparkles text-amber-500 text-xs"></i>
                         <span class="text-sm font-black text-slate-900">AI Template Studio</span>
@@ -196,8 +225,12 @@
             </div>
 
             <!-- Right Actions -->
-            <div class="flex items-center gap-3">
-                <a href="{{ route('store.show', $tenant->slug) }}" target="_blank" class="h-9 px-4 rounded-xl btn-brand-gradient text-white font-bold text-xs shadow-md transition hover:scale-[1.02] flex items-center gap-2">
+            <div class="flex items-center gap-2.5">
+                <button wire:click="$set('activeTab', 'domains')" class="h-9 px-3.5 rounded-xl border {{ $activeTab === 'domains' ? 'bg-purple-600 text-white border-purple-600 shadow-sm' : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-700 shadow-2xs' }} font-bold text-xs transition flex items-center gap-2 cursor-pointer" title="Manage Custom Domains & URLs">
+                    <i class="fa-solid fa-globe {{ $activeTab === 'domains' ? 'text-white' : 'text-purple-600' }}"></i>
+                    <span class="hidden sm:inline">{{ $tenant->hasCustomDomain() ? $tenant->custom_domain : 'Domains & URLs' }}</span>
+                </button>
+                <a href="{{ $tenant->primary_domain_url }}" target="_blank" class="h-9 px-4 rounded-xl btn-brand-gradient text-white font-bold text-xs shadow-md transition hover:scale-[1.02] flex items-center gap-2">
                     <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     <span>View Live Website</span>
                 </a>
@@ -227,6 +260,45 @@
         @if($activeTab === 'templates')
         <div class="space-y-8 animate-fade-in">
             
+            <!-- Storefront Live URL & Domain Banner -->
+            <div class="bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 text-white p-5 sm:p-6 rounded-3xl shadow-md border border-purple-800/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-globe text-xl text-purple-300"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-black uppercase tracking-wider text-purple-300">Live Website Address</span>
+                            @if($tenant->hasCustomDomain())
+                                <span class="px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Custom Domain Active
+                                </span>
+                            @else
+                                <span class="px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-purple-500/30 text-purple-200 border border-purple-400/30">
+                                    Free Subdomain
+                                </span>
+                            @endif
+                        </div>
+                        <div class="flex items-center gap-2 mt-1">
+                            <a href="{{ $tenant->primary_domain_url }}" target="_blank" class="text-base sm:text-lg font-black text-white hover:text-purple-200 transition font-mono flex items-center gap-2 underline decoration-purple-400 decoration-2 underline-offset-4">
+                                <span>{{ $tenant->primary_domain_url }}</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-75"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2.5 shrink-0 flex-wrap">
+                    <button wire:click="$set('activeTab', 'domains')" class="px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-sm transition flex items-center gap-2 cursor-pointer border border-purple-400/40">
+                        <i class="fa-solid fa-link"></i>
+                        <span>{{ $tenant->hasCustomDomain() ? 'Manage Domain & DNS' : 'Connect / Buy Custom Domain' }}</span>
+                    </button>
+                    <a href="{{ $tenant->primary_domain_url }}" target="_blank" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs backdrop-blur-md transition flex items-center gap-2 border border-white/20">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>Visit Website</span>
+                    </a>
+                </div>
+            </div>
+
             <!-- Section Header -->
             <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
@@ -500,19 +572,70 @@
         @if($activeTab === 'catalog')
         <div class="space-y-6 animate-fade-in">
             
-            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-2xl font-black text-slate-900 tracking-tight">
-                        {{ $tenant->archetype->code === 'service' ? 'Clinical Services & Consultation Rates' : ($tenant->archetype->code === 'b2b' ? 'Industrial Fabrication & Products' : 'Store Products Catalog') }}
+                    <h2 class="text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+                        <span>{{ $tenant->archetype->code === 'service' ? 'Clinical Services & Consultation Rates' : ($tenant->archetype->code === 'b2b' ? 'Industrial Fabrication & Products' : 'Store Products & E-Commerce Catalog') }}</span>
+                        <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800">
+                            {{ $tenant->catalogItems->count() }} Items
+                        </span>
                     </h2>
                     <p class="text-xs text-slate-500 mt-1">
-                        Add, edit, or adjust prices and service durations. Changes reflect on your website instantly.
+                        Manage products, brands, pricing discounts, inventory, and promotional coupons.
                     </p>
                 </div>
 
-                <button wire:click="openNewItemModal" class="px-5 py-2.5 rounded-xl btn-brand-gradient text-white font-bold text-xs shadow-md transition cursor-pointer flex items-center gap-2">
-                    <i class="fa-solid fa-plus"></i> Add New {{ $tenant->archetype->code === 'service' ? 'Service' : 'Item' }}
-                </button>
+                <div class="flex items-center gap-2.5 flex-wrap">
+                    <!-- Manage Coupons Button -->
+                    <button type="button" wire:click="openCouponModal" class="px-4 py-2.5 rounded-xl bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-700 font-bold text-xs shadow-2xs transition cursor-pointer flex items-center gap-2">
+                        <i class="fa-solid fa-ticket"></i>
+                        <span>E-Commerce Coupons</span>
+                        <span class="px-1.5 py-0.2 rounded-full bg-purple-600 text-white text-[10px]">{{ count($coupons) }}</span>
+                    </button>
+
+                    <!-- Add Item Button -->
+                    <button wire:click="openNewItemModal" class="px-5 py-2.5 rounded-xl btn-brand-gradient text-white font-bold text-xs shadow-md transition cursor-pointer flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i> Add New {{ $tenant->archetype->code === 'service' ? 'Service' : 'Product' }}
+                    </button>
+                </div>
+            </div>
+
+            <!-- 🔍 Real-Time Filter & Search Toolbar -->
+            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-3">
+                <div class="flex-1 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" wire:model.live.debounce.250ms="catalogSearch" placeholder="Search by title or category..." class="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-200 text-xs font-medium text-slate-800 focus:outline-purple-500 focus:border-purple-500">
+                </div>
+
+                <div class="flex items-center gap-2 flex-wrap">
+                    <!-- Category Filter Dropdown -->
+                    <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1 text-xs">
+                        <span class="text-slate-400 text-[10px] font-bold uppercase">Category:</span>
+                        <select wire:model.live="catalogCategoryFilter" class="bg-transparent font-bold text-slate-700 outline-none cursor-pointer text-xs">
+                            <option value="all">All Categories</option>
+                            @foreach($this->tenantCategories as $cat)
+                                <option value="{{ $cat }}">{{ $cat }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Brand Filter Dropdown -->
+                    <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1 text-xs">
+                        <span class="text-slate-400 text-[10px] font-bold uppercase">Brand:</span>
+                        <select wire:model.live="catalogBrandFilter" class="bg-transparent font-bold text-slate-700 outline-none cursor-pointer text-xs">
+                            <option value="all">All Brands</option>
+                            @foreach($this->tenantBrands as $bName)
+                                <option value="{{ $bName }}">{{ $bName }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    @if(!empty($catalogSearch) || $catalogCategoryFilter !== 'all' || $catalogBrandFilter !== 'all')
+                    <button wire:click="$set('catalogSearch', ''); $set('catalogCategoryFilter', 'all'); $set('catalogBrandFilter', 'all');" class="text-xs text-rose-600 hover:text-rose-700 font-bold px-2 py-1 cursor-pointer">
+                        <i class="fa-solid fa-xmark"></i> Reset
+                    </button>
+                    @endif
+                </div>
             </div>
 
             <!-- Items Table -->
@@ -521,41 +644,67 @@
                     <table class="w-full text-left text-xs">
                         <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase tracking-wider">
                             <tr>
-                                <th class="p-4">Item / Service</th>
-                                <th class="p-4">Category</th>
-                                <th class="p-4">Price</th>
+                                <th class="p-4">Item / Product</th>
+                                <th class="p-4">Brand & Category</th>
+                                <th class="p-4">Pricing & Discount</th>
                                 @if($tenant->archetype->code === 'service')
                                 <th class="p-4">Slot Duration</th>
                                 @elseif($tenant->archetype->code === 'b2b')
                                 <th class="p-4">Min Order (MOQ)</th>
                                 @else
-                                <th class="p-4">Stock Status</th>
+                                <th class="p-4">Inventory Stock</th>
                                 @endif
                                 <th class="p-4 text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100">
-                            @forelse($tenant->catalogItems as $item)
+                            @forelse($this->filteredCatalogItems as $item)
                             <tr class="hover:bg-slate-50/60 transition">
                                 <td class="p-4">
                                     <div class="flex items-center gap-3">
                                         <img src="{{ $item->image_url ?: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=100' }}" class="w-12 h-12 rounded-xl object-cover border border-slate-200">
                                         <div>
-                                            <strong class="text-slate-900 block font-bold text-sm">{{ $item->title }}</strong>
+                                            <div class="flex items-center gap-1.5 flex-wrap">
+                                                <strong class="text-slate-900 block font-bold text-sm">{{ $item->title }}</strong>
+                                                @if(!empty($item->attributes['badge']))
+                                                    <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
+                                                        {{ $item->attributes['badge'] }}
+                                                    </span>
+                                                @endif
+                                            </div>
                                             <span class="text-[11px] text-slate-400">ID: #{{ $item->id }}</span>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="p-4 font-semibold text-slate-600">
-                                    <span class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md text-[11px]">
-                                        {{ $item->category_name ?: 'General' }}
-                                    </span>
+                                <td class="p-4">
+                                    <div class="flex flex-col gap-1">
+                                        @if(!empty($item->attributes['brand']))
+                                        <span class="inline-flex items-center gap-1 text-[11px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md w-fit border border-purple-100">
+                                            <i class="fa-solid fa-tag text-[9px]"></i> {{ $item->attributes['brand'] }}
+                                        </span>
+                                        @endif
+                                        <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md text-[11px] font-semibold w-fit">
+                                            {{ $item->category_name ?: 'General' }}
+                                        </span>
+                                    </div>
                                 </td>
-                                <td class="p-4 font-bold text-slate-900">
-                                    ₹{{ number_format($item->price, 2) }}
-                                    @if($item->compare_at_price)
-                                    <span class="line-through text-slate-400 text-[10px] block">₹{{ number_format($item->compare_at_price, 2) }}</span>
-                                    @endif
+                                <td class="p-4">
+                                    <div class="flex flex-col">
+                                        <div class="flex items-baseline gap-1.5">
+                                            <span class="font-black text-slate-900 text-sm">₹{{ number_format($item->price, 0) }}</span>
+                                            @if($item->compare_at_price && $item->compare_at_price > $item->price)
+                                                <span class="line-through text-slate-400 text-xs">₹{{ number_format($item->compare_at_price, 0) }}</span>
+                                            @endif
+                                        </div>
+                                        @if($item->compare_at_price && $item->compare_at_price > $item->price)
+                                            @php
+                                                $pct = round((($item->compare_at_price - $item->price) / $item->compare_at_price) * 100);
+                                            @endphp
+                                            <span class="text-[10px] font-black text-emerald-600 mt-0.5">
+                                                Save {{ $pct }}% OFF
+                                            </span>
+                                        @endif
+                                    </div>
                                 </td>
                                 
                                 @if($tenant->archetype->code === 'service')
@@ -567,8 +716,17 @@
                                     {{ $item->min_order_qty ?: 10 }} Units
                                 </td>
                                 @else
-                                <td class="p-4 font-semibold text-emerald-600">
-                                    <i class="fa-solid fa-circle-check"></i> In Stock
+                                <td class="p-4">
+                                    @if($item->in_stock)
+                                    <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold bg-emerald-50 px-2.5 py-1 rounded-full text-[11px]">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                        <span>In Stock ({{ $item->stock_quantity ?? 25 }})</span>
+                                    </span>
+                                    @else
+                                    <span class="inline-flex items-center gap-1 text-rose-600 font-bold bg-rose-50 px-2.5 py-1 rounded-full text-[11px]">
+                                        <i class="fa-solid fa-xmark"></i> Out of Stock
+                                    </span>
+                                    @endif
                                 </td>
                                 @endif
 
@@ -584,7 +742,7 @@
                             @empty
                             <tr>
                                 <td colspan="5" class="p-8 text-center text-slate-400">
-                                    No items in catalog yet. Click "Add New Item" above to create your first item!
+                                    No items found matching your filter criteria. Try clearing search or add a new item!
                                 </td>
                             </tr>
                             @endforelse
@@ -814,33 +972,57 @@
                             @forelse($ordersList as $ord)
                             <tr class="hover:bg-slate-50/60 transition">
                                 <td class="p-4 font-bold text-slate-900">
-                                    {{ $ord->order_number }}
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="font-mono">{{ $ord->order_number }}</span>
+                                        @if(($ord->metadata['payment_option'] ?? '') === 'Cash / UPI on Delivery')
+                                            <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-amber-100 text-amber-800">COD</span>
+                                        @endif
+                                    </div>
                                     <span class="text-[10px] text-slate-400 block">{{ $ord->created_at->format('d M, h:i A') }}</span>
                                 </td>
-                                <td class="p-4 font-bold text-slate-800">
-                                    {{ $ord->customer_name }}
+                                <td class="p-4">
+                                    <strong class="text-slate-800 font-bold block">{{ $ord->customer_name }}</strong>
+                                    @if($ord->customer_address)
+                                        <span class="text-[10px] text-slate-500 block truncate max-w-[200px]" title="{{ $ord->customer_address }}">
+                                            <i class="fa-solid fa-location-dot text-rose-500 text-[9px]"></i> {{ $ord->customer_address }}
+                                        </span>
+                                    @endif
+                                    @if(!empty($ord->items_payload) && is_array($ord->items_payload))
+                                        <span class="text-[10px] text-purple-700 font-semibold block">
+                                            {{ count($ord->items_payload) }} {{ count($ord->items_payload) === 1 ? 'item' : 'items' }}
+                                        </span>
+                                    @endif
                                 </td>
                                 <td class="p-4 text-slate-600">
-                                    <a href="tel:{{ $ord->customer_phone }}" class="hover:underline">{{ $ord->customer_phone }}</a>
+                                    <a href="tel:{{ $ord->customer_phone }}" class="hover:underline font-mono">{{ $ord->customer_phone }}</a>
                                 </td>
                                 <td class="p-4">
                                     <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded {{ $ord->type === 'booking' ? 'bg-sky-100 text-sky-700' : ($ord->type === 'quote_inquiry' ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700') }}">
                                         {{ str_replace('_', ' ', $ord->type) }}
                                     </span>
                                 </td>
-                                <td class="p-4 font-bold text-slate-900">
-                                    ₹{{ number_format($ord->total_amount, 2) }}
+                                <td class="p-4">
+                                    <span class="font-black text-slate-900 block text-xs">₹{{ number_format($ord->total_amount, 2) }}</span>
+                                    @if(!empty($ord->metadata['coupon']['code']))
+                                        <span class="text-[10px] font-bold text-emerald-600 block">
+                                            <i class="fa-solid fa-ticket text-[9px]"></i> {{ $ord->metadata['coupon']['code'] }} (-₹{{ number_format($ord->metadata['discount_amount'] ?? 0) }})
+                                        </span>
+                                    @endif
                                 </td>
                                 <td class="p-4">
                                     <select wire:change="updateOrderStatus({{ $ord->id }}, $event.target.value)" class="text-xs font-bold rounded-lg border border-slate-200 px-2 py-1 outline-none cursor-pointer">
                                         <option value="new" {{ $ord->status === 'new' ? 'selected' : '' }}>New</option>
                                         <option value="confirmed" {{ $ord->status === 'confirmed' ? 'selected' : '' }}>Confirmed</option>
-                                        <option value="completed" {{ $ord->status === 'completed' ? 'selected' : '' }}>Completed</option>
+                                        <option value="dispatched" {{ $ord->status === 'dispatched' ? 'selected' : '' }}>Dispatched</option>
+                                        <option value="delivered" {{ in_array($ord->status, ['delivered', 'completed']) ? 'selected' : '' }}>Delivered</option>
                                     </select>
                                 </td>
                                 <td class="p-4 text-right">
-                                    <a href="https://wa.me/91{{ preg_replace('/[^0-9]/', '', $ord->customer_phone) }}?text=Hello%20{{ urlencode($ord->customer_name) }},%20regarding%20your%20{{ $ord->type }}%20at%20{{ urlencode($tenant->business_name) }}..." target="_blank" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs inline-flex items-center gap-1 shadow-xs">
-                                        <i class="fa-brands fa-whatsapp"></i> Chat
+                                    @php
+                                        $whatsAppMsg = "Hello " . $ord->customer_name . ", update regarding your " . $ord->type . " #" . $ord->order_number . " at " . $tenant->business_name . ": Status is now " . strtoupper($ord->status) . ". Thank you!";
+                                    @endphp
+                                    <a href="https://wa.me/91{{ preg_replace('/[^0-9]/', '', $ord->customer_phone) }}?text={{ urlencode($whatsAppMsg) }}" target="_blank" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs inline-flex items-center gap-1 shadow-xs">
+                                        <i class="fa-brands fa-whatsapp"></i> Update
                                     </a>
                                 </td>
                             </tr>
@@ -941,6 +1123,274 @@
         </div>
         @endif
 
+        <!-- ========================================== -->
+        <!-- TAB 6: 🌐 CUSTOM DOMAINS & SUBDOMAINS      -->
+        <!-- ========================================== -->
+        @if($activeTab === 'domains')
+        <div class="space-y-6 animate-fade-in">
+            
+            <!-- Top Hero Banner -->
+            <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white p-8 rounded-3xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="space-y-2">
+                    <span class="bg-blue-500/30 text-blue-200 text-xs font-bold px-3 py-1 rounded-full border border-blue-400/30 inline-flex items-center gap-1.5">
+                        <i class="fa-solid fa-globe text-cyan-300"></i> Domain Management Hub
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black tracking-tight">Your Store URL &amp; Custom Domains</h2>
+                    <p class="text-xs text-blue-200/80 max-w-xl leading-relaxed">
+                        Every store gets a free instant test subdomain. Upgrade your brand by purchasing a new domain or connecting a domain you already own from GoDaddy or Namecheap.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-3 shrink-0">
+                    <a href="{{ $tenant->primary_domain_url }}" target="_blank" class="px-5 py-3 rounded-xl bg-white text-blue-900 font-extrabold text-xs shadow-md hover:bg-blue-50 transition cursor-pointer flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-cyan-600"></i> Open Live Storefront
+                    </a>
+                </div>
+            </div>
+
+            <!-- 1. Active Primary Domain Status Card -->
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-5">
+                <div class="flex items-center justify-between flex-wrap gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base text-slate-900">Current Primary Store URL</h3>
+                            <span class="text-xs text-slate-500">The main address customers use to visit your store</span>
+                        </div>
+                    </div>
+                    @if($tenant->hasCustomDomain())
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Active Working URL
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-purple-800 border border-purple-200">
+                                <i class="fa-solid fa-cloud-arrow-up text-purple-600"></i> {{ $tenant->custom_domain }} (Ready for Cloud Hosting)
+                            </span>
+                            <button type="button" wire:click="removeCustomDomain" wire:confirm="Are you sure you want to disconnect this custom domain? Your store will return to using its free test subdomain." class="px-3 py-1 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 text-xs font-bold transition cursor-pointer">
+                                Disconnect
+                            </button>
+                        </div>
+                    @else
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Free Standalone URL Active
+                        </span>
+                    @endif
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-700 shadow-2xs shrink-0">
+                            <i class="fa-solid fa-globe text-xs"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <div class="font-mono text-sm font-bold text-slate-900 flex items-center gap-2 flex-wrap">
+                                <span class="truncate">{{ $tenant->primary_domain_url }}</span>
+                                <span class="text-[10px] font-sans font-bold bg-emerald-600 text-white px-2 py-0.5 rounded-md">Live Working Now</span>
+                            </div>
+                            <span class="text-xs text-slate-500 mt-0.5 block truncate">
+                                Opens directly as an independent website on your current environment with 100% working navigation.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button type="button" onclick="navigator.clipboard.writeText('{{ $tenant->primary_domain_url }}'); alert('Store URL copied to clipboard!');" class="px-3 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 text-xs font-bold transition flex items-center gap-1.5 shadow-2xs cursor-pointer">
+                            <i class="fa-regular fa-copy"></i> <span>Copy</span>
+                        </button>
+                        <a href="{{ $tenant->primary_domain_url }}" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-2xs cursor-pointer">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Visit</span>
+                        </a>
+                    </div>
+                </div>
+
+                @if($tenant->hasCustomDomain())
+                <!-- Production Domain Callout -->
+                <div class="p-4 rounded-2xl bg-gradient-to-r from-purple-50 via-indigo-50/50 to-slate-50 border border-purple-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-sm">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-purple-950 flex items-center gap-2 flex-wrap">
+                                <span>Real Production Domain:</span>
+                                <code class="font-mono text-purple-700 bg-white px-2 py-0.5 rounded border border-purple-200 font-bold">https://{{ $tenant->custom_domain }}</code>
+                                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-full">SSL Ready 🔒</span>
+                            </div>
+                            <span class="text-purple-700/80 text-[11px] block mt-0.5">
+                                Jab aap project ko live cloud ya VPS server par deploy karenge, toh <code>https://{{ $tenant->custom_domain }}</code> poore world ke liye automatically live ho jayega!
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button type="button" onclick="navigator.clipboard.writeText('https://{{ $tenant->custom_domain }}'); alert('Production URL copied!');" class="px-3 py-1.5 rounded-lg bg-white border border-purple-200 text-purple-700 hover:bg-purple-100/50 text-[11px] font-bold transition flex items-center gap-1 cursor-pointer">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+                @endif
+            </div>
+
+            <!-- Two-Column Grid: Buy Domain vs Connect Domain -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- 2. Buy a New Domain Card -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-5 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-lg">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-base text-slate-900">1. Buy a New Domain</h3>
+                                <span class="text-xs text-slate-500">Search &amp; register directly with zero DNS hassle</span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Search for your brand or academy domain. We register it, automatically configure SSL and DNS, and activate it on your store in seconds.
+                        </p>
+
+                        <!-- Domain Search Box -->
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-slate-700">Search Domain Name</label>
+                            <div class="flex items-center gap-2">
+                                <div class="relative flex-1">
+                                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                                    <input type="text" wire:model="domainSearchQuery" wire:keydown.enter="searchDomainAvailability" placeholder="e.g. apexacademy or targetneet" class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-purple-500 focus:border-purple-500">
+                                </div>
+                                <button type="button" wire:click="searchDomainAvailability" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5 shrink-0 cursor-pointer">
+                                    <i class="fa-solid fa-search"></i> Search
+                                </button>
+                            </div>
+                            <span class="text-[11px] text-slate-400">Popular: .in (₹499/yr), .com (₹899/yr), .online (₹199/yr)</span>
+                        </div>
+
+                        <!-- Search Results -->
+                        @if(!empty($domainSearchResults))
+                            <div class="space-y-2 pt-2 border-t border-slate-100">
+                                <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Available Domains</span>
+                                @foreach($domainSearchResults as $res)
+                                    <div class="p-3.5 rounded-2xl border transition {{ $res['available'] ? 'bg-slate-50 border-slate-200/90' : 'bg-slate-100/60 border-slate-200 opacity-60' }} flex items-center justify-between gap-3">
+                                        <div>
+                                            <div class="flex items-center gap-2">
+                                                <span class="font-bold text-slate-900 text-xs font-mono">{{ $res['domain'] }}</span>
+                                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full {{ $res['available'] ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800' }}">
+                                                    {{ $res['available'] ? '● Available' : 'Taken' }}
+                                                </span>
+                                                <span class="text-[9px] uppercase px-1.5 py-0.2 rounded font-bold bg-purple-100 text-purple-800 hidden sm:inline">
+                                                    {{ $res['badge'] }}
+                                                </span>
+                                            </div>
+                                            <span class="text-[10px] text-slate-500 block mt-0.5">{{ $res['desc'] }}</span>
+                                        </div>
+                                        <div class="flex items-center gap-3 shrink-0">
+                                            <div class="text-right">
+                                                <span class="text-xs font-black text-slate-900 block font-mono">₹{{ $res['price'] }}</span>
+                                                <span class="text-[9px] text-slate-400 uppercase font-semibold">/year</span>
+                                            </div>
+                                            @if($res['available'])
+                                                <button type="button" wire:click="purchaseDomain('{{ $res['domain'] }}')" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-black shadow-sm transition flex items-center gap-1 cursor-pointer">
+                                                    <i class="fa-solid fa-bolt text-[10px]"></i> Buy
+                                                </button>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="p-3 rounded-2xl bg-purple-50/60 border border-purple-100 text-[11px] text-purple-900 flex items-center gap-2 mt-4">
+                        <i class="fa-solid fa-wand-magic-sparkles text-purple-600 text-sm"></i>
+                        <span>Includes automated DNS routing, WHOIS privacy protection, and high-security SSL certificate at zero extra cost.</span>
+                    </div>
+                </div>
+
+                <!-- 3. Connect Existing Domain Card -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-5 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-lg">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-base text-slate-900">2. Connect Existing Domain</h3>
+                                <span class="text-xs text-slate-500">Already bought on GoDaddy, BigRock or Namecheap?</span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Connect any domain you already own. Simply enter your domain name below, then copy the 2 standard DNS records into your registrar account.
+                        </p>
+
+                        <!-- Input Existing Domain -->
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-slate-700">Enter Your Existing Domain</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" wire:model="existingDomainInput" placeholder="e.g. kotaacademy.com" class="flex-1 px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-blue-500 focus:border-blue-500 font-mono">
+                                <button type="button" wire:click="connectExistingDomain" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5 shrink-0 cursor-pointer">
+                                    <i class="fa-solid fa-link"></i> Link Domain
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- DNS Records Configuration Table -->
+                        <div class="space-y-2 pt-2 border-t border-slate-100">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Required DNS Records</span>
+                                <span class="text-[10px] text-blue-600 font-bold">Standard Setup</span>
+                            </div>
+
+                            <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-slate-50/60">
+                                <table class="w-full text-left text-xs">
+                                    <thead class="bg-slate-100 text-[10px] uppercase font-bold text-slate-600 border-b border-slate-200">
+                                        <tr>
+                                            <th class="p-2.5">Type</th>
+                                            <th class="p-2.5">Host / Name</th>
+                                            <th class="p-2.5">Points To / Target</th>
+                                            <th class="p-2.5">TTL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-200 font-mono text-[11px]">
+                                        <tr>
+                                            <td class="p-2.5 font-bold text-purple-700">CNAME</td>
+                                            <td class="p-2.5 text-slate-800">www</td>
+                                            <td class="p-2.5 font-bold text-blue-600 select-all">domains.anemony.in</td>
+                                            <td class="p-2.5 text-slate-500 font-sans">Automatic</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-2.5 font-bold text-purple-700">A</td>
+                                            <td class="p-2.5 text-slate-800">@</td>
+                                            <td class="p-2.5 font-bold text-blue-600 select-all">76.76.21.21</td>
+                                            <td class="p-2.5 text-slate-500 font-sans">Automatic</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            @if($tenant->hasCustomDomain() && $domainStatus === 'pending')
+                            <div class="p-3 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-center justify-between gap-2 mt-2">
+                                <span>DNS records pending verification. Once updated on your registrar, click Verify.</span>
+                                <button type="button" wire:click="verifyDomainDns" class="px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs transition cursor-pointer shrink-0">
+                                    Verify DNS
+                                </button>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded-2xl bg-blue-50/60 border border-blue-100 text-[11px] text-blue-900 flex items-center gap-2 mt-4">
+                        <i class="fa-solid fa-headset text-blue-600 text-sm"></i>
+                        <span>Need help with GoDaddy or Namecheap DNS setup? Message our 24/7 technical team on WhatsApp.</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        @endif
+
     </main>
 
     </div>
@@ -977,10 +1427,40 @@
                     </div>
                 </div>
 
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Original Price (₹ MRP)</label>
+                    <input wire:model="itemComparePrice" type="number" step="0.01" placeholder="Optional strikethrough price" class="input-field">
+                </div>
+                <!-- Brand & Marketing Badge Fields -->
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Original Price (₹ MRP)</label>
-                        <input wire:model="itemComparePrice" type="number" step="0.01" placeholder="Optional" class="input-field">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Brand Name</label>
+                        <input wire:model="itemBrand" list="brandSuggestions" type="text" placeholder="e.g. Allen, PW, Casio, Nike" class="input-field">
+                        <datalist id="brandSuggestions">
+                            @foreach($this->tenantBrands as $b)
+                                <option value="{{ $b }}">
+                            @endforeach
+                        </datalist>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Product Badge</label>
+                        <select wire:model="itemBadge" class="input-field">
+                            <option value="">None (Standard)</option>
+                            <option value="Bestseller">🔥 Bestseller</option>
+                            <option value="Trending">⚡ Trending</option>
+                            <option value="Hot Deal">🏷️ Hot Deal</option>
+                            <option value="New Arrival">✨ New Arrival</option>
+                            <option value="NTA Verified">✅ NTA Verified</option>
+                            <option value="Air 1 Choice">🏆 AIR 1 Choice</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Stock Quantity</label>
+                        <input wire:model="itemStockQty" type="number" min="0" class="input-field" placeholder="e.g. 50">
                     </div>
 
                     @if($tenant->archetype->code === 'service')
@@ -1018,6 +1498,141 @@
                 </div>
 
             </form>
+
+        </div>
+    </div>
+    @endif
+
+    <!-- 🎟️ E-COMMERCE COUPON MANAGEMENT MODAL -->
+    @if($showCouponModal)
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+            
+            <!-- Modal Header -->
+            <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-purple-50/60">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center text-sm shadow">
+                        <i class="fa-solid fa-ticket"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-black text-base text-slate-900">E-Commerce Promotional Coupons</h3>
+                        <p class="text-[11px] text-slate-500">Create discount vouchers applicable exclusively on checkout</p>
+                    </div>
+                </div>
+                <button wire:click="$set('showCouponModal', false)" class="text-slate-400 hover:text-slate-700 text-xl font-bold cursor-pointer">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 overflow-y-auto flex-1 space-y-6">
+                
+                <!-- Create New Coupon Box -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                    <h4 class="text-xs font-black uppercase text-slate-700 tracking-wider mb-3 flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus-circle text-purple-600"></i> Create New Coupon Code
+                    </h4>
+
+                    <form wire:submit.prevent="saveCoupon" class="space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-1">Coupon Code *</label>
+                                <input wire:model="newCouponCode" type="text" placeholder="e.g. KOTA20, DIWALI100" class="input-field uppercase font-mono font-bold" required>
+                                @error('newCouponCode') <span class="text-rose-500 text-[10px]">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-1">Discount Type *</label>
+                                <select wire:model.live="newCouponType" class="input-field font-semibold text-xs">
+                                    <option value="percentage">Percentage Discount (% OFF)</option>
+                                    <option value="fixed">Flat Amount (₹ OFF)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-1">
+                                    Discount Value ({{ $newCouponType === 'percentage' ? '%' : '₹' }}) *
+                                </label>
+                                <input wire:model="newCouponValue" type="number" step="0.01" min="1" class="input-field" required>
+                                @error('newCouponValue') <span class="text-rose-500 text-[10px]">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-1">Minimum Order Value (₹)</label>
+                                <input wire:model="newCouponMinOrder" type="number" min="0" class="input-field" placeholder="e.g. 499">
+                                @error('newCouponMinOrder') <span class="text-rose-500 text-[10px]">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 mb-1">Customer Description (Optional)</label>
+                            <input wire:model="newCouponDescription" type="text" placeholder="e.g. 10% instant discount on orders above ₹499" class="input-field text-xs">
+                        </div>
+
+                        <div class="flex justify-end pt-1">
+                            <button type="submit" class="px-5 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow transition cursor-pointer flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus"></i> Add Coupon
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Existing Coupons List -->
+                <div>
+                    <h4 class="text-xs font-black uppercase text-slate-700 tracking-wider mb-3 flex items-center justify-between">
+                        <span>Active Store Coupons ({{ count($coupons) }})</span>
+                        <span class="text-[10px] text-slate-400 font-semibold">Customers can apply these in cart</span>
+                    </h4>
+
+                    <div class="space-y-2.5">
+                        @forelse($coupons as $idx => $coupon)
+                        <div class="p-3.5 rounded-2xl border flex items-center justify-between gap-3 {{ ($coupon['active'] ?? true) ? 'bg-white border-purple-200 shadow-2xs' : 'bg-slate-50 border-slate-200 opacity-60' }}">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xs {{ ($coupon['active'] ?? true) ? 'bg-purple-100 text-purple-700' : 'bg-slate-200 text-slate-500' }}">
+                                    @if(($coupon['type'] ?? '') === 'percentage')
+                                        {{ $coupon['value'] }}%
+                                    @else
+                                        ₹{{ $coupon['value'] }}
+                                    @endif
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-mono font-black text-sm text-slate-900 tracking-wide">{{ $coupon['code'] }}</span>
+                                        <span class="text-[9px] font-bold px-2 py-0.5 rounded-full {{ ($coupon['active'] ?? true) ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-600' }}">
+                                            {{ ($coupon['active'] ?? true) ? 'Active' : 'Disabled' }}
+                                        </span>
+                                    </div>
+                                    <p class="text-[11px] text-slate-500 font-medium">
+                                        {{ $coupon['description'] ?? '' }} &bull; Min Order: ₹{{ number_format($coupon['min_order'] ?? 0) }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <button type="button" wire:click="toggleCoupon({{ $idx }})" class="p-1.5 rounded-lg border text-xs font-bold transition cursor-pointer {{ ($coupon['active'] ?? true) ? 'text-amber-600 hover:bg-amber-50 border-amber-200' : 'text-emerald-600 hover:bg-emerald-50 border-emerald-200' }}" title="Toggle Status">
+                                    <i class="fa-solid {{ ($coupon['active'] ?? true) ? 'fa-pause' : 'fa-play' }}"></i>
+                                </button>
+                                <button type="button" wire:click="deleteCoupon({{ $idx }})" class="p-1.5 rounded-lg border border-rose-200 text-rose-600 hover:bg-rose-50 text-xs font-bold transition cursor-pointer" title="Delete Coupon">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        @empty
+                        <div class="text-center py-6 text-slate-400 text-xs">
+                            No coupons created yet. Add one using the form above!
+                        </div>
+                        @endforelse
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-slate-100 bg-slate-50 flex justify-end">
+                <button type="button" wire:click="$set('showCouponModal', false)" class="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs transition cursor-pointer">
+                    Done
+                </button>
+            </div>
 
         </div>
     </div>

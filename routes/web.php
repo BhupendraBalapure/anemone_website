@@ -23,8 +23,17 @@ Route::match(['get', 'post'], '/logout', function () {
 // Super Admin Platform Command Center
 Route::get('/admin', SuperAdminDashboard::class)->name('admin.dashboard');
 
-// Main SaaS Platform Welcome & Landing Page
+// Main SaaS Platform Welcome & Landing Page (or Custom Domain Storefront)
 Route::get('/', function () {
+    $tenant = app()->bound('current_tenant') ? app('current_tenant') : null;
+
+    if ($tenant) {
+        request()->route()->setParameter('slug', $tenant->slug);
+        $instance = app('livewire')->new(StoreHome::class);
+
+        return app()->call([$instance, '__invoke'], ['slug' => $tenant->slug]);
+    }
+
     return view('welcome');
 })->name('home');
 
@@ -42,6 +51,8 @@ Route::get('/store/{slug}/editor', TemplateEditor::class)->name('store.editor');
 
 // 🧭 Dynamic Multi-Tenant Role-Based Dashboard Router
 Route::get('/dashboard', function () {
+    $currentTenant = app()->bound('current_tenant') ? app('current_tenant') : null;
+
     if (! Auth::check()) {
         return redirect()->route('login');
     }
@@ -54,8 +65,9 @@ Route::get('/dashboard', function () {
     }
 
     // 🏪 2. Merchant Store Owner -> Their Specific Store Studio Dashboard
-    if ($user->tenant) {
-        return redirect()->route('store.dashboard', $user->tenant->slug);
+    $targetTenant = $user->tenant ?: $currentTenant;
+    if ($targetTenant) {
+        return redirect()->route('store.dashboard', $targetTenant->slug);
     }
 
     // 🚀 3. Authenticated user without an active store -> Onboarding Wizard

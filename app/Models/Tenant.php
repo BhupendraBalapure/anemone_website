@@ -65,4 +65,78 @@ class Tenant extends Model
 
         return "https://wa.me/{$number}?text=".urlencode($message);
     }
+
+    /**
+     * Free default test domain / URL for this store
+     */
+    public function getTestDomainUrlAttribute(): string
+    {
+        return url('/store/'.$this->slug);
+    }
+
+    /**
+     * Local development standalone domain URL (e.g. http://bbb-lcug.localhost:8000)
+     */
+    public function getLocalDomainUrlAttribute(): string
+    {
+        $port = request()->getPort();
+        $portSuffix = (! $port || in_array($port, [80, 443])) ? '' : ':'.$port;
+
+        return 'http://'.$this->slug.'.localhost'.$portSuffix;
+    }
+
+    /**
+     * Primary active domain URL
+     * In local development (localhost / *.localhost): returns working local standalone URL
+     * In production (cloud / live server): returns custom domain https://{custom_domain} or https://{slug}.anemony.in
+     */
+    public function getPrimaryDomainUrlAttribute(): string
+    {
+        $host = request()->getHost();
+        $isLocalEnv = app()->isLocal()
+            || in_array(strtolower($host), ['localhost', '127.0.0.1'])
+            || str_ends_with(strtolower($host), '.localhost');
+
+        if ($isLocalEnv) {
+            return $this->local_domain_url;
+        }
+
+        if ($this->hasCustomDomain()) {
+            return 'https://'.$this->custom_domain;
+        }
+
+        return 'https://'.$this->slug.'.anemony.in';
+    }
+
+    /**
+     * Production target URL when hosted on cloud/VPS
+     */
+    public function getProductionDomainUrlAttribute(): string
+    {
+        if ($this->hasCustomDomain()) {
+            return 'https://'.$this->custom_domain;
+        }
+
+        return 'https://'.$this->slug.'.anemony.in';
+    }
+
+    /**
+     * Whether this tenant has a verified custom domain
+     */
+    public function hasCustomDomain(): bool
+    {
+        return ! empty($this->custom_domain);
+    }
+
+    /**
+     * Status of the custom domain (active, pending, none)
+     */
+    public function getDomainStatusAttribute(): string
+    {
+        if (! $this->hasCustomDomain()) {
+            return 'none';
+        }
+
+        return $this->settings['domain_status'] ?? 'active';
+    }
 }

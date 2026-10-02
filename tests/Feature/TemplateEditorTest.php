@@ -240,4 +240,71 @@ class TemplateEditorTest extends TestCase
             $this->assertNotEmpty($defaults['inquiry']['title'], "Category {$category} must have inquiry title");
         }
     }
+
+    public function test_merchant_can_switch_between_simple_and_advance_editor_mode(): void
+    {
+        Livewire::test(TemplateEditor::class, ['slug' => 'apex-test-academy'])
+            ->assertSee('Simple Mode')
+            ->assertSee('Advance Mode')
+            ->call('setEditorMode', 'advance')
+            ->assertSet('editorMode', 'advance');
+
+        $this->tenant->refresh();
+        $this->assertEquals('advance', $this->tenant->settings['template_customizations']['editor_mode']);
+
+        // Switch back to simple mode
+        Livewire::test(TemplateEditor::class, ['slug' => 'apex-test-academy'])
+            ->assertSet('editorMode', 'advance')
+            ->call('setEditorMode', 'simple')
+            ->assertSet('editorMode', 'simple');
+
+        $this->tenant->refresh();
+        $this->assertEquals('simple', $this->tenant->settings['template_customizations']['editor_mode']);
+    }
+
+    public function test_merchant_can_apply_1_click_content_presets(): void
+    {
+        // 1. NEET & JEE Preset
+        Livewire::test(TemplateEditor::class, ['slug' => 'apex-test-academy'])
+            ->call('applyContentPreset', 'neet_jee')
+            ->assertSet('pricingSalePrice', '499')
+            ->assertSet('heroStat1Value', '150+')
+            ->assertSee('Preset applied across your storefront!');
+
+        $this->tenant->refresh();
+        $hero = $this->tenant->settings['template_customizations']['hero'];
+        $this->assertStringContainsString('NEET', $hero['badge']);
+        $this->assertEquals('499', $this->tenant->settings['template_customizations']['pricing']['sale_price']);
+
+        // 2. UPSC Foundation Preset
+        Livewire::test(TemplateEditor::class, ['slug' => 'apex-test-academy'])
+            ->call('applyContentPreset', 'upsc_foundation')
+            ->assertSet('pricingSalePrice', '999')
+            ->assertSet('heroStat1Value', '60+');
+
+        $this->tenant->refresh();
+        $this->assertEquals('999', $this->tenant->settings['template_customizations']['pricing']['sale_price']);
+
+        // 3. 45-Day Crash Course Sprint Preset
+        Livewire::test(TemplateEditor::class, ['slug' => 'apex-test-academy'])
+            ->call('applyContentPreset', 'crash_course')
+            ->assertSet('pricingSalePrice', '299')
+            ->assertSet('heroStat1Value', '30');
+
+        $this->tenant->refresh();
+        $this->assertEquals('299', $this->tenant->settings['template_customizations']['pricing']['sale_price']);
+    }
+
+    public function test_merchant_can_select_preset_hero_background_wallpapers(): void
+    {
+        $wallpaperUrl = 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1920&q=80';
+
+        Livewire::test(TemplateEditor::class, ['slug' => 'apex-test-academy'])
+            ->call('selectPresetHeroBg', $wallpaperUrl)
+            ->assertSet('heroBackgroundImageUrl', $wallpaperUrl)
+            ->assertSee('Background wallpaper applied to your hero section!');
+
+        $this->tenant->refresh();
+        $this->assertEquals($wallpaperUrl, $this->tenant->settings['template_customizations']['hero']['background_image_url']);
+    }
 }

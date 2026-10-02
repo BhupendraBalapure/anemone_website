@@ -36,17 +36,30 @@
             </div>
         </div>
 
-        <!-- Center: Device Viewport Switcher -->
-        <div class="hidden md:flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800">
-            <button wire:click="setDeviceMode('desktop')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 {{ $deviceMode === 'desktop' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
-                <i class="fa-solid fa-desktop"></i> Desktop
-            </button>
-            <button wire:click="setDeviceMode('tablet')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 {{ $deviceMode === 'tablet' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
-                <i class="fa-solid fa-tablet-screen-button"></i> Tablet
-            </button>
-            <button wire:click="setDeviceMode('mobile')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 {{ $deviceMode === 'mobile' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
-                <i class="fa-solid fa-mobile-screen"></i> Mobile
-            </button>
+        <!-- Center: Dual-Mode Switcher & Device Viewport -->
+        <div class="flex items-center gap-3">
+            <!-- Mode Switcher Pill (Simple vs Advance) -->
+            <div class="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 shadow-inner">
+                <button type="button" wire:click="setEditorMode('simple')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 {{ $editorMode === 'simple' ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md' : 'text-slate-400 hover:text-slate-200' }}" title="Easy 2-Minute Setup for Fast Launch">
+                    <i class="fa-solid fa-bolt text-xs"></i> <span>Simple Mode</span>
+                </button>
+                <button type="button" wire:click="setEditorMode('advance')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 {{ $editorMode === 'advance' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200' }}" title="Granular Pro Controls & Layout Reordering">
+                    <i class="fa-solid fa-sliders text-xs"></i> <span>Advance Mode</span>
+                </button>
+            </div>
+
+            <!-- Viewport Switcher -->
+            <div class="hidden xl:flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800">
+                <button wire:click="setDeviceMode('desktop')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 {{ $deviceMode === 'desktop' ? 'bg-slate-800 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}" title="Desktop View">
+                    <i class="fa-solid fa-desktop"></i>
+                </button>
+                <button wire:click="setDeviceMode('tablet')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 {{ $deviceMode === 'tablet' ? 'bg-slate-800 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}" title="Tablet View">
+                    <i class="fa-solid fa-tablet-screen-button"></i>
+                </button>
+                <button wire:click="setDeviceMode('mobile')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 {{ $deviceMode === 'mobile' ? 'bg-slate-800 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}" title="Mobile View">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                </button>
+            </div>
         </div>
 
         <!-- Right: Actions & Save Button -->
@@ -85,30 +98,321 @@
         <!-- ============================================== -->
         <aside x-show="sidebarOpen" class="w-[410px] shrink-0 bg-slate-900 border-r border-slate-800 flex flex-col h-full overflow-hidden z-20 shadow-2xl transition-all duration-200" style="width: 410px; min-width: 360px; max-width: 440px;">
             
-            <!-- Controls Tab Selector -->
-            <div class="flex items-center bg-slate-950 border-b border-slate-800 p-1.5 overflow-x-auto gap-1 text-xs shrink-0">
-                <button wire:click="setEditorTab('branding')" class="px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 whitespace-nowrap {{ $activeEditorTab === 'branding' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
-                    <i class="fa-solid fa-gem text-amber-400"></i> Logo &amp; Brand
-                </button>
-                <button wire:click="setEditorTab('sections')" class="px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 whitespace-nowrap {{ $activeEditorTab === 'sections' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
-                    <i class="fa-solid fa-arrows-up-down"></i> Layout
-                </button>
-                <button wire:click="setEditorTab('hero')" class="px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 whitespace-nowrap {{ $activeEditorTab === 'hero' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
-                    <i class="fa-solid fa-bullhorn text-cyan-400"></i> Hero
-                </button>
-                <button wire:click="setEditorTab('pricing')" class="px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 whitespace-nowrap {{ $activeEditorTab === 'pricing' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
-                    <i class="fa-solid fa-tags text-rose-400"></i> Pricing
-                </button>
-                <button wire:click="setEditorTab('trust')" class="px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 whitespace-nowrap {{ $activeEditorTab === 'trust' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
-                    <i class="fa-solid fa-shield-halved text-emerald-400"></i> Trust
-                </button>
-                <button wire:click="setEditorTab('inquiry')" class="px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 whitespace-nowrap {{ $activeEditorTab === 'inquiry' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
-                    <i class="fa-solid fa-envelope text-purple-400"></i> Contact
-                </button>
-            </div>
+            @if($editorMode === 'simple')
+                <!-- ⚡ SIMPLE MODE TOP BAR -->
+                <div class="p-3 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between gap-2 shrink-0">
+                    <div class="flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs font-black">
+                            <i class="fa-solid fa-bolt"></i>
+                        </span>
+                        <div>
+                            <h2 class="text-xs font-black text-white">⚡ Simple Mode</h2>
+                            <p class="text-[10px] text-slate-400">Essential 2-minute store customization</p>
+                        </div>
+                    </div>
+                    <button type="button" wire:click="setEditorMode('advance')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-blue-400 hover:text-white text-[11px] font-bold transition flex items-center gap-1 shadow-sm cursor-pointer">
+                        <i class="fa-solid fa-sliders text-xs"></i> <span>Advance</span>
+                    </button>
+                </div>
 
-            <!-- Tab Content (Scrollable) -->
-            <div class="flex-1 overflow-y-auto p-5 space-y-6 text-xs">
+                <!-- ⚡ SIMPLE MODE SCROLLABLE CONTENT -->
+                <div class="flex-1 overflow-y-auto p-4 space-y-5 text-xs">
+
+                    <!-- 1. Brand Identity (Logo, Colors, Theme) -->
+                    <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-3.5 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs">
+                                    <i class="fa-solid fa-palette"></i>
+                                </span>
+                                <span class="font-bold text-white text-xs">1. Brand Logo &amp; Color Theme</span>
+                            </div>
+                            @if($logoUrl)
+                                <button type="button" wire:click="removeLogo" class="text-rose-400 hover:text-rose-300 text-[10px] font-bold flex items-center gap-1 transition">
+                                    <i class="fa-solid fa-trash"></i> Remove
+                                </button>
+                            @endif
+                        </div>
+
+                        <!-- Logo Preview & Upload -->
+                        <div class="p-3 rounded-xl border border-dashed border-slate-700 bg-slate-900/60 flex items-center justify-between gap-3">
+                            <div class="flex items-center gap-2.5 min-w-0">
+                                @if($logoUrl)
+                                    <img src="{{ $logoUrl }}" alt="{{ $businessName ?: $tenant->business_name }}" class="h-10 max-w-[120px] object-contain rounded-lg p-1 bg-white/5 border border-slate-800 shadow-sm shrink-0">
+                                    <span class="text-[10px] text-emerald-400 font-bold truncate">Custom Logo Active</span>
+                                @else
+                                    <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white font-black text-sm shadow-md shrink-0" style="background: linear-gradient(135deg, {{ $brandColor }}, #9333ea);">
+                                        {{ strtoupper(substr($businessName ?: $tenant->business_name, 0, 1)) }}
+                                    </div>
+                                    <span class="text-[11px] text-slate-400 truncate">Default letter badge</span>
+                                @endif
+                            </div>
+                            <label class="px-2.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-[11px] transition cursor-pointer shrink-0">
+                                <span>Upload</span>
+                                <input type="file" wire:model="logoFile" accept="image/*" class="hidden">
+                            </label>
+                        </div>
+                        <div wire:loading wire:target="logoFile" class="text-xs text-blue-400 font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-spinner animate-spin"></i> Uploading logo...
+                        </div>
+
+                        <!-- 1-Tap Color Swatches -->
+                        <div class="space-y-1.5 pt-2 border-t border-slate-800/80">
+                            <div class="flex items-center justify-between">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Primary Brand Accent</label>
+                                <div class="flex items-center gap-1.5">
+                                    <input type="color" wire:model.live="brandColor" class="w-5 h-5 rounded-md bg-transparent border-0 cursor-pointer">
+                                    <span class="text-[10px] font-mono text-slate-400 uppercase font-bold">{{ $brandColor }}</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 flex-wrap pt-1">
+                                <button type="button" wire:click="$set('brandColor', '#2563EB')" class="w-7 h-7 rounded-full bg-blue-600 border-2 transition {{ $brandColor === '#2563EB' ? 'border-white scale-110 shadow-lg' : 'border-transparent' }}" title="Electric Blue"></button>
+                                <button type="button" wire:click="$set('brandColor', '#059669')" class="w-7 h-7 rounded-full bg-emerald-600 border-2 transition {{ $brandColor === '#059669' ? 'border-white scale-110 shadow-lg' : 'border-transparent' }}" title="Emerald Green"></button>
+                                <button type="button" wire:click="$set('brandColor', '#4F46E5')" class="w-7 h-7 rounded-full bg-indigo-600 border-2 transition {{ $brandColor === '#4F46E5' ? 'border-white scale-110 shadow-lg' : 'border-transparent' }}" title="Indigo Pro"></button>
+                                <button type="button" wire:click="$set('brandColor', '#DC2626')" class="w-7 h-7 rounded-full bg-red-600 border-2 transition {{ $brandColor === '#DC2626' ? 'border-white scale-110 shadow-lg' : 'border-transparent' }}" title="Crimson Red"></button>
+                                <button type="button" wire:click="$set('brandColor', '#7C3AED')" class="w-7 h-7 rounded-full bg-purple-600 border-2 transition {{ $brandColor === '#7C3AED' ? 'border-white scale-110 shadow-lg' : 'border-transparent' }}" title="Royal Purple"></button>
+                                <button type="button" wire:click="$set('brandColor', '#D97706')" class="w-7 h-7 rounded-full bg-amber-600 border-2 transition {{ $brandColor === '#D97706' ? 'border-white scale-110 shadow-lg' : 'border-transparent' }}" title="Amber Gold"></button>
+                                <button type="button" wire:click="$set('brandColor', '#0891B2')" class="w-7 h-7 rounded-full bg-cyan-600 border-2 transition {{ $brandColor === '#0891B2' ? 'border-white scale-110 shadow-lg' : 'border-transparent' }}" title="Cyan Tech"></button>
+                                <button type="button" wire:click="$set('brandColor', '#E11D48')" class="w-7 h-7 rounded-full bg-rose-600 border-2 transition {{ $brandColor === '#E11D48' ? 'border-white scale-110 shadow-lg' : 'border-transparent' }}" title="Rose Luxe"></button>
+                            </div>
+                        </div>
+
+                        <!-- Theme Tone -->
+                        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800/80">
+                            <button type="button" wire:click="$set('themeMode', 'dark')" class="p-2 rounded-xl border text-center transition {{ $themeMode === 'dark' ? 'bg-blue-600/30 border-blue-500 text-blue-300 font-bold shadow' : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white' }}">
+                                <i class="fa-solid fa-moon mr-1 text-blue-400"></i> Dark Theme
+                            </button>
+                            <button type="button" wire:click="$set('themeMode', 'light')" class="p-2 rounded-xl border text-center transition {{ $themeMode === 'light' ? 'bg-blue-600/30 border-blue-500 text-blue-300 font-bold shadow' : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white' }}">
+                                <i class="fa-solid fa-sun mr-1 text-amber-400"></i> Light Theme
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. 1-Click Magic Presets -->
+                    <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-3 shadow-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </span>
+                            <div>
+                                <span class="font-bold text-white text-xs block">2. 1-Click Magic Presets</span>
+                                <span class="text-[10px] text-slate-400">Apply ready-to-launch exam campaigns instantly</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 pt-1">
+                            <!-- Preset 1: NEET & JEE 2026 -->
+                            <button type="button" wire:click="applyContentPreset('neet_jee')" class="w-full text-left p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800/80 hover:border-blue-500/60 transition group cursor-pointer">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-white text-xs group-hover:text-blue-400 transition flex items-center gap-1.5">
+                                        <span>🎯</span> NEET / JEE 2026 Pass
+                                    </span>
+                                    <span class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-900/60 text-blue-300 border border-blue-700/60">₹499 (75% OFF)</span>
+                                </div>
+                                <p class="text-[10px] text-slate-400 mt-1 leading-relaxed">NTA Exam Simulator, AIR Radar, Topper Mentorship, 150+ Mocks.</p>
+                            </button>
+
+                            <!-- Preset 2: UPSC CSE Foundation -->
+                            <button type="button" wire:click="applyContentPreset('upsc_foundation')" class="w-full text-left p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800/80 hover:border-indigo-500/60 transition group cursor-pointer">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-white text-xs group-hover:text-indigo-400 transition flex items-center gap-1.5">
+                                        <span>🏛️</span> UPSC Prelims &amp; Mains Pass
+                                    </span>
+                                    <span class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-indigo-900/60 text-indigo-300 border border-indigo-700/60">₹999 (75% OFF)</span>
+                                </div>
+                                <p class="text-[10px] text-slate-400 mt-1 leading-relaxed">Ex-IAS Mentorship, 60+ GS &amp; CSAT Mocks, UPSC Trend Aligned.</p>
+                            </button>
+
+                            <!-- Preset 3: 45-Day High-Yield Sprint -->
+                            <button type="button" wire:click="applyContentPreset('crash_course')" class="w-full text-left p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800/80 hover:border-emerald-500/60 transition group cursor-pointer">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-white text-xs group-hover:text-emerald-400 transition flex items-center gap-1.5">
+                                        <span>⚡</span> 45-Day Rapid Revision Sprint
+                                    </span>
+                                    <span class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-900/60 text-emerald-300 border border-emerald-700/60">₹299 (75% OFF)</span>
+                                </div>
+                                <p class="text-[10px] text-slate-400 mt-1 leading-relaxed">High-yield repeated questions, 30 speed mocks, +85 score booster.</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Hero Background & Atmosphere -->
+                    <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-3.5 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xs">
+                                    <i class="fa-solid fa-image"></i>
+                                </span>
+                                <span class="font-bold text-white text-xs">3. Hero Background &amp; Contrast</span>
+                            </div>
+                            @if($heroBackgroundImageUrl || $heroImageUrl)
+                                <button type="button" wire:click="removeHeroBackgroundImage" class="text-rose-400 hover:text-rose-300 text-[10px] font-bold flex items-center gap-1 transition cursor-pointer" title="Restore Default Live Background">
+                                    <i class="fa-solid fa-rotate-left"></i> Restore Default
+                                </button>
+                            @endif
+                        </div>
+
+                        <!-- Active Background State Indicator -->
+                        @if($heroBackgroundImageUrl || $heroImageUrl)
+                            <div class="relative rounded-xl overflow-hidden border border-slate-700 h-24 bg-slate-900 flex items-end p-2.5 shadow-inner">
+                                <img src="{{ $heroBackgroundImageUrl ?: $heroImageUrl }}" alt="Hero Background" class="absolute inset-0 w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/40"></div>
+                                <div class="relative z-10 flex items-center justify-between w-full">
+                                    <span class="text-[10px] font-bold text-white bg-slate-950/80 px-2 py-0.5 rounded-md border border-slate-700">Custom Photo Active</span>
+                                    <span class="text-[10px] font-bold text-cyan-300 bg-cyan-950/80 px-2 py-0.5 rounded-md border border-cyan-700">{{ $heroBgDarkness }}% Tint</span>
+                                </div>
+                            </div>
+                        @else
+                            <div class="p-3 rounded-xl border border-dashed border-slate-700 bg-slate-900/40 text-center">
+                                <i class="fa-solid fa-laptop-code text-cyan-400 text-lg mb-1 block"></i>
+                                <span class="text-[11px] text-slate-300 font-bold block">Live CBT Simulator Background</span>
+                                <span class="text-[10px] text-slate-400">Interactive live exam console is visible by default.</span>
+                            </div>
+                        @endif
+
+                        <!-- Upload Custom Image -->
+                        <div class="space-y-1.5">
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Upload Custom Background Image</label>
+                            <input type="file" wire:model="heroBackgroundImageFile" accept="image/*" class="block w-full text-xs text-slate-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-blue-600 file:text-white hover:file:bg-blue-500 cursor-pointer bg-slate-900 rounded-xl border border-slate-800 p-1">
+                            <div wire:loading wire:target="heroBackgroundImageFile" class="text-xs text-blue-400 font-bold flex items-center gap-2 mt-1">
+                                <i class="fa-solid fa-spinner animate-spin"></i> Uploading &amp; Applying Image...
+                            </div>
+                        </div>
+
+                        <!-- 4 Curated 1-Click Wallpapers -->
+                        <div class="space-y-1.5 pt-2 border-t border-slate-800/80">
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Or Pick Curated Coaching Wallpaper</label>
+                            <div class="grid grid-cols-4 gap-2">
+                                <button type="button" wire:click="selectPresetHeroBg('https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1920&q=80')" class="group relative rounded-lg overflow-hidden border border-slate-700 hover:border-cyan-400 h-14 transition cursor-pointer" title="Modern Lab">
+                                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=300&q=70" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                                    <span class="absolute inset-x-0 bottom-0 bg-black/70 text-[8px] text-white font-bold text-center py-0.5 truncate">Lab</span>
+                                </button>
+                                <button type="button" wire:click="selectPresetHeroBg('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80')" class="group relative rounded-lg overflow-hidden border border-slate-700 hover:border-cyan-400 h-14 transition cursor-pointer" title="Study Hall">
+                                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=300&q=70" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                                    <span class="absolute inset-x-0 bottom-0 bg-black/70 text-[8px] text-white font-bold text-center py-0.5 truncate">Library</span>
+                                </button>
+                                <button type="button" wire:click="selectPresetHeroBg('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80')" class="group relative rounded-lg overflow-hidden border border-slate-700 hover:border-cyan-400 h-14 transition cursor-pointer" title="Campus Hall">
+                                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=300&q=70" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                                    <span class="absolute inset-x-0 bottom-0 bg-black/70 text-[8px] text-white font-bold text-center py-0.5 truncate">Campus</span>
+                                </button>
+                                <button type="button" wire:click="selectPresetHeroBg('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1920&q=80')" class="group relative rounded-lg overflow-hidden border border-slate-700 hover:border-cyan-400 h-14 transition cursor-pointer" title="Dark Tech">
+                                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=300&q=70" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                                    <span class="absolute inset-x-0 bottom-0 bg-black/70 text-[8px] text-white font-bold text-center py-0.5 truncate">Tech</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Darkness Tint Quick Presets -->
+                        <div class="space-y-1.5 pt-2 border-t border-slate-800/80">
+                            <div class="flex items-center justify-between">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Photo Contrast Tint</label>
+                                <span class="text-[10px] font-bold text-blue-400">{{ $heroBgDarkness }}%</span>
+                            </div>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button type="button" wire:click="$set('heroBgDarkness', 35)" class="py-1 px-2 rounded-lg border text-center transition cursor-pointer {{ (int)$heroBgDarkness === 35 ? 'bg-blue-600 text-white border-blue-500 font-bold' : 'bg-slate-900 border-slate-800 text-slate-300 hover:text-white' }}">
+                                    <span class="text-[10px] block">35% Bright</span>
+                                </button>
+                                <button type="button" wire:click="$set('heroBgDarkness', 60)" class="py-1 px-2 rounded-lg border text-center transition cursor-pointer {{ (int)$heroBgDarkness === 60 ? 'bg-blue-600 text-white border-blue-500 font-bold' : 'bg-slate-900 border-slate-800 text-slate-300 hover:text-white' }}">
+                                    <span class="text-[10px] block">60% Balanced</span>
+                                </button>
+                                <button type="button" wire:click="$set('heroBgDarkness', 80)" class="py-1 px-2 rounded-lg border text-center transition cursor-pointer {{ (int)$heroBgDarkness === 80 ? 'bg-blue-600 text-white border-blue-500 font-bold' : 'bg-slate-900 border-slate-800 text-slate-300 hover:text-white' }}">
+                                    <span class="text-[10px] block">80% Deep Focus</span>
+                                </button>
+                            </div>
+                            <input type="range" min="0" max="95" step="5" wire:model.live.debounce.150ms="heroBgDarkness" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500 mt-1">
+                        </div>
+                    </div>
+
+                    <!-- 4. Main Message & WhatsApp Quick Connect -->
+                    <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-3.5 shadow-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-pencil"></i>
+                            </span>
+                            <span class="font-bold text-white text-xs">4. Store Message &amp; WhatsApp</span>
+                        </div>
+
+                        <!-- Academy / Store Display Name -->
+                        <div class="space-y-1">
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Store / Academy Name</label>
+                            <input type="text" wire:model.live.debounce.400ms="businessName" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:border-blue-500 focus:outline-none font-bold">
+                        </div>
+
+                        <!-- Main Value Headline -->
+                        <div class="space-y-1">
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Main Hero Headline</label>
+                            <textarea rows="2" wire:model.live.debounce.400ms="heroHeadline" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:border-blue-500 focus:outline-none"></textarea>
+                        </div>
+
+                        <!-- Subheadline -->
+                        <div class="space-y-1">
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Subtitle Description</label>
+                            <textarea rows="2" wire:model.live.debounce.400ms="heroSubheadline" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-300 focus:border-blue-500 focus:outline-none text-[11px]"></textarea>
+                        </div>
+
+                        <!-- WhatsApp Quick Connect -->
+                        <div class="space-y-1 pt-1">
+                            <label class="block text-[10px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-brands fa-whatsapp text-emerald-400"></i> WhatsApp Orders &amp; Inquiries
+                            </label>
+                            <input type="text" wire:model.live.debounce.400ms="whatsappNumber" placeholder="e.g. 9876543210" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-emerald-300 focus:border-emerald-500 focus:outline-none font-mono">
+                        </div>
+                    </div>
+
+                    <!-- 5. Advance Mode Callout -->
+                    <div class="p-4 rounded-2xl bg-gradient-to-br from-slate-900 to-blue-950/40 border border-blue-900/40 space-y-2.5 text-center">
+                        <div class="w-8 h-8 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center mx-auto text-sm">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-black text-white">Need Deeper Customization?</h3>
+                            <p class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">
+                                Switch to <span class="text-blue-300 font-bold">Advance Mode</span> to reorder sections up/down, edit 4 trust pillar cards, customize strikethrough pricing, and fine-tune exam simulator chips.
+                            </p>
+                        </div>
+                        <button type="button" wire:click="setEditorMode('advance')" class="w-full py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-lg shadow-blue-900/40 transition flex items-center justify-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-sliders"></i> Open Advance Mode
+                        </button>
+                    </div>
+
+                </div>
+            @else
+                <!-- ============================================== -->
+                <!-- 🛠️ ADVANCE MODE TOP BAR & TAB SELECTOR         -->
+                <!-- ============================================== -->
+                <div class="flex items-center bg-slate-950 border-b border-slate-800 p-1.5 overflow-x-auto gap-1 text-xs shrink-0">
+                    <button wire:click="setEditorTab('branding')" class="px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 whitespace-nowrap {{ $activeEditorTab === 'branding' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
+                        <i class="fa-solid fa-gem text-amber-400"></i> Logo &amp; Brand
+                    </button>
+                    <button wire:click="setEditorTab('sections')" class="px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 whitespace-nowrap {{ $activeEditorTab === 'sections' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
+                        <i class="fa-solid fa-arrows-up-down"></i> Layout
+                    </button>
+                    <button wire:click="setEditorTab('hero')" class="px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 whitespace-nowrap {{ $activeEditorTab === 'hero' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
+                        <i class="fa-solid fa-bullhorn text-cyan-400"></i> Hero
+                    </button>
+                    <button wire:click="setEditorTab('pricing')" class="px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 whitespace-nowrap {{ $activeEditorTab === 'pricing' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
+                        <i class="fa-solid fa-tags text-rose-400"></i> Pricing
+                    </button>
+                    <button wire:click="setEditorTab('trust')" class="px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 whitespace-nowrap {{ $activeEditorTab === 'trust' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
+                        <i class="fa-solid fa-shield-halved text-emerald-400"></i> Trust
+                    </button>
+                    <button wire:click="setEditorTab('inquiry')" class="px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 whitespace-nowrap {{ $activeEditorTab === 'inquiry' ? 'bg-blue-600 text-white shadow' : 'text-slate-400 hover:text-slate-200' }}">
+                        <i class="fa-solid fa-envelope text-purple-400"></i> Contact
+                    </button>
+                </div>
+
+                <!-- Tab Content (Scrollable Advance Studio) -->
+                <div class="flex-1 overflow-y-auto p-5 space-y-6 text-xs">
+                    
+                    <!-- Advance Mode Banner -->
+                    <div class="p-2.5 rounded-xl bg-slate-950/70 border border-slate-800 flex items-center justify-between text-[11px]">
+                        <span class="text-slate-400 font-bold flex items-center gap-1.5">
+                            <i class="fa-solid fa-sliders text-blue-400"></i> Advance Studio Active
+                        </span>
+                        <button type="button" wire:click="setEditorMode('simple')" class="text-amber-400 hover:text-amber-300 font-bold transition cursor-pointer">
+                            &larr; Switch to Simple Mode
+                        </button>
+                    </div>
                 
                 <!-- ============================================== -->
                 <!-- 🔀 TAB 1: SECTIONS MANAGER (ORDER & ACTIVE/DEACTIVE) -->
@@ -580,6 +884,7 @@
                 @endif
 
             </div>
+            @endif
 
             <!-- Footer Status Bar -->
             <div class="p-3 bg-slate-950 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between shrink-0">

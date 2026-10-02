@@ -16,12 +16,20 @@ class TemplateEditor extends Component
 
     public $activeTheme;
 
+    // Dual-Mode Editor State ('simple' or 'advance')
+    public $editorMode = 'simple';
+
     // Viewport & Editor State
     public $activeEditorTab = 'branding'; // 'branding', 'sections', 'hero', 'pricing', 'trust', 'inquiry'
 
     public $deviceMode = 'desktop'; // 'desktop', 'tablet', 'mobile'
 
     public $flashSuccess = '';
+
+    // Business Identity
+    public $businessName = '';
+
+    public $whatsappNumber = '';
 
     // Branding & Logo
     public $logoUrl = '';
@@ -130,6 +138,11 @@ class TemplateEditor extends Component
         $settings = $this->tenant->settings ?? [];
         $customizations = $settings['template_customizations'] ?? [];
         $defaults = $this->getCategoryDefaults();
+
+        // Dual-Mode & Identity
+        $this->editorMode = $customizations['editor_mode'] ?? 'simple';
+        $this->businessName = $this->tenant->business_name ?? '';
+        $this->whatsappNumber = $this->tenant->whatsapp_number ?? ($this->tenant->phone ?? '');
 
         // Branding & Logo
         $this->logoUrl = $customizations['branding']['logo_url'] ?? ($settings['logo_url'] ?? '');
@@ -254,6 +267,96 @@ class TemplateEditor extends Component
         $this->activeEditorTab = $tab;
     }
 
+    public function setEditorMode(string $mode): void
+    {
+        if (in_array($mode, ['simple', 'advance'], true)) {
+            $this->editorMode = $mode;
+            $this->saveCustomizations(showNotification: false);
+        }
+    }
+
+    public function selectPresetHeroBg(string $url): void
+    {
+        $this->heroBackgroundImageUrl = $url;
+        $this->heroImageUrl = $url;
+        $this->saveCustomizations(showNotification: false);
+        $this->flashSuccess = '🖼️ Background wallpaper applied to your hero section!';
+    }
+
+    public function applyContentPreset(string $presetKey): void
+    {
+        if ($presetKey === 'neet_jee') {
+            $this->heroTickerText = '🔥 NEET 2026: 42 Days Left • JEE Main All-India Mock 04 Live Now';
+            $this->heroBadge = 'Admissions Open for NEET & JEE 2026';
+            $this->heroSubBadge = 'AIR 1 NEET & AIR 16 JEE Adv Toppers Trained Here';
+            $this->heroHeadline = 'Master NTA-Pattern CBT Exams With Real-Time AIR Radar';
+            $this->heroHighlight = 'Kota Faculty Edition';
+            $this->heroSubheadline = 'Experience real examination hall pressure with full-length NTA interface simulator, instant percentile benchmarking, and video solutions.';
+            $this->heroStat1Value = '150+';
+            $this->heroStat1Label = 'Chapter Tests';
+            $this->heroStat2Value = '35 Full';
+            $this->heroStat2Label = 'AIR Mock Tests';
+            $this->heroStat3Value = '100%';
+            $this->heroStat3Label = 'Video Solutions';
+            $this->heroStat4Value = 'AIR Radar';
+            $this->heroStat4Label = 'Instant Rank';
+            $this->heroPrimaryCtaText = 'Start Free Diagnostic Mock';
+            $this->heroPrimaryCtaLink = '#services';
+            $this->pricingSalePrice = '499';
+            $this->pricingRegularPrice = '1999';
+            $this->pricingDiscountTag = '75% OFF EARLY BIRD';
+            $this->pricingOfferSubtext = 'Includes 150+ chapter tests, 35 AIR full tests & video solutions';
+            $this->brandColor = '#2563EB';
+        } elseif ($presetKey === 'upsc_foundation') {
+            $this->heroTickerText = '🏛️ UPSC CSE 2026: Prelims GS + CSAT Mock Test Series Live';
+            $this->heroBadge = 'Curated by Ex-Civil Servants & IAS Mentors';
+            $this->heroSubBadge = '12,500+ Aspirants Practicing Nationwide';
+            $this->heroHeadline = 'Crack UPSC Civil Services With Standard Examination Mocks';
+            $this->heroHighlight = 'GS + CSAT Mastery';
+            $this->heroSubheadline = 'Topic-wise NCERT drills, advanced current affairs papers, and comprehensive GS 1 & CSAT mocks aligned with latest UPSC question patterns.';
+            $this->heroStat1Value = '60+';
+            $this->heroStat1Label = 'GS & CSAT Mocks';
+            $this->heroStat2Value = '100%';
+            $this->heroStat2Label = 'UPSC Standard';
+            $this->heroStat3Value = '12.5k';
+            $this->heroStat3Label = 'Civil Aspirants';
+            $this->heroStat4Value = '24/7';
+            $this->heroStat4Label = 'Doubt Support';
+            $this->heroPrimaryCtaText = 'Attempt Free GS Paper 1';
+            $this->heroPrimaryCtaLink = '#services';
+            $this->pricingSalePrice = '999';
+            $this->pricingRegularPrice = '3999';
+            $this->pricingDiscountTag = '75% OFF FOUNDATION';
+            $this->pricingOfferSubtext = 'Detailed model answers, rank analysis & sectional test access';
+            $this->brandColor = '#4F46E5';
+        } elseif ($presetKey === 'crash_course') {
+            $this->heroTickerText = '⚡ 45-Day High-Yield Revision Sprint: Score Boost Guarantee';
+            $this->heroBadge = 'Last-Mile Revision Sprint 2026';
+            $this->heroSubBadge = 'Boost 80+ Marks In Final 45 Days';
+            $this->heroHeadline = 'High-Yield Most Repeated Concepts & Speed-Test Modules';
+            $this->heroHighlight = 'Rapid Score Booster';
+            $this->heroSubheadline = 'Focus only on high-probability questions, time-saving tricks, daily formula tests, and rapid error analysis to maximize your score.';
+            $this->heroStat1Value = '30';
+            $this->heroStat1Label = 'High-Yield Mocks';
+            $this->heroStat2Value = '+85';
+            $this->heroStat2Label = 'Avg Score Boost';
+            $this->heroStat3Value = '25,000+';
+            $this->heroStat3Label = 'Active Students';
+            $this->heroStat4Value = '10 min';
+            $this->heroStat4Label = 'Daily Speed Drill';
+            $this->heroPrimaryCtaText = 'Enroll in Revision Sprint';
+            $this->heroPrimaryCtaLink = '#services';
+            $this->pricingSalePrice = '299';
+            $this->pricingRegularPrice = '1199';
+            $this->pricingDiscountTag = '75% OFF SPRINT';
+            $this->pricingOfferSubtext = 'Instant access to formula sheets, 30 speed mocks & answer keys';
+            $this->brandColor = '#059669';
+        }
+
+        $this->saveCustomizations(showNotification: true);
+        $this->flashSuccess = '✨ Preset applied across your storefront!';
+    }
+
     public function setDeviceMode(string $mode): void
     {
         $this->deviceMode = $mode;
@@ -313,6 +416,7 @@ class TemplateEditor extends Component
         $bgUrl = $this->heroBackgroundImageUrl ?: $this->heroImageUrl;
 
         $settings['template_customizations'] = [
+            'editor_mode' => $this->editorMode,
             'branding' => [
                 'logo_url' => $this->logoUrl,
                 'brand_color' => $this->brandColor,
@@ -365,10 +469,18 @@ class TemplateEditor extends Component
             ],
         ];
 
-        $this->tenant->update([
+        $tenantData = [
             'settings' => $settings,
             'brand_color' => $this->brandColor,
-        ]);
+        ];
+        if (! empty($this->businessName)) {
+            $tenantData['business_name'] = $this->businessName;
+        }
+        if (! empty($this->whatsappNumber)) {
+            $tenantData['whatsapp_number'] = $this->whatsappNumber;
+        }
+
+        $this->tenant->update($tenantData);
 
         if ($showNotification) {
             $this->flashSuccess = '✅ All template changes saved and published live successfully!';

@@ -19,12 +19,30 @@ class StoreHome extends Component
 
     public $selectedCategory = 'all';
 
+    public $selectedBrand = 'all';
+
+    public $sortBy = 'featured'; // 'featured', 'price_asc', 'price_desc', 'discount_desc'
+
     public $search = '';
 
     // Cart state for Retail & Food
     public $cart = []; // [itemId => ['title' => ..., 'price' => ..., 'qty' => ...]]
 
     public $showCartModal = false;
+
+    // E-Commerce Exclusive Coupon Engine
+    public $couponCode = '';
+
+    public $appliedCoupon = null; // ['code' => '...', 'type' => '...', 'value' => 10, 'discount' => 120]
+
+    public $couponError = '';
+
+    public $couponSuccess = '';
+
+    // Direct Web Checkout Modal State
+    public $showOrderSuccessModal = false;
+
+    public $placedOrder = null;
 
     public $customerName = '';
 
@@ -208,11 +226,33 @@ class StoreHome extends Component
         unset($this->cart[$itemId]);
     }
 
-    public function getCartTotalProperty(): float
+    public function getSubtotalProperty(): float
     {
         return array_reduce($this->cart, function ($carry, $item) {
             return $carry + ($item['price'] * $item['qty']);
         }, 0.0);
+    }
+
+    public function getDiscountAmountProperty(): float
+    {
+        if (! $this->appliedCoupon || ! $this->isEcommerce) {
+            return 0.0;
+        }
+
+        $subtotal = $this->subtotal;
+        if (($this->appliedCoupon['type'] ?? 'percentage') === 'percentage') {
+            return round(($subtotal * (float) $this->appliedCoupon['value']) / 100, 2);
+        }
+
+        return min((float) $this->appliedCoupon['value'], $subtotal);
+    }
+
+    public function getCartTotalProperty(): float
+    {
+        $subtotal = $this->subtotal;
+        $discount = $this->discountAmount;
+
+        return max(0.0, $subtotal - $discount);
     }
 
     public function getCartCountProperty(): int
@@ -220,6 +260,114 @@ class StoreHome extends Component
         return array_reduce($this->cart, function ($carry, $item) {
             return $carry + $item['qty'];
         }, 0);
+    }
+
+    public function getAvailableCouponsProperty(): array
+    {
+        if (! $this->isEcommerce) {
+            return [];
+        }
+
+        $allCoupons = $this->tenant->settings['coupons'] ?? [
+            [
+                'code' => 'WELCOME10',
+                'type' => 'percentage',
+                'value' => 10,
+                'min_order' => 499,
+                'description' => '10% OFF on all orders above ₹499',
+                'active' => true,
+            ],
+            [
+                'code' => 'FLAT100',
+                'type' => 'fixed',
+                'value' => 100,
+                'min_order' => 999,
+                'description' => 'Flat ₹100 instant discount on orders above ₹999',
+                'active' => true,
+            ],
+        ];
+
+        return array_values(array_filter($allCoupons, fn ($c) => ($c['active'] ?? true) === true));
+    }
+
+    public function getFreeShippingThresholdProperty(): float
+    {
+        return 999.0;
+    }
+
+    public function getFreeShippingProgressProperty(): float
+    {
+        if ($this->subtotal <= 0) {
+            return 0.0;
+        }
+
+        return min(100.0, round(($this->subtotal / $this->freeShippingThreshold) * 100, 1));
+    }
+
+    public function applyCoupon(?string $code = null): void
+    {
+        if (! $this->isEcommerce) {
+            return;
+        }
+
+        $inputCode = strtoupper(trim($code ?: $this->couponCode));
+        $this->couponError = '';
+        $this->couponSuccess = '';
+
+        if (empty($inputCode)) {
+            $this->couponError = 'Please enter a coupon code.';
+
+            return;
+        }
+
+        $available = $this->availableCoupons;
+        $found = null;
+        foreach ($available as $c) {
+            if (strtoupper($c['code']) === $inputCode) {
+                $found = $c;
+                break;
+            }
+        }
+
+        if (! $found) {
+            $this->couponError = "Coupon '{$inputCode}' is invalid or expired.";
+
+            return;
+        }
+
+        $subtotal = $this->subtotal;
+        $minOrder = (float) ($found['min_order'] ?? 0);
+        if ($subtotal < $minOrder) {
+            $diff = $minOrder - $subtotal;
+            $this->couponError = 'Add ₹'.number_format($diff, 0)." more to use coupon '{$found['code']}' (Min order: ₹".number_format($minOrder, 0).').';
+
+            return;
+        }
+
+        $discount = 0.0;
+        if (($found['type'] ?? 'percentage') === 'percentage') {
+            $discount = round(($subtotal * (float) $found['value']) / 100, 2);
+        } else {
+            $discount = min((float) $found['value'], $subtotal);
+        }
+
+        $this->appliedCoupon = [
+            'code' => $found['code'],
+            'type' => $found['type'] ?? 'percentage',
+            'value' => $found['value'],
+            'discount' => $discount,
+            'description' => $found['description'] ?? '',
+        ];
+
+        $this->couponCode = '';
+        $this->couponSuccess = "Coupon '{$found['code']}' applied! You saved ₹".number_format($discount, 0);
+    }
+
+    public function removeCoupon(): void
+    {
+        $this->appliedCoupon = null;
+        $this->couponError = '';
+        $this->couponSuccess = 'Coupon removed.';
     }
 
     public function checkoutWhatsApp()
@@ -234,10 +382,19 @@ class StoreHome extends Component
             $lines[] = "• {$item['title']} x {$item['qty']} = ₹".($item['price'] * $item['qty']);
         }
         $lines[] = '---------------------------';
-        $lines[] = '*Total Amount:* ₹'.$this->cartTotal;
+        $lines[] = '*Subtotal:* ₹'.number_format($this->subtotal, 2);
+
+        if ($this->appliedCoupon && $this->discountAmount > 0) {
+            $lines[] = "*Coupon ({$this->appliedCoupon['code']}):* -₹".number_format($this->discountAmount, 2);
+        }
+
+        $lines[] = '*Total Amount:* ₹'.number_format($this->cartTotal, 2);
 
         if ($this->customerName) {
             $lines[] = "*Customer:* {$this->customerName}";
+        }
+        if ($this->customerPhone) {
+            $lines[] = "*Contact Phone:* {$this->customerPhone}";
         }
         if ($this->customerAddress) {
             $lines[] = "*Delivery Address:* {$this->customerAddress}";
@@ -256,15 +413,62 @@ class StoreHome extends Component
             'payment_method' => 'whatsapp',
             'status' => 'new',
             'items_payload' => array_values($this->cart),
+            'metadata' => [
+                'subtotal' => $this->subtotal,
+                'coupon' => $this->appliedCoupon,
+                'discount_amount' => $this->discountAmount,
+                'channel' => 'whatsapp',
+            ],
         ]);
 
         $text = implode("\n", $lines);
         $url = $this->tenant->getWhatsAppUrl($text);
 
         $this->cart = [];
+        $this->appliedCoupon = null;
         $this->showCartModal = false;
 
         return redirect()->away($url);
+    }
+
+    public function checkoutWebOrder()
+    {
+        $this->validate([
+            'customerName' => 'required|min:2',
+            'customerPhone' => 'required|min:10',
+            'customerAddress' => 'required|min:5',
+        ]);
+
+        if (empty($this->cart)) {
+            return;
+        }
+
+        $order = Order::create([
+            'tenant_id' => $this->tenant->id,
+            'order_number' => 'ORD-'.strtoupper(Str::random(6)),
+            'type' => 'order',
+            'customer_name' => $this->customerName,
+            'customer_phone' => $this->customerPhone,
+            'customer_address' => $this->customerAddress,
+            'total_amount' => $this->cartTotal,
+            'payment_status' => 'pending',
+            'payment_method' => 'cod',
+            'status' => 'new',
+            'items_payload' => array_values($this->cart),
+            'metadata' => [
+                'subtotal' => $this->subtotal,
+                'coupon' => $this->appliedCoupon,
+                'discount_amount' => $this->discountAmount,
+                'payment_option' => 'Cash / UPI on Delivery',
+            ],
+        ]);
+
+        $this->placedOrder = $order;
+        $this->cart = [];
+        $this->appliedCoupon = null;
+        $this->showCartModal = false;
+        $this->showOrderSuccessModal = true;
+        $this->flashMessage = "Order #{$order->order_number} confirmed successfully!";
     }
 
     // --- BOOKING ACTIONS (Healthcare & Services) ---
@@ -466,15 +670,44 @@ class StoreHome extends Component
         }
 
         if ($this->search) {
-            $query->where('title', 'like', "%{$this->search}%");
+            $search = $this->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('category_name', 'like', "%{$search}%");
+            });
         }
 
         $items = $query->get();
+
+        if ($this->selectedBrand !== 'all') {
+            $brand = $this->selectedBrand;
+            $items = $items->filter(function ($item) use ($brand) {
+                return ($item->attributes['brand'] ?? '') === $brand;
+            })->values();
+        }
+
+        // Apply Sorting
+        if ($this->sortBy === 'price_asc') {
+            $items = $items->sortBy('price')->values();
+        } elseif ($this->sortBy === 'price_desc') {
+            $items = $items->sortByDesc('price')->values();
+        } elseif ($this->sortBy === 'discount_desc') {
+            $items = $items->sortByDesc(function ($i) {
+                return ($i->compare_at_price > $i->price) ? ($i->compare_at_price - $i->price) : 0;
+            })->values();
+        }
+
         $categories = $this->tenant->catalogItems()->pluck('category_name')->unique()->filter()->values();
+        $brands = $this->tenant->catalogItems
+            ->map(fn ($item) => $item->attributes['brand'] ?? null)
+            ->filter()
+            ->unique()
+            ->values();
 
         return view('livewire.store-home', [
             'items' => $items,
             'categories' => $categories,
+            'brands' => $brands,
         ])->layout('components.layouts.app', [
             'title' => $this->tenant->business_name.' - '.$this->tenant->tagline,
             'tenant' => $this->tenant,

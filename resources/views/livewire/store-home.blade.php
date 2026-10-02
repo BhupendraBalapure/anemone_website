@@ -20,8 +20,8 @@
     $isHotelCategory = stripos($bizCat, 'Hotel') !== false || stripos($bizCat, 'Motel') !== false || ($archetype->code === 'hospitality' && empty($bizCat));
 @endphp
 
-    <!-- 🌟 Top Demo & Theme Switcher Bar (Zero Data Loss Demonstration) -->
-    @if(!request()->boolean('in_editor') && !request()->boolean('in_preview'))
+    <!-- 🌟 Top Demo & Theme Switcher Bar (Only Shown when explicitly requested with ?demo=1) -->
+    @if(request()->boolean('demo'))
     <div class="bg-slate-950 text-white text-xs py-2 px-4 shadow-md sticky top-0 z-50 flex flex-wrap items-center justify-between gap-2 border-b border-purple-950">
         <div class="flex items-center gap-2 flex-wrap">
             <span class="bg-gradient-to-r from-rose-500 to-purple-600 text-white font-bold px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-wider">
@@ -622,7 +622,7 @@
 
     <!-- ⚡ Flash Message Notification -->
     @if($flashMessage)
-    <div class="bg-emerald-600 text-white px-4 py-2.5 text-center text-sm font-semibold flex items-center justify-center gap-2 shadow sticky top-9 z-40">
+    <div class="bg-emerald-600 text-white px-4 py-2.5 text-center text-sm font-semibold flex items-center justify-center gap-2 shadow relative z-40">
         <i class="fa-solid fa-circle-check"></i>
         <span>{{ $flashMessage }}</span>
         <button wire:click="$set('flashMessage', '')" class="ml-3 text-emerald-200 hover:text-white cursor-pointer">&times;</button>
@@ -643,7 +643,7 @@
     @endif
 
     <!-- 🧭 Main Website Navbar -->
-    <nav class="sticky top-9 z-30 backdrop-blur-md border-b transition-colors {{ 
+    <nav class="relative z-30 backdrop-blur-md border-b transition-colors {{ 
         $currentTheme === 'dark_luxury' ? 'bg-[#090D16]/95 border-zinc-800 text-white' : (
         $currentTheme === 'hotel_resort' ? 'bg-[#181614]/95 border-amber-500/20 text-stone-100' : (
         $currentTheme === 'nature_retreat' ? 'bg-[#0B1E15]/95 border-emerald-800/40 text-emerald-50' : (
@@ -765,6 +765,12 @@
                     @endif
                 </button>
                 @endif
+
+                <!-- ⚙️ Merchant Store Admin Access -->
+                <a href="{{ route('store.dashboard', $tenant->slug) }}" target="_blank" class="p-2 sm:px-3 sm:py-2 rounded-xl border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 hover:text-purple-300 text-xs font-bold transition flex items-center gap-1.5 shadow-2xs" title="Store Owner Dashboard">
+                    <i class="fa-solid fa-gauge text-xs"></i>
+                    <span class="hidden lg:inline text-[11px]">Dashboard</span>
+                </a>
             </div>
 
         </div>
@@ -7433,16 +7439,30 @@
                     </h3>
                 </div>
 
-                <!-- Search & Filters -->
-                <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
-                    <div class="relative w-full sm:w-64">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
-                        <input wire:model.live.debounce.300ms="search" type="text" placeholder="Search catalog..." class="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-purple-500 {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-white' }}">
+                <!-- Search, Sorter & Category/Brand Toolbar -->
+                <div class="flex flex-col gap-3 w-full md:w-auto">
+                    <div class="flex flex-col sm:flex-row items-center gap-2.5">
+                        <!-- Live Search Input -->
+                        <div class="relative w-full sm:w-60">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+                            <input wire:model.live.debounce.250ms="search" type="text" placeholder="Search products..." class="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-purple-500 {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-white' }}">
+                        </div>
+
+                        <!-- Sort By Selector -->
+                        <div class="relative w-full sm:w-auto">
+                            <select wire:model.live="sortBy" class="w-full sm:w-auto px-3 py-2 text-xs font-bold rounded-xl border border-slate-200 outline-none cursor-pointer {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-white text-slate-700' }}">
+                                <option value="featured">✨ Featured</option>
+                                <option value="price_asc">💰 Price: Low to High</option>
+                                <option value="price_desc">💎 Price: High to Low</option>
+                                <option value="discount_desc">🏷️ Highest Discount</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1">
+                    <!-- Category Filter Pills -->
+                    <div class="flex items-center gap-1.5 overflow-x-auto w-full max-w-full pb-1">
                         <button wire:click="$set('selectedCategory', 'all')" class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-bold transition cursor-pointer {{ $selectedCategory === 'all' ? 'btn-brand-gradient text-white shadow' : ($currentTheme === 'dark_luxury' ? 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700' : 'bg-slate-200 text-slate-700 hover:bg-slate-300') }}">
-                            All ({{ $items->count() }})
+                            All Categories ({{ $items->count() }})
                         </button>
                         @foreach($categories as $category)
                         <button wire:click="$set('selectedCategory', '{{ $category }}')" class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-bold transition cursor-pointer {{ $selectedCategory === $category ? 'btn-brand-gradient text-white shadow' : ($currentTheme === 'dark_luxury' ? 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700' : 'bg-slate-200 text-slate-700 hover:bg-slate-300') }}">
@@ -7450,6 +7470,23 @@
                         </button>
                         @endforeach
                     </div>
+
+                    <!-- 🏷️ Brand Filter Pills (If Brands Exist) -->
+                    @if(isset($brands) && $brands->isNotEmpty())
+                    <div class="flex items-center gap-1.5 overflow-x-auto w-full max-w-full pb-1 pt-1 border-t border-slate-100/60 {{ $currentTheme === 'dark_luxury' ? 'border-zinc-800' : '' }}">
+                        <span class="text-[10px] font-black uppercase text-slate-400 mr-1 shrink-0 flex items-center gap-1">
+                            <i class="fa-solid fa-tag text-[9px]"></i> Brand:
+                        </span>
+                        <button wire:click="$set('selectedBrand', 'all')" class="whitespace-nowrap px-2.5 py-1 rounded-lg text-[11px] font-bold transition cursor-pointer {{ $selectedBrand === 'all' ? 'bg-purple-600 text-white shadow' : ($currentTheme === 'dark_luxury' ? 'bg-zinc-800 text-zinc-300' : 'bg-slate-100 text-slate-600 hover:bg-slate-200') }}">
+                            All Brands
+                        </button>
+                        @foreach($brands as $bName)
+                        <button wire:click="$set('selectedBrand', '{{ $bName }}')" class="whitespace-nowrap px-2.5 py-1 rounded-lg text-[11px] font-bold transition cursor-pointer {{ $selectedBrand === $bName ? 'bg-purple-600 text-white shadow' : ($currentTheme === 'dark_luxury' ? 'bg-zinc-800 text-zinc-300' : 'bg-slate-100 text-slate-600 hover:bg-slate-200') }}">
+                            {{ $bName }}
+                        </button>
+                        @endforeach
+                    </div>
+                    @endif
                 </div>
             </div>
 
@@ -8552,6 +8589,24 @@
 
                             <!-- Product Info -->
                             <div class="p-6">
+                                <div class="flex items-center gap-1.5 mb-2 flex-wrap">
+                                    @if(!empty($item->attributes['brand']))
+                                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-400/30">
+                                            <i class="fa-solid fa-tag text-[9px]"></i> {{ $item->attributes['brand'] }}
+                                        </span>
+                                    @endif
+                                    @if(!empty($item->attributes['badge']))
+                                        <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-amber-400 text-slate-950">
+                                            {{ $item->attributes['badge'] }}
+                                        </span>
+                                    @endif
+                                    @if($item->category_name)
+                                        <span class="text-[10px] font-medium text-slate-400">
+                                            &bull; {{ $item->category_name }}
+                                        </span>
+                                    @endif
+                                </div>
+
                                 <h3 class="font-black text-lg mb-2 line-clamp-1 {{ in_array($currentTheme, ['coaching_ecom_test_series', 'coaching_ecom_recorded_lectures']) ? 'text-white' : 'text-slate-900' }}">
                                     {{ $item->title }}
                                 </h3>
@@ -8568,12 +8623,36 @@
                                     </div>
                                 </div>
 
-                                <!-- Price Display -->
-                                <div class="flex items-baseline gap-2 mb-2">
+                                <!-- Price Display with MRP & Discount Tag -->
+                                <div class="flex items-baseline gap-2 mb-1 flex-wrap">
                                     <span class="text-2xl font-black {{ $ecomCardTheme['price_color'] }}">
                                         ₹{{ number_format($item->price, 0) }}
                                     </span>
-                                    <span class="text-xs font-bold text-slate-500">/ Complete Kit &bull; GST Included</span>
+                                    @if($item->compare_at_price && $item->compare_at_price > $item->price)
+                                        <span class="line-through text-xs font-bold text-slate-400">
+                                            ₹{{ number_format($item->compare_at_price, 0) }}
+                                        </span>
+                                        @php
+                                            $pct = round((($item->compare_at_price - $item->price) / $item->compare_at_price) * 100);
+                                        @endphp
+                                        <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                                            Save {{ $pct }}% OFF
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <!-- Stock Status Indicator -->
+                                <div class="text-[11px] font-bold mb-2">
+                                    @if($item->in_stock)
+                                        <span class="text-emerald-400 flex items-center gap-1.5">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                            <span>In Stock ({{ $item->stock_quantity ?? 25 }} Kits Available)</span>
+                                        </span>
+                                    @else
+                                        <span class="text-rose-400 flex items-center gap-1">
+                                            <i class="fa-solid fa-circle-xmark"></i> Out of Stock
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -8626,13 +8705,18 @@
                                 {{ $item->title }}
                             </h3>
 
-                            @if(!empty($item->attributes))
-                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                @foreach($item->attributes as $key => $val)
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-md {{ $currentTheme === 'dark_luxury' ? 'bg-zinc-800 text-zinc-300' : 'bg-slate-100 text-slate-600' }}">
-                                    {{ ucfirst($key) }}: {{ is_bool($val) ? ($val ? 'Yes' : 'No') : $val }}
+                            @if(!empty($item->attributes['brand']) || !empty($item->attributes['badge']))
+                            <div class="flex items-center gap-1.5 mb-2.5 flex-wrap">
+                                @if(!empty($item->attributes['brand']))
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-purple-50 text-purple-700 border border-purple-200">
+                                    <i class="fa-solid fa-tag text-[9px]"></i> {{ $item->attributes['brand'] }}
                                 </span>
-                                @endforeach
+                                @endif
+                                @if(!empty($item->attributes['badge']))
+                                <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded-md bg-amber-400 text-slate-900">
+                                    {{ $item->attributes['badge'] }}
+                                </span>
+                                @endif
                             </div>
                             @endif
 
@@ -9131,59 +9215,299 @@
     </footer>
     @endif
 
-    <!-- 🛍️ Cart Modal for Retail & Food -->
+    <!-- 🛍️ SMART SLIDE-OVER CART DRAWER & COUPON ENGINE (E-COMMERCE ONLY) -->
     @if($this->isEcommerce && $showCartModal)
-    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
-        <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-            <div class="p-5 border-b flex items-center justify-between bg-slate-50">
-                <h3 class="font-bold text-base flex items-center gap-2 text-slate-900">
-                    <i class="fa-solid fa-bag-shopping text-emerald-600"></i> Your Cart ({{ $this->cartCount }})
-                </h3>
-                <button wire:click="$set('showCartModal', false)" class="text-slate-400 hover:text-slate-700 text-xl font-bold cursor-pointer">&times;</button>
-            </div>
+    <div class="fixed inset-0 z-50 overflow-hidden animate-fade-in">
+        <!-- Backdrop -->
+        <div wire:click="$set('showCartModal', false)" class="absolute inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity"></div>
 
-            <div class="p-5 overflow-y-auto flex-1 space-y-3">
-                @if(empty($cart))
-                <div class="text-center py-8 text-slate-400">
-                    <i class="fa-solid fa-basket-shopping text-4xl mb-2 text-slate-200"></i>
-                    <p class="text-sm">Your cart is currently empty.</p>
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between">
+                
+                <!-- Drawer Header -->
+                <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-sm shadow">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-black text-base text-slate-900">Your Shopping Cart</h3>
+                            <span class="text-xs text-slate-500 font-semibold">{{ $this->cartCount }} {{ $this->cartCount === 1 ? 'item' : 'items' }} selected</span>
+                        </div>
+                    </div>
+                    <button wire:click="$set('showCartModal', false)" class="w-8 h-8 rounded-xl bg-slate-200/70 hover:bg-slate-300 text-slate-600 flex items-center justify-center transition cursor-pointer">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
                 </div>
-                @else
-                    @foreach($cart as $cItem)
-                    <div class="flex items-center justify-between gap-3 border-b border-slate-100 pb-3">
-                        <div class="flex-1">
-                            <h4 class="text-xs font-bold text-slate-800 line-clamp-1">{{ $cItem['title'] }}</h4>
-                            <span class="text-xs text-slate-500 font-semibold">₹{{ $cItem['price'] }}</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button wire:click="updateQty({{ $cItem['id'] }}, -1)" class="w-6 h-6 rounded bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center hover:bg-slate-200 cursor-pointer">-</button>
-                            <span class="text-xs font-bold w-4 text-center">{{ $cItem['qty'] }}</span>
-                            <button wire:click="updateQty({{ $cItem['id'] }}, 1)" class="w-6 h-6 rounded bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center hover:bg-slate-200 cursor-pointer">+</button>
-                            <button wire:click="removeFromCart({{ $cItem['id'] }})" class="text-rose-500 hover:text-rose-700 text-xs ml-1 cursor-pointer"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                    </div>
-                    @endforeach
 
-                    <!-- Customer Info Form for Quick Checkout -->
-                    <div class="pt-2 space-y-2">
-                        <label class="block text-xs font-bold text-slate-700">Delivery Details</label>
-                        <input wire:model="customerName" type="text" placeholder="Full Name" class="input-field">
-                        <input wire:model="customerAddress" type="text" placeholder="Delivery Address / Landmark" class="input-field">
-                    </div>
+                <!-- Free Shipping Progress Meter -->
+                @if(!empty($cart))
+                <div class="bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 border-b border-indigo-100/60 p-3.5 px-5">
+                    @if($this->subtotal >= $this->freeShippingThreshold)
+                        <div class="flex items-center gap-2 text-emerald-700 text-xs font-bold">
+                            <i class="fa-solid fa-circle-check text-emerald-600 text-sm"></i>
+                            <span>🎉 Congratulations! You have unlocked <strong>FREE Express Delivery</strong></span>
+                        </div>
+                    @else
+                        @php
+                            $needed = $this->freeShippingThreshold - $this->subtotal;
+                        @endphp
+                        <div class="flex items-center justify-between text-xs font-bold text-slate-700 mb-1.5">
+                            <span class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-truck-fast text-purple-600"></i> Add ₹{{ number_format($needed, 0) }} more for <strong>FREE Delivery</strong>
+                            </span>
+                            <span class="text-[10px] text-purple-700 font-extrabold">{{ $this->freeShippingProgress }}%</span>
+                        </div>
+                        <div class="w-full bg-slate-200/80 rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-gradient-to-r from-purple-600 to-indigo-600 h-1.5 rounded-full transition-all duration-500" style="width: {{ $this->freeShippingProgress }}%;"></div>
+                        </div>
+                    @endif
+                </div>
                 @endif
+
+                <!-- Drawer Scrollable Content -->
+                <div class="p-5 overflow-y-auto flex-1 space-y-4">
+                    @if(empty($cart))
+                    <div class="text-center py-16 text-slate-400">
+                        <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-slate-300 mx-auto mb-3 text-2xl">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </div>
+                        <h4 class="font-bold text-base text-slate-700 mb-1">Your cart is empty</h4>
+                        <p class="text-xs text-slate-400 max-w-xs mx-auto mb-5">Browse our catalog and add test series, notes, or products to get started!</p>
+                        <button wire:click="$set('showCartModal', false)" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow transition cursor-pointer">
+                            Explore Catalog
+                        </button>
+                    </div>
+                    @else
+                        <!-- Cart Items List -->
+                        <div class="space-y-3">
+                            @foreach($cart as $cItem)
+                            <div class="p-3 rounded-2xl border border-slate-100 bg-slate-50/50 flex items-center justify-between gap-3">
+                                <div class="flex items-center gap-3 flex-1 min-w-0">
+                                    @if(!empty($cItem['image']))
+                                        <img src="{{ $cItem['image'] }}" class="w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0">
+                                    @endif
+                                    <div class="min-w-0 flex-1">
+                                        <h4 class="text-xs font-bold text-slate-900 truncate">{{ $cItem['title'] }}</h4>
+                                        <div class="flex items-center gap-2 mt-0.5">
+                                            <span class="text-xs font-black text-purple-700">₹{{ number_format($cItem['price'], 0) }}</span>
+                                            <span class="text-[10px] text-slate-400">&times; {{ $cItem['qty'] }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-1.5 shrink-0">
+                                    <button wire:click="updateQty({{ $cItem['id'] }}, -1)" class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center hover:bg-slate-100 transition cursor-pointer">-</button>
+                                    <span class="text-xs font-bold w-5 text-center text-slate-800">{{ $cItem['qty'] }}</span>
+                                    <button wire:click="updateQty({{ $cItem['id'] }}, 1)" class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center hover:bg-slate-100 transition cursor-pointer">+</button>
+                                    <button wire:click="removeFromCart({{ $cItem['id'] }})" class="p-1.5 text-rose-500 hover:text-rose-700 text-xs ml-1 cursor-pointer" title="Remove">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+
+                        <!-- 🎟️ E-COMMERCE EXCLUSIVE COUPON ENGINE -->
+                        <div class="pt-2 border-t border-slate-100">
+                            <div class="bg-purple-50/50 border border-purple-100 rounded-2xl p-3.5 space-y-2.5">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[11px] font-black uppercase text-purple-900 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-ticket text-purple-600"></i> Have a Promo Coupon?
+                                    </span>
+                                    @if($appliedCoupon)
+                                        <span class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full flex items-center gap-1">
+                                            <i class="fa-solid fa-circle-check text-[9px]"></i> Applied
+                                        </span>
+                                    @endif
+                                </div>
+
+                                @if($appliedCoupon)
+                                <!-- Applied Coupon Badge -->
+                                <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between text-xs">
+                                    <div>
+                                        <div class="font-mono font-black text-emerald-800 flex items-center gap-1.5">
+                                            <i class="fa-solid fa-tag"></i> {{ $appliedCoupon['code'] }}
+                                        </div>
+                                        <div class="text-[10px] text-emerald-700 font-semibold mt-0.5">
+                                            You saved ₹{{ number_format($this->discountAmount, 2) }} on this order!
+                                        </div>
+                                    </div>
+                                    <button type="button" wire:click="removeCoupon" class="px-2 py-1 rounded-lg text-rose-600 hover:bg-rose-50 text-[10px] font-bold transition cursor-pointer">
+                                        Remove
+                                    </button>
+                                </div>
+                                @else
+                                <!-- Coupon Input Box -->
+                                <div class="flex items-center gap-2">
+                                    <input wire:model="couponCode" type="text" placeholder="Enter coupon code (e.g. WELCOME10)" class="flex-1 px-3 py-2 rounded-xl border border-slate-200 text-xs font-mono font-bold uppercase outline-none focus:border-purple-500 bg-white">
+                                    <button type="button" wire:click="applyCoupon" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-xs transition cursor-pointer">
+                                        Apply
+                                    </button>
+                                </div>
+                                @endif
+
+                                @if($couponError)
+                                    <p class="text-[11px] font-bold text-rose-600 flex items-center gap-1">
+                                        <i class="fa-solid fa-circle-exclamation text-[10px]"></i> {{ $couponError }}
+                                    </p>
+                                @endif
+                                @if($couponSuccess && !$appliedCoupon)
+                                    <p class="text-[11px] font-bold text-emerald-600 flex items-center gap-1">
+                                        <i class="fa-solid fa-circle-check text-[10px]"></i> {{ $couponSuccess }}
+                                    </p>
+                                @endif
+
+                                <!-- Available Quick-Tap Coupons -->
+                                @if(!$appliedCoupon && !empty($this->availableCoupons))
+                                <div class="pt-1">
+                                    <span class="text-[10px] font-bold text-slate-500 block mb-1.5">Available for you (tap to apply):</span>
+                                    <div class="flex items-center gap-1.5 flex-wrap">
+                                        @foreach($this->availableCoupons as $avC)
+                                        <button type="button" wire:click="applyCoupon('{{ $avC['code'] }}')" class="px-2.5 py-1 rounded-lg bg-white border border-purple-200 hover:border-purple-400 text-purple-700 font-mono text-[10px] font-bold shadow-2xs transition cursor-pointer flex items-center gap-1">
+                                            <span>{{ $avC['code'] }}</span>
+                                            <span class="text-purple-400">&bull;</span>
+                                            <span class="text-slate-600 font-sans">{{ ($avC['type'] ?? '') === 'percentage' ? $avC['value'].'% OFF' : '₹'.$avC['value'].' OFF' }}</span>
+                                        </button>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Customer Delivery Information -->
+                        <div class="pt-2 border-t border-slate-100 space-y-2.5">
+                            <label class="block text-xs font-black uppercase text-slate-700 tracking-wider">
+                                <i class="fa-solid fa-truck-ramp-box text-purple-600"></i> Delivery & Contact Details
+                            </label>
+                            
+                            <div>
+                                <input wire:model="customerName" type="text" placeholder="Full Name *" class="input-field text-xs" required>
+                                @error('customerName') <span class="text-rose-500 text-[10px]">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div>
+                                <input wire:model="customerPhone" type="tel" placeholder="Mobile Number (e.g. 9876543210) *" class="input-field text-xs font-mono" required>
+                                @error('customerPhone') <span class="text-rose-500 text-[10px]">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div>
+                                <textarea wire:model="customerAddress" rows="2" placeholder="Complete Delivery Address & Landmark *" class="input-field text-xs" required></textarea>
+                                @error('customerAddress') <span class="text-rose-500 text-[10px]">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                    @endif
+                </div>
+
+                <!-- Drawer Footer & Dual Checkout Actions -->
+                @if(!empty($cart))
+                <div class="p-5 border-t border-slate-100 bg-slate-50 space-y-3 shrink-0">
+                    <!-- Price Breakdown -->
+                    <div class="space-y-1.5 text-xs">
+                        <div class="flex items-center justify-between text-slate-500">
+                            <span>Subtotal ({{ $this->cartCount }} items)</span>
+                            <span class="font-bold text-slate-700">₹{{ number_format($this->subtotal, 2) }}</span>
+                        </div>
+
+                        @if($appliedCoupon && $this->discountAmount > 0)
+                        <div class="flex items-center justify-between text-emerald-700 font-bold">
+                            <span>Coupon Discount ({{ $appliedCoupon['code'] }})</span>
+                            <span>-₹{{ number_format($this->discountAmount, 2) }}</span>
+                        </div>
+                        @endif
+
+                        <div class="flex items-center justify-between text-slate-500">
+                            <span>Delivery Shipping</span>
+                            @if($this->subtotal >= $this->freeShippingThreshold)
+                                <span class="font-bold text-emerald-600 uppercase text-[10px] bg-emerald-50 px-2 py-0.5 rounded">FREE</span>
+                            @else
+                                <span class="font-bold text-slate-700">₹50</span>
+                            @endif
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-200/80 flex items-center justify-between text-sm">
+                            <span class="font-black text-slate-900">Total Payable:</span>
+                            <span class="text-xl font-black text-purple-700">₹{{ number_format($this->cartTotal, 2) }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Dual Checkout Buttons -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                        <!-- Direct Web Order Button -->
+                        <button type="button" wire:click="checkoutWebOrder" class="py-3 px-3 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-1.5 cursor-pointer hover:scale-[1.02]">
+                            <i class="fa-solid fa-bolt text-amber-300"></i> Direct Order (COD)
+                        </button>
+
+                        <!-- WhatsApp Order Button -->
+                        <button type="button" wire:click="checkoutWhatsApp" class="py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-1.5 cursor-pointer hover:scale-[1.02]">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Order via WhatsApp
+                        </button>
+                    </div>
+
+                    <p class="text-[10px] text-center text-slate-400">
+                        <i class="fa-solid fa-lock text-[9px] text-emerald-600"></i> 100% Verified Order &bull; Cash or UPI on Doorstep
+                    </p>
+                </div>
+                @endif
+
+            </div>
+        </div>
+    </div>
+    @endif
+
+    <!-- 🎉 DIRECT WEB ORDER CONFIRMATION MODAL -->
+    @if($showOrderSuccessModal && $placedOrder)
+    <div class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
+        <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl p-6 text-center space-y-4">
+            <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto shadow-inner animate-bounce">
+                <i class="fa-solid fa-circle-check"></i>
             </div>
 
-            @if(!empty($cart))
-            <div class="p-5 border-t bg-slate-50 space-y-3">
-                <div class="flex items-center justify-between text-sm font-bold text-slate-900">
-                    <span>Total:</span>
-                    <span class="text-lg text-emerald-700 font-black">₹{{ number_format($this->cartTotal, 2) }}</span>
+            <div>
+                <span class="text-[10px] font-black uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">
+                    Order Placed Successfully
+                </span>
+                <h3 class="font-black text-xl text-slate-900 mt-2">Thank you, {{ $placedOrder->customer_name }}!</h3>
+                <p class="text-xs text-slate-500 mt-1">Your order has been recorded and will be prepared shortly.</p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-left text-xs space-y-2">
+                <div class="flex items-center justify-between pb-2 border-b border-slate-200">
+                    <span class="text-slate-500">Order Number:</span>
+                    <span class="font-mono font-black text-purple-700 text-sm">#{{ $placedOrder->order_number }}</span>
                 </div>
-                <button wire:click="checkoutWhatsApp" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 transition cursor-pointer">
-                    <i class="fa-brands fa-whatsapp text-lg"></i> Complete Order on WhatsApp
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-500">Total Amount:</span>
+                    <span class="font-black text-slate-900 text-sm">₹{{ number_format($placedOrder->total_amount, 2) }}</span>
+                </div>
+                @if(!empty($placedOrder->metadata['coupon']['code']))
+                <div class="flex items-center justify-between text-emerald-700 font-bold">
+                    <span>Coupon Applied:</span>
+                    <span>{{ $placedOrder->metadata['coupon']['code'] }} (-₹{{ number_format($placedOrder->metadata['discount_amount'] ?? 0) }})</span>
+                </div>
+                @endif
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-500">Payment:</span>
+                    <span class="font-bold text-slate-700">Cash / UPI on Delivery</span>
+                </div>
+                <div class="pt-2 border-t border-slate-200 text-slate-600">
+                    <span class="text-slate-400 block text-[10px]">Shipping To:</span>
+                    <span class="font-semibold block text-[11px]">{{ $placedOrder->customer_address }}</span>
+                </div>
+            </div>
+
+            <div class="pt-2 flex flex-col gap-2">
+                @php
+                    $trackMsg = "Hello " . $tenant->business_name . ", I just placed order #" . $placedOrder->order_number . " for ₹" . number_format($placedOrder->total_amount, 0) . ". Please share dispatch tracking!";
+                @endphp
+                <a href="{{ $tenant->getWhatsAppUrl($trackMsg) }}" target="_blank" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow transition">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Track Order on WhatsApp
+                </a>
+                <button type="button" wire:click="$set('showOrderSuccessModal', false)" class="w-full py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs transition cursor-pointer">
+                    Continue Shopping
                 </button>
             </div>
-            @endif
         </div>
     </div>
     @endif
